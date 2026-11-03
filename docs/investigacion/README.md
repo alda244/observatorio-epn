@@ -4,6 +4,8 @@ Corte: 20-oct-2026 · Responsable: Alicia Pereira · Director: Enrique Andrés L
 
 Este conjunto resume la investigación preliminar con la que se negocian con el director los términos del asistente RAG: fuentes, sectores, periodo, ficha de empresa, adquisición de datos, integración e infraestructura.
 
+La investigación del Componente B (cifras SCVS, universo de empresas y Bloque 2 del Company Profile) está en [`../investigacion-b/`](../investigacion-b/README.md).
+
 ## Documentos
 
 | Nº | Archivo | Pregunta que responde |

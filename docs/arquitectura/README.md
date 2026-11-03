@@ -38,7 +38,7 @@ flowchart LR
 | --- | --- |
 | `etl/`, `api/`, `portal-datos/`, `docs/sprints/B`, `docs/evidencias/B` | B (Eduardo Muzo) |
 | `rag/`, `widget/`, `docs/sprints/A`, `docs/evidencias/A`, `docs/evaluacion/` | A (Alicia Pereira) |
-| `contracts/`, `infra/`, `scripts/`, `.github/`, `docker-compose.yml`, `.env.example`, `docs/adr/`, `docs/arquitectura/`, `docs/investigacion/`, raíz | Compartido |
+| `contracts/`, `infra/`, `scripts/`, `.github/`, `docker-compose.yml`, `.env.example`, `docs/adr/`, `docs/arquitectura/`, `docs/investigacion/`, `docs/investigacion-b/`, raíz | Compartido |
 
 | Regla para lo compartido | Mecanismo |
 | --- | --- |

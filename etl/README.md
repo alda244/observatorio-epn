@@ -2,6 +2,8 @@
 
 Dueño: Eduardo Muzo. Lleva las descargas oficiales de la SCVS al esquema `datos`: carga, calidad, indicadores, proyecciones y metadatos DCAT.
 
+Alcance y decisiones propuestas: [`docs/investigacion-b/`](../docs/investigacion-b/README.md). En revisión: pipeline por comandos en capas Medallion ([ADR 0007](../docs/adr/0007-pipeline-por-comandos-sin-airflow.md)) y recolección del Bloque 2 del Company Profile ([ADR 0006](../docs/adr/0006-bloque2-company-profile-en-b.md)).
+
 | Carpeta | Propósito |
 | --- | --- |
 | `datos/crudo/` | Descargas manuales versionadas por año y `MANIFEST.csv` |
