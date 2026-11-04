@@ -9,6 +9,8 @@ Cada decisión que cambia la estructura, el stack o el contrato se registra con 
 | [0003](0003-contrato-primero.md) | Contrato OpenAPI primero | Compartido | Aceptado |
 | [0004](0004-llm-interfaz-openai.md) | Acceso al LLM mediante una interfaz compatible con OpenAI | A | Aceptado (proveedor pendiente) |
 | [0005](0005-widget-alineado-fragui.md) | Widget alineado con el stack de FragUI | A | Aceptado |
+| [0006](0006-bloque2-company-profile-en-b.md) | Bloque 2 del Company Profile producido por B | Compartido | Propuesto |
+| [0007](0007-pipeline-por-comandos-sin-airflow.md) | Pipeline ETL por comandos, en capas Medallion y sin Airflow | B | Propuesto |
 | — | Portal de datos: CKAN, propio o híbrido | B | Pendiente (Sprint 1 de B) |
 
 ## Reglas
