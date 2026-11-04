@@ -9,6 +9,7 @@ Cada decisión que cambia la estructura, el stack o el contrato se registra con 
 | [0003](0003-contrato-primero.md) | Contrato OpenAPI primero | Compartido | Aceptado |
 | [0004](0004-llm-interfaz-openai.md) | Acceso al LLM mediante una interfaz compatible con OpenAI | A | Aceptado (proveedor pendiente) |
 | [0005](0005-widget-alineado-fragui.md) | Widget alineado con el stack de FragUI | A | Aceptado |
+| [0008](0008-infraestructura-de-despliegue.md) | Infraestructura de desarrollo y despliegue con LLM por API | Compartido | Propuesto |
 | — | Portal de datos: CKAN, propio o híbrido | B | Pendiente (Sprint 1 de B) |
 
 ## Reglas

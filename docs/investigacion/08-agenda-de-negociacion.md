@@ -8,9 +8,11 @@
 | 2 | ¿Qué sectores? | A mínima · B recomendada · C amplia | B ([02](02-sectores-y-tamanos.md)) |
 | 3 | ¿Qué hacer con 2006–2011? | Incluir marcado · descartar cifras | Incluir marcado si se obtiene ([03](03-periodo-de-analisis.md)) |
 | 4 | ¿Puede gestionarse un convenio EPN–SCVS? | Convenio · solicitud de información pública | Convenio, con plan B ([05](05-adquisicion-de-datos.md)) |
-| 5 | ¿Quién arma las fichas textuales? | A · reparto A/B | A ([04](04-ficha-de-empresa.md)) |
+| 5 | ¿Quién arma las fichas textuales? | A · reparto A/B | Reparto A/B: B recolecta y estructura; A indexa y responde (ADR 0006 con enmienda, [10](10-coherencia-con-componente-b.md)) |
 | 6 | ¿Cuándo es la reunión con el equipo del portal? | Fecha a definir | En las próximas dos semanas ([06](06-arquitectura-e-integracion.md)) |
-| 7 | ¿Quién solicita AWS y con qué tope mensual? | Director · estudiantes | A definir ([07](07-infraestructura-aws.md)) |
+| 7 | ¿Quién solicita AWS y con qué tope mensual? | Director · estudiantes | El director solicita; tope de USD 150 al mes ([07](07-infraestructura-aws.md), ADR 0008) |
+
+Estado tras [RN-01](../reuniones/RN-01-ficha-alcance-antecedentes.md): la ficha usa el esquema Company Profile y el repositorio único quedó confirmado. Las preguntas 1 y 2 siguen abiertas: el director acepta delimitar por tamaño o por sector y espera una propuesta concreta según la capacidad del equipo.
 
 ## Próximos pasos
 

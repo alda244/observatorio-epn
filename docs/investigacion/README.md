@@ -16,6 +16,9 @@ Este conjunto resume la investigación preliminar con la que se negocian con el 
 | 6 | [06-arquitectura-e-integracion.md](06-arquitectura-e-integracion.md) | ¿Cómo se integra con el Componente B y el portal en curso? |
 | 7 | [07-infraestructura-aws.md](07-infraestructura-aws.md) | ¿Qué infraestructura solicitar? |
 | 8 | [08-agenda-de-negociacion.md](08-agenda-de-negociacion.md) | ¿Qué decidir en la reunión y qué sigue? |
+| 9 | [09-antecedentes-reinoso-datahub.md](09-antecedentes-reinoso-datahub.md) | ¿Qué se reutiliza de Reinoso y del Data Hub EPN? |
+| 10 | [10-coherencia-con-componente-b.md](10-coherencia-con-componente-b.md) | ¿Es coherente esta investigación con la del Componente B? |
+| 11 | [11-herramientas.md](11-herramientas.md) | ¿Qué herramientas usa el Componente A y cómo se gestiona el trabajo? |
 
 ## Propuestas a negociar
 
@@ -26,7 +29,8 @@ Este conjunto resume la investigación preliminar con la que se negocian con el 
 | Periodo | Serie comparable 2012–2025; 2006–2011 como serie histórica marcada | [03](03-periodo-de-analisis.md) |
 | Fuentes de cifras | Descargas oficiales de la SCVS y convenio institucional; sin scraping del portal SCVS | [05](05-adquisicion-de-datos.md) |
 | Frontera A/B | B carga y expone cifras por API; A indexa texto oficial y consume la API de B | [06](06-arquitectura-e-integracion.md) |
-| Despliegue | Widget embebible en el portal, construido con el stack de FragUI, sobre AWS de la EPN | [06](06-arquitectura-e-integracion.md), [07](07-infraestructura-aws.md) |
+| Despliegue | Widget embebible en el portal, construido con el stack de FragUI; EC2 con Docker Compose, RDS con pgvector y LLM por API en la cuenta AWS de la EPN | [06](06-arquitectura-e-integracion.md), [07](07-infraestructura-aws.md) |
+| Frontera de las fichas | B recolecta una vez y estructura el Company Profile; A indexa los documentos y responde con cita | [10](10-coherencia-con-componente-b.md) |
 
 ## Insumos de origen
 
