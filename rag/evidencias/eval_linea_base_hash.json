@@ -1,0 +1,384 @@
+{
+  "resumen": {
+    "modelo_embeddings": "hash-512",
+    "umbral_similitud": 0.05,
+    "umbral_fuerte": 0.95,
+    "k": 5,
+    "preguntas": 30,
+    "acierto@5": 0.875,
+    "mrr": 0.706,
+    "rechazo_correcto": 0.833,
+    "falso_rechazo": 0
+  },
+  "detalle": [
+    {
+      "id": "P01",
+      "tipo": "nombre",
+      "ok": true,
+      "rango": 1,
+      "modo": "extractivo",
+      "recuperados": [
+        "72951",
+        "746854",
+        "166907",
+        "747203",
+        "93994"
+      ]
+    },
+    {
+      "id": "P02",
+      "tipo": "nombre",
+      "ok": true,
+      "rango": 2,
+      "modo": "extractivo",
+      "recuperados": [
+        "16771",
+        "384",
+        "48145",
+        "2913",
+        "19762"
+      ]
+    },
+    {
+      "id": "P03",
+      "tipo": "nombre",
+      "ok": true,
+      "rango": 1,
+      "modo": "extractivo",
+      "recuperados": [
+        "7154",
+        "98397",
+        "32301",
+        "166709",
+        "706349"
+      ]
+    },
+    {
+      "id": "P04",
+      "tipo": "nombre",
+      "ok": true,
+      "rango": 1,
+      "modo": "extractivo",
+      "recuperados": [
+        "53352",
+        "722687",
+        "124193",
+        "169998",
+        "731496"
+      ]
+    },
+    {
+      "id": "P05",
+      "tipo": "nombre",
+      "ok": true,
+      "rango": 3,
+      "modo": "extractivo",
+      "recuperados": [
+        "48845",
+        "730414",
+        "740608",
+        "154918",
+        "718474"
+      ]
+    },
+    {
+      "id": "P06",
+      "tipo": "cifra",
+      "ok": true,
+      "rango": 1,
+      "modo": "extractivo",
+      "recuperados": [
+        "721037",
+        "3502",
+        "48324",
+        "2913",
+        "101494"
+      ]
+    },
+    {
+      "id": "P07",
+      "tipo": "cifra",
+      "ok": true,
+      "rango": 1,
+      "modo": "extractivo",
+      "recuperados": [
+        "47972",
+        "155462",
+        "711966",
+        "48324",
+        "709863"
+      ]
+    },
+    {
+      "id": "P08",
+      "tipo": "actividad",
+      "ok": true,
+      "rango": 1,
+      "modo": "extractivo",
+      "recuperados": [
+        "66196",
+        "316750",
+        "315077",
+        "88042",
+        "101558"
+      ]
+    },
+    {
+      "id": "P09",
+      "tipo": "actividad",
+      "ok": true,
+      "rango": 3,
+      "modo": "extractivo",
+      "recuperados": [
+        "135370",
+        "53013",
+        "61294",
+        "30024",
+        "160965"
+      ]
+    },
+    {
+      "id": "P10",
+      "tipo": "actividad",
+      "ok": false,
+      "rango": null,
+      "modo": "extractivo",
+      "recuperados": [
+        "305960",
+        "304247",
+        "171325",
+        "706006",
+        "146238"
+      ]
+    },
+    {
+      "id": "P11",
+      "tipo": "actividad",
+      "ok": true,
+      "rango": 1,
+      "modo": "extractivo",
+      "recuperados": [
+        "120279",
+        "3970",
+        "707627",
+        "46949",
+        "159313"
+      ]
+    },
+    {
+      "id": "P12",
+      "tipo": "actividad",
+      "ok": true,
+      "rango": 1,
+      "modo": "extractivo",
+      "recuperados": [
+        "21499",
+        "50181",
+        "146238",
+        "717531",
+        "170606"
+      ]
+    },
+    {
+      "id": "P13",
+      "tipo": "actividad",
+      "ok": true,
+      "rango": 1,
+      "modo": "extractivo",
+      "recuperados": [
+        "4164",
+        "145796",
+        "90174",
+        "89655",
+        "157383"
+      ]
+    },
+    {
+      "id": "P14",
+      "tipo": "actividad",
+      "ok": true,
+      "rango": 1,
+      "modo": "extractivo",
+      "recuperados": [
+        "150434",
+        "7300",
+        "7745",
+        "360859",
+        "95985"
+      ]
+    },
+    {
+      "id": "P15",
+      "tipo": "actividad",
+      "ok": true,
+      "rango": 1,
+      "modo": "extractivo",
+      "recuperados": [
+        "600175",
+        "600201",
+        "600220",
+        "600133",
+        "600287"
+      ]
+    },
+    {
+      "id": "P16",
+      "tipo": "actividad",
+      "ok": true,
+      "rango": 1,
+      "modo": "extractivo",
+      "recuperados": [
+        "87185",
+        "166413",
+        "2448",
+        "1088",
+        "721037"
+      ]
+    },
+    {
+      "id": "P17",
+      "tipo": "actividad",
+      "ok": true,
+      "rango": 4,
+      "modo": "extractivo",
+      "recuperados": [
+        "49616",
+        "35741",
+        "4902",
+        "73818",
+        "7745"
+      ]
+    },
+    {
+      "id": "P18",
+      "tipo": "actividad",
+      "ok": true,
+      "rango": 1,
+      "modo": "extractivo",
+      "recuperados": [
+        "34388",
+        "34449",
+        "72073",
+        "369",
+        "7027"
+      ]
+    },
+    {
+      "id": "P19",
+      "tipo": "actividad",
+      "ok": false,
+      "rango": null,
+      "modo": "extractivo",
+      "recuperados": [
+        "100487",
+        "170606",
+        "146238",
+        "162664",
+        "719165"
+      ]
+    },
+    {
+      "id": "P20",
+      "tipo": "actividad",
+      "ok": true,
+      "rango": 5,
+      "modo": "extractivo",
+      "recuperados": [
+        "45323",
+        "87070",
+        "87399",
+        "100121",
+        "153345"
+      ]
+    },
+    {
+      "id": "P21",
+      "tipo": "actividad_lugar",
+      "ok": true,
+      "rango": 1,
+      "modo": "extractivo",
+      "recuperados": [
+        "309569",
+        "37947",
+        "709863",
+        "36172"
+      ]
+    },
+    {
+      "id": "P22",
+      "tipo": "actividad_lugar",
+      "ok": true,
+      "rango": 3,
+      "modo": "extractivo",
+      "recuperados": [
+        "708441",
+        "338620",
+        "718474",
+        "709004",
+        "179932"
+      ]
+    },
+    {
+      "id": "P23",
+      "tipo": "actividad_lugar",
+      "ok": true,
+      "rango": 1,
+      "modo": "extractivo",
+      "recuperados": [
+        "174494",
+        "32301",
+        "325878"
+      ]
+    },
+    {
+      "id": "P24",
+      "tipo": "actividad_lugar",
+      "ok": false,
+      "rango": null,
+      "modo": "extractivo",
+      "recuperados": [
+        "48145",
+        "87399",
+        "1088",
+        "48738",
+        "87070"
+      ]
+    },
+    {
+      "id": "F01",
+      "tipo": "fuera_de_alcance",
+      "ok": true,
+      "modo": "rechazo"
+    },
+    {
+      "id": "F02",
+      "tipo": "fuera_de_alcance",
+      "ok": true,
+      "modo": "rechazo"
+    },
+    {
+      "id": "F03",
+      "tipo": "fuera_de_alcance",
+      "ok": true,
+      "modo": "rechazo"
+    },
+    {
+      "id": "F04",
+      "tipo": "fuera_de_alcance",
+      "ok": false,
+      "modo": "extractivo"
+    },
+    {
+      "id": "F05",
+      "tipo": "fuera_de_alcance",
+      "ok": true,
+      "modo": "rechazo"
+    },
+    {
+      "id": "F06",
+      "tipo": "fuera_de_alcance",
+      "ok": true,
+      "modo": "rechazo"
+    }
+  ]
+}
