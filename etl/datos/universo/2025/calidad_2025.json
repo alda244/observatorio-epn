@@ -1,0 +1,59 @@
+{
+  "fuente_url": "https://appscvsmovil.supercias.gob.ec/ranking/recursos/archivos/ranking_2025.xlsx",
+  "archivo": "etl/datos/crudo/2025/ranking_2025.xlsx",
+  "sha256": "0f01e577c720e98e2b21804a725ace5758093e731c0ab1723e9abc9f803b4059",
+  "fecha_corte": "Thu Oct 22 00:01:13 ECT 2026",
+  "filas_crudo": 154813,
+  "expedientes_duplicados_eliminados": 126,
+  "filas_con_anio_cero": 30,
+  "filas_con_ventas_cero": 58905,
+  "columna_tamano_vacia": true,
+  "grandes_con_menos_de_10_empleados": 869,
+  "grandes_total": 4337,
+  "empleados_maximo_declarado": 1722151868,
+  "conteo_por_grupo_y_tamano": {
+    "C": {
+      "grande": 710,
+      "mediana": 1039,
+      "micro_pequena": 8218
+    },
+    "G": {
+      "grande": 1763,
+      "mediana": 3447,
+      "micro_pequena": 31985
+    },
+    "K": {
+      "grande": 187,
+      "mediana": 330,
+      "micro_pequena": 3375
+    },
+    "M": {
+      "grande": 108,
+      "mediana": 546,
+      "micro_pequena": 21260
+    },
+    "TEC": {
+      "grande": 63,
+      "mediana": 237,
+      "micro_pequena": 5599
+    }
+  },
+  "universo_por_grupo": {
+    "TEC": 5899,
+    "G": 5210,
+    "C": 1749,
+    "M": 654,
+    "K": 517
+  },
+  "universo_total": 14029,
+  "holdings_en_universo": 346,
+  "piloto_total": 500,
+  "piloto_por_criterio": {
+    "tecnologica_mediana_grande": 300,
+    "top50_g": 50,
+    "top50_c": 50,
+    "top50_m": 50,
+    "top50_k": 50
+  },
+  "piloto_con_alerta_empleados": 31
+}

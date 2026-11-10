@@ -1,5 +1,7 @@
 # 2. Sectores y tamaños
 
+> **Estado (04-nov-2026):** el director aprobó la opción B. La versión aprobada, con cifras depuradas y piloto, está en [12](12-universo-aprobado.md); su justificación, en [13](13-justificacion-del-universo.md).
+
 Se propone segmentar por sector (CIIU) y usar el tamaño como filtro. El ranking de la SCVS ya trae ambos campos; el costo real está en el corpus textual.
 
 ## Núcleo tecnológico (CIIU Rev. 4)

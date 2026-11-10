@@ -5,6 +5,7 @@ Actas de las reuniones con Andrés Larco. Cada acta separa lo que se decidió de
 | Nº | Fecha | Tema | Acta |
 | --- | --- | --- | --- |
 | RN-01 | oct–nov 2026 (consolidada) | Ficha de empresa, alcance, antecedentes y repositorio | [RN-01](RN-01-ficha-alcance-antecedentes.md) |
+| RN-02 | 04-nov-2026 | Sectores aprobados, listas y justificación del universo | [RN-02](RN-02-sectores-aprobados-y-justificacion.md) |
 
 ## Convenciones
 

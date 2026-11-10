@@ -19,12 +19,14 @@ Este conjunto resume la investigación preliminar con la que se negocian con el 
 | 9 | [09-antecedentes-reinoso-datahub.md](09-antecedentes-reinoso-datahub.md) | ¿Qué se reutiliza de Reinoso y del Data Hub EPN? |
 | 10 | [10-coherencia-con-componente-b.md](10-coherencia-con-componente-b.md) | ¿Es coherente esta investigación con la del Componente B? |
 | 11 | [11-herramientas.md](11-herramientas.md) | ¿Qué herramientas usa el Componente A y cómo se gestiona el trabajo? |
+| 12 | [12-universo-aprobado.md](12-universo-aprobado.md) | ¿Qué empresas abarca el Observatorio? (**aprobado**, RN-02) |
+| 13 | [13-justificacion-del-universo.md](13-justificacion-del-universo.md) | ¿Por qué esos cinco sectores y no todos? |
 
 ## Propuestas a negociar
 
 | Tema | Propuesta | Detalle |
 | --- | --- | --- |
-| Sectores | Tecnológicas (CIIU J61–J63, J582) a fondo + comercio, manufactura y servicios como capa comparativa | [02](02-sectores-y-tamanos.md) |
+| Sectores | **Aprobado (04-nov-2026):** tecnológicas (J61–J63, J582) completas + medianas y grandes de G, C, M y K; piloto de 500 | [12](12-universo-aprobado.md) |
 | Tamaños | Cifras para todos los tamaños; ficha textual solo para medianas, grandes y tecnológicas con web | [02](02-sectores-y-tamanos.md) |
 | Periodo | Serie comparable 2012–2025; 2006–2011 como serie histórica marcada | [03](03-periodo-de-analisis.md) |
 | Fuentes de cifras | Descargas oficiales de la SCVS y convenio institucional; sin scraping del portal SCVS | [05](05-adquisicion-de-datos.md) |
