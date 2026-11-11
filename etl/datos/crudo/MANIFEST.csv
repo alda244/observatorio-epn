@@ -1,3 +1,5 @@
 archivo,url_origen,fecha_descarga,fecha_corte,sha256,descargado_por
 2025/ranking_2025.xlsx,https://appscvsmovil.supercias.gob.ec/ranking/recursos/archivos/ranking_2025.xlsx,2026-11-09,2026-10-22,0f01e577c720e98e2b21804a725ace5758093e731c0ab1723e9abc9f803b4059,Pereira
 2025/bi_ciiu.csv,https://appscvsmovil.supercias.gob.ec/ranking/recursos/bi_ciiu.csv,2026-11-09,,4b42e75c59408901c260a12794f5a3b2cd2f178d666e8305b6628102f1ad75c3,Pereira
+2025/bi_compania.csv,,2026-11-03,,e64a148a8a1cb2f255819c82bcaa5d0b59778eb4502bc0a6aab3a84b3f11e104,Muzo
+2025/bi_segmento.csv,,2026-11-03,,0caa8bb9a58dc08d83d0ac2c1a7822e25c282cee325f596652bba9981e560dc0,Muzo

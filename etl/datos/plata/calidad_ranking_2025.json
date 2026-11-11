@@ -1,0 +1,45 @@
+{
+  "fuente": "crudo/2025/ranking_2025.xlsx",
+  "fecha_corte": "Thu Oct 22 00:01:13 ECT 2026",
+  "filas_crudo": 154813,
+  "filas_identicas_quitadas": 116,
+  "expedientes_con_conflicto": [
+    55002,
+    56726,
+    102297,
+    130500,
+    135453,
+    176088,
+    300724,
+    703139,
+    709214,
+    743120
+  ],
+  "filas_plata": 154687,
+  "marcas": {
+    "anio_cero": 30,
+    "nueva_en_ranking": 22548,
+    "sin_ventas": 58905,
+    "sin_actividad": 4353,
+    "patrimonio_negativo": 17488,
+    "revisar_utilidad": 203
+  },
+  "tamano_derivado": {
+    "micro_pequena": 140309,
+    "mediana": 10041,
+    "grande": 4337
+  },
+  "alerta_empleados": {
+    "sin_alerta": 152668,
+    "fuera_de_rango_division": 1148,
+    "grande_menos_10": 869,
+    "imposible": 2
+  },
+  "sin_ruc": 0,
+  "ruc_formato_invalido": 3,
+  "reglas": {
+    "umbral_mediana_usd": 1000000,
+    "umbral_grande_usd": 5000000,
+    "veces_mediana_division": 20
+  }
+}

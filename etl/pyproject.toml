@@ -1,0 +1,32 @@
+[project]
+name = "etl"
+version = "0.1.0"
+description = "ETL del Componente B: cifras SCVS y Company Profile (Bloque 2)"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "pandas>=2.2",
+    "pyarrow>=17",
+    "python-calamine>=0.3",
+    "pandera>=0.20",
+    "rapidfuzz>=3.9",
+    "scrapling[fetchers]>=0.5.1",
+    "trafilatura>=1.12",
+    "extruct>=0.17",
+    "pdfplumber>=0.11",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29",
+    "nbclient>=0.10",
+    "nbformat>=5.10",
+    "ruff>=0.6",
+    "pytest>=8",
+    "matplotlib>=3.11.2",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 100

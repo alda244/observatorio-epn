@@ -1,0 +1,8 @@
+.venv/
+.ipynb_checkpoints/
+# Generados por los notebooks (se reconstruyen)
+datos/plata/*.parquet
+datos/oro/*.parquet
+datos/crudo/web/*.html
+# 54 MB: supera el límite recomendado de GitHub; su hash queda en MANIFEST.csv
+datos/crudo/2025/bi_compania.csv
