@@ -45,4 +45,4 @@ flowchart LR
 
 | Trabajo | Aporte | Origen |
 | --- | --- | --- |
-| Tesis de posgrado de Paul Reynoso (analítica empresarial con SCVS y Banco Central) | Archivos CSV/Excel y rutas de obtención ya probadas | Mención del director en reunión |
+| Tesis de maestría de Paúl Reinoso (2025), clasificación de empresas por rentabilidad con SCVS y Banco Central | Estados financieros por ramo 2017–2023 y Cuentas Nacionales del BCE; análisis en [09](09-antecedentes-reinoso-datahub.md) | [bibdigital.epn.edu.ec/handle/15000/26730](https://bibdigital.epn.edu.ec/handle/15000/26730) |

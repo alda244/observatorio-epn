@@ -11,6 +11,7 @@ Cada decisión que cambia la estructura, el stack o el contrato se registra con 
 | [0005](0005-widget-alineado-fragui.md) | Widget alineado con el stack de FragUI | A | Aceptado |
 | [0006](0006-bloque2-company-profile-en-b.md) | Bloque 2 del Company Profile producido por B | Compartido | Propuesto |
 | [0007](0007-pipeline-por-comandos-sin-airflow.md) | Pipeline ETL por comandos, en capas Medallion y sin Airflow | B | Propuesto |
+| [0008](0008-infraestructura-de-despliegue.md) | Infraestructura de desarrollo y despliegue con LLM por API | Compartido | Propuesto |
 | — | Portal de datos: CKAN, propio o híbrido | B | Pendiente (Sprint 1 de B) |
 
 ## Reglas

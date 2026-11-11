@@ -4,8 +4,9 @@ La documentación avanza en paralelo al código y sirve de insumo para la memori
 
 | Carpeta | Contenido | Dueño |
 | --- | --- | --- |
-| [investigacion/](investigacion/README.md) | Investigación de alcance 01–08 (Componente A) | Compartido |
-| [investigacion-b/](investigacion-b/README.md) | Investigación de alcance 01–08 (Componente B) | Compartido |
+| [investigacion/](investigacion/README.md) | Investigación de alcance 01–13 del Componente A (12: universo aprobado) | Compartido |
+| [investigacion-b/](investigacion-b/README.md) | Investigación de alcance 01–08 del Componente B | Compartido |
+| [reuniones/](reuniones/README.md) | Actas de las reuniones de seguimiento | Compartido |
 | [arquitectura/](arquitectura/README.md) | Vista general, módulos, dueños y pendientes | Compartido |
 | [adr/](adr/README.md) | Registro de decisiones de arquitectura | Compartido |
 | [sprints/](sprints/README.md) | Informes de sprint por estudiante (`A/`, `B/`) | Cada estudiante |

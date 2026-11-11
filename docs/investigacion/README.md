@@ -1,8 +1,8 @@
 # Investigación de alcance: Asistente RAG del Observatorio (Componente A)
 
-Corte: 20-oct-2026 · Responsable: Alicia Pereira · Director: Enrique Andrés Larco Ampudia, PhD.
+Corte: 20-oct-2026 (actualizado 09-nov-2026) · Responsable: Alicia Pereira · Director: Enrique Andrés Larco Ampudia, PhD.
 
-Este conjunto resume la investigación preliminar con la que se negocian con el director los términos del asistente RAG: fuentes, sectores, periodo, ficha de empresa, adquisición de datos, integración e infraestructura.
+Este conjunto resume la investigación preliminar con la que se negocian los términos del asistente RAG: fuentes, sectores, periodo, ficha de empresa, adquisición de datos, integración e infraestructura.
 
 La investigación del Componente B (cifras SCVS, universo de empresas y Bloque 2 del Company Profile) está en [`../investigacion-b/`](../investigacion-b/README.md).
 
@@ -18,22 +18,28 @@ La investigación del Componente B (cifras SCVS, universo de empresas y Bloque 2
 | 6 | [06-arquitectura-e-integracion.md](06-arquitectura-e-integracion.md) | ¿Cómo se integra con el Componente B y el portal en curso? |
 | 7 | [07-infraestructura-aws.md](07-infraestructura-aws.md) | ¿Qué infraestructura solicitar? |
 | 8 | [08-agenda-de-negociacion.md](08-agenda-de-negociacion.md) | ¿Qué decidir en la reunión y qué sigue? |
+| 9 | [09-antecedentes-reinoso-datahub.md](09-antecedentes-reinoso-datahub.md) | ¿Qué se reutiliza de Reinoso y del Data Hub EPN? |
+| 10 | [10-coherencia-con-componente-b.md](10-coherencia-con-componente-b.md) | ¿Es coherente esta investigación con la del Componente B? |
+| 11 | [11-herramientas.md](11-herramientas.md) | ¿Qué herramientas usa el Componente A y cómo se gestiona el trabajo? |
+| 12 | [12-universo-aprobado.md](12-universo-aprobado.md) | ¿Qué empresas abarca el Observatorio? (**aprobado**, RN-02) |
+| 13 | [13-justificacion-del-universo.md](13-justificacion-del-universo.md) | ¿Por qué esos cinco sectores y no todos? |
 
 ## Propuestas a negociar
 
 | Tema | Propuesta | Detalle |
 | --- | --- | --- |
-| Sectores | Tecnológicas (CIIU J61–J63, J582) a fondo + comercio, manufactura y servicios como capa comparativa | [02](02-sectores-y-tamanos.md) |
+| Sectores | **Aprobado (04-nov-2026):** tecnológicas (J61–J63, J582) completas + medianas y grandes de G, C, M y K; piloto de 500 | [12](12-universo-aprobado.md) |
 | Tamaños | Cifras para todos los tamaños; ficha textual solo para medianas, grandes y tecnológicas con web | [02](02-sectores-y-tamanos.md) |
 | Periodo | Serie comparable 2012–2025; 2006–2011 como serie histórica marcada | [03](03-periodo-de-analisis.md) |
 | Fuentes de cifras | Descargas oficiales de la SCVS y convenio institucional; sin scraping del portal SCVS | [05](05-adquisicion-de-datos.md) |
 | Frontera A/B | B carga y expone cifras por API; A indexa texto oficial y consume la API de B | [06](06-arquitectura-e-integracion.md) |
-| Despliegue | Widget embebible en el portal, construido con el stack de FragUI, sobre AWS de la EPN | [06](06-arquitectura-e-integracion.md), [07](07-infraestructura-aws.md) |
+| Despliegue | Widget embebible en el portal, construido con el stack de FragUI; EC2 con Docker Compose, RDS con pgvector y LLM por API en la cuenta AWS de la EPN | [06](06-arquitectura-e-integracion.md), [07](07-infraestructura-aws.md) |
+| Frontera de las fichas | B recolecta una vez y estructura el Company Profile; A indexa los documentos y responde con cita | [10](10-coherencia-con-componente-b.md) |
 
 ## Insumos de origen
 
 | Insumo | Tipo |
 | --- | --- |
 | Formulario F_AA_233A del proyecto "Servicios Inteligentes y Datos Abiertos para el Observatorio" | Documento oficial EPN |
-| Transcripciones de reuniones con el director (oct-2026) | Notas internas |
+| Transcripciones de las reuniones de seguimiento (oct-2026) | Notas internas |
 | TIC de E. Armas, "Componentes para entrada de datos y formularios… (FragUI)", EPN, jul-2026, y su plan F_AA_234A | Documento académico EPN |

@@ -1,0 +1,60 @@
+$ python -m rag consulta "¿Qué empresas desarrollan software en Cuenca?"
+Según las fuentes del Observatorio:
+- V&V INTELIGENCIA TECNOLOGICA S.A.S.: Servicios de aplicaciones (Cuenca) [1]
+- EDSAOR CIA.LTDA.: Actividades de gestión y consultoría para la transmisión de datos (Cuenca) [2]
+- INNOVACION TECNOLOGICA INNOVASEET CIA. LTDA.: Actividades de gestión y consultoría para la transmisión de datos (Cuenca) [3]
+- CATWORKX ECUADOR S.A.: Adaptación de programas informáticos a las necesidades de los clientes, es decir, modificación y configuración de una aplicación existente para que pueda funcionar adecuadamente con los sistemas de información de que dispone el cliente (Cuenca) [4]
+- CORESOLUTIONS S.A.: Actividades de planificación y diseño de sistemas informáticos que integran equipo y programas informáticos y tecnología de las comunicaciones (Cuenca) [5]
+
+Fuentes:
+  [1] V&V INTELIGENCIA TECNOLOGICA S.A.S. · scvs_ranking · https://appscvsmovil.supercias.gob.ec/ranking/reporte.html · corte 2026-10-22
+  [2] EDSAOR CIA.LTDA. · scvs_ranking · https://appscvsmovil.supercias.gob.ec/ranking/reporte.html · corte 2026-10-22
+  [3] INNOVACION TECNOLOGICA INNOVASEET CIA. LTDA. · scvs_ranking · https://appscvsmovil.supercias.gob.ec/ranking/reporte.html · corte 2026-10-22
+  [4] CATWORKX ECUADOR S.A. · scvs_ranking · https://appscvsmovil.supercias.gob.ec/ranking/reporte.html · corte 2026-10-22
+  [5] CORESOLUTIONS S.A. · scvs_ranking · https://appscvsmovil.supercias.gob.ec/ranking/reporte.html · corte 2026-10-22
+
+(modo extractivo · 117 ms · traza 506d355a8ad8)
+
+$ python -m rag consulta "¿Cuánto vendió Tiendas Tuti y cuántos empleados tiene?"
+Según las fuentes del Observatorio:
+- TIENDAS TUTI TTDE S.A.: Venta al por menor de gran variedad de productos en supermercados, entre los que predominan, los productos alimenticios, las bebidas o el tabaco, como productos de primera necesidad y varios otros tipos de productos, como prendas de vestir, muebles, aparatos, artículos de ferretería, cosméticos, etcétera (Guayaquil) [1]. Ventas 2025: USD 1.008.144.377,94; empleados declarados: 8
+- TIENDAS INDUSTRIALES ASOCIADAS TIA S.A.: Venta al por menor de gran variedad de productos en tiendas, entre los que predominan, los productos alimenticios, las bebidas o el tabaco, como productos de primera necesidad y varios otros tipos de productos, como prendas de vestir, muebles, aparatos, artículos de ferretería, cosméticos, etcétera (Guayaquil) [2]. Ventas 2025: USD 791.642.685,00; empleados declarados: 9501
+- THE TESALIA SPRINGS COMPANY S.A.: Producción de aguas minerales naturales y otras aguas embotelladas (Quito) [3]. Ventas 2025: USD 293.027.398,24; empleados declarados: 2010
+- ECUAQUIMICA ECUATORIANA DE PRODUCTOS QUIMICOS CA: Venta al por mayor de productos farmacéuticos, incluso veterinarios (Guayaquil) [4]. Ventas 2025: USD 280.994.557,20; empleados declarados: 801
+- GERARDO ORTIZ E HIJOS C LTDA: Venta al por mayor de diversos productos sin especialización (Guayaquil) [5]. Ventas 2025: USD 550.480.912,56; empleados declarados: 3621
+
+Fuentes:
+  [1] TIENDAS TUTI TTDE S.A. · scvs_ranking · https://appscvsmovil.supercias.gob.ec/ranking/reporte.html · corte 2026-10-22
+  [2] TIENDAS INDUSTRIALES ASOCIADAS TIA S.A. · scvs_ranking · https://appscvsmovil.supercias.gob.ec/ranking/reporte.html · corte 2026-10-22
+  [3] THE TESALIA SPRINGS COMPANY S.A. · scvs_ranking · https://appscvsmovil.supercias.gob.ec/ranking/reporte.html · corte 2026-10-22
+  [4] ECUAQUIMICA ECUATORIANA DE PRODUCTOS QUIMICOS CA · scvs_ranking · https://appscvsmovil.supercias.gob.ec/ranking/reporte.html · corte 2026-10-22
+  [5] GERARDO ORTIZ E HIJOS C LTDA · scvs_ranking · https://appscvsmovil.supercias.gob.ec/ranking/reporte.html · corte 2026-10-22
+
+Advertencia: TIENDAS TUTI TTDE S.A.: declara 8 empleados con ventas de USD 1.008.144.377,94; el dato de empleados de la SCVS es inconsistente en este caso.
+
+(modo extractivo · 72 ms · traza eccf02a830be)
+
+$ python -m rag consulta "¿Qué empresas ofrecen medicina prepagada?"
+Según las fuentes del Observatorio:
+- COMPAÑIA DE MEDICINA PREPAGADA INMEDICAL MEDICINA INTERNACIONAL S.A.: Servicios de seguro de medicina pre pagada (Quito) [1]
+- MEDICINA PREPAGADA CRUZBLANCA S.A.: Servicios de seguro de medicina pre pagada (Quito) [2]
+- BEST DOCTORS S.A. EMPRESA DE MEDICINA PREPAGADA: Servicios de seguro de medicina pre pagada (Guayaquil) [3]
+- VUMILATINA MEDICINA PREPAGADA S.A.: Servicios de seguro de medicina pre pagada (Quito) [4]
+- MEDICINA PARA EL ECUADOR MEDIECUADOR-HUMANA S.A.: Servicios de seguro de medicina pre pagada (Quito) [5]
+
+Fuentes:
+  [1] COMPAÑIA DE MEDICINA PREPAGADA INMEDICAL MEDICINA INTERNACIONAL S.A. · scvs_ranking · https://appscvsmovil.supercias.gob.ec/ranking/reporte.html · corte 2026-10-22
+  [2] MEDICINA PREPAGADA CRUZBLANCA S.A. · scvs_ranking · https://appscvsmovil.supercias.gob.ec/ranking/reporte.html · corte 2026-10-22
+  [3] BEST DOCTORS S.A. EMPRESA DE MEDICINA PREPAGADA · scvs_ranking · https://appscvsmovil.supercias.gob.ec/ranking/reporte.html · corte 2026-10-22
+  [4] VUMILATINA MEDICINA PREPAGADA S.A. · scvs_ranking · https://appscvsmovil.supercias.gob.ec/ranking/reporte.html · corte 2026-10-22
+  [5] MEDICINA PARA EL ECUADOR MEDIECUADOR-HUMANA S.A. · scvs_ranking · https://appscvsmovil.supercias.gob.ec/ranking/reporte.html · corte 2026-10-22
+
+(modo extractivo · 71 ms · traza 0ed7db7a0bbd)
+
+$ python -m rag consulta "¿Cuál es la receta del encebollado?"
+No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.
+
+Advertencia: sin respaldo: coseno máximo 0.52 (fuerte ≥ 0.65), coincidencia léxica: no
+
+(modo rechazo · 69 ms · traza 8c8b13c0dc3b)
+

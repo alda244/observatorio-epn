@@ -23,11 +23,11 @@ Frontera A/B según el formulario del proyecto: B entrega una API pública docum
 | --- | --- | --- |
 | A ↔ B | OpenAPI con `/empresas`, `/empresas/{expediente}`, `/indicadores?ciiu=&tamano=&anio=`; A no accede a la base de B | Pereira, Muzo |
 | A ↔ portal | Widget embebible (web component o iframe) + API `/chat` | Pereira, equipo del portal |
-| Repositorio | Monorepo único A+B: `/etl`, `/api`, `/rag`, `/widget`, `/docs` | Sugerencia del director |
+| Repositorio | Monorepo único A+B: `/etl`, `/api`, `/rag`, `/widget`, `/docs` | [RN-01](../reuniones/RN-01-ficha-alcance-antecedentes.md), D3 |
 
 ## Alineación con FragUI (TIC de E. Armas, 2026)
 
-El director pidió evitar el problema de integración que ocurrió cuando cada equipo usó distinta tecnología. FragUI es la librería de componentes ya construida en el mismo grupo de investigación; reutilizarla reduce ese riesgo.
+Se busca evitar el problema de integración observado en proyectos anteriores, cuando cada equipo usó distinta tecnología. FragUI es la librería de componentes ya construida en el mismo grupo de investigación; reutilizarla reduce ese riesgo.
 
 | Aspecto FragUI | Implicación para el widget | Fuente |
 | --- | --- | --- |

@@ -15,7 +15,7 @@ Este conjunto define cómo obtener, procesar y publicar los datos del Componente
 | 5 | [05-arquitectura-y-pipeline.md](05-arquitectura-y-pipeline.md) | ¿Cómo se organiza el ETL y qué herramientas usa? |
 | 6 | [06-scraping-etico.md](06-scraping-etico.md) | ¿Cómo se recolecta la web sin incumplir normas? |
 | 7 | [07-alternativa-aws.md](07-alternativa-aws.md) | ¿Cómo sería el mismo pipeline sobre AWS? |
-| 8 | [08-plan-y-negociacion.md](08-plan-y-negociacion.md) | ¿Qué decidir con el director y qué sigue? |
+| 8 | [08-plan-y-negociacion.md](08-plan-y-negociacion.md) | ¿Qué decidir en la reunión de seguimiento y qué sigue? |
 
 ## Propuestas a negociar
 
@@ -36,7 +36,7 @@ Este conjunto define cómo obtener, procesar y publicar los datos del Componente
 | --- | --- |
 | Formulario F_AA_233A del proyecto "Servicios Inteligentes y Datos Abiertos para el Observatorio" | Documento oficial EPN |
 | Plan F_AA_234A de Eduardo Miguel Muzo Cansigña | Documento oficial EPN |
-| Formato "Company Profile" (DTIC) | Formato del director |
+| Formato "Company Profile" (DTIC) | Formato de referencia del proyecto |
 | Ranking SCVS 2025 (Excel, corte 22-oct-2026) y tablas `bi_compania`, `bi_ciiu`, `bi_segmento` | Descarga oficial SCVS |
 | TIC de Escobar, Defaz y Rojas (EPN, jul-2026) y tesis de maestría de Reinoso (EPN, jul-2025) | Documentos académicos EPN |
 | Piloto de 10 empresas (`piloto_bloque2.csv`) y spider probado (`spider_bloque2.py`) | Evidencia propia, 03-nov-2026 |

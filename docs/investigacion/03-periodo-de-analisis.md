@@ -5,7 +5,7 @@ Partir de 2006 es viable para la historia de cada empresa, pero las cifras de 20
 ```mermaid
 timeline
     title Hitos que afectan la serie de cifras SCVS
-    2006 : Inicio propuesto por el director
+    2006 : Inicio propuesto en el alcance inicial
     2008 : Ranking SCVS más antiguo publicado
          : Res. 08.G.DSC.010 fija el cronograma NIIF
     2010 : Primer grupo pasa de NEC a NIIF
@@ -35,5 +35,5 @@ timeline
 
 | Criterio bibliográfico | Regla | Origen |
 | --- | --- | --- |
-| Literatura técnica | Últimos 5 años | Reunión con el director |
-| Obras seminales | Se incluyen sin límite de antigüedad | Reunión con el director |
+| Literatura técnica | Últimos 5 años | [RN-01](../reuniones/RN-01-ficha-alcance-antecedentes.md), D6 |
+| Obras seminales | Se incluyen sin límite de antigüedad | [RN-01](../reuniones/RN-01-ficha-alcance-antecedentes.md), D6 |

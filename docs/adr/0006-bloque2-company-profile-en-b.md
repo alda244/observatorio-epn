@@ -12,7 +12,7 @@
 
 Las dos investigaciones de alcance proponen recolectar el mismo texto: la de A asigna a A la ficha textual, incluida la "oferta de valor" (productos y servicios, propuesta diferencial) ([`../investigacion/04`](../investigacion/04-ficha-de-empresa.md), decisión 5 de [`../investigacion/08`](../investigacion/08-agenda-de-negociacion.md)); la de B propone que B produzca el Bloque 2 del formato *Company Profile* (tagline, descripción, productos y servicios) ([`../investigacion-b/02`](../investigacion-b/02-company-profile-bloque2.md)). Ambas no pueden quedar: dos recolectores sobre las mismas webs duplican trabajo y carga sobre los sitios. Hay que elegir un solo dueño.
 
-| Equivalencia | Ficha de A | Company Profile (director) |
+| Equivalencia | Ficha de A | Company Profile (DTIC) |
 | --- | --- | --- |
 | Lo que se disputa | Oferta de valor | Bloque 2: tagline, descripción, productos/servicios |
 | Lo que no se disputa | Identidad y propósito; datos de operación | Bloques 1 y 3 (fuera del alcance de B) |

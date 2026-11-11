@@ -1,5 +1,7 @@
 # 2. Sectores y tamaños
 
+> **Estado (04-nov-2026):** se aprobó la opción B ([RN-02](../reuniones/RN-02-sectores-aprobados-y-justificacion.md)). La versión aprobada, con cifras depuradas y piloto, está en [12](12-universo-aprobado.md); su justificación, en [13](13-justificacion-del-universo.md).
+
 Se propone segmentar por sector (CIIU) y usar el tamaño como filtro. El ranking de la SCVS ya trae ambos campos; el costo real está en el corpus textual.
 
 ## Núcleo tecnológico (CIIU Rev. 4)
@@ -18,7 +20,7 @@ Referencia de tamaño del ecosistema: el Radar Industria Tech EC de CITEC regist
 | Opción | Cifras SCVS | Ficha textual | Carga | Observación |
 | --- | --- | --- | --- | --- |
 | A. Mínima | Tecnológicas, todos los tamaños | Tecnológicas con web oficial | Baja | Sin comparación entre sectores |
-| **B. Recomendada** | Tecnológicas + G Comercio + C Manufactura (incluye agroindustria) + K/M Servicios | Tecnológicas con web + medianas y grandes de G, C, K/M | Media | Coincide con los grupos citados por el director |
+| **B. Recomendada** | Tecnológicas + G Comercio + C Manufactura (incluye agroindustria) + K Financieras y seguros + M Profesionales | Tecnológicas con web + medianas y grandes de G, C, K, M (universo de 14.042; piloto de ~500, según [B-01](../investigacion-b/01-fuentes-y-universo.md)) | Media | Coincide con los grupos priorizados en [RN-01](../reuniones/RN-01-ficha-alcance-antecedentes.md) |
 | C. Amplia | Todos los sectores | Solo grandes | Alta | Poca profundidad en tecnología |
 
 ```mermaid
@@ -47,7 +49,7 @@ Criterios: personal ocupado y ventas anuales; si no coinciden, prima ventas ([ES
 | Grande | 200 o más | Más de USD 5.000.000 | Más de USD 5.000.000 |
 | Fuente | [Dialnet](https://dialnet.unirioja.es/descarga/articulo/7210406.pdf) | Reglamento COPCI citado en literatura | [EY Ecuador, 2024](https://ey.com/content/dam/ey-unified-site/ey-com/es-ec/technical/tax/documents/ey-tax-alert-7_6feb24-informativo-mipymes-condonacion.pdf) |
 
-Pendiente: confirmar el umbral vigente de microempresa. Se recomienda usar el campo de segmento de la SCVS y no recalcular el tamaño.
+Actualización (03-nov-2026): la columna `Tamaño` del ranking 2025 viene vacía en las 154.813 filas ([B-01](../investigacion-b/01-fuentes-y-universo.md)). Se adopta la derivación por ventas de B, marcada como `tamano_derivado`, hasta obtener el segmento oficial por el convenio EPN–SCVS. El umbral de microempresa no afecta al universo, que solo incluye medianas y grandes fuera del núcleo tecnológico.
 
 ## Riesgo de clasificación
 

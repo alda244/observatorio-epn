@@ -1,0 +1,12 @@
+{
+  "fecha": "2026-11-10T01:37:49+00:00",
+  "modelo": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "documentos_fuente": 500,
+  "nuevos": 0,
+  "actualizados": 0,
+  "sin_cambios": 500,
+  "eliminados": 0,
+  "fragmentos_indexados": 0,
+  "fragmentos_totales": 500,
+  "segundos": 0.2
+}

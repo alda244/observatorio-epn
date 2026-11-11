@@ -1,6 +1,6 @@
 # 8. Plan y agenda de negociación
 
-## Decisiones para la reunión con el director
+## Decisiones para la reunión de seguimiento
 
 | Nº | Pregunta | Opciones | Propuesta |
 | --- | --- | --- | --- |
