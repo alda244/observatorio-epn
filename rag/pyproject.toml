@@ -9,7 +9,7 @@ dependencies = [
 
 [project.optional-dependencies]
 # Embeddings reales. El prototipo usa un modelo multilingüe pequeño en CPU;
-# el objetivo del plan es BAAI/bge-m3 (ADR 0003, pendiente).
+# el objetivo del plan es BAAI/bge-m3.
 embeddings = ["sentence-transformers>=3.0"]
 dev = ["pytest>=7.4", "ruff>=0.5"]
 

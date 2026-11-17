@@ -4,7 +4,7 @@
 | --- | --- |
 | Fecha | 2026-11-09 |
 | Sprint | 2 (adelantado al cierre del Sprint 1) |
-| Corpus | 500 fichas de identificación del piloto ([12](../../docs/investigacion/12-universo-aprobado.md)) |
+| Corpus | 500 fichas de identificación del piloto ([universo](../../docs/universo.md)) |
 | Modelo de embeddings | `paraphrase-multilingual-MiniLM-L12-v2` (384 dimensiones, CPU). El objetivo del plan es BGE-M3 |
 | Generación | Extractiva (sin LLM). La generación con LLM está implementada y probada con un simulador; falta elegir el modelo |
 
