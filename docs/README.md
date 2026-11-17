@@ -9,7 +9,7 @@
 | [infraestructura.md](infraestructura.md) | Entorno local y despliegue en AWS |
 | [adr/](adr/README.md) | Decisiones de arquitectura |
 
-La documentación propia de cada componente vive en su rama: `componente-a` y la de B.
+La documentación del Componente A está en [componente-a/](componente-a/README.md).
 
 ## Convenciones
 

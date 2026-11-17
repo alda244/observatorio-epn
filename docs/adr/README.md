@@ -7,6 +7,8 @@ Cada decisión que cambia la estructura, el stack o el contrato se registra con 
 | [0001](0001-monorepo.md) | Un solo repositorio con módulos independientes | Compartido | Aceptado |
 | [0002](0002-postgresql-esquemas-roles.md) | Un PostgreSQL con esquemas y roles por componente | Compartido | Aceptado |
 | [0003](0003-contrato-primero.md) | Contrato OpenAPI antes que el código | Compartido | Aceptado |
+| [0004](0004-llm-interfaz-openai.md) | LLM por una interfaz compatible con OpenAI | A | Aceptado |
+| [0005](0005-widget-alineado-fragui.md) | Widget alineado con FragUI | A | Aceptado |
 | [0006](0006-bloque2-company-profile-en-b.md) | B recolecta las webs y produce el Company Profile | Compartido | Aceptado |
 | [0008](0008-infraestructura.md) | Docker Compose en local y en AWS, LLM por API | Compartido | Aceptado |
 

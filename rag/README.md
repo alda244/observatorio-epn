@@ -8,4 +8,4 @@ python -m rag ingesta
 python -m rag consulta "¿Qué empresas desarrollan software en Cuenca?"
 ```
 
-La documentación del componente está en la rama `componente-a`.
+Documentación del componente: [docs/componente-a](../docs/componente-a/README.md).
