@@ -17,7 +17,7 @@ Uso (desde la raíz del repositorio)::
 
     python etl/universo/seleccionar_universo.py
 
-Reglas (documentadas en docs/investigacion/12 y 13):
+Reglas (documentadas en docs/universo.md y docs/justificacion-universo.md):
 
 - Tamaño derivado por ventas (COPCI): mediana > USD 1 M y <= USD 5 M;
   grande > USD 5 M. La columna ``Tamaño`` del ranking 2025 viene vacía.

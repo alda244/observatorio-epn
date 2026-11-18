@@ -1,23 +1,13 @@
-# Registro de decisiones de arquitectura (ADR)
+# Decisiones de arquitectura (ADR)
 
-Cada decisión que cambia la estructura, el stack o el contrato se registra con la [plantilla](0000-plantilla.md). La numeración es global y el componente se indica en la tabla de cada ADR.
+Cada decisión que cambia la estructura, el stack o el contrato se registra con la [plantilla](plantilla.md). La numeración es global; los ADR de un solo componente viven en la rama de ese componente.
 
 | Nº | Decisión | Componente | Estado |
 | --- | --- | --- | --- |
-| [0001](0001-monorepo.md) | Monorepo único con módulos independientes | Compartido | Aceptado |
-| [0002](0002-postgresql-esquemas-roles.md) | Un PostgreSQL con un esquema y un rol por componente | Compartido | Aceptado |
-| [0003](0003-contrato-primero.md) | Contrato OpenAPI primero | Compartido | Aceptado |
-| [0004](0004-llm-interfaz-openai.md) | Acceso al LLM mediante una interfaz compatible con OpenAI | A | Aceptado (proveedor pendiente) |
-| [0005](0005-widget-alineado-fragui.md) | Widget alineado con el stack de FragUI | A | Aceptado |
-| [0006](0006-bloque2-company-profile-en-b.md) | Bloque 2 del Company Profile producido por B | Compartido | Propuesto |
-| [0007](0007-pipeline-por-comandos-sin-airflow.md) | Pipeline ETL por comandos, en capas Medallion y sin Airflow | B | Propuesto |
-| [0008](0008-infraestructura-de-despliegue.md) | Infraestructura de desarrollo y despliegue con LLM por API | Compartido | Propuesto |
-| — | Portal de datos: CKAN, propio o híbrido | B | Pendiente (Sprint 1 de B) |
+| [0001](0001-monorepo.md) | Un solo repositorio con módulos independientes | Compartido | Aceptado |
+| [0002](0002-postgresql-esquemas-roles.md) | Un PostgreSQL con esquemas y roles por componente | Compartido | Aceptado |
+| [0003](0003-contrato-primero.md) | Contrato OpenAPI antes que el código | Compartido | Aceptado |
+| [0006](0006-bloque2-company-profile-en-b.md) | B recolecta las webs y produce el Company Profile | Compartido | Aceptado |
+| [0008](0008-infraestructura.md) | Docker Compose en local y en AWS, LLM por API | Compartido | Aceptado |
 
-## Reglas
-
-| Regla | Detalle |
-| --- | --- |
-| Nombre | `NNNN-titulo-en-minusculas.md` |
-| Inmutabilidad | Un ADR aceptado no se edita; se reemplaza con uno nuevo |
-| Revisión | Los ADR compartidos requieren la aprobación del otro estudiante |
+Un ADR aceptado no se edita: se reemplaza con uno nuevo.
