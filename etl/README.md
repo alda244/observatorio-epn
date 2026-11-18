@@ -54,7 +54,7 @@ flowchart LR
 | `etl urls` | Plata | Propone dominios a partir del nombre, descarta por DNS y verifica la portada |
 | `etl web` | Crudo | Lee el sitemap del sitio y captura la portada y las páginas institucionales que existen |
 | `etl ficha` | Plata | Arma el Company Profile con la fuente de cada campo |
-| `etl consolidar` | Oro | Junta todos los años con la forma de las tablas de la base |
+| `etl consolidar` | Oro | Junta la serie de los años con la forma de las tablas de la base, sobre el universo fijado en 2025 |
 | `etl bd` | Oro | Carga en PostgreSQL lo que dejó `consolidar` |
 | `etl todo` | — | Corre el pipeline completo de un año y consolida |
 
@@ -115,8 +115,14 @@ coinciden, la adopción de las NIIF y la cobertura de la fuente.
 | 2024 | 142.519 | 12.931 | 478 | Estados financieros pendientes de descargar |
 | 2025 | 154.687 | 14.027 | 500 | |
 
-El consolidado 2012–2025 tiene 20.681 empresas y 180.297 filas de cifras, con
-un promedio de 8,7 años por empresa.
+**El universo se fija con el ranking 2025**, como dice
+[docs/universo.md](../docs/universo.md): son 14.027 empresas y los otros años
+aportan su serie de cifras, no empresas nuevas. El consolidado 2012–2025 tiene
+118.792 filas de cifras, 8,5 años por empresa en promedio.
+
+De esas 14.027 empresas, solo 4.623 aparecían en el ranking 2012 y 3.293
+cumplían la delimitación ese año. La columna `en_universo_ese_anio` guarda ese
+dato, que es material para la parte de evolución del Observatorio.
 
 ## Notebooks
 

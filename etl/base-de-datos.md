@@ -121,9 +121,16 @@ calcula con las ventas según el COPCI y se publica como `tamano_derivado`.
 
 ### `oro.universo`
 
-Qué empresas abarca el Observatorio en cada año y cuáles tienen ficha. Se
-separa de `empresa` porque el universo se recalcula por año: en 2025 son
-14.027 empresas y 500 del piloto; en 2024, 12.931 y 478.
+En qué años aparece cada empresa del universo y cuáles tienen ficha. El
+universo **no** se recalcula cada año: se fija con el ranking del año de
+referencia, 2025, con 14.027 empresas y 500 del piloto
+([docs/universo.md](../docs/universo.md)). Los demás años aportan la serie de
+cifras de esas mismas empresas.
+
+La tabla se separa de `empresa` porque la presencia sí cambia de año a año:
+de las 14.027 empresas, 4.623 aparecían en el ranking 2012 y 3.293 cumplían la
+delimitación ese año. La columna `en_universo_ese_anio` guarda esa diferencia,
+que es la que sirve para medir evolución sin mover la frontera del estudio.
 
 ### `oro.ficha`
 

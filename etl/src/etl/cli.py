@@ -91,13 +91,20 @@ def ficha(anio: int = OpcionAnio) -> None:
 @app.command()
 def consolidar(
     desde: int | None = typer.Option(
-        None, "--desde", help=f"Primer año a incluir; por defecto {config.ANIO_MINIMO_COMPARABLE}."
+        None,
+        "--desde",
+        help=f"Primer año de la serie; por defecto {config.ANIO_MINIMO_COMPARABLE}.",
+    ),
+    anio_universo: int | None = typer.Option(
+        None,
+        "--anio-universo",
+        help=f"Año que fija el universo; por defecto {config.ANIO_UNIVERSO} (docs/universo.md).",
     ),
 ) -> None:
     """Junta todos los años en las tablas que publicará la API."""
     from etl.pasos import consolidar as paso
 
-    paso.ejecutar(desde)
+    paso.ejecutar(desde, anio_universo)
 
 
 @app.command()

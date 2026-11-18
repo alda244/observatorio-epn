@@ -16,13 +16,19 @@ dejando los archivos con **la misma forma que las tablas** descritas en
 Así `etl bd` no vuelve a calcular nada: solo inserta. Y se puede revisar que
 los datos estén limpios antes de que exista la base.
 
-Dos reglas de la consolidación:
+Las tres reglas de la consolidación, que vienen de la delimitación aprobada
+([docs/universo.md](../../../../docs/universo.md)):
 
-- **La identificación sale del año más reciente** en que la empresa aparece.
-  Una empresa cambia de nombre o de actividad; lo vigente es lo último.
-- **La serie trae todos los años comparables**, no solo los años en que la
-  empresa estuvo en el universo. Si entró al universo en 2025, sus cifras de
-  2018 igual sirven para proyectar.
+- **El universo se fija con un año de referencia**, `config.ANIO_UNIVERSO`:
+  «El universo se fija con el ranking 2025. Si una empresa sale del ranking en
+  años posteriores, conserva su ficha con la fecha de captura». Los otros años
+  no agregan empresas; recalcular el universo año por año y unirlo daría un
+  conjunto distinto del aprobado.
+- **La serie trae todos los años comparables** de esas mismas empresas. Una
+  empresa del universo 2025 aporta sus cifras de 2012 en adelante, que es lo
+  que permite proyectar.
+- **La presencia dice en qué años apareció cada empresa** y si ese año cumplía
+  la delimitación, sin cambiar quién está en el universo.
 """
 
 from __future__ import annotations
@@ -62,7 +68,15 @@ CIFRAS = [
     "ingreso_total_no_reportado",
     "utilidad_no_reportada",
 ]
-PRESENCIA = ["anio", "expediente", "grupo", "en_piloto", "criterio_piloto", "en_top50_tec"]
+PRESENCIA = [
+    "anio",
+    "expediente",
+    "grupo",
+    "en_universo_ese_anio",
+    "en_piloto",
+    "criterio_piloto",
+    "en_top50_tec",
+]
 
 
 def anios_disponibles(minimo: int | None = None) -> list[int]:
@@ -84,17 +98,20 @@ def _leer(anio: int, archivo: str, **kwargs) -> pd.DataFrame:
     return lector(ruta, **kwargs)
 
 
-def tabla_empresa(anios: list[int]) -> pd.DataFrame:
-    """Una fila por empresa, con la identificación del año más reciente."""
-    universos = [
-        _leer(a, "universo.parquet").assign(anio_identificacion=a) for a in reversed(anios)
-    ]
-    juntas = pd.concat([u for u in universos if not u.empty], ignore_index=True)
-    # `reversed` pone el año más nuevo primero: la primera fila de cada
-    # expediente es la identificación vigente.
-    vigentes = juntas.drop_duplicates("expediente", keep="first")
-    columnas = [c for c in IDENTIFICACION if c in vigentes.columns] + ["anio_identificacion"]
-    return vigentes[columnas].sort_values("expediente").reset_index(drop=True)
+def tabla_empresa(anio_universo: int) -> pd.DataFrame:
+    """Las empresas del universo del año de referencia, una fila cada una."""
+    universo = _leer(anio_universo, "universo.parquet")
+    if universo.empty:
+        raise FileNotFoundError(
+            f"Falta el universo {anio_universo}: ejecute `etl universo --anio {anio_universo}`"
+        )
+    universo = universo.assign(anio_identificacion=anio_universo)
+    columnas = [c for c in IDENTIFICACION if c in universo.columns] + ["anio_identificacion"]
+    return (
+        universo.drop_duplicates("expediente")[columnas]
+        .sort_values("expediente")
+        .reset_index(drop=True)
+    )
 
 
 def tabla_cifras(expedientes: set[int], anios: list[int]) -> pd.DataFrame:
@@ -116,26 +133,35 @@ def tabla_cifras(expedientes: set[int], anios: list[int]) -> pd.DataFrame:
     return cifras.sort_values(["expediente", "anio"]).reset_index(drop=True)
 
 
-def tabla_presencia(anios: list[int]) -> pd.DataFrame:
-    """En qué años el Observatorio abarca a cada empresa y cuáles tienen ficha."""
+def tabla_presencia(anios: list[int], empresa: pd.DataFrame, piloto: pd.DataFrame) -> pd.DataFrame:
+    """En qué años aparece cada empresa del universo y cuáles tienen ficha.
+
+    El universo y el piloto son los del año de referencia; esta tabla no los
+    cambia. La columna `en_universo_ese_anio` dice si además cumplía la
+    delimitación en ese ejercicio, que es información de análisis.
+    """
+    fijas = set(empresa["expediente"])
+    grupo = empresa.set_index("expediente")["grupo"]
+    del_piloto = piloto.drop_duplicates("expediente").set_index("expediente")
+
     partes = []
     for anio in anios:
-        universo = _leer(anio, "universo.parquet", columns=["expediente", "grupo"])
-        if universo.empty:
+        plata = config.ruta_plata(anio) / "ranking.parquet"
+        if not plata.exists():
             continue
-        piloto = _leer(anio, "piloto.csv")
-        universo = universo.assign(anio=anio, en_piloto=False, criterio_piloto=pd.NA)
-        universo["en_top50_tec"] = False
-        if not piloto.empty:
-            marcas = piloto.drop_duplicates("expediente")[
-                ["expediente", "criterio_piloto", "en_top50_tec"]
-            ]
-            universo = universo.drop(columns=["criterio_piloto", "en_top50_tec"]).merge(
-                marcas, on="expediente", how="left"
-            )
-            universo["en_piloto"] = universo["criterio_piloto"].notna()
-            universo["en_top50_tec"] = universo["en_top50_tec"].fillna(False)
-        partes.append(universo[PRESENCIA])
+        presentes = sorted(
+            fijas & set(pd.read_parquet(plata, columns=["expediente"])["expediente"])
+        )
+        del_anio = _leer(anio, "universo.parquet", columns=["expediente"])
+        df = pd.DataFrame({"anio": anio, "expediente": presentes})
+        df["grupo"] = df["expediente"].map(grupo)
+        df["en_universo_ese_anio"] = df["expediente"].isin(set(del_anio.get("expediente", [])))
+        df["en_piloto"] = df["expediente"].isin(del_piloto.index)
+        df["criterio_piloto"] = df["expediente"].map(del_piloto.get("criterio_piloto", pd.Series()))
+        df["en_top50_tec"] = (
+            df["expediente"].map(del_piloto.get("en_top50_tec", pd.Series())).fillna(False)
+        )
+        partes.append(df[PRESENCIA])
     if not partes:
         return pd.DataFrame(columns=PRESENCIA)
     return pd.concat(partes, ignore_index=True).sort_values(["anio", "expediente"])
@@ -156,18 +182,25 @@ def tabla_ficha(anios: list[int]) -> pd.DataFrame:
     )
 
 
-def ejecutar(desde: int | None = None) -> dict[str, int]:
+def ejecutar(desde: int | None = None, anio_universo: int | None = None) -> dict[str, int]:
+    anio_universo = anio_universo or config.ANIO_UNIVERSO
     anios = anios_disponibles(desde)
     if not anios:
         raise FileNotFoundError(
             f"No hay años con capa oro desde {desde or config.ANIO_MINIMO_COMPARABLE}: "
             "ejecute antes `etl universo --anio AAAA`"
         )
-    log.info("Consolidando %s años: %s-%s", len(anios), anios[0], anios[-1])
+    log.info(
+        "Consolidando: universo fijado con %s, serie %s-%s",
+        anio_universo,
+        anios[0],
+        anios[-1],
+    )
 
-    empresa = tabla_empresa(anios)
+    empresa = tabla_empresa(anio_universo)
+    piloto = _leer(anio_universo, "piloto.csv")
     cifras = tabla_cifras(set(empresa["expediente"]), anios)
-    presencia = tabla_presencia(anios)
+    presencia = tabla_presencia(anios, empresa, piloto)
     ficha = tabla_ficha(anios)
 
     destino = config.ORO
@@ -187,6 +220,7 @@ def ejecutar(desde: int | None = None) -> dict[str, int]:
     guardar_json(
         destino / "calidad_consolidado.json",
         {
+            "anio_universo": anio_universo,
             "desde": anios[0],
             "hasta": anios[-1],
             "filas": resumen,

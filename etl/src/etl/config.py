@@ -40,6 +40,12 @@ GRUPOS = {
     "K": "Actividades financieras y de seguros",
 }
 TOP_N = 50
+# El universo se fija con un año de referencia, no se recalcula cada año:
+# «El universo se fija con el ranking 2025. Si una empresa sale del ranking en
+# años posteriores, conserva su ficha con la fecha de captura»
+# (docs/universo.md). Los demás años aportan la serie de cifras de esas mismas
+# empresas, no empresas nuevas.
+ANIO_UNIVERSO = 2025
 
 # Tamaño por ventas anuales (COPCI): la columna oficial del ranking viene vacía.
 UMBRAL_MEDIANA = 1_000_000

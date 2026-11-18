@@ -200,7 +200,7 @@ El orden importa: cada etapa necesita que la anterior esté estable.
 | Orden | Etapa | Está listo cuando | Estado |
 | --- | --- | --- | --- |
 | 1 | **ETL por año** | Los 16 años corren sin intervención y cada fila descartada tiene motivo | Hecho |
-| 2 | **Consolidado** | Una fila por empresa con su serie, con integridad referencial comprobada | Hecho |
+| 2 | **Consolidado** | Una fila por cada una de las 14.027 empresas del universo, con su serie y con integridad referencial comprobada | Hecho |
 | 3 | **Scraping a escala** | Las 500 del piloto con URL resuelta y las verificadas con ficha | 19 de 500 |
 | 4 | **Indicadores en oro** | Agregados por grupo y año listos para el portal | Pendiente |
 | 5 | **Base de datos** | `etl bd` carga el consolidado y las consultas responden rápido ([base-de-datos.md](base-de-datos.md)) | Esquema escrito |
@@ -213,13 +213,19 @@ cambian de forma se reescribe dos veces.
 
 ## 8. Una decisión pendiente: `bi_ranking.csv`
 
-Entre las descargas ya hechas está `datos/crudo/2025/bi_ranking.csv`, y resultó
-ser mucho más de lo que parecía: **1.677.347 filas, de 2008 a 2025, con 307.991
-empresas y 34 indicadores financieros ya calculados por la SCVS** —liquidez
-corriente, prueba ácida, endeudamiento, rotación, márgenes, ROE, ROA— más
-costo de ventas, gastos financieros, gastos de administración y
-depreciaciones. El 55 % de las filas trae los indicadores: son las empresas
-que presentaron estados financieros.
+Entre las descargas ya hechas está `datos/crudo/2025/bi_ranking.csv`, que trae
+**34 indicadores financieros ya calculados por la SCVS** —liquidez corriente,
+prueba ácida, endeudamiento, rotación, márgenes, ROE, ROA— más costo de
+ventas, gastos financieros, gastos de administración y depreciaciones, para
+los ejercicios 2008 a 2025.
+
+El archivo tiene 1.677.347 filas porque cubre a las 307.991 sociedades del
+registro, pero eso no es lo que entraría al Observatorio: igual que el ranking
+—154.687 filas de las que se conservan 14.027— se filtra al universo en el
+primer paso. Para las 14.027 empresas y los años comparables son unas 119.000
+filas, el mismo orden de magnitud que el consolidado que ya tenemos. El
+tamaño del archivo crudo no cambia el tamaño del universo: la delimitación de
+[docs/universo.md](../docs/universo.md) se aplica igual.
 
 Qué cambiaría si lo usamos:
 

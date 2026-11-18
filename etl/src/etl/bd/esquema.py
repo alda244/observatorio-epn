@@ -81,8 +81,9 @@ universo = Table(
     Column("grupo", String(4), nullable=False),
     Column("en_piloto", Boolean, nullable=False, default=False),
     Column("criterio_piloto", String(32)),
+    Column("en_universo_ese_anio", Boolean),
     Column("en_top50_tec", Boolean),
-    comment="Empresas que abarca el Observatorio en cada año y cuáles tienen ficha",
+    comment="En qué años aparece cada empresa del universo fijado y cuáles tienen ficha",
 )
 
 ficha = Table(

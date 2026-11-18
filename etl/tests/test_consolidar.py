@@ -77,18 +77,21 @@ def test_solo_entran_los_anios_comparables(datos, monkeypatch):
     assert consolidar.anios_disponibles(2010) == [2010, 2012, 2013]
 
 
-def test_una_sola_fila_por_empresa(datos):
-    empresa = consolidar.tabla_empresa([2012, 2013])
+def test_el_universo_es_el_del_anio_de_referencia(datos):
+    """docs/universo.md: «El universo se fija con el ranking 2025»."""
+    empresa = consolidar.tabla_empresa(2013)
     assert empresa["expediente"].is_unique
-    assert set(empresa["expediente"]) == {1, 2}
+    # La empresa 2 estuvo en el universo 2012 pero no en el de referencia:
+    # no entra, y recalcular por año y unir daría un universo distinto.
+    assert set(empresa["expediente"]) == {1}
 
 
-def test_la_identificacion_sale_del_anio_mas_reciente(datos):
-    empresa = consolidar.tabla_empresa([2012, 2013]).set_index("expediente")
+def test_la_identificacion_es_la_del_anio_de_referencia(datos):
+    empresa = consolidar.tabla_empresa(2013).set_index("expediente")
     assert empresa.loc[1, "nombre"] == "UNA S.A. RENOMBRADA"
     assert empresa.loc[1, "anio_identificacion"] == 2013
-    # La empresa 2 salió del universo en 2013: su identificación es la de 2012.
-    assert empresa.loc[2, "anio_identificacion"] == 2012
+    anterior = consolidar.tabla_empresa(2012).set_index("expediente")
+    assert anterior.loc[1, "nombre"] == "UNA S.A."
 
 
 def test_la_serie_trae_los_anios_en_que_la_empresa_existio(datos):
@@ -104,18 +107,29 @@ def test_no_entran_empresas_fuera_del_universo(datos):
     assert 3 not in set(cifras["expediente"])
 
 
-def test_la_presencia_dice_en_que_anio_y_quien_tiene_ficha(datos):
-    presencia = consolidar.tabla_presencia([2012, 2013])
-    assert len(presencia) == 3  # 1 y 2 en 2012; solo 1 en 2013
-    assert set(presencia[presencia["en_piloto"]]["expediente"]) == {1}
+def test_la_presencia_solo_cubre_las_empresas_del_universo(datos):
+    empresa = consolidar.tabla_empresa(2013)
+    piloto = pd.read_csv(config.ruta_oro(2013) / "piloto.csv")
+    presencia = consolidar.tabla_presencia([2012, 2013], empresa, piloto)
+    # La empresa 1 aparece en los dos años; la 2 y la 3 no son del universo.
+    assert set(presencia["expediente"]) == {1}
+    assert sorted(presencia["anio"]) == [2012, 2013]
+    assert presencia["en_piloto"].all()
+
+
+def test_la_presencia_distingue_aparecer_de_cumplir_la_delimitacion(datos):
+    empresa = consolidar.tabla_empresa(2013)
+    piloto = pd.read_csv(config.ruta_oro(2013) / "piloto.csv")
+    presencia = consolidar.tabla_presencia([2012, 2013], empresa, piloto).set_index("anio")
+    assert bool(presencia.loc[2012, "en_universo_ese_anio"])
 
 
 def test_el_consolidado_no_deja_filas_huerfanas(datos):
-    resumen = consolidar.ejecutar()
+    resumen = consolidar.ejecutar(anio_universo=2013)
     empresa = pd.read_parquet(config.ORO / "empresa.parquet")
     cifras = pd.read_parquet(config.ORO / "cifras_anuales.parquet")
     presencia = pd.read_parquet(config.ORO / "universo_por_anio.parquet")
-    assert resumen["empresa"] == len(empresa) == 2
+    assert resumen["empresa"] == len(empresa) == 1
     assert cifras["expediente"].isin(empresa["expediente"]).all()
     assert presencia["expediente"].isin(empresa["expediente"]).all()
 
@@ -125,3 +139,8 @@ def test_sin_capa_oro_el_paso_avisa_en_vez_de_escribir_vacio(tmp_path, monkeypat
     (tmp_path / "oro").mkdir()
     with pytest.raises(FileNotFoundError, match="capa oro"):
         consolidar.ejecutar()
+
+
+def test_sin_el_universo_del_anio_de_referencia_no_consolida(datos):
+    with pytest.raises(FileNotFoundError, match="universo 2020"):
+        consolidar.ejecutar(anio_universo=2020)
