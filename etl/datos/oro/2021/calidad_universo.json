@@ -1,0 +1,26 @@
+{
+  "anio": 2021,
+  "universo_total": 10168,
+  "universo_por_grupo": {
+    "G": 4049,
+    "TEC": 3975,
+    "C": 1528,
+    "M": 474,
+    "K": 142
+  },
+  "piloto_total": 429,
+  "piloto_por_criterio": {
+    "tecnologica_mediana_grande": 229,
+    "top50_g": 50,
+    "top50_c": 50,
+    "top50_m": 50,
+    "top50_k": 50
+  },
+  "holdings_en_universo": 17,
+  "piloto_con_alerta_empleados": 77,
+  "diagnostico_empleados": {
+    "sin_estados_financieros": 10168
+  },
+  "participacion_ventas_universo": 0.6485,
+  "participacion_ventas_piloto": 0.2771
+}
