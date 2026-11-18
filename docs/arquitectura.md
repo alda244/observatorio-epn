@@ -14,10 +14,10 @@ flowchart LR
         API -- HTTP --> MOT[rag · motor]
         MOT <--> VEC[(Esquema asistente)]
         MOT <--> LLM[LLM por API]
-        MOT --> CHAT[/chat]
+        MOT --> CHAT["POST /chat"]
         WID[widget] --> CHAT
     end
-    C{{contracts/openapi.yaml}} -.- API
+    C{{"contracts/openapi.yaml"}} -.- API
     C -.- CHAT
 ```
 
