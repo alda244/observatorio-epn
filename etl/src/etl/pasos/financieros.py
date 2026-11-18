@@ -5,13 +5,21 @@ código, no el nombre; el catálogo del mismo año traduce esos códigos. De tod
 las cuentas se conservan las que el Observatorio necesita, entre ellas el gasto
 en sueldos, que permite interpretar el dato de empleados del ranking.
 
+La validación incluye la identidad que define un balance, Activo = Pasivo +
+Patrimonio. En los balances 2025 se cumple exactamente en las 154.904 filas,
+así que cualquier desvío futuro significa que el archivo no se leyó bien o que
+la fuente cambió, y el paso se detiene en vez de publicar un balance que no
+cuadra.
+
 Fuente: Portal de Información Societario de la SCVS, "Estados financieros por
 ramo". La descarga es manual porque el formulario pide verificación humana.
 """
 
 from __future__ import annotations
 
+import numpy as np
 import pandas as pd
+import pandera.pandas as pa
 
 from etl import config
 from etl.comun import guardar_json, log
@@ -62,6 +70,51 @@ CUENTAS_PERSONAL = [
     "sueldos_salarios_remuneraciones_ventas",
     "beneficios_sociales_indemnizaciones_ventas",
 ]
+
+
+# Tolerancia de la ecuación contable, en dólares. En los balances 2025 el
+# desvío máximo es exactamente 0, así que un dólar es holgura de sobra para
+# redondeos y cualquier desvío mayor es un error que hay que ver.
+TOLERANCIA_BALANCE = 1.0
+NO_NEGATIVAS = ["activo", "pasivo", "gasto_personal"]
+
+ESQUEMA = pa.DataFrameSchema(
+    {
+        "expediente": pa.Column(int, pa.Check.gt(0), unique=True),
+        "anio": pa.Column(int, pa.Check.gt(2000)),
+        "nombre": pa.Column(str, pa.Check.str_length(min_value=1)),
+        "ruc": pa.Column(str, pa.Check.str_matches(r"^\d{13}$"), nullable=True),
+        "activo": pa.Column(float, pa.Check.ge(0)),
+        "pasivo": pa.Column(float, pa.Check.ge(0)),
+        "patrimonio": pa.Column(float),  # puede ser negativo
+        "gasto_personal": pa.Column(float, pa.Check.ge(0)),
+    },
+    checks=pa.Check(
+        # Activo = Pasivo + Patrimonio. Es la identidad que define un balance:
+        # si no se cumple, el archivo no se leyó bien o la fuente está mal.
+        lambda t: (t["activo"] - (t["pasivo"] + t["patrimonio"])).abs() <= TOLERANCIA_BALANCE,
+        error="el activo no es igual al pasivo más el patrimonio",
+    ),
+    strict=False,
+)
+
+
+def separar_descartes(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Aparta las filas que no cumplen las reglas básicas, con el motivo."""
+    negativa = pd.concat([df[c] < 0 for c in NO_NEGATIVAS if c in df], axis=1).any(axis=1)
+    descuadre = (df["activo"] - (df["pasivo"] + df["patrimonio"])).abs() > TOLERANCIA_BALANCE
+    motivo = np.select([negativa, descuadre], ["cifra_negativa", "balance_descuadrado"], default="")
+    con_motivo = df.assign(motivo_descarte=motivo)
+    return con_motivo[motivo == ""].copy(), con_motivo[motivo != ""].copy()
+
+
+def normalizar_ruc(df: pd.DataFrame) -> pd.DataFrame:
+    """Solo se acepta el RUC de 13 dígitos; el resto queda marcado, no borrado."""
+    df = df.rename(columns={"ruc": "ruc_original"})
+    limpio = df["ruc_original"].astype(str).str.strip()
+    df["ruc_valido"] = limpio.str.fullmatch(r"\d{13}").fillna(False).astype(bool)
+    df["ruc"] = limpio.where(df["ruc_valido"])
+    return df
 
 
 def archivos(anio: int) -> tuple[list, list]:
@@ -130,6 +183,20 @@ def ejecutar(anio: int) -> pd.DataFrame:
     presentes = [c for c in CUENTAS_PERSONAL if c in df.columns]
     df["gasto_personal"] = df[presentes].fillna(0).sum(axis=1) if presentes else 0.0
     df["sin_gasto_personal"] = df["gasto_personal"] <= 0
+    df = normalizar_ruc(df)
+
+    df, descartes = separar_descartes(df)
+    if not descartes.empty:
+        ruta_descartes = config.ruta_plata(anio) / "descartes_financieros.csv"
+        descartes.to_csv(ruta_descartes, index=False)
+        log.warning(
+            "Financieros %s: %s filas a cuarentena (%s) -> %s",
+            anio,
+            len(descartes),
+            descartes["motivo_descarte"].value_counts().to_dict(),
+            ruta_descartes.name,
+        )
+    df = ESQUEMA.validate(df, lazy=True)
 
     destino = config.ruta_plata(anio) / "financieros.parquet"
     df.to_parquet(destino, index=False)
@@ -141,8 +208,12 @@ def ejecutar(anio: int) -> pd.DataFrame:
             "archivo_catalogo": catalogos[0].name if catalogos else None,
             "cuentas_en_catalogo": len(catalogo),
             "filas": len(df),
+            "filas_descartadas": len(descartes),
+            "motivos_de_descarte": descartes["motivo_descarte"].value_counts().to_dict(),
             "cuentas_conservadas": [c for c in CUENTAS.values() if c in df.columns],
             "sin_gasto_personal": int(df["sin_gasto_personal"].sum()),
+            "ruc_formato_invalido": int((~df["ruc_valido"]).sum()),
+            "tolerancia_balance_usd": TOLERANCIA_BALANCE,
         },
     )
     log.info("Financieros %s: %s empresas -> %s", anio, f"{len(df):,}", destino)
