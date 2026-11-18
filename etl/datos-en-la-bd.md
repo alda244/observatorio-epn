@@ -13,7 +13,7 @@ El diseño —por qué las tablas son estas y cómo se relacionan— está en
 | `oro.empresa` | 14.027 | `empresa.parquet` | 0.6 MB |
 | `oro.cifras_anuales` | 118.792 | `cifras_anuales.parquet` | 5.0 MB |
 | `oro.universo` | 118.792 | `universo_por_anio.parquet` | 0.3 MB |
-| `oro.ficha` | 25 | `ficha.csv` | 0.0 MB |
+| `oro.ficha` | 57 | `ficha.csv` | 0.1 MB |
 | `oro.documento` | se arma al cargar | `crudo/web/AAAA/manifest.jsonl` + HTML | |
 | `oro.indicador_sector` | se arma al cargar | `crudo/AAAA/indicadores_sector.csv` | |
 
@@ -107,7 +107,7 @@ Dos filas reales:
 
 El Company Profile, con la fuente de cada campo.
 
-- Filas: **25**
+- Filas: **57**
 - Clave primaria: `expediente`, `fecha_captura`
 - La publica: `GET /empresas/{expediente}` (Bloque 2)
 
@@ -116,18 +116,18 @@ El Company Profile, con la fuente de cada campo.
 | `expediente` | INTEGER | PK | 0 % | 384 |
 | `fecha_captura` | DATE | PK | 0 % | 2026-11-11 |
 | `url_oficial` | TEXT |  | 0 % | https://www.corporacionfavorita.com/ |
-| `tagline` | VARCHAR(150) |  | 12 % | Corporación Favorita, empresa ecuatoriana multinacional. Mej… |
-| `tagline_origen` | VARCHAR(8) |  | 12 % | literal |
-| `tagline_fuente` | TEXT |  | 12 % | https://www.corporacionfavorita.com/ |
-| `descripcion` | TEXT |  | 12 % | Trabajamos para mejorar la calidad de vida de todos, ofrecie… |
-| `descripcion_fuente` | TEXT |  | 12 % | https://www.corporacionfavorita.com/quienes-somos |
-| `productos_servicios` | TEXT |  | 48 % | Supermercados y retail; Centros comerciales; Industria; Marc… |
-| `productos_fuente` | TEXT |  | 48 % | https://www.corporacionfavorita.com/marcas#servicios |
-| `correo_corporativo` | TEXT |  | 80 % | info@telconet.com.co; info@telconet.com.pa; info@telconet.ec… |
+| `tagline` | VARCHAR(150) |  | 26 % | Corporación Favorita, empresa ecuatoriana multinacional. Mej… |
+| `tagline_origen` | VARCHAR(8) |  | 26 % | literal |
+| `tagline_fuente` | TEXT |  | 26 % | https://www.corporacionfavorita.com/ |
+| `descripcion` | TEXT |  | 16 % | Trabajamos para mejorar la calidad de vida de todos, ofrecie… |
+| `descripcion_fuente` | TEXT |  | 16 % | https://www.corporacionfavorita.com/quienes-somos |
+| `productos_servicios` | TEXT |  | 47 % | Supermercados y retail; Centros comerciales; Industria; Marc… |
+| `productos_fuente` | TEXT |  | 47 % | https://www.corporacionfavorita.com/marcas#servicios |
+| `correo_corporativo` | TEXT |  | 77 % | info@telconet.com.co; info@telconet.com.pa; info@telconet.ec… |
 | `telefono` | TEXT |  | 56 % | 04 2104014; 04 2798875; 04 2961455 |
-| `redes` | TEXT |  | 24 % | https://www.facebook.com/CorporacionFavorita; https://www.in… |
-| `logo_url` | TEXT |  | 48 % | https://www.corporacionfavorita.com/logo-cf.png |
-| `direccion` | TEXT |  | 68 % | Av. General Enríquez vía Cotogchoa |
+| `redes` | TEXT |  | 25 % | https://www.facebook.com/CorporacionFavorita; https://www.in… |
+| `logo_url` | TEXT |  | 53 % | https://www.corporacionfavorita.com/logo-cf.png |
+| `direccion` | TEXT |  | 75 % | Av. General Enríquez vía Cotogchoa |
 | `fuente_tipo` | VARCHAR(32) |  | 0 % | web_oficial |
 | `estado` | VARCHAR(10) |  | 0 % | completo |
 

@@ -262,12 +262,12 @@ plata 2025,las URL corresponden a empresas del piloto,ok,
 plata 2025,una fila por empresa,ok,
 plata 2025,los estados de URL son válidos,ok,
 plata 2025,toda URL verificada tiene dirección,ok,
-plata 2025,avance de la búsqueda de webs,aviso,105 de 500 del piloto; verificadas 26
+plata 2025,avance de la búsqueda de webs,aviso,259 de 500 del piloto; verificadas 58
 plata 2025,la ficha tiene una fila por empresa,ok,
 plata 2025,los estados de la ficha son válidos,ok,
 plata 2025,el tagline no pasa de 150 caracteres,ok,
 plata 2025,solo hay correos corporativos (LOPDP),ok,
-crudo 2025,cada página del manifiesto está en disco con su hash,ok,84 páginas
+crudo 2025,cada página del manifiesto está en disco con su hash,ok,180 páginas
 crudo 2025,páginas registradas sin guardar,aviso,1 (meta robots o error)
 consolidado,empresa: expediente único,ok,
 consolidado,"cifras_anuales: (expediente, anio) único",ok,
@@ -277,4 +277,4 @@ consolidado,universo_por_anio no tiene filas huérfanas,ok,
 consolidado,empresa es el universo fijado en 2025,ok,"14,027 empresas"
 consolidado,el piloto tiene 500 empresas,ok,500 empresas
 consolidado,la serie empieza en 2012,ok,2012-2025
-consolidado,la ficha corresponde a empresas del universo,ok,25 fichas
+consolidado,la ficha corresponde a empresas del universo,ok,57 fichas

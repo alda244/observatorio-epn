@@ -4,76 +4,189 @@ expediente,nombre,grupo,criterio_piloto,url_oficial,url_fuente,url_verificada,pu
 724114,FERTISA AGIF C.L.,M,top50_m,https://fertisa.com/,dominio_derivado,si,100.0,razon_social,2026-11-11,notebook_04,,
 124193,MINUTOCORP S.A.,M,top50_m,https://minutocorp.com/,dominio_derivado,si,100.0,razon_social,2026-11-11,notebook_04,,
 72951,TELCONET S.A.,TEC,tecnologica_mediana_grande,https://telconet.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,,
+48928,PUNTONET S.A.,TEC,tecnologica_mediana_grande,https://www.puntonet.com.ec/,dominio_derivado,si,88.0,razon_social,2026-11-18,etl urls,Punto Net – Equipos y Sistemas,razon_social dominio tld_ec
+116870,BROADNET S.A.,TEC,tecnologica_mediana_grande,https://www.broadnet.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,"Broadnet | Telephone Town Hall, Texting & Polling Platform",razon_social dominio nombre_en_titulo
+157101,DIRECTV ECUADOR C. LTDA.,TEC,tecnologica_mediana_grande,https://www.directvla.com/ec,dominio_derivado,si,94.0,razon_social,2026-11-18,etl urls,"DIRECTV Ecuador | Planes de TV, internet y plataformas de streaming",razon_social dominio tld_ec menciona_ecuador nombre_en_titulo
+153345,FARMAENLACE CIA. LTDA.,G,top50_g,https://www.farmaenlace.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Inicio - Farmaenlace,razon_social dominio menciona_ecuador nombre_en_titulo
+45323,FARMACIAS Y COMISARIATOS DE MEDICINAS SA FARCOMED,G,top50_g,https://www.farcomed.com/,dominio_derivado,si,100.0,nombre_comercial,2026-11-18,etl urls,Farcomed Integratori e Cosmetici,nombre_comercial dominio nombre_en_titulo
+109248,LETERAGO DEL ECUADOR S.A,G,top50_g,https://www.leterago.com.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Leterago Ecuador – Distribución farmacéutica,razon_social dominio tld_ec menciona_ecuador nombre_en_titulo
+62743,ECO-KAKAO S.A.,G,top50_g,https://www.kakaocorp.com/page/,dominio_derivado,si,89.0,razon_social,2026-11-18,etl urls,카카오,razon_social dominio
+138584,INBALNOR S. A.,G,top50_g,https://www.inbalnor.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Inicio | Inbalnor,razon_social dominio menciona_ecuador nombre_en_titulo
+40657,EXPALSA EXPORTADORA DE ALIMENTOS SA,C,top50_c,https://expalsa.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Expalsa | Premium Ecuadorian Shrimp Supplier,razon_social dominio menciona_ecuador nombre_en_titulo
+2308,HOLCIM ECUADOR S.A.,C,top50_c,https://www.holcim.com.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Holcim Ecuador S.A.,razon_social dominio tld_ec menciona_ecuador nombre_en_titulo
+8360,NOVACERO S.A,C,top50_c,https://www.novacero.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Inicio - Novacero,razon_social dominio nombre_en_titulo
+1587,INDUSTRIAL DANEC SA,C,top50_c,https://grupodanec.com.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Grupo Danec,razon_social dominio tld_ec nombre_en_titulo
+2,ACERIA DEL ECUADOR CA ADELCA.,C,top50_c,https://www.adelca.com/,dominio_derivado,si,100.0,nombre_comercial,2026-11-18,etl urls,Inicio - Adelca,nombre_comercial dominio menciona_ecuador nombre_en_titulo
+7300,QUIFATEX SA,C,top50_c,https://quifatex.com/es,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Quifatex,razon_social dominio tld_ec menciona_ecuador nombre_en_titulo
+713559,HAID ( ECUADOR) FEED CIA.LTDA.,C,top50_c,https://www.haid.com.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Haid Ecuador - Haid Ecuador,razon_social dominio tld_ec menciona_ecuador nombre_en_titulo
+745803,AQUAGOLD S.A.,C,top50_c,https://aquagold.com.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Home - AQUAGOLD,razon_social dominio tld_ec menciona_ecuador nombre_en_titulo
+150579,HIDROABANICO S.A.,M,top50_m,https://hidroabanico.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Home,razon_social dominio
+49850,COCA-COLA DE ECUADOR S.A.,M,top50_m,https://www.coca-cola.com/ec/es,dominio_derivado,si,85.0,razon_social,2026-11-18,etl urls,Refrescando al mundo entero | Coca-Cola EC,razon_social menciona_ecuador nombre_en_titulo
+162635,CONFIAMED S.A.,K,top50_k,https://www.confiamed.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Inicio - Confiamed,razon_social dominio nombre_en_titulo
+53352,DATAFAST S.A.,K,top50_k,https://datafast.com.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,"Datafast | Tu solución para Pagos en Línea, Pagos Presenciales y Botones de pago en Ecuador",razon_social dominio tld_ec menciona_ecuador nombre_en_titulo
+111490,MEDIANET S.A.,K,top50_k,https://medianet.com.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,MEDIANET EL MEJOR SOCIO PARA SU NEGOCIO EN ECUADOR,razon_social dominio tld_ec nombre_en_titulo
+706838,DATA TOOLS S.A.S.,TEC,tecnologica_mediana_grande,https://www.salesforce.com/data/?bc=HL,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Data 360 (Formerly Data Cloud) | Salesforce,razon_social dominio nombre_en_titulo
+108742,ECLIPSOFT S.A.,TEC,tecnologica_mediana_grande,https://eclipsoft.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Inicio - Firmas Electrónicas,razon_social dominio menciona_ecuador
+304920,INTERCOMMERCE S.A.,TEC,tecnologica_mediana_grande,https://www.intercommerce.com/en/index,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,INTERCOMMERCE.COM | Secure Online Payment Platform,razon_social dominio nombre_en_titulo
+48890,MODINTER S.A.,TEC,tecnologica_mediana_grande,https://modinter.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Modinter.com for sale | Spaceship.com,razon_social dominio nombre_en_titulo
+328878,QUICKLINK S.A.S.,TEC,tecnologica_mediana_grande,https://quicklink.com.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Inicio - Quicklink Ecuador,razon_social dominio tld_ec menciona_ecuador nombre_en_titulo
+105773,EXPORTQUILSA & PRODUCTORES ASOCIADOS S.A.,G,top50_g,https://exportquilsa.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Home - Exportquilsa | 有信,razon_social dominio menciona_ecuador nombre_en_titulo
+100121,CORPETROLSA S.A.,G,top50_g,https://www.corpetrolsa.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Corpetrolsa S.A. | Energía con propósito,razon_social dominio menciona_ecuador nombre_en_titulo
+872,MODERNA ALIMENTOS S.A.,G,top50_g,https://modernaalimentos.com.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Moderna - Alimentos,razon_social tld_ec menciona_ecuador nombre_en_titulo
+1814,UNACEM ECUADOR S.A.,C,top50_c,https://unacem.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Unacem Ecuador | Cementera Selvalegre Unacem Ecuador,razon_social dominio tld_ec menciona_ecuador nombre_en_titulo
+101380,GALAPESCA S.A.,C,top50_c,https://galapesca.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Galapesca Homepage | Galapesca S.A.,razon_social dominio menciona_ecuador nombre_en_titulo
+7211,COLGATE PALMOLIVE DEL ECUADOR SOCIEDAD ANONIMA INDUSTRIAL Y COMERCIAL,C,top50_c,https://industrialycomercial.com/,dominio_derivado,si,100.0,nombre_comercial,2026-11-18,etl urls,"Industrial y Comercial SRL, IC Forklift, Trailers, Autoelevadores, Maquinaria Vial, Rosario Argentina",nombre_comercial nombre_en_titulo
+25119,FABRICA DE ENVASES S.A. FADESA,C,top50_c,https://fadesa.com/,dominio_derivado,si,100.0,nombre_comercial,2026-11-18,etl urls,Inicio - Fadesa,nombre_comercial razon_social dominio menciona_ecuador nombre_en_titulo
+407,CONTINENTAL TIRE ANDINA S. A.,C,top50_c,https://continentaltire.com/,dominio_derivado,si,87.0,razon_social,2026-11-18,etl urls,"Truck Tires, SUV Tires, Commercial Tires & More | Continental Tire",razon_social nombre_en_titulo
+72073,ASISERVY S.A.,C,top50_c,https://asiservy.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Asiservy,razon_social dominio menciona_ecuador nombre_en_titulo
+46427,PROVEFRUT S.A.,C,top50_c,https://www.provefrut.com/es_ES/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Provefrut – Provefrut,razon_social dominio menciona_ecuador nombre_en_titulo
+7745,ROCHE ECUADOR S.A.,C,top50_c,https://www.roche.com.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Roche Ecuador,razon_social dominio tld_ec menciona_ecuador nombre_en_titulo
+741386,BUSTAMANTE FABARA S.A.S.,M,top50_m,https://bustamantefabara.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,"Bustamante Fabara – BUSTAMANTE FABARA con una trayectoria legal de más de 68 años, se ha consolidado como un referente d",razon_social menciona_ecuador nombre_en_titulo
+155078,GRANCOMERCIO CIA. LTDA.,M,top50_m,https://grancomercio.com.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,GranComercio,razon_social dominio tld_ec menciona_ecuador nombre_en_titulo
+18145,INDUVALLAS CIA. LTDA.,M,top50_m,https://induvallas.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Induvallas - Líder en el mercado de Publicidad Exterior(OOH),razon_social dominio menciona_ecuador nombre_en_titulo
+46384,BUREAU VERITAS ECUADOR S.A.,M,top50_m,https://group.bureauveritas.com/,dominio_derivado,si,86.0,razon_social,2026-11-18,etl urls,Home | Bureau Veritas,razon_social nombre_en_titulo
+90360,ERAZO CONSTRUCTORES S.A,M,top50_m,https://erazoconstructores.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Erazo Constructores S.A. - Proyectos de ingeniería e inversiones en inraestructura en Ecuador,razon_social menciona_ecuador nombre_en_titulo
+717531,PROJECTLAB S.A.,M,top50_m,https://www.projectlab.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,"ProjectLab | Alimentos, Almacenaje y Enfriamiento – Importación y comercialización de alimentos frescos en Ecuador",razon_social dominio tld_ec menciona_ecuador nombre_en_titulo
+86419,ENERGYPETROL S.A.,M,top50_m,https://energypetrol.com/EN/MainPage/,dominio_derivado,si,92.0,razon_social,2026-11-18,etl urls,Energy Petrol - www.energypetrol.com,razon_social dominio nombre_en_titulo
+151436,SEPROTEICO S.A.,K,top50_k,https://www.conecta.com.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Conecta – Software e Infraestructura Tecnológica - Quito,razon_social dominio menciona_ecuador
+98492,ASISKEN ASISTENCIA MEDICA S.A.,K,top50_k,https://asisken.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Asisken Asistencia Médica S.A. - Medicina prepagada en Ecuador | Planes Asisken,razon_social dominio nombre_en_titulo
+721179,PROASSISLIFE S.A.,K,top50_k,https://proassislife.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Proassislife – Medicina prepagada Ecuador – Seguros Ecuador,razon_social dominio menciona_ecuador nombre_en_titulo
+92419,EASYSOFT S.A.,K,top50_k,https://easysoft.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,"ODBC, JDBC, and XML driver downloads for Windows, UNIX, Linux, and macOS",razon_social dominio
+164264,PRIMEPRE S.A,K,top50_k,https://primepre.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,"PRIME MADE — Sea freight, air cargo and delivery in Ghana",razon_social dominio
+750365,APPDEUNA S.A.,K,top50_k,https://appdeuna.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,"Tudi app · Caja, inventario y agente de WhatsApp",razon_social dominio
+313300,HOPE ADMINISTRADORA DE FONDOS Y FIDEICOMISOS FIDUHOPE S.A.,K,top50_k,https://hope.ec/web/,dominio_derivado,si,91.0,razon_social,2026-11-18,etl urls,Home - HOPE,razon_social dominio tld_ec menciona_ecuador nombre_en_titulo
+750594,CRESA-RETAIL S.A.S.,G,top50_g,https://cresa.com.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Cresa,razon_social dominio tld_ec nombre_en_titulo
 47845,CONSORCIO ECUATORIANO DE TELECOMUNICACIONES S.A. CONECEL,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
 47972,OTECEL S.A.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
 93431,SERVICIOS DE TELECOMUNICACIONES SETEL S.A,TEC,tecnologica_mediana_grande,https://telecomunicaciones.com/,dominio_derivado,revisar,84.0,razon_social,2026-11-18,etl urls,es.org | Dominios Premium,dominio
-48928,PUNTONET S.A.,TEC,tecnologica_mediana_grande,https://www.puntonet.com.ec/,dominio_derivado,si,88.0,razon_social,2026-11-18,etl urls,Punto Net – Equipos y Sistemas,razon_social dominio tld_ec
 702471,TD SYNNEX ECUADOR CIA.LTDA.,TEC,tecnologica_mediana_grande,https://synnex.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Welcome to JBoss Application Server 7,dominio
-116870,BROADNET S.A.,TEC,tecnologica_mediana_grande,https://www.broadnet.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,"Broadnet | Telephone Town Hall, Texting & Polling Platform",razon_social dominio nombre_en_titulo
-157101,DIRECTV ECUADOR C. LTDA.,TEC,tecnologica_mediana_grande,https://www.directvla.com/ec,dominio_derivado,si,94.0,razon_social,2026-11-18,etl urls,"DIRECTV Ecuador | Planes de TV, internet y plataformas de streaming",razon_social dominio tld_ec menciona_ecuador nombre_en_titulo
-179278,DELIVERY HERO (DH E-COMMERCE) ECUADOR S.A.S.,TEC,tecnologica_mediana_grande,https://delivery.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Delivery.com,dominio nombre_en_titulo
+179278,DELIVERY HERO (DH E-COMMERCE) ECUADOR S.A.S.,TEC,tecnologica_mediana_grande,https://delivery.ec/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Delivery Guayaquil - ¡Ordena Ya y Recibe Rápido!,dominio tld_ec menciona_ecuador nombre_en_titulo
 157307,TATASOLUTION CENTER S.A.,TEC,tecnologica_mediana_grande,https://tatasolution.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,,dominio
-15035,GRUPO BRAVCO S.A.,TEC,tecnologica_mediana_grande,https://www.bravco.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Bravco Beauty Boutique,dominio nombre_en_titulo
+15035,GRUPO BRAVCO S.A.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
 47953,CIRION TECHNOLOGIES ECUADOR S.A.,TEC,tecnologica_mediana_grande,,,no_encontrada,56.0,razon_social,2026-11-18,etl urls,Cirion Technologies: Digital Infrastructure and Connectivity,nombre_en_titulo
-727942,TECHNOLOGY SUPPORT SERVICES ECUADOR TECHNOLOGYSUPPORT S.A.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
+727942,TECHNOLOGY SUPPORT SERVICES ECUADOR TECHNOLOGYSUPPORT S.A.,TEC,tecnologica_mediana_grande,https://technology.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,technology.com,dominio nombre_en_titulo
 2227,IBM DEL ECUADOR C.A.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
-14035,BINARIA SISTEMAS S.A.,TEC,tecnologica_mediana_grande,https://www.binaria.com.ec/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,BINARIA – Soluciones Tecnológicas para tu Empresa,dominio tld_ec nombre_en_titulo
+14035,BINARIA SISTEMAS S.A.,TEC,tecnologica_mediana_grande,https://binaria.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,"Desarrollo y Diseño Web | Binaria, agencia digital",dominio nombre_en_titulo
 45074,TOPAZ ECUADOR S.A.,TEC,tecnologica_mediana_grande,http://www.topaz.com/,dominio_derivado,revisar,73.0,razon_social,2026-11-18,etl urls,topaz.com,dominio nombre_en_titulo
 735636,KYNDRYL ECUADOR S.A.S.,TEC,tecnologica_mediana_grande,https://www.kyndryl.com/us/en,dominio_derivado,revisar,73.0,razon_social,2026-11-18,etl urls,Kyndryl United States,dominio nombre_en_titulo
 722687,CTEC CONECTIVIDAD & TECNOLOGÍA S.A.,TEC,tecnologica_mediana_grande,https://www.ctec.ec/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,CTEC | Soluciones tecnológicas para transformar tu operación,dominio tld_ec menciona_ecuador nombre_en_titulo
 164681,TELEALFACOM S.A.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
 50437,AKROS CIA. LTDA.,TEC,tecnologica_mediana_grande,https://akros.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Home - Akros,dominio nombre_en_titulo
 747203,STARLINK ECUADOR STAREC C.LTDA.,TEC,tecnologica_mediana_grande,https://starlink.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Starlink,dominio nombre_en_titulo
+130513,ZUKALO S.A.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
+163927,BEDUCACION S.A.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
+154856,MISIVACORP S.A.S.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
+93994,NOKIA SOLUTIONS AND NETWORK ECUADOR S.A.,TEC,tecnologica_mediana_grande,,,no_encontrada,0.0,razon_social,2026-11-18,etl urls,,
+61294,SECURITY DATA SEGURIDAD EN DATOS Y FIRMA DIGITAL S.A.,TEC,tecnologica_mediana_grande,https://www.security.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,SECURITY.COM,dominio nombre_en_titulo
+171325,THOUGHTWORKS SOFTWARE ECUADOR S.A.,TEC,tecnologica_mediana_grande,https://www.thoughtworks.com/es-ec,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Thoughtworks Ecuador | Una consultora tecnológica global | Thoughtworks Ecuador,dominio tld_ec menciona_ecuador nombre_en_titulo
+178574,ECUAPAYPHONE C.A.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
+736654,SOFTDATA SOLUCIONES TECNOLÓGICAS DISRUPTIVAS S.A.S.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
+332010,TADA ECUADOR S.A.S.,TEC,tecnologica_mediana_grande,https://www.tada.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Online Cash Back Shopping – Coupons & Promo Codes | Tada,dominio nombre_en_titulo
+146468,ANALYTIC NEWS MONITOREO DE MEDIOS S. A.,TEC,tecnologica_mediana_grande,https://analytic.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,HR & Financial Software for California School Districts | Analytic,dominio nombre_en_titulo
+316556,CENTROHUB S.A.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
+716308,HITSS ECUADOR S.A.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
+15860,GRUPO MICROSISTEMAS JOVICHSA S. A.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
+150025,ROAD TRACK ECUADOR S.A.,TEC,tecnologica_mediana_grande,https://road.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,,dominio
+315077,RAPPIEC S.A.S.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
+706106,EXPLODE FILMS EXPLOFILMS S.A.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
+98397,ARIADNAECU CIA. LTDA.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
+730862,ESCALA24X7 DEL ECUADOR S.A.,TEC,tecnologica_mediana_grande,https://escala24x7.com/,dominio_derivado,revisar,73.0,razon_social,2026-11-18,etl urls,Servicios en la nube con expertos AWS,dominio
+161068,ANYWAYBAC CIA. LTDA.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
+91227,HIGH TELECOMMUNICATIONS SOCIEDAD DE TELECOMUNICACIONES CIA. LTDA.,TEC,tecnologica_mediana_grande,http://www.high.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,high.com,dominio nombre_en_titulo
+180092,ONETELECOM CIA.LTDA.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
+754945,"CHINA ENERGY ENGINEERING GROUP JIANGSU POWER DESIGN INSTITUTE CO., LTD.",TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
+93751,TELECOMUNICACIONES COMNETSE DEL ECUADOR CNS S.A.S.,TEC,tecnologica_mediana_grande,https://telecomunicaciones.com/,dominio_derivado,revisar,72.0,razon_social,2026-11-18,etl urls,es.org | Dominios Premium,dominio
+109609,IN.PLANET S.A.,TEC,tecnologica_mediana_grande,https://www.planet.com/,dominio_derivado,revisar,78.0,razon_social,2026-11-18,etl urls,Planet Labs: Satellite Imagery & Earth Data Analytics,dominio nombre_en_titulo
+156739,TELXIUS CABLE ECUADOR S.A.,TEC,tecnologica_mediana_grande,https://telxius.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,"Telxius, un proveedor líder de conectividad global",dominio nombre_en_titulo
+33032,CORESOLUTIONS S.A.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
+144642,SECURESOFT ECUADOR S.A.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
+743817,DEEL ECUADOR S.A.S.,TEC,tecnologica_mediana_grande,https://www.deel.com/,dominio_derivado,revisar,75.0,razon_social,2026-11-18,etl urls,"Deel | Global Payroll, Compliance, HR Solutions | HRIS",dominio nombre_en_titulo
+702884,LIBERTYNETWORKS ECUADOR S.A.,TEC,tecnologica_mediana_grande,https://libertynetworks.com/,dominio_derivado,revisar,83.0,razon_social,2026-11-18,etl urls,Liberty Networks: Enterprise Connectivity & Network Infrastructure in LATAM,dominio menciona_ecuador
+93428,ASISTENCIA TECNICA Y COMERCIAL ASISTECOM CIA. LTDA.,TEC,tecnologica_mediana_grande,https://asistencia.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,,dominio
+79650,COMSATEL S.A.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
+37947,SPEEDYCOM CIA. LTDA.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-18,etl urls,,
+89971,BAYTEQ CIA. LTDA.,TEC,tecnologica_mediana_grande,https://www.bayteq.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Innovación en Desarrollo de Software y Tecnología | Bayteq,dominio menciona_ecuador nombre_en_titulo
 2913,CORPORACION EL ROSADO S.A.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
-86945,PRIMAX COMERCIAL DEL ECUADOR SOCIEDAD ANONIMA,G,top50_g,https://www.primax.com/ec/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Home - Primax,dominio tld_ec nombre_en_titulo
+86945,PRIMAX COMERCIAL DEL ECUADOR SOCIEDAD ANONIMA,G,top50_g,https://www.primax.com/ec/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Home - Primax,dominio nombre_en_titulo
 128168,DINADEC S.A.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
 721037,TIENDAS TUTI TTDE S.A.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
-48738,PETROLEOS Y SERVICIOS PYS C.A.,G,top50_g,https://petroleos.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,,dominio
-44313,DISTRIBUIDORA FARMACEUTICA ECUATORIANA (DIFARE) S.A.,G,top50_g,https://farmaceutica.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,,dominio
-3502,TIENDAS INDUSTRIALES ASOCIADAS TIA S.A.,G,top50_g,https://industriales.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,industriales.com,dominio nombre_en_titulo
+48738,PETROLEOS Y SERVICIOS PYS C.A.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+44313,DISTRIBUIDORA FARMACEUTICA ECUATORIANA (DIFARE) S.A.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+3502,TIENDAS INDUSTRIALES ASOCIADAS TIA S.A.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
 175280,VITAPRO ECUADOR CIA. LTDA.,G,top50_g,https://vitapro.com/,dominio_derivado,revisar,73.0,razon_social,2026-11-18,etl urls,Vita Pro - A leader in soy revolution,dominio
-153345,FARMAENLACE CIA. LTDA.,G,top50_g,https://www.farmaenlace.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Inicio - Farmaenlace,razon_social dominio menciona_ecuador nombre_en_titulo
 73084,ATIMASA S.A.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
 56174,TERPEL-COMERCIAL ECUADOR CIA.LTDA.,G,top50_g,https://www.terpel.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Terpel – Líder en la distribución de combustibles,dominio nombre_en_titulo
-3215,NIRSA S.A.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
-3311,UNION DE BANANEROS ECUATORIANOS SA UBESA,G,top50_g,https://ubesa.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,,dominio
-45323,FARMACIAS Y COMISARIATOS DE MEDICINAS SA FARCOMED,G,top50_g,https://www.farcomed.com/,dominio_derivado,si,100.0,nombre_comercial,2026-11-18,etl urls,Farcomed Integratori e Cosmetici,nombre_comercial dominio nombre_en_titulo
-30514,GERARDO ORTIZ E HIJOS C LTDA,G,top50_g,https://www.gerardoortiz.com/,dominio_derivado,revisar,74.0,razon_social,2026-11-18,etl urls,GO CORP.,
-109248,LETERAGO DEL ECUADOR S.A,G,top50_g,https://www.leterago.com.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Leterago Ecuador – Distribución farmacéutica,razon_social dominio tld_ec menciona_ecuador nombre_en_titulo
-48705,PETROLEOS DE LOS RIOS PETROLRIOS C.A.,G,top50_g,https://petroleos.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,,dominio
-62743,ECO-KAKAO S.A.,G,top50_g,https://www.kakaocorp.com/page/,dominio_derivado,si,89.0,razon_social,2026-11-18,etl urls,카카오,razon_social dominio
-138584,INBALNOR S. A.,G,top50_g,https://www.inbalnor.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Inicio | Inbalnor,razon_social dominio menciona_ecuador nombre_en_titulo
-20013,AGRIPAC SA,G,top50_g,https://agripac.com.ec/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Inicio - Agripac,dominio tld_ec nombre_en_titulo
-2151,SOCIEDAD NACIONAL DE GALAPAGOS CA,C,top50_c,https://galapagos.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Sustainable Travel Tours & Education | Galapagos.com,dominio menciona_ecuador nombre_en_titulo
-742,LA FABRIL S.A.,C,top50_c,https://fabril.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,,dominio
+3215,NIRSA S.A.,G,top50_g,https://nirsa.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Inicio - Nirsa,dominio nombre_en_titulo
+3311,UNION DE BANANEROS ECUATORIANOS SA UBESA,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+30514,GERARDO ORTIZ E HIJOS C LTDA,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+48705,PETROLEOS DE LOS RIOS PETROLRIOS C.A.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+20013,AGRIPAC SA,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+8343,GENERAL MOTORS DEL ECUADOR SA,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+193,COMERCIAL KYWI SA,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+183115,CARGILL DEL ECUADOR CARGILLECUADOR CIA.LTDA.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+89655,AEKIA S.A.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+58870,VEPAMIL S.A.,G,top50_g,https://www.grupovepamil.com/vepamil.php,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Vepamil,dominio tld_ec nombre_en_titulo
+48855,MEGADATOS S.A.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+3135,ALMACENES DE PRATI SA,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+43044,DISTRIBUIDORA IMPORTADORA DIPOR S.A.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+87070,MASGAS S.A.,G,top50_g,https://masgas.com.ec/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,MASGAS S.A. – Comercializadora de combustibles en Ecuador,dominio tld_ec menciona_ecuador nombre_en_titulo
+4902,ECUAQUIMICA ECUATORIANA DE PRODUCTOS QUIMICOS CA,G,top50_g,https://ecuaquimica.com.ec/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,ECUAQUIMICA – La mano amiga,dominio tld_ec menciona_ecuador nombre_en_titulo
+145796,DISTRIVEHIC DISTRIBUIDORA DE VEHÍCULOS S.A.S.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+90174,ASIAUTO S.A,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+148781,AGROINDUSTRIAS ARRIBA DEL ECUADOR AGROARRIBA S.A.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+87399,SUPERDEPORTE S.A.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+166413,BEBIDAS ARCACONTINENTAL ECUADOR ARCADOR C.L.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+97590,CRESIO CIA.LTDA.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+48145,CORPORACION SUPERIOR CORSUPERIOR S.A.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+181019,COPACIGULF S.A.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+604,DURAGAS SA,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+156811,MEGA SANTAMARIA S.A.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+617,IMPORTADORA TOMEBAMBA S.A.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+35741,PRODUCTOS PERECIBLES Y MARISCOS PROPEMAR S.A.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+157383,TOYOTA DEL ECUADOR S.A.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+4164,MAQUINARIAS Y VEHICULOS S.A. MAVESA,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+46249,UNICOMER DE ECUADOR S.A.,G,top50_g,,,no_encontrada,,,2026-11-18,etl urls,,
+2151,SOCIEDAD NACIONAL DE GALAPAGOS CA,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+742,LA FABRIL S.A.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
 4238,NESTLE ECUADOR S.A.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
-87185,AC BEBIDAS ECUADOR ACBE CIA.LTDA.,C,top50_c,https://bebidas.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,,dominio
-2448,CERVECERIA NACIONAL CN S.A.,C,top50_c,https://cerveceria.com/,dominio_derivado,revisar,76.0,razon_social,2026-11-18,etl urls,cerveceria.com,dominio nombre_en_titulo
-40657,EXPALSA EXPORTADORA DE ALIMENTOS SA,C,top50_c,https://expalsa.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Expalsa | Premium Ecuadorian Shrimp Supplier,razon_social dominio menciona_ecuador nombre_en_titulo
-2308,HOLCIM ECUADOR S.A.,C,top50_c,https://www.holcim.com.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Holcim Ecuador S.A.,razon_social dominio tld_ec menciona_ecuador nombre_en_titulo
-8360,NOVACERO S.A,C,top50_c,https://www.novacero.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Inicio - Novacero,razon_social dominio nombre_en_titulo
-1587,INDUSTRIAL DANEC SA,C,top50_c,https://grupodanec.com.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Grupo Danec,razon_social dominio tld_ec nombre_en_titulo
-716718,ECUADOR KAKAO PROCESSING PROECUAKAO S.A.,C,top50_c,https://www.kakaocorp.com/page/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,카카오,dominio
-2,ACERIA DEL ECUADOR CA ADELCA.,C,top50_c,https://www.adelca.com/,dominio_derivado,si,100.0,nombre_comercial,2026-11-18,etl urls,Inicio - Adelca,nombre_comercial dominio menciona_ecuador nombre_en_titulo
-87530,INT FOOD SERVICES CORP S.A.,C,top50_c,https://www.food.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,"Food.com - Recipes, Food Ideas and Videos",dominio nombre_en_titulo
+87185,AC BEBIDAS ECUADOR ACBE CIA.LTDA.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+2448,CERVECERIA NACIONAL CN S.A.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+716718,ECUADOR KAKAO PROCESSING PROECUAKAO S.A.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+87530,INT FOOD SERVICES CORP S.A.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
 747146,CARGILL AQUANUTRITION ECUADOR CIA.LTDA.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
-7300,QUIFATEX SA,C,top50_c,https://quifatex.com/es,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Quifatex,razon_social dominio tld_ec menciona_ecuador nombre_en_titulo
 30024,INDURAMA ECUADOR S.A.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
-713559,HAID ( ECUADOR) FEED CIA.LTDA.,C,top50_c,https://www.haid.com.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Haid Ecuador - Haid Ecuador,razon_social dominio tld_ec menciona_ecuador nombre_en_titulo
 1088,THE TESALIA SPRINGS COMPANY S.A.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
-745803,AQUAGOLD S.A.,C,top50_c,https://aquagold.com.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Home - AQUAGOLD,razon_social dominio tld_ec menciona_ecuador nombre_en_titulo
-7307,NOVOPAN DEL ECUADOR SA,C,top50_c,https://www.novopan.com.ec/,dominio_derivado,revisar,74.0,razon_social,2026-11-18,etl urls,Novopan,dominio tld_ec menciona_ecuador nombre_en_titulo
+7307,NOVOPAN DEL ECUADOR SA,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
 49769,UNILEVER ANDINA ECUADOR S.A.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+34449,EUROFISH S.A.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+6233,CARTONES NACIONALES S.A. I CARTOPEL,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+42971,GRUPASA GRUPO PAPELERO CIA.LTDA.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+7027,CONSERVAS ISABEL ECUATORIANA S.A.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+34388,MARBELIZE S.A.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+369,SEAFMAN SOCIEDAD ECUATORIANA DE ALIMENTOS Y FRIGORIFICOS MANTA C.A.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+6029,LACTEOS SAN ANTONIO CA,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+73818,IPAC S.A,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+38712,IN.CAR.PALM. INDUSTRIA CARTONERA PALMAR S.A.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+2234,SOCIEDAD AGRICOLA E INDUSTRIAL SAN CARLOS S.A.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+3680,PAPELERA NACIONAL SA,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+44472,LIRIS S. A.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+677,INDUSTRIAS ALES CA,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+9468,INDUSTRIAS LACTEAS TONI SA,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+49616,PRODUCTOS FAMILIA SANCELA DEL ECUADOR S.A,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+150434,LABORATORIOS SIEGFRIED S.A.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+7230,COMPANIA DE ELABORADOS DE CAFE ELCAFE C.A.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+175748,AGROAZUCAR ECUADOR S.A.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+38720,PCC CONGELADOS & FRESCOS S.A.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+49218,KUBIEC S.A.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
+13167,EXTRACTORA AGRICOLA RIO MANSO EXA S.A.,C,top50_c,,,no_encontrada,,,2026-11-18,etl urls,,
 740608,"MCKINSEY & COMPANY, INC. ECUADOR",M,top50_m,,,no_encontrada,,,2026-11-18,etl urls,,
 704429,IMS-INTERNET MEDIA SERVICES ECUADOR S.A.,M,top50_m,,,no_encontrada,,,2026-11-18,etl urls,,
 169998,JUCARCORP GROUP S.A.,M,top50_m,,,no_encontrada,,,2026-11-18,etl urls,,
 16771,CORPIDE CORPORACION PUBLICITARIA INTEGRAL DELTA C LTDA,M,top50_m,https://corpide.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Corpide - Media Marketing Agency,dominio nombre_en_titulo
-150579,HIDROABANICO S.A.,M,top50_m,https://hidroabanico.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Home,razon_social dominio
-3970,ORGANIZACIONES NORLOP S.A.,M,top50_m,https://organizaciones.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,,dominio
+3970,ORGANIZACIONES NORLOP S.A.,M,top50_m,,,no_encontrada,,,2026-11-18,etl urls,,
 746009,EMPRESA OPERADORA METRO DE MEDELLÍN TRANSDEV EOMMT S.A.S.,M,top50_m,,,no_encontrada,,,2026-11-18,etl urls,,
 93689,INTERPUBLIC COLOMBIA S.A.S.,M,top50_m,https://www.omc.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Home - Omnicom,dominio
 90266,"PEREZ, BUSTAMANTE & PONCE ABOGADOS CIA. LTDA.",M,top50_m,https://perez.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,"Home page for Perez.com Productions, LLC",dominio nombre_en_titulo
-49850,COCA-COLA DE ECUADOR S.A.,M,top50_m,https://www.coca-cola.com/ec/es,dominio_derivado,si,85.0,razon_social,2026-11-18,etl urls,Refrescando al mundo entero | Coca-Cola EC,razon_social menciona_ecuador nombre_en_titulo
 155462,EFICACIAECUADOR S.A.,M,top50_m,,,no_encontrada,,,2026-11-18,etl urls,,
 731614,MKP-ECUADOR S.A.S.,M,top50_m,,,no_encontrada,,,2026-11-18,etl urls,,
 93460,PROYECTOS INTEGRALES DEL ECUADOR PIL S.A.,M,top50_m,https://proyectosintegrales.com/,dominio_derivado,revisar,78.0,razon_social,2026-11-18,etl urls,PROINFO | Proyectos Integrales de Fibra Óptica,nombre_en_titulo
@@ -84,23 +197,64 @@ expediente,nombre,grupo,criterio_piloto,url_oficial,url_fuente,url_verificada,pu
 151402,DELLAIR SERVICES S.A.,M,top50_m,https://dellair.com/,dominio_derivado,revisar,72.0,razon_social,2026-11-18,etl urls,dellair.com,dominio nombre_en_titulo
 719106,PICHINCHA-CORP S.A.,M,top50_m,https://www.pichincha.com/,dominio_derivado,revisar,71.0,razon_social,2026-11-18,etl urls,"Banco Pichincha | Préstamos, tarjetas, inversiones y más",dominio nombre_en_titulo
 3778,MABECA- CORPORATION S.A.,M,top50_m,,,no_encontrada,,,2026-11-18,etl urls,,
+165679,TECNOIDEAS S.A.,M,top50_m,,,no_encontrada,,,2026-11-18,etl urls,,
+50181,PRICEWATERHOUSECOOPERS DEL ECUADOR CIA. LTDA.,M,top50_m,,,no_encontrada,,,2026-11-18,etl urls,,
+14432,GRUPO CREATIVO PUBLYMARK C LTDA,M,top50_m,,,no_encontrada,,,2026-11-18,etl urls,,
+340971,SOFKA-ECUADOR S.A.S.,M,top50_m,,,no_encontrada,,,2026-11-18,etl urls,,
+163217,GESTION EN INFORMACION Y TECNOLOGIA GESTIONTEC CIA LTDA.,M,top50_m,https://gestion.ec/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,GESTION - Gestion,dominio tld_ec nombre_en_titulo
+153786,BIOCELLS DISCOVERIES INTERNACIONAL S.A.,M,top50_m,,,no_encontrada,,,2026-11-18,etl urls,,
+120279,PROMOLUCKY S.A.,M,top50_m,,,no_encontrada,,,2026-11-18,etl urls,,
+711364,PRECISIONECUADOR S.A.,M,top50_m,https://www.precisionecuador.com/,dominio_derivado,revisar,75.0,razon_social,2026-11-18,etl urls,MedPre - Medicina de Precisión Ecuador,dominio menciona_ecuador
+117526,MEGAESTRUCTURAS S.A.,M,top50_m,,,no_encontrada,,,2026-11-18,etl urls,,
+46459,ECUAMBIENTE CONSULTING GROUP CIA. LTDA,M,top50_m,https://www.ecuambiente.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Inicio - ECUAMBIENTE,dominio menciona_ecuador nombre_en_titulo
+176383,GRUBALUZON CIA. LTDA,M,top50_m,,,no_encontrada,,,2026-11-18,etl urls,,
+93488,EMINENS CIA. LTDA.,M,top50_m,https://www.eminens.se/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Eminens - Ledarskap i livet | Eminens AB,dominio nombre_en_titulo
+152039,ALS ECUADOR ALSECU S.A.,M,top50_m,,,no_encontrada,,,2026-11-18,etl urls,,
+117549,TRUST CONTROL INTERNATIONAL S.A. TCEE,M,top50_m,,,no_encontrada,56.0,razon_social,2026-11-18,etl urls,Test Engineering | TTCI,
+707627,ORIONWORLDWIDE S.A.,M,top50_m,https://omnicommedia.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Omnicom Media – Client-First. Data-Led. People-Powered.,dominio
+21499,DELOITTE & TOUCHE ECUADOR CIA. LTDA.,M,top50_m,https://www.deloitte.com/latam/es/about/story/nuestros-marketplaces/deloitte-ecuador.html,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Deloitte Ecuador,dominio nombre_en_titulo
+159313,GUILLERMO PASQUEL CIA. LTDA.,M,top50_m,,,no_encontrada,,,2026-11-18,etl urls,,
+148020,CANT TECNOLOGIA S.A.,M,top50_m,,,no_encontrada,,,2026-11-18,etl urls,,
+143349,SHOPPING MANAGEMENTS OPERADORA S.A.,M,top50_m,,,no_encontrada,,,2026-11-18,etl urls,,
+150563,ELSYSTEC S.A.,M,top50_m,https://elsystec.com.ec/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Elsystec S.A.,dominio tld_ec nombre_en_titulo
+46949,ORESA S.A.,M,top50_m,https://oresa.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Oresa | We are a private investment company owned by a Swedish entrepreneurial family,dominio nombre_en_titulo
 48038,SALUDSA SISTEMA DE MEDICINA PRE-PAGADA DEL ECUADOR S.A.,K,top50_k,https://www.saludsa.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Saludsa - Medicina prepagada del Ecuador,dominio menciona_ecuador nombre_en_titulo
 151460,BMI IGUALAS MEDICAS DEL ECUADOR S.A.,K,top50_k,https://www.igualas.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Igualas jurídicas ǀ Alejandro Pastor Vázquez - Abogados,dominio nombre_en_titulo
 48641,MEDICINA PARA EL ECUADOR MEDIECUADOR-HUMANA S.A.,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
-162635,CONFIAMED S.A.,K,top50_k,https://www.confiamed.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Inicio - Confiamed,razon_social dominio nombre_en_titulo
-7265,ECUASANITAS SA,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+7265,ECUASANITAS SA,K,top50_k,https://ecuasanitas.com/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,Ecuasanitas,razon_social dominio menciona_ecuador nombre_en_titulo
 131679,BEST DOCTORS S.A. EMPRESA DE MEDICINA PREPAGADA,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
 19762,CORPORACION MULTIBG S.A.,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
 70434,TRANSFERUNION S.A.,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
 711966,COMPAÑIA DE SERVICIOS AUXILIARES DEL SISTEMA FINANCIERO INTERDIN S.A.,K,top50_k,https://auxiliares.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Auxiliares.com is for sale - Premium  Domain,dominio nombre_en_titulo
 47410,PUBLIPROMUEVE S.A.,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
-53352,DATAFAST S.A.,K,top50_k,https://datafast.com.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,"Datafast | Tu solución para Pagos en Línea, Pagos Presenciales y Botones de pago en Ecuador",razon_social dominio tld_ec menciona_ecuador nombre_en_titulo
 600220,NOVAECUADOR S.A AGENCIA ASESORA PRODUCTORA DE SEGUROS,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
 48525,FIDEVAL S.A. ADMINISTRADORA DE FONDOS Y FIDEICOMISOS,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
-751061,NTT-DATA ECUADOR S.A.,K,top50_k,https://www.salesforce.com/data/?bc=HL,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,Data 360 (Formerly Data Cloud) | Salesforce,dominio nombre_en_titulo
+751061,NTT-DATA ECUADOR S.A.,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
 45967,FIDUCIA S.A. ADMINISTRADORA DE FONDOS Y FIDEICOMISOS MERCANTILES,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
 600175,TECNISEGUROS S.A. AGENCIA ASESORA PRODUCTORA DE SEGUROS,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
-73803,BANRED S.A.,K,top50_k,https://banred.com/,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,BANRED | BANRED.COM,dominio nombre_en_titulo
-181810,VUMILATINA MEDICINA PREPAGADA S.A.,K,top50_k,https://www.vumilatina.com/,dominio_derivado,revisar,76.0,razon_social,2026-11-18,etl urls,Inicio - VUMILATINA,dominio menciona_ecuador nombre_en_titulo
-111490,MEDIANET S.A.,K,top50_k,https://medianet.com.ec/,dominio_derivado,si,100.0,razon_social,2026-11-18,etl urls,MEDIANET EL MEJOR SOCIO PARA SU NEGOCIO EN ECUADOR,razon_social dominio tld_ec nombre_en_titulo
-71828,AFP GENESIS ADMINISTRADORA DE FONDOS Y FIDEICOMISOS S.A.,K,top50_k,https://www.genesis.com/worldwide/en,dominio_derivado,revisar,70.0,dominio_coincide_con_nombre,2026-11-18,etl urls,"Official Genesis Worldwide | Luxury Sedans, SUVs & EVs",dominio nombre_en_titulo
+73803,BANRED S.A.,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+181810,VUMILATINA MEDICINA PREPAGADA S.A.,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+71828,AFP GENESIS ADMINISTRADORA DE FONDOS Y FIDEICOMISOS S.A.,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+111489,CREDIMATIC S.A.,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+40593,MEDIKEN MEDICINA INTEGRAL KENNEDY SA,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+600201,ASERTEC S.A. AGENCIA ASESORA PRODUCTORA DE SEGUROS,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+600837,GRUPO MANCHENO VILLACRESES CIA. LTDA. AGENCIA ASESORA PRODUCTORA DE SEGUROS,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+29539,"RED DE RECAUDACIÓN, PAGOS Y SERVICIOS FACILITO REDFACILITO S.A.",K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+600133,ECUAPRIMAS C. LTDA. AGENCIA ASESORA PRODUCTORA DE SEGUROS,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+156944,RED TRANSACCIONAL COOPERATIVA S.A. RTC,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+158209,COMPAÑIA DE MEDICINA PREPAGADA INMEDICAL MEDICINA INTERNACIONAL S.A.,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+171680,INVERSIONES ESMERALDAS INVERESMERALDAS S.A.,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+85975,EXTERNALIZACION DE SERVICIOS S.A. EXSERSA,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+716562,CREDIPRIME S.A.,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+92176,MEDICINA PREPAGADA CRUZBLANCA S.A.,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+709863,UNINOVA-COMPAÑIA DE SERVICIOS AUXILIARES S.A.,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+69246,CORPORACION CEIBOS CEIBOSCORP S.A.,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+720350,ADMINISTRACIÓN DE RECURSOS Y COBRANZA ADRECOINTELCOBRO S.A.,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+54587,GEOMIL GEORGE MILENI S.A.,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+600287,MULTIAPOYO CIA. LTDA. AGENCIA ASESORA PRODUCTORA DE SEGUROS,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+600711,AON RISK SERVICES ECUADOR S.A. AGENCIA ASESORA PRODUCTORA DE SEGUROS,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+48324,ANEFI S.A. ADMINISTRADORA DE FONDOS Y FIDEICOMISOS,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+176293,COBRA FACIL FABRACILISA S.A.,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+703649,SAFTYPAY S.A.,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+101315,BANGARA S.A.,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
+600145,ROSENEY SALCEDO Y ASOCIADOS CIA.LTDA. RSA AGENCIA ASESORA PRODUCTORA DE SEGUROS,K,top50_k,,,no_encontrada,,,2026-11-18,etl urls,,
