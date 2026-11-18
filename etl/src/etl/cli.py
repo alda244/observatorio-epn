@@ -123,6 +123,28 @@ def bd(
 
 
 @app.command()
+def documentar() -> None:
+    """Escribe datos-en-la-bd.md con el contenido real del consolidado."""
+    from etl.pasos import documentar as paso
+
+    paso.ejecutar()
+
+
+@app.command()
+def verificar(
+    anio: int | None = typer.Option(
+        None, "--anio", "-a", help="Un solo año; por defecto, todos los que tengan capa plata."
+    ),
+) -> None:
+    """Comprueba que todo lo que produjo el ETL cuadra. Falla si algo no cuadra."""
+    from etl.pasos import verificar as paso
+
+    informe = paso.ejecutar(anio)
+    if informe.fallas:
+        raise typer.Exit(code=1)
+
+
+@app.command()
 def todo(
     anio: int = OpcionAnio,
     limite: int | None = typer.Option(
@@ -131,7 +153,17 @@ def todo(
     con_bd: bool = typer.Option(False, "--con-bd", help="Carga también en PostgreSQL."),
 ) -> None:
     """Corre el pipeline completo del año."""
-    from etl.pasos import carga, consolidar, ficha, financieros, ranking, universo, urls, web
+    from etl.pasos import (
+        carga,
+        consolidar,
+        ficha,
+        financieros,
+        ranking,
+        universo,
+        urls,
+        verificar,
+        web,
+    )
 
     ranking.ejecutar(anio)
     try:
@@ -143,6 +175,7 @@ def todo(
     asyncio.run(web.ejecutar(anio, limite))
     ficha.ejecutar(anio)
     consolidar.ejecutar()
+    verificar.ejecutar(anio)
     if con_bd:
         carga.ejecutar(anio)
 

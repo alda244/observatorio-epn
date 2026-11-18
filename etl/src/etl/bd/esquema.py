@@ -52,6 +52,7 @@ empresa = Table(
     Column("provincia", Text, index=True),
     Column("ciudad", Text),
     Column("es_holding", Boolean),
+    Column("anio_identificacion", Integer, comment="Año del ranking del que sale esta ficha"),
     comment="Datos estables de cada compañía, del ranking SCVS",
 )
 
@@ -70,6 +71,10 @@ cifras_anuales = Table(
     Column("alerta_empleados", String(32)),
     Column("rank_grupo", Integer),
     Column("nueva_en_ranking", Boolean),
+    # «No reportado» no es «cero»: en 2014 la SCVS no publicó estas dos
+    # columnas, y sin la marca cualquier promedio de ese año sale mal.
+    Column("ingreso_total_no_reportado", Boolean),
+    Column("utilidad_no_reportada", Boolean),
     comment="Cifras por empresa y año; el tamaño se deriva de las ventas (COPCI)",
 )
 

@@ -5,6 +5,12 @@ Modelo de datos que produce el ETL y que lee la API pública. Sigue el
 esquemas propios de B con `rol_datos` y ningún permiso para el Componente A,
 que obtiene los datos por la API.
 
+Este documento explica el **diseño**: por qué las tablas son estas y cómo se
+relacionan. Para ver **qué hay de verdad adentro** —cuántas filas, con qué
+valores y qué respondería cada ruta de la API hoy— está
+[datos-en-la-bd.md](datos-en-la-bd.md), que se regenera con `etl documentar`
+desde los archivos reales.
+
 ## Esquemas y capas
 
 Las capas siguen la metodología Medallion. El dato crudo no entra a la base:
@@ -118,6 +124,13 @@ el número no es confiable cuando no lo es:
 
 El tamaño **no** se toma de la SCVS, porque esa columna viene vacía: se
 calcula con las ventas según el COPCI y se publica como `tamano_derivado`.
+
+Dos columnas booleanas acompañan a las cifras y son tan importantes como
+ellas: `ingreso_total_no_reportado` y `utilidad_no_reportada`. Un cero puede
+significar «la empresa no tuvo ingresos» o «la fuente no publicó la columna
+ese año», y son cosas distintas. En el ranking 2014 la SCVS no publicó ni el
+ingreso total ni la utilidad: sin estas marcas, cualquier promedio o razón
+financiera de ese año saldría mal.
 
 ### `oro.universo`
 

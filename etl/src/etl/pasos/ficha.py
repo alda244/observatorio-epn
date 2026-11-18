@@ -106,7 +106,16 @@ def lista(valor) -> list:
 
 
 def html_de(carpeta, pagina: pd.Series) -> str:
-    return (carpeta / f"{pagina['expediente']}_{pagina['sha256']}.html").read_text(encoding="utf-8")
+    """Lee la página capturada por bytes y la decodifica como llegó.
+
+    En modo texto Python traduciría `\r\n` a `\n` y el texto dejaría de ser
+    idéntico al que se capturó y se firmó con el hash.
+    """
+    archivo = carpeta / f"{pagina['expediente']}_{pagina['sha256']}.html"
+    codificacion = pagina.get("encoding")
+    if not isinstance(codificacion, str) or not codificacion:
+        codificacion = "utf-8"
+    return archivo.read_bytes().decode(codificacion, errors="replace")
 
 
 def tagline(empresa: pd.DataFrame) -> tuple[str, str]:

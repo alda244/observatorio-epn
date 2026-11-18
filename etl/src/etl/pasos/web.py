@@ -26,17 +26,16 @@ from __future__ import annotations
 
 import datetime as dt
 import json
-import logging
 import re
 from urllib.parse import urljoin, urlparse
 
 import extruct
 import pandas as pd
-from scrapling.fetchers import FetcherSession
-from scrapling.spiders import Request, Spider
+from scrapling.spiders import Request
 
 from etl import config, sitio
-from etl.comun import leer_jsonl, log, sha256_texto
+from etl.comun import leer_jsonl, log, sha256_bytes
+from etl.recoleccion import SIN_ENTRADA, Etico
 
 INSTITUCIONAL = re.compile(
     r"nosotros|quienes|qui[eé]nes|about|empresa|historia|servicio|producto|soluci"
@@ -55,53 +54,9 @@ REDES = (
     "youtube.com",
     "tiktok.com",
 )
-# Códigos con los que el servidor pide que se baje el ritmo o se pare.
-BLOQUEO = (429, 503)
 MAXIMO_CANDIDATAS = 200
 
 tipo_pagina = sitio.tipo_pagina
-
-
-class Etico(Spider):
-    """Configuración común de recolección. Las dos fases heredan de aquí.
-
-    `autothrottle` ajusta la pausa según lo que tarda el servidor en
-    responder y la alarga sola si el sitio se queja, que es lo que piden las
-    guías de rastreo responsable; `download_delay` es el piso.
-    """
-
-    robots_txt_obey = True
-    concurrent_requests = 4
-    concurrent_requests_per_domain = config.PETICIONES_SIMULTANEAS_POR_DOMINIO
-    download_delay = config.SEGUNDOS_ENTRE_PETICIONES
-    autothrottle_enabled = True
-    autothrottle_start_delay = config.SEGUNDOS_ENTRE_PETICIONES
-    autothrottle_max_delay = config.RETRASO_MAXIMO
-    autothrottle_block_backoff = True
-    max_blocked_retries = 0  # si el sitio bloquea, no se insiste
-    logging_level = logging.WARNING
-
-    def configure_sessions(self, manager):
-        manager.add(
-            "etico",
-            FetcherSession(
-                impersonate=None,  # sin suplantar un navegador
-                stealthy_headers=False,
-                headers={"User-Agent": config.USER_AGENT},
-                retries=1,
-                timeout=config.TIEMPO_LIMITE,
-            ),
-        )
-
-    def is_blocked(self, respuesta) -> bool:
-        if respuesta.status in BLOQUEO:
-            log.warning("%s respondió %s: se deja de pedir", respuesta.url, respuesta.status)
-            return True
-        return super().is_blocked(respuesta)
-
-    @staticmethod
-    def texto_de(respuesta) -> str:
-        return respuesta.body.decode(respuesta.encoding or "utf-8", errors="replace")
 
 
 def raiz_de(url: str) -> str:
@@ -211,7 +166,7 @@ class CapturaWeb(Etico):
     async def parse(self, r):
         expediente = r.meta["expediente"]
         dominio = urlparse(r.url).netloc
-        if r.status == 403:
+        if r.status == SIN_ENTRADA:
             self.sin_entrada.add(dominio)
             log.warning("%s respondió 403: no se piden más páginas de ese dominio", r.url)
         if r.status != 200 or dominio in self.sin_entrada:
@@ -221,12 +176,15 @@ class CapturaWeb(Etico):
                 "tipo_pagina": tipo_pagina(r.url),
                 "status": r.status,
                 "fecha_captura": dt.datetime.now().isoformat(timespec="seconds"),
-                "html": "",
+                "cuerpo": b"",
+                "encoding": "",
                 "omitida": "estado_http",
             }
             return
 
-        html = self.texto_de(r)
+        cuerpo = r.body
+        codificacion = r.encoding or "utf-8"
+        html = cuerpo.decode(codificacion, errors="replace")
         if not sitio.puede_archivarse(html):
             log.info("%s pide no ser archivada (meta robots): no se guarda", r.url)
             yield {
@@ -235,7 +193,8 @@ class CapturaWeb(Etico):
                 "tipo_pagina": tipo_pagina(r.url),
                 "status": r.status,
                 "fecha_captura": dt.datetime.now().isoformat(timespec="seconds"),
-                "html": "",
+                "cuerpo": b"",
+                "encoding": "",
                 "omitida": "meta_robots",
             }
             return
@@ -259,7 +218,8 @@ class CapturaWeb(Etico):
             "tipo_pagina": tipo_pagina(r.url),
             "status": r.status,
             "fecha_captura": dt.datetime.now().isoformat(timespec="seconds"),
-            "html": html,
+            "cuerpo": cuerpo,
+            "encoding": codificacion,
             "omitida": "",
             "title": r.css("title::text").get(),
             "meta_description": r.css('meta[name="description"]::attr(content)').get(),
@@ -410,13 +370,14 @@ async def ejecutar(anio: int, limite: int | None = None) -> pd.DataFrame:
     guardadas, omitidas = 0, 0
     with manifiesto.open("a", encoding="utf-8") as registro:
         async for item in CapturaWeb(plan).stream():
-            html = item.pop("html")
-            if not html:
+            cuerpo = item.pop("cuerpo")
+            if not cuerpo:
                 omitidas += 1
                 registro.write(json.dumps({**item, "sha256": ""}, ensure_ascii=False) + "\n")
                 continue
-            huella = sha256_texto(html)
-            (carpeta / f"{item['expediente']}_{huella}.html").write_text(html, encoding="utf-8")
+            # Se guarda el cuerpo tal como llegó: el hash es de esos bytes.
+            huella = sha256_bytes(cuerpo)
+            (carpeta / f"{item['expediente']}_{huella}.html").write_bytes(cuerpo)
             registro.write(json.dumps({**item, "sha256": huella}, ensure_ascii=False) + "\n")
             guardadas += 1
     log.info("Capturadas %s páginas, omitidas %s -> %s", guardadas, omitidas, carpeta)

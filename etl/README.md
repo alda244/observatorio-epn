@@ -6,6 +6,7 @@ universo, Company Profile, indicadores y proyecciones.
 
 - Cómo se construye y qué falta: [guia-etl.md](guia-etl.md)
 - Modelo de datos y relaciones: [base-de-datos.md](base-de-datos.md)
+- Qué hay de verdad en las tablas: [datos-en-la-bd.md](datos-en-la-bd.md)
 - Universo y piloto: [docs/universo.md](../docs/universo.md)
 - Campos de la ficha: [docs/ficha-empresa.md](../docs/ficha-empresa.md)
 
@@ -56,7 +57,9 @@ flowchart LR
 | `etl ficha` | Plata | Arma el Company Profile con la fuente de cada campo |
 | `etl consolidar` | Oro | Junta la serie de los años con la forma de las tablas de la base, sobre el universo fijado en 2025 |
 | `etl bd` | Oro | Carga en PostgreSQL lo que dejó `consolidar` |
-| `etl todo` | — | Corre el pipeline completo de un año y consolida |
+| `etl verificar` | todas | Comprueba que todo cuadra: hashes, claves, filas y huérfanos. Falla si algo no cuadra |
+| `etl documentar` | Oro | Escribe `datos-en-la-bd.md` con el contenido real |
+| `etl todo` | — | Corre el pipeline completo de un año, consolida y verifica |
 
 ```bash
 uv sync                                   # crea etl/.venv e instala el paquete
@@ -64,7 +67,8 @@ uv run etl todo --anio 2025               # pipeline completo del año
 uv run etl ranking --anio 2024            # un solo paso
 uv run etl urls --anio 2025 --limite 25   # una tanda de 25 empresas por criterio
 uv run etl consolidar                     # todos los años en una sola tabla
-uv run pytest                             # 97 pruebas
+uv run etl verificar                      # 278 comprobaciones sobre lo que hay en disco
+uv run pytest                             # 111 pruebas
 uv run ruff check . && uv run ruff format --check .
 ```
 

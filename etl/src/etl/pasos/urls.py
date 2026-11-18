@@ -15,18 +15,17 @@ reanudable: lo ya verificado o corregido a mano no se vuelve a visitar.
 from __future__ import annotations
 
 import datetime as dt
-import logging
 import re
 import socket
 from concurrent.futures import ThreadPoolExecutor
 
 import pandas as pd
 from rapidfuzz import fuzz
-from scrapling.fetchers import FetcherSession
-from scrapling.spiders import Request, Spider
+from scrapling.spiders import Request
 
 from etl import config
 from etl.comun import log, normalizar, partes_nombre, tokens_distintivos
+from etl.recoleccion import Etico
 
 TLDS = (".com.ec", ".ec", ".com", ".net.ec")
 ESTADOS_CERRADOS = ("si", "manual")
@@ -89,32 +88,14 @@ def filtrar_por_dns(candidatos: pd.DataFrame) -> pd.DataFrame:
     return vivos
 
 
-class VerificadorPortada(Spider):
-    """Lee la portada de cada dominio candidato respetando las reglas del proyecto."""
+class VerificadorPortada(Etico):
+    """Lee solo la portada de cada dominio candidato, con las reglas comunes."""
 
     name = "verificador_portada"
-    robots_txt_obey = True
-    concurrent_requests = 4
-    concurrent_requests_per_domain = config.PETICIONES_SIMULTANEAS_POR_DOMINIO
-    download_delay = config.SEGUNDOS_ENTRE_PETICIONES
-    max_blocked_retries = 0  # si el sitio bloquea, no se insiste
-    logging_level = logging.WARNING
 
     def __init__(self, candidatos: pd.DataFrame):
         self.candidatos = candidatos
         super().__init__()
-
-    def configure_sessions(self, manager):
-        manager.add(
-            "etico",
-            FetcherSession(
-                impersonate=None,  # sin suplantar un navegador
-                stealthy_headers=False,
-                headers={"User-Agent": config.USER_AGENT},
-                retries=1,
-                timeout=config.TIEMPO_LIMITE,
-            ),
-        )
 
     async def start_requests(self):
         for c in self.candidatos.itertuples():

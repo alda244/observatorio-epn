@@ -71,6 +71,16 @@ def sha256_texto(texto: str) -> str:
     return hashlib.sha256(texto.encode("utf-8")).hexdigest()
 
 
+def sha256_bytes(contenido: bytes) -> str:
+    """Hash del contenido tal como llegó.
+
+    Las páginas se guardan y se verifican por bytes, no por texto. Leer un
+    archivo en modo texto traduce `\r\n` a `\n`, así que el texto leído no
+    sería idéntico al capturado y el hash no verificaría.
+    """
+    return hashlib.sha256(contenido).hexdigest()
+
+
 def sin_tildes(texto: str) -> str:
     return "".join(
         c for c in unicodedata.normalize("NFD", str(texto)) if unicodedata.category(c) != "Mn"

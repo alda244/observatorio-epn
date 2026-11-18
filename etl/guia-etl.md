@@ -52,8 +52,8 @@ de fecha, para que no existan dos versiones de la verdad.
 
 | | |
 | --- | --- |
-| Cumplido | `--anio` es ese parámetro: `etl todo --anio 2024` rellena historia por el mismo camino que `2025` |
-| Falta | Correr los años 2010–2023 que ya están descargados; una tabla de qué año se procesó cuándo |
+| Cumplido | `--anio` es ese parámetro y los 16 años (2010–2025) ya corrieron por ese mismo camino |
+| Falta | Una tabla de corridas: qué paso se corrió, cuándo y con cuántas filas |
 
 ### 2.3 Trazable: de cada dato se sabe de dónde salió
 
@@ -63,8 +63,15 @@ en cada campo redactado, la URL y la fecha de la que salió.
 
 | | |
 | --- | --- |
-| Cumplido | `datos/crudo/MANIFEST.csv` con hash SHA-256; `manifest.jsonl` de cada captura web; columnas `*_fuente` en la ficha |
-| Falta | `url_origen` vacía en varias filas del MANIFEST; no hay registro de corridas (quién corrió qué paso, cuándo, cuántas filas) |
+| Cumplido | `MANIFEST.csv` con hash SHA-256; `manifest.jsonl` de cada captura; `plan_captura.csv` con lo que se pidió a cada sitio; columnas `*_fuente` en la ficha; `etl verificar` comprueba los hashes |
+| Falta | `url_origen` vacía en varias filas del MANIFEST; no hay registro de corridas |
+
+Un hash solo sirve si de verdad verifica, y el nuestro no verificaba. Las
+páginas se guardaban decodificadas y se volvían a leer en modo texto, donde
+Python traduce `\r\n` a `\n`: el texto leído no era idéntico al capturado y el
+hash no cuadraba en 8 de 18 páginas. Ahora el cuerpo se guarda **tal como
+llegó**, en bytes, el hash es de esos bytes y el manifiesto registra la
+codificación para decodificar igual al leerlo. Lo encontró `etl verificar`.
 
 ### 2.4 Validado: el paso falla antes de escribir basura
 
@@ -74,8 +81,16 @@ una copia con otro nombre.
 
 | | |
 | --- | --- |
-| Cumplido | Esquema pandera en `ranking` y en `ficha`; **cuarentena** con el motivo en `descartes_ranking.csv`; el reporte cuadra filas crudas, descartadas y de plata; 97 pruebas |
-| Falta | Validar `financieros` y `universo` con esquema propio |
+| Cumplido | Esquema pandera en `ranking` y en `ficha`; **cuarentena** con el motivo en `descartes_ranking.csv`; `etl verificar` corre 278 comprobaciones sobre lo que hay en disco; 111 pruebas |
+| Falta | Validar `financieros` con esquema propio |
+
+La validación tiene dos momentos y los dos hacen falta. Pandera valida
+**mientras** se transforma y detiene el paso antes de escribir.
+`etl verificar` valida **después**, leyendo lo que quedó en disco: que cada
+archivo crudo coincida con su hash, que las filas cuadren contra el archivo
+original, que el universo salga de plata, que no haya filas huérfanas y que
+las claves sean únicas. Son las mismas condiciones que impondrá PostgreSQL,
+comprobadas antes de que exista la base. Termina con código 1 si algo falla.
 
 ### 2.5 Reproducible: otro lo corre y obtiene lo mismo
 
@@ -173,6 +188,8 @@ uv run etl todo --anio 2025               # pipeline completo del año
 uv run etl ranking --anio 2024            # un solo paso
 for a in $(seq 2012 2025); do uv run etl ranking --anio $a; done   # relleno
 uv run etl consolidar                     # todos los años en una sola tabla
+uv run etl verificar                      # comprueba que todo cuadra
+uv run etl documentar                     # datos-en-la-bd.md con el contenido real
 ```
 
 Los pasos `urls` y `web` son los únicos que salen a internet y aceptan
@@ -203,7 +220,7 @@ El orden importa: cada etapa necesita que la anterior esté estable.
 | 2 | **Consolidado** | Una fila por cada una de las 14.027 empresas del universo, con su serie y con integridad referencial comprobada | Hecho |
 | 3 | **Scraping a escala** | Las 500 del piloto con URL resuelta y las verificadas con ficha | 19 de 500 |
 | 4 | **Indicadores en oro** | Agregados por grupo y año listos para el portal | Pendiente |
-| 5 | **Base de datos** | `etl bd` carga el consolidado y las consultas responden rápido ([base-de-datos.md](base-de-datos.md)) | Esquema escrito |
+| 5 | **Base de datos** | `etl bd` carga el consolidado y las consultas responden rápido | Esquema escrito y documentado con datos reales en [datos-en-la-bd.md](datos-en-la-bd.md) |
 | 6 | **Contrato** | `contracts/openapi.yaml` revisado por el Componente A, que lo necesita para su servidor simulado | Pendiente |
 | 7 | **API** | FastAPI implementa las rutas del contrato leyendo solo la capa oro | Pendiente |
 | 8 | **Portal** | Decidido CKAN, propio o híbrido, con su ADR | Pendiente |

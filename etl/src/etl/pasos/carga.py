@@ -18,6 +18,7 @@ from sqlalchemy.dialects.postgresql import insert
 from etl import config
 from etl.bd import esquema
 from etl.comun import leer_jsonl, log
+from etl.pasos import ficha
 
 
 def motor(url: str | None = None):
@@ -99,10 +100,7 @@ def documentos_de(anio: int) -> pd.DataFrame:
     paginas = paginas.assign(
         fecha_captura=paginas["fecha_captura"].str[:10], titulo=paginas["title"]
     )
-    paginas["texto"] = [
-        (carpeta / f"{e}_{h}.html").read_text(encoding="utf-8")[:200_000]
-        for e, h in zip(paginas["expediente"], paginas["sha256"], strict=True)
-    ]
+    paginas["texto"] = [ficha.html_de(carpeta, fila)[:200_000] for _, fila in paginas.iterrows()]
     return paginas
 
 

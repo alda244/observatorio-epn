@@ -125,3 +125,28 @@ def test_la_identificacion_tolera_paginas_sin_datos_de_contacto():
     assert datos["correo_corporativo"] == "info@ejemplo.com"
     assert datos["telefono"] is None
     assert datos["redes"] is None
+
+
+def test_la_pagina_se_lee_identica_a_como_se_capturo(tmp_path):
+    """Leer en modo texto traduce CRLF a LF y el hash deja de verificar."""
+    from etl.comun import sha256_bytes
+
+    original = "<html>\r\n<body>Hola</body>\r\n</html>"
+    cuerpo = original.encode("utf-8")
+    huella = sha256_bytes(cuerpo)
+    (tmp_path / f"1_{huella}.html").write_bytes(cuerpo)
+
+    pagina = pd.Series({"expediente": 1, "sha256": huella, "encoding": "utf-8"})
+    assert ficha.html_de(tmp_path, pagina) == original
+    assert sha256_bytes((tmp_path / f"1_{huella}.html").read_bytes()) == huella
+
+
+def test_la_pagina_se_decodifica_con_la_codificacion_registrada(tmp_path):
+    from etl.comun import sha256_bytes
+
+    cuerpo = "<html>Año Ñandú</html>".encode("latin-1")
+    huella = sha256_bytes(cuerpo)
+    (tmp_path / f"2_{huella}.html").write_bytes(cuerpo)
+
+    pagina = pd.Series({"expediente": 2, "sha256": huella, "encoding": "latin-1"})
+    assert "Año Ñandú" in ficha.html_de(tmp_path, pagina)
