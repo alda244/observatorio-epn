@@ -231,7 +231,10 @@ def ejecutar(desde: int | None = None, anio_universo: int | None = None) -> dict
             },
             "cifras_sin_ventas": int((cifras["ventas"] == 0).sum()),
             "ingreso_total_no_reportado": int(cifras["ingreso_total_no_reportado"].sum()),
-            "empresas_en_piloto": int(presencia["en_piloto"].sum()),
+            # Empresas distintas, no filas: una del piloto aparece en varios años.
+            "empresas_en_piloto": int(
+                presencia.loc[presencia["en_piloto"], "expediente"].nunique()
+            ),
             "fichas_por_estado": (
                 ficha["estado"].value_counts().to_dict() if not ficha.empty else {}
             ),
