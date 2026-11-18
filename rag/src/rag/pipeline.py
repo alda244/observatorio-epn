@@ -14,7 +14,7 @@ from datetime import datetime, timezone
 
 from rag.cliente_b import ClienteBArchivo
 from rag.config import Config
-from rag.indice import AlmacenLocal, crear_embedder, fragmentar
+from rag.indice import crear_almacen, crear_embedder, fragmentar
 from rag.ingesta import Documento, cargar_catalogo_ciiu, cargar_documentos, ficha_identificacion
 
 
@@ -44,10 +44,7 @@ def recolectar(cfg: Config) -> list[Documento]:
 
 def ingerir(cfg: Config, reconstruir: bool = False) -> ReporteIngesta:
     t0 = time.perf_counter()
-    if reconstruir:
-        for nombre in ("indice.json", "fragmentos.jsonl", "vectores.npy"):
-            (cfg.indice / nombre).unlink(missing_ok=True)
-    almacen = AlmacenLocal(cfg.indice, cfg.modelo_embeddings)
+    almacen = crear_almacen(cfg, vaciar=reconstruir)
     previos = almacen.hashes()
     docs = recolectar(cfg)
 
@@ -78,6 +75,7 @@ def ingerir(cfg: Config, reconstruir: bool = False) -> ReporteIngesta:
         fragmentos_totales=len(almacen.todo()[0]),
         segundos=round(time.perf_counter() - t0, 2),
     )
+    cfg.indice.mkdir(parents=True, exist_ok=True)
     with (cfg.indice / "corridas.jsonl").open("a", encoding="utf-8") as f:
         f.write(json.dumps(asdict(reporte), ensure_ascii=False) + "\n")
     return reporte

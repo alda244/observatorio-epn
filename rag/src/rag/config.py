@@ -38,6 +38,9 @@ class Config:
     indice: Path = field(
         default_factory=lambda: Path(_env("RAG_INDICE", str(RAIZ_REPO / "rag/datos/indice")))
     )
+    # Almacén del índice: "archivos" (desarrollo) o "pgvector" (esquema asistente).
+    almacen: str = field(default_factory=lambda: _env("RAG_ALMACEN", "archivos"))
+    pg_dsn: str = field(default_factory=lambda: _env("RAG_PG_DSN", ""))
     trazas: Path = field(
         default_factory=lambda: Path(_env("RAG_TRAZAS", str(RAIZ_REPO / "rag/datos/trazas.jsonl")))
     )

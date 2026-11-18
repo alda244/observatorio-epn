@@ -1,0 +1,50 @@
+[
+  {
+    "nombre": "Amazon Nova Lite (Bedrock)",
+    "base_url": "https://bedrock-runtime.us-east-1.amazonaws.com/openai/v1",
+    "modelo": "COMPLETAR",
+    "clave_env": "BEDROCK_API_KEY",
+    "precio_entrada": 0.06,
+    "precio_salida": 0.24
+  },
+  {
+    "nombre": "GPT-6 Luna (OpenAI)",
+    "base_url": "https://api.openai.com/v1",
+    "modelo": "COMPLETAR",
+    "clave_env": "OPENAI_API_KEY",
+    "precio_entrada": 0.10,
+    "precio_salida": 0.50
+  },
+  {
+    "nombre": "Gemini 3.1 Flash-Lite (Google)",
+    "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+    "modelo": "COMPLETAR",
+    "clave_env": "GEMINI_API_KEY",
+    "precio_entrada": 0.25,
+    "precio_salida": 1.50
+  },
+  {
+    "nombre": "Gemini 3.5 Flash-Lite (Google)",
+    "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+    "modelo": "COMPLETAR",
+    "clave_env": "GEMINI_API_KEY",
+    "precio_entrada": 0.30,
+    "precio_salida": 2.50
+  },
+  {
+    "nombre": "Claude Haiku 4.5 (Bedrock, referencia)",
+    "base_url": "https://bedrock-runtime.us-east-1.amazonaws.com/openai/v1",
+    "modelo": "COMPLETAR",
+    "clave_env": "BEDROCK_API_KEY",
+    "precio_entrada": 1.00,
+    "precio_salida": 5.00
+  },
+  {
+    "nombre": "Ollama local (desarrollo)",
+    "base_url": "http://localhost:11434/v1",
+    "modelo": "COMPLETAR",
+    "clave_env": "",
+    "precio_entrada": 0,
+    "precio_salida": 0
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "fecha": "2026-11-18T00:54:41+00:00",
+  "modelo": "hash-512",
+  "documentos_fuente": 500,
+  "nuevos": 500,
+  "actualizados": 0,
+  "sin_cambios": 0,
+  "eliminados": 0,
+  "fragmentos_indexados": 500,
+  "fragmentos_totales": 500,
+  "segundos": 1.69
+}

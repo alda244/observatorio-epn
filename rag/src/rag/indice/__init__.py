@@ -1,9 +1,11 @@
 """Índice: fragmentación, embeddings y almacén vectorial.
 
-El prototipo guarda el índice en archivos (``vectores.npy`` +
-``fragmentos.jsonl``). La interfaz ``Almacen`` es la misma que implementará
-el almacén pgvector del esquema ``asistente`` (ADR 0002), de modo que el
-motor no cambia al migrar.
+Hay dos almacenes con la misma interfaz ``Almacen``:
+
+- ``AlmacenLocal``: archivos (``vectores.npy`` + ``fragmentos.jsonl``), para
+  desarrollo sin base de datos.
+- ``AlmacenPgvector``: tabla ``asistente.fragmento`` en PostgreSQL con
+  pgvector (ADR 0002). Se elige con ``RAG_ALMACEN=pgvector``.
 """
 
 from __future__ import annotations
@@ -142,15 +144,21 @@ class Almacen(Protocol):
 
     def todo(self) -> tuple[list[Fragmento], np.ndarray]: ...
 
+    def guardar(self) -> None: ...
+
+    def vaciar(self) -> None: ...
+
 
 class AlmacenLocal:
     """Almacén en archivos; equivalente funcional de la tabla ``asistente.fragmento``."""
 
-    def __init__(self, carpeta: Path, modelo: str) -> None:
+    def __init__(self, carpeta: Path, modelo: str, vaciar: bool = False) -> None:
         self.carpeta = Path(carpeta)
         self.modelo = modelo
         self._frag: list[Fragmento] = []
         self._vec = np.zeros((0, 0), dtype=np.float32)
+        if vaciar:
+            self.vaciar()
         meta = self.carpeta / "indice.json"
         if meta.exists():
             info = json.loads(meta.read_text(encoding="utf-8"))
@@ -183,6 +191,11 @@ class AlmacenLocal:
     def todo(self) -> tuple[list[Fragmento], np.ndarray]:
         return self._frag, self._vec
 
+    def vaciar(self) -> None:
+        for nombre in ("indice.json", "fragmentos.jsonl", "vectores.npy"):
+            (self.carpeta / nombre).unlink(missing_ok=True)
+        self._frag, self._vec = [], np.zeros((0, 0), dtype=np.float32)
+
     def guardar(self) -> None:
         self.carpeta.mkdir(parents=True, exist_ok=True)
         with (self.carpeta / "fragmentos.jsonl").open("w", encoding="utf-8") as f:
@@ -197,3 +210,123 @@ class AlmacenLocal:
             ),
             encoding="utf-8",
         )
+
+
+ESQUEMA_SQL = Path(__file__).resolve().parents[3] / "migraciones" / "001_asistente.sql"
+_COLUMNAS = ("frag_id", "doc_id", "orden", "titulo", "texto", "fuente_url", "fuente_tipo", "fecha",
+             "origen", "sha256_doc", "metadatos")
+
+
+def _vector_sql(v: np.ndarray) -> str:
+    return "[" + ",".join(f"{x:.7g}" for x in v) + "]"
+
+
+class AlmacenPgvector:
+    """Almacén en ``asistente.fragmento`` (PostgreSQL + pgvector).
+
+    Las tablas se crean en la primera ingesta, con la dimensión del modelo.
+    Los cambios quedan en una transacción hasta ``guardar()``.
+    """
+
+    def __init__(self, dsn: str, modelo: str, vaciar: bool = False) -> None:
+        import psycopg
+
+        self.modelo = modelo
+        self.con = psycopg.connect(dsn)
+        self.dimension: int | None = None
+        if vaciar:
+            self.vaciar()
+        existe = self.con.execute("SELECT to_regclass('asistente.indice') IS NOT NULL").fetchone()[0]
+        if existe:
+            fila = self.con.execute("SELECT modelo, dimension FROM asistente.indice").fetchone()
+            if fila:
+                if fila[0] != modelo:
+                    raise ValueError(
+                        f"El índice se construyó con '{fila[0]}' y se pidió '{modelo}'. Use --reconstruir."
+                    )
+                self.dimension = fila[1]
+
+    def _crear(self, dimension: int) -> None:
+        if not self.con.execute("SELECT 1 FROM pg_extension WHERE extname = 'vector'").fetchone():
+            raise RuntimeError("La base no tiene la extensión pgvector. Un administrador debe ejecutar: "
+                               "CREATE EXTENSION vector;")
+        self.con.execute(ESQUEMA_SQL.read_text(encoding="utf-8").replace("{dim}", str(dimension)))
+        self.con.execute(
+            "INSERT INTO asistente.indice (modelo, dimension) VALUES (%s, %s) "
+            "ON CONFLICT (id) DO UPDATE SET modelo = EXCLUDED.modelo, dimension = EXCLUDED.dimension",
+            (self.modelo, dimension),
+        )
+        self.dimension = dimension
+
+    def hashes(self) -> dict[str, str]:
+        if self.dimension is None:
+            return {}
+        return dict(self.con.execute("SELECT DISTINCT doc_id, sha256_doc FROM asistente.fragmento").fetchall())
+
+    def eliminar(self, doc_ids: set[str]) -> None:
+        if doc_ids and self.dimension is not None:
+            self.con.execute("DELETE FROM asistente.fragmento WHERE doc_id = ANY(%s)", (list(doc_ids),))
+
+    def reemplazar(self, doc_ids: set[str], fragmentos: list[Fragmento], vectores: np.ndarray) -> None:
+        if not fragmentos:
+            self.eliminar(doc_ids)
+            return
+        if self.dimension is None:
+            self._crear(int(vectores.shape[1]))
+        self.eliminar(doc_ids)
+        with self.con.cursor() as cur:
+            cur.executemany(
+                f"INSERT INTO asistente.fragmento ({', '.join(_COLUMNAS)}, embedding) "
+                f"VALUES ({', '.join(['%s'] * len(_COLUMNAS))}, %s::vector)",
+                [
+                    (*(json.dumps(v, ensure_ascii=False) if k == "metadatos" else v
+                       for k, v in asdict(f).items()), _vector_sql(vec))
+                    for f, vec in zip(fragmentos, vectores, strict=True)
+                ],
+            )
+
+    def todo(self) -> tuple[list[Fragmento], np.ndarray]:
+        if self.dimension is None:
+            return [], np.zeros((0, 0), dtype=np.float32)
+        filas = self.con.execute(
+            f"SELECT {', '.join(_COLUMNAS)}, embedding::real[] FROM asistente.fragmento ORDER BY doc_id, orden"
+        ).fetchall()
+        frag = [Fragmento(*f[:-1]) for f in filas]
+        return frag, np.array([f[-1] for f in filas], dtype=np.float32).reshape(len(filas), self.dimension)
+
+    def buscar(self, vector: np.ndarray, k: int = 5) -> list[tuple[str, float]]:
+        """Vecinos más cercanos con el índice HNSW: (frag_id, coseno)."""
+        return self.con.execute(
+            "SELECT frag_id, 1 - (embedding <=> %s::vector) FROM asistente.fragmento "
+            "ORDER BY embedding <=> %s::vector LIMIT %s",
+            (_vector_sql(vector), _vector_sql(vector), k),
+        ).fetchall()
+
+    def registrar_traza(self, t: dict) -> None:
+        self.con.execute(
+            "INSERT INTO asistente.traza (traza_id, fecha, pregunta, filtros, modelo_embeddings, modelo_llm, "
+            "modo, recuperados, advertencias, latencia_ms, tokens_entrada, tokens_salida, respuesta) "
+            "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+            (t["traza_id"], t["fecha"], t["pregunta"], json.dumps(t["filtros"], ensure_ascii=False),
+             t["modelo_embeddings"], t["modelo_llm"], t["modo"],
+             json.dumps(t["recuperados"], ensure_ascii=False), json.dumps(t["advertencias"], ensure_ascii=False),
+             t["latencia_ms"], t.get("tokens_entrada"), t.get("tokens_salida"), t["respuesta"]),
+        )
+        self.con.commit()
+
+    def vaciar(self) -> None:
+        self.con.execute("DROP TABLE IF EXISTS asistente.fragmento, asistente.indice")
+        self.con.commit()
+        self.dimension = None
+
+    def guardar(self) -> None:
+        self.con.commit()
+
+
+def crear_almacen(cfg, vaciar: bool = False) -> Almacen:
+    """Almacén según ``cfg.almacen``; ``vaciar`` borra el índice antes de abrirlo."""
+    if cfg.almacen == "pgvector":
+        if not cfg.pg_dsn:
+            raise ValueError("RAG_ALMACEN=pgvector requiere RAG_PG_DSN")
+        return AlmacenPgvector(cfg.pg_dsn, cfg.modelo_embeddings, vaciar)
+    return AlmacenLocal(cfg.indice, cfg.modelo_embeddings, vaciar)

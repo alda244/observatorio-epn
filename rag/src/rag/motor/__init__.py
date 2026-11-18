@@ -6,17 +6,20 @@ Flujo de ``Motor.responder``:
    y por nombre (BM25 sobre la razón social), fusionadas con *Reciprocal Rank
    Fusion*. Filtros por metadatos: explícitos o implícitos (una ciudad o
    provincia del corpus mencionada en la pregunta).
-2. Salvaguarda de respaldo: se responde solo si el mejor coseno supera
+2. Salvaguardas de respaldo: se responde solo si el mejor coseno supera
    ``umbral_fuerte``, o si supera ``umbral_similitud`` y además algún
-   término de la pregunta aparece en los fragmentos recuperados. Si no, se
-   responde "no hay dato publicado".
+   término de la pregunta aparece en los fragmentos recuperados. Además, si
+   la pregunta pide un campo concreto (misión, contacto, directivos,
+   certificaciones...) y ningún fragmento lo contiene, tampoco se responde.
+   En ambos casos la respuesta es "no hay dato publicado".
 3. Generación: con LLM configurado, se le entrega solo el contexto numerado y
    se exige citar ``[n]``; si la respuesta no cita o cita fuera de rango, se
    descarta y se usa la respuesta extractiva. Sin LLM, la respuesta es
    extractiva (lista de fichas con su cita).
 4. Cifras: se toman de la API de B (nunca del texto indexado), con la
    advertencia de calidad del dato de empleados cuando corresponde.
-5. Traza: cada respuesta se registra en ``trazas.jsonl``.
+5. Traza: cada respuesta se registra en ``asistente.traza`` (pgvector) o en
+   ``trazas.jsonl`` (archivos), con los tokens del LLM cuando los hay.
 """
 
 from __future__ import annotations
@@ -36,11 +39,20 @@ import numpy as np
 
 from rag.cliente_b import ClienteB, ClienteBArchivo
 from rag.config import Config
-from rag.indice import AlmacenLocal, Embedder, Fragmento, crear_embedder
+from rag.indice import Embedder, Fragmento, crear_almacen, crear_embedder
 
 SIN_DATO = "No hay dato publicado en las fuentes del Observatorio para responder esa pregunta."
 RE_CIFRAS = re.compile(r"vend|venta|factur|ingres|utilidad|ganan|patrimonio|activo|emplead|trabajador", re.I)
 RE_EMPLEADOS = re.compile(r"emplead|trabajador|personal", re.I)
+# Campos que la pregunta puede pedir y las señales que debe tener el texto recuperado.
+CAMPOS = {
+    "misión, visión o valores": (r"\bmisi[oó]n|\bvisi[oó]n|\bvalores corporativos", r"\bmisi[oó]n\b|\bvisi[oó]n\b|\bvalores\b"),
+    "historia": (r"\bhistoria\b|\bfundad|\bcu[aá]ndo se cre", r"\bhistoria\b|\bfundad|\bfundaci[oó]n\b"),
+    "directivos": (r"\bgerente|\bpresidente|\bdirector|\brepresentante legal|\bdue[ñn]o", r"\bgerente|\bpresidente|\bdirector\b"),
+    "contacto": (r"tel[eé]fono|\bcorreo|e-?mail|\bcontacto|whatsapp|p[aá]gina web|sitio web", r"\btel[eé]fono|\bcorreo|@|https?://(?!appscvsmovil)"),
+    "certificaciones o premios": (r"certific|\bpremio|\biso\b|reconocimiento", r"\bcertific|\bpremio|\biso\b|\breconocimiento"),
+    "productos y servicios": (r"\bproductos\b|\bcat[aá]logo|\bprecio", r"producto|cat[aá]logo|servicio"),
+}
 STOP = set(
     "a al de del el la las los lo un una unos unas y o en por para con sin que qué cual cuál "
     "cuales cuáles es son hay se su sus como cómo donde dónde quien quién quienes me mi "
@@ -96,6 +108,8 @@ class Respuesta:
     cifras: list[dict] = field(default_factory=list)
     advertencias: list[str] = field(default_factory=list)
     latencia_ms: int = 0
+    tokens_entrada: int | None = None
+    tokens_salida: int | None = None
 
 
 def _usd(v: float) -> str:
@@ -105,10 +119,13 @@ def _usd(v: float) -> str:
 class Motor:
     def __init__(self, cfg: Config, embedder: Embedder | None = None, cliente_b: ClienteB | None = None) -> None:
         self.cfg = cfg
-        self.almacen = AlmacenLocal(cfg.indice, cfg.modelo_embeddings)
-        self.frag, self.vec = self.almacen.todo()
-        if not self.frag:
+        self.almacen = crear_almacen(cfg)
+        frag, vec = self.almacen.todo()
+        if not frag:
             raise RuntimeError("El índice está vacío; ejecute primero la ingesta.")
+        # Orden fijo para que los empates se resuelvan igual en cualquier almacén.
+        orden = sorted(range(len(frag)), key=lambda i: (frag[i].doc_id, frag[i].orden))
+        self.frag, self.vec = [frag[i] for i in orden], vec[orden]
         self.embedder = embedder or crear_embedder(cfg.modelo_embeddings)
         self.bm25 = BM25([f"{f.titulo} {f.texto}" for f in self.frag])
         self.bm25_nombre = BM25([f.titulo for f in self.frag])
@@ -149,7 +166,7 @@ class Motor:
         idx = np.flatnonzero(mask)
         rrf: dict[int, float] = {}
         for puntaje, exigir_positivo in ((cos, False), (lex, True), (nom, True)):
-            for rango, i in enumerate(idx[np.argsort(-puntaje[idx])][:50]):
+            for rango, i in enumerate(idx[np.argsort(-puntaje[idx], kind="stable")][:50]):
                 if exigir_positivo and puntaje[i] <= 0:
                     break
                 rrf[int(i)] = rrf.get(int(i), 0) + 1 / (60 + rango)
@@ -169,8 +186,10 @@ class Motor:
         apoyo_lexico = any(r.bm25 > 0 for r in resultados)
         respaldada = mejor >= self.cfg.umbral_fuerte or (mejor >= self.cfg.umbral_similitud and apoyo_lexico)
 
-        if not resultados or not respaldada:
-            motivo = (f"sin respaldo: coseno máximo {mejor:.2f} (fuerte ≥ {self.cfg.umbral_fuerte:.2f}), "
+        campo = self._campo_sin_respaldo(pregunta, resultados)
+        if not resultados or not respaldada or campo:
+            motivo = (f"la pregunta pide {campo} y ninguna fuente recuperada lo contiene" if campo and respaldada
+                      else f"sin respaldo: coseno máximo {mejor:.2f} (fuerte ≥ {self.cfg.umbral_fuerte:.2f}), "
                       f"coincidencia léxica: {'sí' if apoyo_lexico else 'no'}")
             r = Respuesta(traza_id, pregunta, SIN_DATO, "rechazo", advertencias=[motivo])
             return self._cerrar(r, resultados, t0, filtros)
@@ -190,9 +209,10 @@ class Motor:
         cifras, advertencias = self._cifras(pregunta, resultados)
 
         modo, texto = "extractivo", self._extractiva(resultados, cifras)
+        uso: dict = {}
         if self.cfg.llm_activo:
             try:
-                generado = self._llm(pregunta, resultados, cifras)
+                generado, uso = self._llm(pregunta, resultados, cifras)
                 if self._citas_validas(generado, len(resultados)):
                     modo, texto = "llm", generado
                 else:
@@ -200,8 +220,18 @@ class Motor:
             except Exception as e:  # noqa: BLE001 - se degrada a extractivo
                 advertencias.append(f"LLM no disponible: {type(e).__name__}")
 
-        r = Respuesta(traza_id, pregunta, texto, modo, citas, cifras, advertencias)
+        r = Respuesta(traza_id, pregunta, texto, modo, citas, cifras, advertencias,
+                      tokens_entrada=uso.get("prompt_tokens"), tokens_salida=uso.get("completion_tokens"))
         return self._cerrar(r, resultados, t0, filtros)
+
+    @staticmethod
+    def _campo_sin_respaldo(pregunta: str, resultados: list[Resultado]) -> str | None:
+        """Nombre del campo pedido que no aparece en ningún fragmento recuperado."""
+        texto = " ".join(r.fragmento.texto for r in resultados)
+        for campo, (pide, evidencia) in CAMPOS.items():
+            if re.search(pide, pregunta, re.I) and not re.search(evidencia, texto, re.I):
+                return campo
+        return None
 
     def _cifras(self, pregunta: str, resultados: list[Resultado]) -> tuple[list[dict], list[str]]:
         if not RE_CIFRAS.search(pregunta):
@@ -244,7 +274,8 @@ class Motor:
             lineas.append(linea)
         return "\n".join(lineas)
 
-    def _llm(self, pregunta: str, resultados: list[Resultado], cifras: list[dict]) -> str:
+    def _llm(self, pregunta: str, resultados: list[Resultado], cifras: list[dict]) -> tuple[str, dict]:
+        """Devuelve el texto generado y el uso de tokens que informa el proveedor."""
         contexto = "\n\n".join(f"[{n}] {r.fragmento.titulo}\n{r.fragmento.texto}" for n, r in enumerate(resultados, 1))
         if cifras:
             contexto += "\n\nCifras oficiales (API de B, SCVS 2025):\n" + "\n".join(
@@ -271,7 +302,8 @@ class Motor:
             headers={"Content-Type": "application/json", "Authorization": f"Bearer {self.cfg.llm_api_key}"},
         )
         with urllib.request.urlopen(req, timeout=60) as resp:
-            return json.loads(resp.read())["choices"][0]["message"]["content"].strip()
+            datos = json.loads(resp.read())
+        return datos["choices"][0]["message"]["content"].strip(), datos.get("usage") or {}
 
     @staticmethod
     def _citas_validas(texto: str, n: int) -> bool:
@@ -297,8 +329,13 @@ class Motor:
             ],
             "advertencias": r.advertencias,
             "latencia_ms": r.latencia_ms,
+            "tokens_entrada": r.tokens_entrada,
+            "tokens_salida": r.tokens_salida,
             "respuesta": r.respuesta,
         }
+        if hasattr(self.almacen, "registrar_traza"):
+            self.almacen.registrar_traza(traza)
+            return r
         self.cfg.trazas.parent.mkdir(parents=True, exist_ok=True)
         with self.cfg.trazas.open("a", encoding="utf-8") as f:
             f.write(json.dumps(traza, ensure_ascii=False) + "\n")

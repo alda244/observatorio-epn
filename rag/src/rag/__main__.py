@@ -3,6 +3,7 @@
     python -m rag ingesta [--reconstruir]
     python -m rag consulta "¿Qué empresas desarrollan software en Cuenca?" [--grupo TEC] [--json]
     python -m rag evaluar [--salida rag/evidencias/eval.json]
+    python -m rag comparar-llm [--modelos rag/evaluacion/modelos_llm.json] [--salida rag/evidencias/llm]
 """
 
 from __future__ import annotations
@@ -33,6 +34,11 @@ def main(argv: list[str] | None = None) -> int:
     pe = sub.add_parser("evaluar", help="Evalúa la recuperación con las preguntas de referencia")
     pe.add_argument("--preguntas", default=None)
     pe.add_argument("--salida", default=None)
+
+    pl = sub.add_parser("comparar-llm", help="Compara modelos de lenguaje con las preguntas de referencia")
+    pl.add_argument("--modelos", default=None)
+    pl.add_argument("--preguntas", default=None)
+    pl.add_argument("--salida", default=None, help="Ruta base; se escriben .json y .csv")
 
     a = p.parse_args(argv)
     cfg = Config()
@@ -66,6 +72,12 @@ def main(argv: list[str] | None = None) -> int:
 
         res = evaluar(cfg, a.preguntas, a.salida)
         print(json.dumps(res["resumen"], ensure_ascii=False, indent=2))
+        return 0
+
+    if a.cmd == "comparar-llm":
+        from rag.comparar_llm import comparar
+
+        print(json.dumps(comparar(cfg, a.modelos, a.preguntas, a.salida), ensure_ascii=False, indent=2))
         return 0
     return 1
 

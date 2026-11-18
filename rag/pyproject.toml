@@ -11,6 +11,7 @@ dependencies = [
 # Embeddings reales. El prototipo usa un modelo multilingüe pequeño en CPU;
 # el objetivo del plan es BAAI/bge-m3.
 embeddings = ["sentence-transformers>=3.0"]
+pgvector = ["psycopg[binary]>=3.2"]
 dev = ["pytest>=7.4", "ruff>=0.5"]
 
 [project.scripts]
@@ -30,3 +31,7 @@ testpaths = ["tests"]
 [tool.ruff]
 line-length = 100
 target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+ignore = ["E501"]  # el largo de línea lo controla el formateador

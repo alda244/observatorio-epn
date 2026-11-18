@@ -1,0 +1,34 @@
+name: rag
+
+on:
+  push:
+    paths: ["rag/**", "etl/datos/universo/**", ".github/workflows/rag.yml"]
+  pull_request:
+    paths: ["rag/**", "etl/datos/universo/**", ".github/workflows/rag.yml"]
+
+jobs:
+  pruebas:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_PASSWORD: pruebas
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-retries 10
+    defaults:
+      run:
+        working-directory: rag
+    env:
+      RAG_PG_DSN_PRUEBAS: host=localhost user=postgres password=pruebas dbname=postgres
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      - run: uv sync --locked --extra dev --extra pgvector
+      - run: uv run ruff check src tests
+      - run: uv run pytest -q

@@ -14,7 +14,13 @@ import pytest
 from rag.cliente_b import ClienteBArchivo
 from rag.config import RAIZ_REPO, Config
 from rag.indice import EmbedderHash, fragmentar
-from rag.ingesta import Documento, cargar_catalogo_ciiu, ficha_identificacion, leer_documento_markdown, normalizar
+from rag.ingesta import (
+    Documento,
+    cargar_catalogo_ciiu,
+    ficha_identificacion,
+    leer_documento_markdown,
+    normalizar,
+)
 from rag.motor import SIN_DATO, Motor
 from rag.pipeline import ingerir
 
@@ -122,8 +128,32 @@ def test_llm_sin_citas_se_descarta(cfg: Config, monkeypatch: pytest.MonkeyPatch)
     ingerir(cfg)
     cfg_llm = Config(**{**cfg.__dict__, "llm_base_url": "http://llm.invalido", "llm_modelo": "m"})
     motor = Motor(cfg_llm, embedder=EmbedderHash(512))
-    monkeypatch.setattr(motor, "_llm", lambda *a: "Telconet es una empresa enorme.")
+    monkeypatch.setattr(motor, "_llm", lambda *a: ("Telconet es una empresa enorme.", {}))
     r = motor.responder("¿Qué hace Telconet?")
     assert r.modo == "extractivo" and any("sin citas" in a for a in r.advertencias)
-    monkeypatch.setattr(motor, "_llm", lambda *a: "Telconet ofrece telecomunicaciones [1].")
-    assert motor.responder("¿Qué hace Telconet?").modo == "llm"
+    monkeypatch.setattr(motor, "_llm", lambda *a: ("Telconet ofrece telecomunicaciones [1].", {"prompt_tokens": 900, "completion_tokens": 40}))
+    r = motor.responder("¿Qué hace Telconet?")
+    assert (r.modo, r.tokens_entrada, r.tokens_salida) == ("llm", 900, 40)
+
+
+def test_campo_sin_respaldo_se_rechaza(cfg: Config):
+    """Si se pide la misión o el teléfono y ninguna fuente los tiene, no se responde con la ficha."""
+    ingerir(cfg)
+    motor = Motor(cfg, embedder=EmbedderHash(512))
+    for pregunta in ("¿Cuál es la misión de Telconet?", "¿Cuál es el teléfono de Telconet?"):
+        r = motor.responder(pregunta)
+        assert r.modo == "rechazo" and r.respuesta == SIN_DATO
+        assert "ninguna fuente" in r.advertencias[0]
+
+
+def test_campo_con_respaldo_se_responde(cfg: Config):
+    (cfg.documentos / "telconet-mision.md").write_text(
+        "---\ntitulo: TELCONET S.A.\nfuente_url: https://www.telconet.net/nosotros\n"
+        "fuente_tipo: web_oficial\nfecha: 2026-11-18\nexpediente: 72951\n---\n"
+        "Misión de Telconet: conectar al Ecuador con servicios de telecomunicaciones.",
+        encoding="utf-8",
+    )
+    ingerir(cfg)
+    r = Motor(cfg, embedder=EmbedderHash(512)).responder("¿Cuál es la misión de Telconet?")
+    assert r.modo == "extractivo"
+    assert any(c["fuente_url"] == "https://www.telconet.net/nosotros" for c in r.citas)
