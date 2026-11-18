@@ -7,11 +7,11 @@
 | RAG | LlamaIndex | Fragmentación y recuperación, al pasar a pgvector |
 | Embeddings | BGE-M3 en CPU | Vectores multilingües densos y dispersos |
 | Base vectorial | PostgreSQL 16 + pgvector | Índice y trazas en el esquema `asistente` |
-| Acceso a datos | SQLAlchemy Core, Alembic, psycopg 3 | Consultas y migraciones |
+| Acceso a datos | psycopg 3; esquema en `rag/migraciones/` | Índice y trazas en PostgreSQL |
 | LLM | Cliente `openai` | Una sola interfaz para cualquier proveedor ([ADR 0004](../adr/0004-llm-interfaz-openai.md)) |
 | Cliente de B | httpx | Llamadas a la API de B |
 | Configuración | Variables de entorno | Modelo, umbrales y proveedor |
-| Pruebas y lint | pytest, ruff | Con embeddings y LLM simulados |
+| Pruebas y lint | pytest, ruff, GitHub Actions | Con embeddings y LLM simulados y PostgreSQL real en la CI |
 | Evaluación | RAGAS, SUS, Locust | Calidad, usabilidad y carga |
 | Trazas | Tabla `asistente.traza`, Langfuse | Registro y visualización |
 | Contrato | OpenAPI 3.1, Spectral, Prism | Validación y API simulada de B |

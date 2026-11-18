@@ -1,6 +1,6 @@
 # contracts
 
-Contrato OpenAPI 3.1 entre la API de B, el asistente de A y el widget ([ADR 0003](../docs/adr/0003-contrato-primero.md)). El archivo `openapi.yaml` está por redactar.
+Contrato OpenAPI 3.1 entre la API de B, el asistente de A y el widget ([ADR 0003](../docs/adr/0003-contrato-primero.md)). [`openapi.yaml`](openapi.yaml) es un borrador por revisar entre A y B.
 
 | Ruta | Implementa | Consume |
 | --- | --- | --- |
@@ -9,6 +9,7 @@ Contrato OpenAPI 3.1 entre la API de B, el asistente de A y el widget ([ADR 0003
 | `GET /empresas/{expediente}/documentos` | B | A |
 | `GET /indicadores` | B | A |
 | `POST /chat` | A | widget |
+| `GET /salud` | A y B | Monitoreo |
 
 | Cambio | Versión |
 | --- | --- |

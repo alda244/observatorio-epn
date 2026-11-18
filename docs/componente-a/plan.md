@@ -1,22 +1,23 @@
 # Plan
 
-## Sprint 1 · por cerrar
+## Sprint 1 · Investigación, corpus y protocolo
 
-| Pendiente | Entregable |
+| Entregable | Estado |
 | --- | --- |
-| Revisión bibliográfica de RAG (últimos cinco años, más obras seminales) | Capítulo 2 de la memoria |
-| Casos de uso del asistente | Lista de casos a partir de las 30 preguntas del prototipo |
-| Protocolo de evaluación: 50 preguntas, métricas y SUS | `rag/evaluacion/` |
-| Comparación de LLM | Resultados y ADR del modelo elegido ([evaluación](evaluacion.md#comparación-de-llm)) |
-| Borrador del contrato con B | `contracts/openapi.yaml` |
+| Casos de uso | Hecho: [casos-de-uso.md](casos-de-uso.md) |
+| Protocolo de evaluación con 50 preguntas, métricas y SUS | Hecho: [protocolo-evaluacion.md](protocolo-evaluacion.md) |
+| Revisión bibliográfica | Hecho: [estado-del-arte.md](estado-del-arte.md); falta pasarla a Zotero |
+| Comparación de LLM | Script listo; falta correrlo con las claves de cada proveedor |
+| Borrador del contrato con B | Hecho: [`contracts/openapi.yaml`](../../contracts/openapi.yaml), por revisar con B |
 
-## Sprint 2 · completar el prototipo
+## Sprint 2 · Ingesta e índice
 
-| Pendiente | Motivo |
+| Entregable | Estado |
 | --- | --- |
-| Pasar el índice a pgvector | El prototipo guarda el índice en archivos |
-| Cambiar a BGE-M3 y recalibrar los umbrales | Es el modelo previsto; corrige parte de H2 y H3 |
-| Configurar uv y la CI | Pruebas automáticas en cada PR |
+| Ingesta idempotente, fragmentación y recuperación híbrida | Hecho |
+| Índice en pgvector con HNSW y trazas en tabla | Hecho |
+| uv y CI | Hecho: `rag/uv.lock` y `.github/workflows/rag.yml` |
+| BGE-M3 y recalibración de umbrales | Falta: correr en un equipo con acceso a Hugging Face |
 
 ## Dependencias con B
 
@@ -30,6 +31,7 @@ flowchart LR
 
 | Qué necesita A | Estado |
 | --- | --- |
+| Revisión del contrato OpenAPI | Pendiente con B |
 | Webs oficiales verificadas del piloto | Plazo por coordinar |
 | Documentos en `GET /empresas/{expediente}/documentos` | Después de las webs |
 | API de B | Sprint 6 |

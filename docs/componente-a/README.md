@@ -17,8 +17,8 @@ flowchart LR
 
 | Sprint | Objetivo | Estado |
 | --- | --- | --- |
-| 1 | Investigación, arquitectura, corpus y protocolo de evaluación | En curso |
-| 2 | Ingesta, fragmentación e índice | Prototipo funcional |
+| 1 | Investigación, arquitectura, corpus y protocolo de evaluación | Falta correr la comparación de LLM |
+| 2 | Ingesta, fragmentación e índice | Falta pasar a BGE-M3 |
 | 3 | Motor RAG con citación y API `/chat` | Pendiente |
 | 4 | Widget | Pendiente |
 | 5 | Salvaguardas | Pendiente |
@@ -31,8 +31,11 @@ flowchart LR
 
 | Documento | Contenido |
 | --- | --- |
+| [casos-de-uso.md](casos-de-uso.md) | Quién usa el asistente y para qué |
 | [asistente.md](asistente.md) | Cómo funciona el asistente y sus reglas |
-| [evaluacion.md](evaluacion.md) | Resultados del prototipo y comparación de LLM |
+| [protocolo-evaluacion.md](protocolo-evaluacion.md) | Cómo se evalúa: preguntas, métricas, usuarios y carga |
+| [evaluacion.md](evaluacion.md) | Resultados y comparación de LLM |
+| [estado-del-arte.md](estado-del-arte.md) | Literatura que sostiene el diseño |
 | [herramientas.md](herramientas.md) | Stack del componente |
 | [plan.md](plan.md) | Pendientes por sprint y dependencias con B |
 | [evidencias.md](evidencias.md) | Registro de evidencias `EV-A` |

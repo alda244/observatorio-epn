@@ -1,8 +1,40 @@
 # Evaluación
 
-## Prototipo de recuperación
+El protocolo completo está en [protocolo-evaluacion.md](protocolo-evaluacion.md). Resultados en [`rag/evidencias/`](../../rag/evidencias/).
 
-30 preguntas de referencia ([`preguntas_prototipo.json`](../../rag/evaluacion/preguntas_prototipo.json)) sobre las 500 empresas del piloto. Resultados en [`rag/evidencias/`](../../rag/evidencias/).
+## 50 preguntas de referencia
+
+Evaluación con el embedding léxico (`hash-512`), que no necesita descargar modelos. Da el mismo resultado con el almacén en archivos y con pgvector.
+
+| Métrica | Resultado | Meta |
+| --- | --- | --- |
+| Acierto@5 (38 preguntas con respuesta) | 0,921 | ≥ 0,90 |
+| MRR | 0,784 | ≥ 0,80 |
+| Rechazo correcto (8 fuera de alcance) | 0,875 | 1,00 |
+| Sin dato correcto (4) | 1,000 | 1,00 |
+| Falsos rechazos | 0 | 0 |
+
+| Tipo | Aciertos |
+| --- | --- |
+| Por nombre | 9/9 |
+| Con cifras | 4/4 |
+| Por actividad | 17/19 |
+| Por actividad y lugar | 5/6 |
+| Sin dato | 4/4 |
+| Fuera de alcance | 7/8 |
+
+Fallan "editan y publican software" (H3), "ingeniería y consultoría técnica", "supermercados en Quito" (H2) y "¿cómo está el clima mañana?". La corrida con MiniLM y BGE-M3 se hace en un equipo con acceso a Hugging Face:
+
+```powershell
+$env:PYTHONPATH = "rag/src"
+$env:RAG_EMBEDDINGS = "BAAI/bge-m3"
+python -m rag ingesta --reconstruir
+python -m rag evaluar --salida rag/evidencias/eval50_bge_m3.json
+```
+
+## Prototipo con 30 preguntas
+
+Primera evaluación ([`preguntas_prototipo.json`](../../rag/evaluacion/preguntas_prototipo.json)).
 
 | Métrica | Línea base léxica | MiniLM multilingüe |
 | --- | --- | --- |
@@ -28,10 +60,19 @@
 | H3 | "Editan software" no encuentra J582, que la CIIU llama "edición de programas informáticos" | Igual que H2, más BGE-M3 |
 | H4 | La búsqueda por nombre necesita su propio índice | BM25 sobre la razón social dentro de la fusión RRF |
 | H5 | Dato de empleados inconsistente | Advertencia automática con `alerta_empleados` |
+| H6 | Ante "¿cuál es la misión de Pronaca?" se devolvía la ficha de Pronaca, que no tiene misión | Salvaguarda de campo pedido: si ninguna fuente lo contiene, "no hay dato publicado" |
 
 ## Comparación de LLM
 
 Se comparan varios modelos con las mismas preguntas antes de elegir uno. El modelo elegido se registra en un ADR que completa el [ADR 0004](../adr/0004-llm-interfaz-openai.md).
+
+```powershell
+$env:PYTHONPATH = "rag/src"
+$env:OPENAI_API_KEY = "..."   # una variable por proveedor, según modelos_llm.json
+python -m rag comparar-llm --salida rag/evidencias/llm
+```
+
+Antes de correrlo se completa el id de cada modelo en [`modelos_llm.json`](../../rag/evaluacion/modelos_llm.json). El comando omite los modelos sin id o sin clave, y escribe `llm.json` con las métricas y `llm.csv` con todas las respuestas para la revisión manual.
 
 | Modelo | Proveedor | Entrada (USD / 1M tokens) | Salida (USD / 1M tokens) | Costo mensual en el pico |
 | --- | --- | --- | --- | --- |

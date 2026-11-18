@@ -1,0 +1,276 @@
+openapi: 3.1.0
+info:
+  title: Observatorio EPN
+  version: 0.1.0
+  description: |
+    Contrato entre la API de datos (Componente B), el asistente (Componente A) y el widget.
+    Borrador para revisar entre A y B.
+
+servers:
+  - url: http://localhost:8001
+    description: API de B en desarrollo
+  - url: http://localhost:8002
+    description: Asistente de A en desarrollo
+
+tags:
+  - name: datos
+    description: Implementa B
+  - name: asistente
+    description: Implementa A
+
+paths:
+  /empresas:
+    get:
+      tags: [datos]
+      summary: Lista empresas del universo
+      parameters:
+        - { name: grupo, in: query, schema: { $ref: "#/components/schemas/Grupo" } }
+        - { name: tamano, in: query, schema: { $ref: "#/components/schemas/Tamano" } }
+        - { name: provincia, in: query, schema: { type: string } }
+        - { name: ciudad, in: query, schema: { type: string } }
+        - { name: piloto, in: query, description: Solo las 500 del piloto, schema: { type: boolean } }
+        - { name: limite, in: query, schema: { type: integer, minimum: 1, maximum: 1000, default: 100 } }
+        - { name: desde, in: query, schema: { type: integer, minimum: 0, default: 0 } }
+      responses:
+        "200":
+          description: Página de empresas
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [total, empresas]
+                properties:
+                  total: { type: integer }
+                  empresas:
+                    type: array
+                    items: { $ref: "#/components/schemas/Empresa" }
+
+  /empresas/{expediente}:
+    get:
+      tags: [datos]
+      summary: Ficha de una empresa con cifras y Company Profile
+      parameters:
+        - $ref: "#/components/parameters/Expediente"
+      responses:
+        "200":
+          description: Empresa
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/EmpresaDetalle" }
+        "404": { $ref: "#/components/responses/NoEncontrado" }
+
+  /empresas/{expediente}/documentos:
+    get:
+      tags: [datos]
+      summary: Texto limpio de las páginas oficiales capturadas
+      description: Lo indexa el asistente. Cada documento lleva su fuente, fecha y hash.
+      parameters:
+        - $ref: "#/components/parameters/Expediente"
+        - { name: desde_fecha, in: query, description: Solo capturas posteriores, schema: { type: string, format: date } }
+      responses:
+        "200":
+          description: Documentos de la empresa
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Documento" }
+        "404": { $ref: "#/components/responses/NoEncontrado" }
+
+  /indicadores:
+    get:
+      tags: [datos]
+      summary: Indicadores agregados por sector, tamaño y año
+      parameters:
+        - { name: grupo, in: query, schema: { $ref: "#/components/schemas/Grupo" } }
+        - { name: ciiu, in: query, description: Prefijo CIIU, schema: { type: string, example: J62 } }
+        - { name: tamano, in: query, schema: { $ref: "#/components/schemas/Tamano" } }
+        - { name: anio, in: query, schema: { type: integer, example: 2025 } }
+      responses:
+        "200":
+          description: Indicadores
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Indicador" }
+
+  /chat:
+    post:
+      tags: [asistente]
+      summary: Pregunta al asistente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [pregunta]
+              properties:
+                pregunta: { type: string, minLength: 2, maxLength: 500 }
+                filtros:
+                  type: object
+                  properties:
+                    grupo: { $ref: "#/components/schemas/Grupo" }
+                    tamano: { $ref: "#/components/schemas/Tamano" }
+                    provincia: { type: string }
+                    ciudad: { type: string }
+      responses:
+        "200":
+          description: Respuesta con citas
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Respuesta" }
+        "422": { description: Pregunta inválida }
+
+  /salud:
+    get:
+      summary: Estado del servicio
+      responses:
+        "200":
+          description: Servicio activo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  estado: { type: string, enum: [ok] }
+
+components:
+  parameters:
+    Expediente:
+      name: expediente
+      in: path
+      required: true
+      description: Expediente de la SCVS
+      schema: { type: string, pattern: "^[0-9]+$", example: "72951" }
+
+  responses:
+    NoEncontrado:
+      description: No existe una empresa con ese expediente
+
+  schemas:
+    Grupo:
+      type: string
+      enum: [TEC, G, C, M, K]
+    Tamano:
+      type: string
+      enum: [micro_pequena, mediana, grande]
+
+    Empresa:
+      type: object
+      required: [expediente, nombre, grupo, ciiu, tamano_derivado, provincia, ciudad, fecha_corte]
+      properties:
+        expediente: { type: string }
+        nombre: { type: string, description: Razón social }
+        grupo: { $ref: "#/components/schemas/Grupo" }
+        ciiu: { type: string, example: J6110.01 }
+        ciiu_descripcion: { type: string }
+        tamano_derivado: { $ref: "#/components/schemas/Tamano" }
+        tipo_compania: { type: string }
+        region: { type: string }
+        provincia: { type: string }
+        ciudad: { type: string }
+        ventas: { type: number, description: Ingresos por ventas 2025 en USD }
+        utilidad_neta: { type: number }
+        activo: { type: number }
+        patrimonio: { type: number }
+        empleados: { type: integer, description: Declarados a la SCVS }
+        alerta_empleados: { type: boolean, description: Empresa grande que declara menos de 10 empleados }
+        es_holding: { type: boolean }
+        fecha_corte: { type: string, format: date }
+
+    EmpresaDetalle:
+      allOf:
+        - $ref: "#/components/schemas/Empresa"
+        - type: object
+          properties:
+            perfil: { $ref: "#/components/schemas/CompanyProfile" }
+
+    CompanyProfile:
+      type: object
+      description: Campos estructurados que produce B. Ausente si la empresa no tiene web verificada.
+      properties:
+        nombre_comercial: { type: string }
+        web: { type: string, format: uri }
+        correo: { type: string, format: email }
+        telefono: { type: string }
+        redes: { type: array, items: { type: string, format: uri } }
+        descripcion_corta: { type: string, maxLength: 150 }
+        descripcion: { type: string }
+        productos_servicios: { type: array, items: { type: string } }
+        logotipo: { type: string, format: uri }
+        estado: { type: string, enum: [completo, parcial, pendiente] }
+        fuente: { $ref: "#/components/schemas/Fuente" }
+
+    Documento:
+      type: object
+      required: [doc_id, expediente, titulo, texto, fuente]
+      properties:
+        doc_id: { type: string }
+        expediente: { type: string }
+        titulo: { type: string }
+        texto: { type: string }
+        fuente: { $ref: "#/components/schemas/Fuente" }
+
+    Fuente:
+      type: object
+      required: [fuente_url, fuente_tipo, fecha_captura, origen]
+      properties:
+        fuente_url: { type: string, format: uri }
+        fuente_tipo:
+          type: string
+          enum: [web_oficial, informe_anual_oficial, catalogo_oficial, memoria_sostenibilidad_oficial, prensa, scvs_ranking]
+        fecha_captura: { type: string, format: date }
+        sha256: { type: string, pattern: "^[0-9a-f]{64}$" }
+        origen: { type: string, enum: [literal, derivado] }
+
+    Indicador:
+      type: object
+      required: [nombre, valor, anio]
+      properties:
+        nombre: { type: string, example: ventas_totales }
+        valor: { type: number }
+        unidad: { type: string, example: USD }
+        anio: { type: integer }
+        grupo: { $ref: "#/components/schemas/Grupo" }
+        ciiu: { type: string }
+        tamano: { $ref: "#/components/schemas/Tamano" }
+        empresas: { type: integer, description: Empresas incluidas en el cálculo }
+
+    Respuesta:
+      type: object
+      required: [traza_id, respuesta, modo, citas]
+      properties:
+        traza_id: { type: string }
+        respuesta: { type: string }
+        modo:
+          type: string
+          enum: [llm, extractivo, rechazo]
+          description: rechazo significa "no hay dato publicado"
+        citas:
+          type: array
+          items:
+            type: object
+            required: [n, titulo, fuente_url, fecha]
+            properties:
+              n: { type: integer }
+              titulo: { type: string }
+              fuente_url: { type: string, format: uri }
+              fuente_tipo: { type: string }
+              fecha: { type: string, format: date }
+              origen: { type: string, enum: [literal, derivado] }
+        cifras:
+          type: array
+          items:
+            type: object
+            properties:
+              n: { type: integer }
+              expediente: { type: string }
+              nombre: { type: string }
+              ventas_2025: { type: number }
+              empleados_declarados: { type: integer }
+              fuente: { type: string }
+              fecha_corte: { type: string, format: date }
+        advertencias: { type: array, items: { type: string } }
+        latencia_ms: { type: integer }
