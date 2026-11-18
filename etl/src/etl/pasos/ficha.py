@@ -27,6 +27,27 @@ from etl.comun import leer_jsonl, log
 
 CORREO = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]+")
 TELEFONO = re.compile(r"(\+?593|\b0)[\d\s-]{7,}\d")
+# Teléfonos del Ecuador tal como los escriben las webs. Solo del Ecuador: una
+# web puede listar las oficinas de otros países y esos números no describen a
+# la empresa ecuatoriana. Sin esta restricción entraban números de EE. UU.
+# (877.579.4929) y de Italia (+390816123099).
+TELEFONO_EC = re.compile(
+    r"(?:\+?593[\s.()-]*\d[\s.()-]*(?:\d[\s.()-]*){7,8}"  # +593 y 8 o 9 dígitos
+    r"|\b0[2-7][\s.()-]*\d{3}[\s.()-]*\d{4}"  # fijo: 02 234 5678
+    r"|\b09[\s.()-]*\d{4}[\s.()-]*\d{4}"  # celular: 09 9123 4567
+    r"|\b1800[\s.-]?\d{6}\b"  # 1800 con número
+    r"|\b1800[\s.-]?[A-Za-z]{3,10}\b)"  # 1800 con palabra
+)
+MAXIMO_TELEFONOS = 3
+# Una dirección ecuatoriana empieza casi siempre por una de estas palabras.
+# Sin `\b` al final: después de un punto literal nunca hay límite de palabra,
+# así que `av\.\b` no coincidía con «Av. Amazonas».
+DIRECCION = re.compile(
+    r"\b(?:av\.|av\b|avenida|calle|cll\.|c\.c\.|km\b|kil[oó]metro|v[ií]a\b|panamericana"
+    r"|urbanizaci[oó]n|ciudadela|sector\b|barrio|edificio|edif\.|parque industrial"
+    r"|manzana|mz\.)",
+    re.I,
+)
 CARGOS = re.compile(
     r"\b(gerente|presidente|director|directora|vicepresidente|ceo|cfo|fundador)\b", re.I
 )
@@ -178,13 +199,73 @@ def productos(carpeta, empresa: pd.DataFrame) -> tuple[list[str], str]:
     return [], ""
 
 
-def identificacion(empresa: pd.DataFrame) -> dict:
-    """Bloque 1: contacto corporativo, redes y ubicación, más el logotipo."""
+def es_telefono_ecuatoriano(numero: str) -> bool:
+    """Comprueba la longitud, que es lo que distingue un número real."""
+    digitos = re.sub(r"\D", "", numero)
+    if numero.strip().lower().startswith("1800"):
+        return len(digitos) in (4, 10)
+    if digitos.startswith("593"):
+        return len(digitos) in (11, 12)  # 593 + fijo (8) o celular (9)
+    if digitos.startswith("0"):
+        return len(digitos) in (9, 10)  # 0X XXXXXXX o 09 XXXXXXXX
+    return False
+
+
+def telefonos_de(texto: str) -> list[str]:
+    """Teléfonos institucionales ecuatorianos que la página escribe como texto.
+
+    Se descarta el que aparece junto a un cargo: la LOPDP no permite publicar
+    el teléfono de una persona, solo el de la empresa.
+    """
+    encontrados = []
+    for coincidencia in TELEFONO_EC.finditer(texto or ""):
+        alrededor = texto[max(0, coincidencia.start() - 80) : coincidencia.end() + 20]
+        if CARGOS.search(alrededor):
+            continue
+        numero = re.sub(r"[\s.()-]+", " ", coincidencia.group()).strip()
+        if es_telefono_ecuatoriano(numero):
+            encontrados.append(numero)
+    return list(dict.fromkeys(encontrados))[:MAXIMO_TELEFONOS]
+
+
+def correos_de(texto: str) -> list[str]:
+    """Solo buzones genéricos: `info@`, `ventas@`. Nunca nombre.apellido@."""
+    candidatos = (c.lower().rstrip(".,;") for c in CORREO.findall(texto or ""))
+    return list(dict.fromkeys(c for c in candidatos if CORREO_CORPORATIVO.match(c)))
+
+
+def direccion_de(html: str) -> str:
+    """Dirección declarada por la página.
+
+    Primero la etiqueta `<address>`, que es la que existe para esto; si no,
+    una línea del texto que empiece como empieza una dirección ecuatoriana.
+    """
+    pagina = Selector(html)
+    for nodo in pagina.css("address"):
+        texto = limpiar(" ".join(nodo.css("::text").getall()))
+        if 15 <= len(texto) <= 200 and DIRECCION.search(texto):
+            return texto
+    for nodo in pagina.css("footer *::text, .contacto *::text, [class*=direccion] *::text"):
+        texto = limpiar(nodo.get())
+        if 15 <= len(texto) <= 200 and DIRECCION.match(texto):
+            return texto
+    return ""
+
+
+def identificacion(empresa: pd.DataFrame, carpeta=None) -> dict:
+    """Bloque 1: contacto corporativo, redes y ubicación, más el logotipo.
+
+    Con `carpeta` se busca además en el texto de las páginas de contacto y en
+    la portada, que es donde la mayoría de las webs escriben el teléfono y la
+    dirección sin enlazarlos.
+    """
     correos, telefonos, redes, logo, direccion = [], [], [], None, None
     for _, pagina in empresa.iterrows():
         organizacion = _organizacion(pagina)
         correos += [c for c in lista(pagina.get("correos")) if CORREO_CORPORATIVO.match(c)]
-        telefonos += lista(pagina.get("telefonos"))
+        # Los enlaces `tel:` también se filtran: una web puede listar las
+        # oficinas de otros países y esos números no son de la empresa.
+        telefonos += [n for n in lista(pagina.get("telefonos")) if es_telefono_ecuatoriano(n)]
         redes += lista(pagina.get("redes"))
         redes += lista(organizacion.get("sameAs"))
         if logo is None:
@@ -197,9 +278,19 @@ def identificacion(empresa: pd.DataFrame) -> dict:
                 if isinstance(señas, dict)
                 else str(señas)
             )
+
+    if carpeta is not None:
+        for tipo in ("contacto", "portada", "nosotros"):
+            for _, pagina in empresa[empresa["tipo_pagina"] == tipo].iterrows():
+                html = html_de(carpeta, pagina)
+                texto = trafilatura.extract(html, include_comments=False) or ""
+                correos += correos_de(texto) + correos_de(html)
+                telefonos += telefonos_de(texto)
+                if not direccion:
+                    direccion = direccion_de(html) or None
     return {
         "correo_corporativo": "; ".join(dict.fromkeys(correos)) or None,
-        "telefono": "; ".join(dict.fromkeys(telefonos)) or None,
+        "telefono": "; ".join(list(dict.fromkeys(telefonos))[:MAXIMO_TELEFONOS]) or None,
         "redes": "; ".join(dict.fromkeys(redes)) or None,
         "logo_url": logo,
         "direccion": direccion,
@@ -246,7 +337,7 @@ def ejecutar(anio: int) -> pd.DataFrame:
                 "descripcion_fuente": larga_url or None,
                 "productos_servicios": "; ".join(lista) or None,
                 "productos_fuente": lista_url or None,
-                **identificacion(empresa),
+                **identificacion(empresa, carpeta),
                 "paginas_capturadas": len(empresa),
                 "fuente_tipo": "web_oficial",
                 "fecha_captura": empresa["fecha_captura"].min()[:10],

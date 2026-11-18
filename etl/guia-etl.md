@@ -218,7 +218,7 @@ El orden importa: cada etapa necesita que la anterior esté estable.
 | --- | --- | --- | --- |
 | 1 | **ETL por año** | Los 16 años corren sin intervención y cada fila descartada tiene motivo | Hecho |
 | 2 | **Consolidado** | Una fila por cada una de las 14.027 empresas del universo, con su serie y con integridad referencial comprobada | Hecho |
-| 3 | **Scraping a escala** | Las 500 del piloto con URL resuelta y las verificadas con ficha | 19 de 500 |
+| 3 | **Scraping a escala** | Las 500 del piloto con URL resuelta y las verificadas con ficha | 105 de 500; 26 verificadas y 25 con ficha |
 | 4 | **Indicadores en oro** | Agregados por grupo y año listos para el portal | Pendiente |
 | 5 | **Base de datos** | `etl bd` carga el consolidado y las consultas responden rápido | Esquema escrito y documentado con datos reales en [datos-en-la-bd.md](datos-en-la-bd.md) |
 | 6 | **Contrato** | `contracts/openapi.yaml` revisado por el Componente A, que lo necesita para su servidor simulado | Pendiente |

@@ -93,3 +93,17 @@ def test_el_dominio_que_coincide_con_el_nombre_no_alcanza_por_si_solo():
 )
 def test_clasificacion_por_puntaje(puntaje, estado):
     assert urls.clasificar(puntaje) == estado
+
+
+@pytest.mark.parametrize(
+    ("entrada", "salida"),
+    [
+        ("https://www.directvla.com:443/ec", "https://www.directvla.com/ec"),
+        ("http://ejemplo.com:80", "http://ejemplo.com/"),
+        ("https://Ejemplo.COM.EC", "https://ejemplo.com.ec/"),
+        ("https://ejemplo.com/#inicio", "https://ejemplo.com/"),
+        ("https://ejemplo.com/es/?lang=es", "https://ejemplo.com/es/?lang=es"),
+    ],
+)
+def test_normaliza_la_direccion_verificada(entrada, salida):
+    assert urls.normalizar_url(entrada) == salida

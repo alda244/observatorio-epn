@@ -67,7 +67,7 @@ uv run etl todo --anio 2025               # pipeline completo del año
 uv run etl ranking --anio 2024            # un solo paso
 uv run etl urls --anio 2025 --limite 25   # una tanda de 25 empresas por criterio
 uv run etl consolidar                     # todos los años en una sola tabla
-uv run etl verificar                      # 278 comprobaciones sobre lo que hay en disco
+uv run etl verificar                      # 279 comprobaciones sobre lo que hay en disco
 uv run pytest                             # 111 pruebas
 uv run ruff check . && uv run ruff format --check .
 ```
@@ -155,6 +155,23 @@ El kernel debe ser `etl/.venv`, que `uv sync` deja listo.
 | Base de datos | PostgreSQL 16, SQLAlchemy Core, psycopg 3 |
 | Línea de comandos | Typer |
 | Pruebas y lint | pytest, ruff |
+
+## Avance de la recolección web
+
+Lo de la ficha es lo único que no se resuelve con una descarga: hay que
+encontrar y verificar la web de cada empresa.
+
+| | Empresas |
+| --- | --- |
+| Piloto | 500 |
+| Con URL buscada | 105 |
+| Verificadas | 26 |
+| En revisión a mano | 45 |
+| Sin web encontrada | 34 |
+| Con ficha | 25 (11 completas, 12 parciales, 2 pendientes) |
+
+De las 66 páginas capturadas, **63 salieron del sitemap**. Una empresa pidió
+no ser archivada con `<meta name="robots">` y se respetó.
 
 ## Recolección web
 

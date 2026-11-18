@@ -7,7 +7,7 @@
     "empresa": 14027,
     "cifras_anuales": 118792,
     "universo_por_anio": 118792,
-    "ficha": 5
+    "ficha": 25
   },
   "empresas_por_grupo": {
     "TEC": 5898,
@@ -24,7 +24,8 @@
   "ingreso_total_no_reportado": 4527,
   "empresas_en_piloto": 500,
   "fichas_por_estado": {
-    "completo": 3,
-    "parcial": 2
+    "parcial": 12,
+    "completo": 11,
+    "pendiente": 2
   }
 }

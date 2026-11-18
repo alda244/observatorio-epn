@@ -150,3 +150,65 @@ def test_la_pagina_se_decodifica_con_la_codificacion_registrada(tmp_path):
 
     pagina = pd.Series({"expediente": 2, "sha256": huella, "encoding": "latin-1"})
     assert "Año Ñandú" in ficha.html_de(tmp_path, pagina)
+
+
+@pytest.mark.parametrize(
+    ("texto", "esperado"),
+    [
+        ("Llámenos al 02 234 5678", ["02 234 5678"]),
+        ("Celular 0991234567", ["0991234567"]),
+        ("Tel: +593 2 392 2000", ["+593 2 392 2000"]),
+        ("Contacto 1800 567567", ["1800 567567"]),
+        ("Marque 1800 FARMACIA", ["1800 FARMACIA"]),
+        # Números reales que entraban mal: no son del Ecuador.
+        ("Oficina en Miami: 877.579.4929", []),
+        ("Oficina Napoli +390816123099", []),
+        ("Oficina Panamá +5073803626", []),
+        # Ni los que no son teléfonos.
+        ("Factura 620660 del 7201800", []),
+    ],
+)
+def test_solo_toma_telefonos_ecuatorianos(texto, esperado):
+    assert ficha.telefonos_de(texto) == esperado
+
+
+def test_no_publica_el_telefono_de_una_persona():
+    """LOPDP: el teléfono junto a un cargo es dato personal."""
+    assert ficha.telefonos_de("El gerente general Juan Pérez, 0991234567") == []
+    assert ficha.telefonos_de("Central telefónica 0991234567") == ["0991234567"]
+
+
+def test_no_guarda_mas_telefonos_que_el_maximo():
+    texto = " ".join(f"02 234 56{n:02d}" for n in range(10))
+    assert len(ficha.telefonos_de(texto)) == ficha.MAXIMO_TELEFONOS
+
+
+@pytest.mark.parametrize(
+    ("texto", "esperado"),
+    [
+        ("Escríbanos a info@empresa.com", ["info@empresa.com"]),
+        ("ventas@empresa.com y VENTAS@EMPRESA.COM", ["ventas@empresa.com"]),
+        ("Contacte a juan.perez@empresa.com", []),
+        ("gerente@empresa.com", []),
+    ],
+)
+def test_solo_toma_buzones_institucionales(texto, esperado):
+    assert ficha.correos_de(texto) == esperado
+
+
+def test_lee_la_direccion_de_la_etiqueta_address():
+    html = "<html><body><address>Av. Amazonas N37-29 y Villalengua, Quito</address></body></html>"
+    assert ficha.direccion_de(html) == "Av. Amazonas N37-29 y Villalengua, Quito"
+
+
+def test_no_confunde_cualquier_texto_con_una_direccion():
+    html = "<html><body><address>Síganos en redes sociales</address></body></html>"
+    assert ficha.direccion_de(html) == ""
+
+
+def test_no_confunde_una_palabra_que_empieza_igual_con_una_direccion():
+    html = "<html><body><address>Avance de obra en el sector norte</address></body></html>"
+    # «sector» sí es palabra de dirección, así que este caso debe reconocerla.
+    assert ficha.direccion_de(html) == "Avance de obra en el sector norte"
+    html = "<html><body><address>Suscríbase a nuestro boletín mensual</address></body></html>"
+    assert ficha.direccion_de(html) == ""

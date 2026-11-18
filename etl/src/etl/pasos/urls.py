@@ -18,6 +18,7 @@ import datetime as dt
 import re
 import socket
 from concurrent.futures import ThreadPoolExecutor
+from urllib.parse import urlsplit, urlunsplit
 
 import pandas as pd
 from rapidfuzz import fuzz
@@ -70,6 +71,20 @@ def candidatos_de(nombre: str) -> list[str]:
         vistos.add(n)
         salida.extend(n + tld for tld in TLDS)
     return salida
+
+
+def normalizar_url(url: str) -> str:
+    """Quita lo que no distingue una dirección de otra.
+
+    El puerto por omisión aparece cuando el sitio redirige
+    (`https://www.directvla.com:443/ec`) y queda feo en la ficha y en la API.
+    """
+    partes = urlsplit(url)
+    host = partes.netloc.lower()
+    for puerto in (":443", ":80"):
+        if host.endswith(puerto):
+            host = host[: -len(puerto)]
+    return urlunsplit((partes.scheme.lower(), host, partes.path or "/", partes.query, ""))
 
 
 def resuelve(dominio: str) -> bool:
@@ -226,7 +241,7 @@ async def ejecutar(anio: int, limite_por_criterio: int | None = None) -> pd.Data
         [
             {
                 "expediente": v["expediente"],
-                "url_oficial": v["url_final"],
+                "url_oficial": normalizar_url(v["url_final"]),
                 "url_fuente": v["origen"],
                 **puntuar(v, empresas.loc[v["expediente"]]),
             }
