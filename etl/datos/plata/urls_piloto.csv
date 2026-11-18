@@ -3,8 +3,8 @@ expediente,nombre,grupo,criterio_piloto,url_oficial,url_fuente,url_verificada,pu
 7154,PROCESADORA NACIONAL DE ALIMENTOS C.A. PRONACA,C,top50_c,https://pronaca.com/,dominio_derivado,si,100.0,razon_social,2026-11-11,notebook_04
 724114,FERTISA AGIF C.L.,M,top50_m,https://fertisa.com/,dominio_derivado,si,100.0,razon_social,2026-11-11,notebook_04
 124193,MINUTOCORP S.A.,M,top50_m,https://minutocorp.com/,dominio_derivado,si,100.0,razon_social,2026-11-11,notebook_04
-47845,CONSORCIO ECUATORIANO DE TELECOMUNICACIONES S.A. CONECEL,TEC,tecnologica_mediana_grande,https://www.claro.com.ec/personas/,peeringdb,revisar,53.0,razon_social,2026-11-11,notebook_04
-47972,OTECEL S.A.,TEC,tecnologica_mediana_grande,https://www.tigo.com.ec/,peeringdb,revisar,0.0,razon_social,2026-11-11,notebook_04
+47845,CONSORCIO ECUATORIANO DE TELECOMUNICACIONES S.A. CONECEL,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-11,notebook_04
+47972,OTECEL S.A.,TEC,tecnologica_mediana_grande,,,no_encontrada,,,2026-11-11,notebook_04
 2913,CORPORACION EL ROSADO S.A.,G,top50_g,,,no_encontrada,,,2026-11-11,notebook_04
 86945,PRIMAX COMERCIAL DEL ECUADOR SOCIEDAD ANONIMA,G,top50_g,https://www.primax.com/ec/,dominio_derivado,revisar,50.0,razon_social,2026-11-11,notebook_04
 2151,SOCIEDAD NACIONAL DE GALAPAGOS CA,C,top50_c,,,no_encontrada,,,2026-11-11,notebook_04

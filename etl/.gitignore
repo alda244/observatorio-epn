@@ -6,3 +6,12 @@ datos/oro/*.parquet
 datos/crudo/web/*.html
 # 54 MB: supera el límite recomendado de GitHub; su hash queda en MANIFEST.csv
 datos/crudo/2025/bi_compania.csv
+# Descargas grandes de la SCVS: no van en git; se recuperan con la URL y se verifican con el hash del MANIFEST
+datos/crudo/2025/bi_ranking.csv
+datos/crudo/2025/bi_compania_*.csv
+datos/crudo/20[12][0-9]/ranking_20[12][0-9].xlsx
+!datos/crudo/2025/ranking_2025.xlsx
+# Estados financieros SCVS: ZIP de 34 MB y balances de 256 MB; hash en MANIFEST.csv
+datos/crudo/*/estadosFinancieros_*.zip
+datos/crudo/estadosFinancieros_*.zip
+datos/crudo/*/balances_*.txt

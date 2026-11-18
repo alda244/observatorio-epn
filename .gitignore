@@ -4,3 +4,5 @@ rag/datos/indice/
 rag/datos/trazas.jsonl
 __pycache__/
 .pytest_cache/
+.idea/
+.vscode/

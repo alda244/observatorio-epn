@@ -26,7 +26,7 @@ En git van los manifiestos, los CSV y los reportes; no van los parquet ni los HT
 | [`01_exploracion_ranking`](notebooks/01_exploracion_ranking.ipynb) | Crudo | Procedencia por hash, completitud, duplicados, cifras extremas y caso de empleados |
 | [`02_bronce_a_plata`](notebooks/02_bronce_a_plata.ipynb) | Crudo → Plata | Limpieza, CIIU, tamaño derivado, alerta de empleados con causa, RUC y validación con pandera |
 | [`03_plata_a_oro`](notebooks/03_plata_a_oro.ipynb) | Plata → Oro | Universo, piloto de 500 y top 50 (RN-02), con validación cruzada contra la selección de A |
-| [`04_urls_oficiales`](notebooks/04_urls_oficiales.ipynb) | Plata | Dominios candidatos + PeeringDB, filtro DNS y verificación ética con Scrapling |
+| [`04_urls_oficiales`](notebooks/04_urls_oficiales.ipynb) | Plata | Dominios candidatos a partir del nombre, filtro DNS y verificación ética con Scrapling |
 | [`05_captura_web`](notebooks/05_captura_web.ipynb) | Crudo | Portada y páginas institucionales de las webs verificadas, con metadatos y PDF candidatos |
 | [`06_ficha_bloque2`](notebooks/06_ficha_bloque2.ipynb) | Crudo → Plata | Tagline, descripción y productos/servicios del Company Profile, con su fuente |
 
@@ -47,8 +47,8 @@ Los notebooks 04 y 05 corren por tandas (`LIMITE_POR_CRITERIO`) y no repiten lo 
 ## Uso (desde `etl/`)
 
 ```bash
-uv sync   # crea etl/.venv con las dependencias y el grupo dev (incluye ipykernel)
+uv sync                # crea etl/.venv con las dependencias y el grupo dev
+uv run jupyter lab     # abre los notebooks ya con el entorno correcto
 ```
 
-En VS Code se abren los `.ipynb` de `notebooks/` y se elige el kernel `etl/.venv/bin/python`.
-```
+En VS Code, `.vscode/settings.json` apunta al intérprete `etl/.venv`. Si el kernel no aparece, `Select Kernel` → `etl/.venv/bin/python` (no el `.venv` de la raíz del repo, que no tiene las dependencias).
