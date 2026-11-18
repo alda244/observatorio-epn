@@ -1,5 +1,7 @@
 {
+  "anio": 2025,
   "fuente": "crudo/2025/ranking_2025.xlsx",
+  "sha256_fuente": "0f01e577c720e98e2b21804a725ace5758093e731c0ab1723e9abc9f803b4059",
   "fecha_corte": "Thu Oct 22 00:01:13 ECT 2026",
   "filas_crudo": 154813,
   "filas_identicas_quitadas": 116,
@@ -35,7 +37,7 @@
     "grande_menos_10": 869,
     "imposible": 2
   },
-  "sin_ruc": 0,
+  "sin_ruc_en_directorio": 0,
   "ruc_formato_invalido": 3,
   "reglas": {
     "umbral_mediana_usd": 1000000,

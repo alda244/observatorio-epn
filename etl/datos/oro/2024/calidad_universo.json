@@ -1,0 +1,23 @@
+{
+  "anio": 2024,
+  "universo_total": 12931,
+  "universo_por_grupo": {
+    "TEC": 5403,
+    "G": 4833,
+    "C": 1689,
+    "M": 601,
+    "K": 405
+  },
+  "piloto_total": 478,
+  "piloto_por_criterio": {
+    "tecnologica_mediana_grande": 278,
+    "top50_g": 50,
+    "top50_c": 50,
+    "top50_m": 50,
+    "top50_k": 50
+  },
+  "holdings_en_universo": 241,
+  "piloto_con_alerta_empleados": 79,
+  "participacion_ventas_universo": 0.6234,
+  "participacion_ventas_piloto": 0.2577
+}

@@ -1,0 +1,28 @@
+{
+  "anio": 2025,
+  "universo_total": 14027,
+  "universo_por_grupo": {
+    "TEC": 5898,
+    "G": 5210,
+    "C": 1748,
+    "M": 654,
+    "K": 517
+  },
+  "piloto_total": 500,
+  "piloto_por_criterio": {
+    "tecnologica_mediana_grande": 300,
+    "top50_g": 50,
+    "top50_c": 50,
+    "top50_m": 50,
+    "top50_k": 50
+  },
+  "holdings_en_universo": 346,
+  "piloto_con_alerta_empleados": 85,
+  "diagnostico_empleados": {
+    "coherente": 13154,
+    "error_de_registro": 547,
+    "sin_nomina_propia": 326
+  },
+  "participacion_ventas_universo": 0.626,
+  "participacion_ventas_piloto": 0.2531
+}
