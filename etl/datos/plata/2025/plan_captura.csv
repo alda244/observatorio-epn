@@ -1,0 +1,5 @@
+expediente,url,tipo_previsto,es_extra,seguir_enlaces,origen
+72951,https://telconet.ec/,portada,False,False,sitemap
+72951,https://www.telconet.ec/nosotros/,nosotros,True,False,sitemap
+72951,https://www.telconet.ec/soluciones/,servicios,True,False,sitemap
+72951,https://www.telconet.ec/contactenos/,contacto,True,False,sitemap

@@ -1,12 +1,25 @@
 """Paso `web`: captura de las webs oficiales verificadas (capa crudo).
 
-De cada empresa se guarda la portada y hasta tres páginas institucionales
-("nosotros", "servicios", "productos"), y se registran los PDF oficiales
-enlazados. El HTML se guarda sin modificar; la extracción es del paso `ficha`.
+El paso tiene dos fases, y la primera es la que cambia el resultado:
 
-Reglas (docs/investigacion-b/06-scraping-etico.md): se respeta robots.txt, el
-bot se identifica, no se suplanta un navegador, una petición por dominio cada
-tres segundos y no se insiste si el sitio bloquea. Solo texto institucional.
+1. **Explorar.** Se le pregunta al sitio qué páginas tiene: primero su
+   `robots.txt`, que suele declarar el `Sitemap:`, y luego el sitemap. De ahí
+   se eligen las páginas institucionales que de verdad existen.
+2. **Capturar.** Se pide la portada y las páginas elegidas. Si el sitio no
+   tiene sitemap, y solo entonces, se cae al método anterior: seguir los
+   enlaces de la portada que parezcan institucionales.
+
+Adivinar URL gastaba peticiones en páginas que no existen; el sitemap es la
+recomendación de la guía de crawlers éticos de AWS y da mejor material con
+menos tráfico.
+
+El HTML se guarda sin modificar en `crudo/web/AAAA/`: la extracción es del
+paso `ficha`, así que mejorar el extractor no obliga a volver a visitar nada.
+
+Reglas que no se negocian: se respeta `robots.txt` y la etiqueta
+`<meta name="robots">` de cada página, el bot se identifica con contacto, no
+se suplanta un navegador, una sola petición por dominio a la vez con pausa
+adaptativa, y si el sitio responde 429 o 503 se deja de insistir.
 """
 
 from __future__ import annotations
@@ -15,14 +28,14 @@ import datetime as dt
 import json
 import logging
 import re
-from urllib.parse import urlparse
+from urllib.parse import urljoin, urlparse
 
 import extruct
 import pandas as pd
 from scrapling.fetchers import FetcherSession
 from scrapling.spiders import Request, Spider
 
-from etl import config
+from etl import config, sitio
 from etl.comun import leer_jsonl, log, sha256_texto
 
 INSTITUCIONAL = re.compile(
@@ -42,17 +55,243 @@ REDES = (
     "youtube.com",
     "tiktok.com",
 )
+# Códigos con los que el servidor pide que se baje el ritmo o se pare.
+BLOQUEO = (429, 503)
+MAXIMO_CANDIDATAS = 200
+
+tipo_pagina = sitio.tipo_pagina
 
 
-def tipo_pagina(url: str) -> str:
-    ruta = urlparse(url).path.lower()
-    if ruta in ("", "/"):
-        return "portada"
-    if re.search(r"nosotros|quienes|about|empresa|historia", ruta):
-        return "nosotros"
-    if re.search(r"servicio|producto|soluci|catalogo|portafolio", ruta):
-        return "servicios"
-    return "otra"
+class Etico(Spider):
+    """Configuración común de recolección. Las dos fases heredan de aquí.
+
+    `autothrottle` ajusta la pausa según lo que tarda el servidor en
+    responder y la alarga sola si el sitio se queja, que es lo que piden las
+    guías de rastreo responsable; `download_delay` es el piso.
+    """
+
+    robots_txt_obey = True
+    concurrent_requests = 4
+    concurrent_requests_per_domain = config.PETICIONES_SIMULTANEAS_POR_DOMINIO
+    download_delay = config.SEGUNDOS_ENTRE_PETICIONES
+    autothrottle_enabled = True
+    autothrottle_start_delay = config.SEGUNDOS_ENTRE_PETICIONES
+    autothrottle_max_delay = config.RETRASO_MAXIMO
+    autothrottle_block_backoff = True
+    max_blocked_retries = 0  # si el sitio bloquea, no se insiste
+    logging_level = logging.WARNING
+
+    def configure_sessions(self, manager):
+        manager.add(
+            "etico",
+            FetcherSession(
+                impersonate=None,  # sin suplantar un navegador
+                stealthy_headers=False,
+                headers={"User-Agent": config.USER_AGENT},
+                retries=1,
+                timeout=config.TIEMPO_LIMITE,
+            ),
+        )
+
+    def is_blocked(self, respuesta) -> bool:
+        if respuesta.status in BLOQUEO:
+            log.warning("%s respondió %s: se deja de pedir", respuesta.url, respuesta.status)
+            return True
+        return super().is_blocked(respuesta)
+
+    @staticmethod
+    def texto_de(respuesta) -> str:
+        return respuesta.body.decode(respuesta.encoding or "utf-8", errors="replace")
+
+
+def raiz_de(url: str) -> str:
+    partes = urlparse(url)
+    return f"{partes.scheme or 'https'}://{partes.netloc}"
+
+
+class ExploradorDeSitio(Etico):
+    """Fase 1: `robots.txt` y sitemap de cada sitio, sin capturar nada."""
+
+    name = "explorador_de_sitio"
+
+    def __init__(self, objetivo: pd.DataFrame):
+        self.objetivo = objetivo
+        super().__init__()
+
+    async def start_requests(self):
+        for e in self.objetivo.itertuples():
+            raiz = raiz_de(e.url_oficial)
+            yield Request(
+                urljoin(raiz, "/robots.txt"),
+                sid="etico",
+                dont_filter=True,
+                meta={"expediente": int(e.expediente), "raiz": raiz},
+            )
+
+    async def parse(self, r):
+        """Primera parada: el `robots.txt`, que suele declarar el sitemap."""
+        raiz = r.meta["raiz"]
+        texto = self.texto_de(r) if r.status == 200 else ""
+        declarados = sitio.sitemaps_en_robots(texto, raiz)
+        origen = "robots.txt" if declarados else "convencion"
+        for direccion in declarados[:1] or [urljoin(raiz, sitio.SITEMAP_POR_CONVENCION)]:
+            yield Request(
+                direccion,
+                sid="etico",
+                callback=self.desde_sitemap,
+                dont_filter=True,
+                meta={**r.meta, "origen": origen, "nivel": 0},
+            )
+
+    async def desde_sitemap(self, r):
+        nivel = r.meta["nivel"]
+        if r.status != 200:
+            yield self._hallazgo(r.meta, [], f"sin_sitemap_{r.status}")
+            return
+        xml = self.texto_de(r)
+        if sitio.es_indice_de_sitemaps(xml):
+            anidados = sitio.locs_de_sitemap(xml)[: sitio.MAXIMO_SITEMAPS_ANIDADOS]
+            if nivel < sitio.MAXIMO_SITEMAPS_ANIDADOS and anidados:
+                for direccion in anidados:
+                    yield Request(
+                        direccion,
+                        sid="etico",
+                        callback=self.desde_sitemap,
+                        dont_filter=True,
+                        meta={**r.meta, "nivel": nivel + 1},
+                    )
+                return
+            yield self._hallazgo(r.meta, [], "indice_demasiado_profundo")
+            return
+        dominio = urlparse(r.meta["raiz"]).netloc
+        candidatas = [
+            u
+            for u in sitio.locs_de_sitemap(xml)
+            if sitio.puntuar_pagina(u) > 0
+            and urlparse(u).netloc.removeprefix("www.") == dominio.removeprefix("www.")
+        ]
+        yield self._hallazgo(r.meta, candidatas[:MAXIMO_CANDIDATAS], "sitemap")
+
+    @staticmethod
+    def _hallazgo(meta: dict, candidatas: list[str], motivo: str) -> dict:
+        return {
+            "expediente": meta["expediente"],
+            "raiz": meta["raiz"],
+            "origen": meta.get("origen", ""),
+            "motivo": motivo,
+            "candidatas": candidatas,
+        }
+
+
+class CapturaWeb(Etico):
+    """Fase 2: pide la portada y las páginas del plan, y nada más."""
+
+    name = "captura_web"
+
+    def __init__(self, plan: pd.DataFrame):
+        self.plan = plan
+        self.extra_por_empresa: dict[int, int] = {}
+        self.sin_entrada: set[str] = set()
+        super().__init__()
+
+    async def start_requests(self):
+        for p in self.plan.itertuples():
+            yield Request(
+                p.url,
+                sid="etico",
+                callback=self.parse,
+                dont_filter=True,
+                meta={
+                    "expediente": int(p.expediente),
+                    "es_extra": bool(p.es_extra),
+                    "seguir_enlaces": bool(p.seguir_enlaces),
+                },
+            )
+
+    async def parse(self, r):
+        expediente = r.meta["expediente"]
+        dominio = urlparse(r.url).netloc
+        if r.status == 403:
+            self.sin_entrada.add(dominio)
+            log.warning("%s respondió 403: no se piden más páginas de ese dominio", r.url)
+        if r.status != 200 or dominio in self.sin_entrada:
+            yield {
+                "expediente": expediente,
+                "url": r.url,
+                "tipo_pagina": tipo_pagina(r.url),
+                "status": r.status,
+                "fecha_captura": dt.datetime.now().isoformat(timespec="seconds"),
+                "html": "",
+                "omitida": "estado_http",
+            }
+            return
+
+        html = self.texto_de(r)
+        if not sitio.puede_archivarse(html):
+            log.info("%s pide no ser archivada (meta robots): no se guarda", r.url)
+            yield {
+                "expediente": expediente,
+                "url": r.url,
+                "tipo_pagina": tipo_pagina(r.url),
+                "status": r.status,
+                "fecha_captura": dt.datetime.now().isoformat(timespec="seconds"),
+                "html": "",
+                "omitida": "meta_robots",
+            }
+            return
+
+        enlaces = [
+            (a.attrib.get("href", ""), " ".join(a.css("::text").getall())) for a in r.css("a[href]")
+        ]
+        pdfs = sorted(
+            {
+                r.urljoin(href)
+                for href, texto in enlaces
+                if href.lower().endswith(".pdf") and PDF_OFICIAL.search(href + " " + texto)
+            }
+        )
+        redes = sorted(
+            {r.urljoin(href) for href, _ in enlaces if any(red in href.lower() for red in REDES)}
+        )
+        yield {
+            "expediente": expediente,
+            "url": r.url,
+            "tipo_pagina": tipo_pagina(r.url),
+            "status": r.status,
+            "fecha_captura": dt.datetime.now().isoformat(timespec="seconds"),
+            "html": html,
+            "omitida": "",
+            "title": r.css("title::text").get(),
+            "meta_description": r.css('meta[name="description"]::attr(content)').get(),
+            "h1": [t.strip() for t in r.css("h1 ::text").getall() if t.strip()][:3],
+            "correos": sorted(
+                {
+                    h.removeprefix("mailto:").split("?")[0].strip().lower()
+                    for h, _ in enlaces
+                    if h.lower().startswith("mailto:")
+                }
+            ),
+            "telefonos": sorted(
+                {h.removeprefix("tel:").strip() for h, _ in enlaces if h.lower().startswith("tel:")}
+            ),
+            "redes": redes,
+            **metadatos(html, r.url),
+            "pdf_candidatos": pdfs,
+        }
+
+        # Solo se siguen enlaces cuando el sitio no tiene sitemap utilizable.
+        if r.meta.get("es_extra") or not r.meta.get("seguir_enlaces"):
+            return
+        for href, texto in enlaces:
+            destino = r.urljoin(href)
+            if urlparse(destino).netloc != dominio or destino.lower().endswith(".pdf"):
+                continue
+            if not INSTITUCIONAL.search(href + " " + texto):
+                continue
+            if self.extra_por_empresa.get(expediente, 0) >= config.PAGINAS_EXTRA_POR_EMPRESA:
+                break
+            self.extra_por_empresa[expediente] = self.extra_por_empresa.get(expediente, 0) + 1
+            yield r.follow(destino, meta={**r.meta, "es_extra": True})
 
 
 def metadatos(html: str, url: str) -> dict:
@@ -89,94 +328,51 @@ def metadatos(html: str, url: str) -> dict:
     }
 
 
-class CapturaWeb(Spider):
-    name = "captura_web"
-    robots_txt_obey = True
-    concurrent_requests = 4
-    concurrent_requests_per_domain = config.PETICIONES_SIMULTANEAS_POR_DOMINIO
-    download_delay = config.SEGUNDOS_ENTRE_PETICIONES
-    max_blocked_retries = 0
-    logging_level = logging.WARNING
+def armar_plan(objetivo: pd.DataFrame, hallazgos: list[dict]) -> pd.DataFrame:
+    """Qué URL se va a pedir de cada empresa: portada más páginas elegidas.
 
-    def __init__(self, objetivo: pd.DataFrame):
-        self.objetivo = objetivo
-        self.extra_por_empresa: dict[int, int] = {}
-        super().__init__()
+    Las candidatas de todos los sitemap de un mismo sitio se juntan antes de
+    elegir, para que un sitio partido en varios sitemap no quede peor servido.
+    """
+    por_empresa: dict[int, list[str]] = {}
+    origen: dict[int, str] = {}
+    for h in hallazgos:
+        por_empresa.setdefault(h["expediente"], []).extend(h["candidatas"])
+        if h["candidatas"] or h["expediente"] not in origen:
+            origen[h["expediente"]] = h["motivo"]
 
-    def configure_sessions(self, manager):
-        manager.add(
-            "etico",
-            FetcherSession(
-                impersonate=None,
-                stealthy_headers=False,
-                headers={"User-Agent": config.USER_AGENT},
-                retries=1,
-                timeout=config.TIEMPO_LIMITE,
-            ),
+    filas = []
+    for e in objetivo.itertuples():
+        expediente = int(e.expediente)
+        raiz = raiz_de(e.url_oficial)
+        elegidas = sitio.elegir_paginas(
+            por_empresa.get(expediente, []),
+            config.PAGINAS_EXTRA_POR_EMPRESA,
+            urlparse(raiz).netloc,
         )
-
-    async def start_requests(self):
-        for e in self.objetivo.itertuples():
-            yield Request(
-                e.url_oficial,
-                sid="etico",
-                callback=self.parse,
-                meta={"expediente": int(e.expediente)},
-            )
-
-    async def parse(self, r):
-        expediente = r.meta["expediente"]
-        html = r.body.decode(r.encoding or "utf-8", errors="replace")
-        enlaces = [
-            (a.attrib.get("href", ""), " ".join(a.css("::text").getall())) for a in r.css("a[href]")
-        ]
-        pdfs = sorted(
+        filas.append(
             {
-                r.urljoin(href)
-                for href, texto in enlaces
-                if href.lower().endswith(".pdf") and PDF_OFICIAL.search(href + " " + texto)
+                "expediente": expediente,
+                "url": e.url_oficial,
+                "tipo_previsto": "portada",
+                "es_extra": False,
+                # Sin páginas del sitemap se vuelve a seguir enlaces de la portada.
+                "seguir_enlaces": not elegidas,
+                "origen": origen.get(expediente, "sin_exploracion"),
             }
         )
-        redes = sorted(
-            {r.urljoin(href) for href, _ in enlaces if any(red in href.lower() for red in REDES)}
-        )
-        yield {
-            "expediente": expediente,
-            "url": r.url,
-            "tipo_pagina": tipo_pagina(r.url),
-            "status": r.status,
-            "fecha_captura": dt.datetime.now().isoformat(timespec="seconds"),
-            "html": html,
-            "title": r.css("title::text").get(),
-            "meta_description": r.css('meta[name="description"]::attr(content)').get(),
-            "h1": [t.strip() for t in r.css("h1 ::text").getall() if t.strip()][:3],
-            "correos": sorted(
-                {
-                    h.removeprefix("mailto:").split("?")[0].strip().lower()
-                    for h, _ in enlaces
-                    if h.lower().startswith("mailto:")
-                }
-            ),
-            "telefonos": sorted(
-                {h.removeprefix("tel:").strip() for h, _ in enlaces if h.lower().startswith("tel:")}
-            ),
-            "redes": redes,
-            **metadatos(html, r.url),
-            "pdf_candidatos": pdfs,
-        }
-        if r.meta.get("es_extra"):
-            return
-        for href, texto in enlaces:
-            destino = r.urljoin(href)
-            mismo_sitio = urlparse(destino).netloc == urlparse(r.url).netloc
-            if (
-                mismo_sitio
-                and not destino.lower().endswith(".pdf")
-                and INSTITUCIONAL.search(href + " " + texto)
-                and self.extra_por_empresa.get(expediente, 0) < config.PAGINAS_EXTRA_POR_EMPRESA
-            ):
-                self.extra_por_empresa[expediente] = self.extra_por_empresa.get(expediente, 0) + 1
-                yield r.follow(destino, meta={"es_extra": True})
+        filas += [
+            {
+                "expediente": expediente,
+                "url": url,
+                "tipo_previsto": tema,
+                "es_extra": True,
+                "seguir_enlaces": False,
+                "origen": origen.get(expediente, ""),
+            }
+            for url, tema in elegidas
+        ]
+    return pd.DataFrame(filas)
 
 
 async def ejecutar(anio: int, limite: int | None = None) -> pd.DataFrame:
@@ -188,22 +384,40 @@ async def ejecutar(anio: int, limite: int | None = None) -> pd.DataFrame:
     urls = pd.read_csv(config.ruta_plata(anio) / "urls_piloto.csv", dtype={"expediente": int})
     capturadas = {r["expediente"] for r in leer_jsonl(manifiesto)}
     objetivo = urls[
-        urls["url_verificada"].isin(("si", "manual")) & ~urls["expediente"].isin(capturadas)
+        urls["url_verificada"].isin(("si", "manual"))
+        & urls["url_oficial"].notna()
+        & ~urls["expediente"].isin(capturadas)
     ]
     if limite:
         objetivo = objetivo.head(limite)
     if objetivo.empty:
         log.info("No hay webs pendientes de capturar")
         return pd.DataFrame(leer_jsonl(manifiesto))
-    log.info("Capturando %s sitios", len(objetivo))
 
-    paginas = 0
+    log.info("Fase 1 de 2: explorando el sitemap de %s sitios", len(objetivo))
+    hallazgos = [h async for h in ExploradorDeSitio(objetivo).stream()]
+    plan = armar_plan(objetivo, hallazgos)
+    plan.to_csv(config.ruta_plata(anio) / "plan_captura.csv", index=False)
+    con_sitemap = int((plan["origen"] == "sitemap").sum())
+    log.info(
+        "Plan: %s páginas de %s sitios (%s desde sitemap) -> plan_captura.csv",
+        len(plan),
+        plan["expediente"].nunique(),
+        con_sitemap,
+    )
+
+    log.info("Fase 2 de 2: capturando")
+    guardadas, omitidas = 0, 0
     with manifiesto.open("a", encoding="utf-8") as registro:
-        async for item in CapturaWeb(objetivo).stream():
+        async for item in CapturaWeb(plan).stream():
             html = item.pop("html")
+            if not html:
+                omitidas += 1
+                registro.write(json.dumps({**item, "sha256": ""}, ensure_ascii=False) + "\n")
+                continue
             huella = sha256_texto(html)
             (carpeta / f"{item['expediente']}_{huella}.html").write_text(html, encoding="utf-8")
             registro.write(json.dumps({**item, "sha256": huella}, ensure_ascii=False) + "\n")
-            paginas += 1
-    log.info("Capturadas %s páginas de %s sitios -> %s", paginas, len(objetivo), carpeta)
+            guardadas += 1
+    log.info("Capturadas %s páginas, omitidas %s -> %s", guardadas, omitidas, carpeta)
     return pd.DataFrame(leer_jsonl(manifiesto))

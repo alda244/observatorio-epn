@@ -1,0 +1,26 @@
+{
+  "anio": 2017,
+  "universo_total": 7275,
+  "universo_por_grupo": {
+    "G": 3316,
+    "TEC": 2067,
+    "C": 1343,
+    "M": 435,
+    "K": 114
+  },
+  "piloto_total": 353,
+  "piloto_por_criterio": {
+    "tecnologica_mediana_grande": 153,
+    "top50_g": 50,
+    "top50_c": 50,
+    "top50_m": 50,
+    "top50_k": 50
+  },
+  "holdings_en_universo": 12,
+  "piloto_con_alerta_empleados": 60,
+  "diagnostico_empleados": {
+    "sin_estados_financieros": 7275
+  },
+  "participacion_ventas_universo": 0.6716,
+  "participacion_ventas_piloto": 0.3162
+}

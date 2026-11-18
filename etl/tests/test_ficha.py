@@ -97,3 +97,31 @@ def test_sin_descripcion_declarada_no_inventa_tagline():
         ]
     )
     assert ficha.tagline(empresa) == ("", "")
+
+
+def test_una_celda_vacia_no_rompe_la_identificacion():
+    """`NaN or []` devuelve NaN y `list(NaN)` falla: el caso real del manifiesto."""
+    assert ficha.lista(float("nan")) == []
+    assert ficha.lista(None) == []
+    assert ficha.lista(["a", "b"]) == ["a", "b"]
+    assert ficha.lista("https://ejemplo.com") == ["https://ejemplo.com"]
+
+
+def test_la_identificacion_tolera_paginas_sin_datos_de_contacto():
+    paginas = pd.DataFrame(
+        [
+            {
+                "expediente": 1,
+                "url": "https://ejemplo.com/",
+                "correos": ["info@ejemplo.com", "juan.perez@ejemplo.com"],
+                "telefonos": float("nan"),
+                "redes": float("nan"),
+                "jsonld_organizacion": float("nan"),
+                "og_image": None,
+            }
+        ]
+    )
+    datos = ficha.identificacion(paginas)
+    assert datos["correo_corporativo"] == "info@ejemplo.com"
+    assert datos["telefono"] is None
+    assert datos["redes"] is None

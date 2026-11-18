@@ -1,5 +1,9 @@
 """Paso `bd`: carga la capa oro en PostgreSQL.
 
+No calcula nada: inserta los archivos que dejó `etl consolidar`, que ya tienen
+la forma de las tablas. Lo único que se lee por año son los documentos, porque
+el texto vive en los HTML de `crudo/web/AAAA/`.
+
 El paso es idempotente: cada tabla se escribe con `INSERT ... ON CONFLICT DO
 UPDATE`, así que repetirlo no duplica filas. La API solo lee estas tablas; las
 crea y las escribe el ETL.
@@ -80,43 +84,59 @@ def _indicadores_sector() -> pd.DataFrame:
     return largo.dropna(subset=["valor"])
 
 
-def ejecutar(anio: int, url: str | None = None) -> dict[str, int]:
-    oro = config.ruta_oro(anio)
-    universo = pd.read_parquet(oro / "universo.parquet")
-    piloto = pd.read_csv(oro / "piloto.csv", dtype={"expediente": int})
-
-    universo_bd = universo[["expediente", "grupo"]].assign(anio=anio)
-    universo_bd["en_piloto"] = universo_bd["expediente"].isin(piloto["expediente"])
-    universo_bd = universo_bd.merge(
-        piloto[["expediente", "criterio_piloto", "en_top50_tec"]], on="expediente", how="left"
+def documentos_de(anio: int) -> pd.DataFrame:
+    """Páginas capturadas de un año, con su texto, para que A las indexe."""
+    carpeta = config.ruta_web(anio)
+    paginas = pd.DataFrame(leer_jsonl(carpeta / "manifest.jsonl"))
+    if paginas.empty:
+        return paginas
+    paginas = paginas[paginas["status"] == 200]
+    if "sha256" in paginas:
+        paginas = paginas[paginas["sha256"].astype(str) != ""]
+    paginas = paginas.drop_duplicates(["expediente", "sha256"])
+    if paginas.empty:
+        return paginas
+    paginas = paginas.assign(
+        fecha_captura=paginas["fecha_captura"].str[:10], titulo=paginas["title"]
     )
+    paginas["texto"] = [
+        (carpeta / f"{e}_{h}.html").read_text(encoding="utf-8")[:200_000]
+        for e, h in zip(paginas["expediente"], paginas["sha256"], strict=True)
+    ]
+    return paginas
 
-    ruta_ficha = config.ruta_plata(anio) / "ficha_company_profile.csv"
-    ficha = pd.read_csv(ruta_ficha) if ruta_ficha.exists() else pd.DataFrame()
 
-    paginas = pd.DataFrame(leer_jsonl(config.ruta_web(anio) / "manifest.jsonl"))
-    if not paginas.empty:
-        paginas = paginas[paginas["status"] == 200].drop_duplicates(["expediente", "sha256"])
-        paginas = paginas.assign(
-            fecha_captura=paginas["fecha_captura"].str[:10], titulo=paginas["title"]
-        )
-        paginas["texto"] = [
-            (config.ruta_web(anio) / f"{e}_{h}.html").read_text(encoding="utf-8")[:200_000]
-            for e, h in zip(paginas["expediente"], paginas["sha256"], strict=True)
-        ]
+def ejecutar(anio: int | None = None, url: str | None = None) -> dict[str, int]:
+    """Carga el consolidado y, si se indica un año, los documentos de ese año."""
+    consolidado = {
+        "empresa": config.ORO / "empresa.parquet",
+        "cifras_anuales": config.ORO / "cifras_anuales.parquet",
+        "universo": config.ORO / "universo_por_anio.parquet",
+    }
+    faltantes = [str(r) for r in consolidado.values() if not r.exists()]
+    if faltantes:
+        raise FileNotFoundError(f"Faltan {', '.join(faltantes)}: ejecute antes `etl consolidar`")
+
+    tablas = {
+        esquema.empresa: pd.read_parquet(consolidado["empresa"]),
+        esquema.cifras_anuales: pd.read_parquet(consolidado["cifras_anuales"]),
+        esquema.universo: pd.read_parquet(consolidado["universo"]),
+    }
+    ruta_ficha = config.ORO / "ficha.csv"
+    if ruta_ficha.exists():
+        tablas[esquema.ficha] = pd.read_csv(ruta_ficha)
+    if anio is not None:
+        documentos = documentos_de(anio)
+        if not documentos.empty:
+            tablas[esquema.documento] = documentos
+    indicadores = _indicadores_sector()
+    if not indicadores.empty:
+        tablas[esquema.indicador_sector] = indicadores
 
     resumen: dict[str, int] = {}
     with motor(url).begin() as conexion:
         crear_esquema(conexion)
-        resumen["empresa"] = guardar(conexion, esquema.empresa, universo)
-        resumen["cifras_anuales"] = guardar(conexion, esquema.cifras_anuales, universo)
-        resumen["universo"] = guardar(conexion, esquema.universo, universo_bd)
-        if not ficha.empty:
-            resumen["ficha"] = guardar(conexion, esquema.ficha, ficha)
-        if not paginas.empty:
-            resumen["documento"] = guardar(conexion, esquema.documento, paginas)
-        indicadores = _indicadores_sector()
-        if not indicadores.empty:
-            resumen["indicador_sector"] = guardar(conexion, esquema.indicador_sector, indicadores)
-    log.info("Base de datos %s: %s", anio, resumen)
+        for tabla, df in tablas.items():
+            resumen[tabla.name] = guardar(conexion, tabla, df)
+    log.info("Base de datos: %s", resumen)
     return resumen

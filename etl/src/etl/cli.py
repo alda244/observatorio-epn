@@ -3,9 +3,10 @@
 Cada paso es idempotente: repetirlo no duplica filas ni vuelve a visitar las
 webs ya capturadas. El orden normal es
 
-    ranking → financieros → universo → urls → web → ficha → bd
+    ranking → financieros → universo → urls → web → ficha
 
-y `etl todo` lo corre completo.
+por año, y después `consolidar` junta todos los años y `bd` los carga.
+`etl todo` corre el año completo.
 """
 
 from __future__ import annotations
@@ -88,13 +89,27 @@ def ficha(anio: int = OpcionAnio) -> None:
 
 
 @app.command()
+def consolidar(
+    desde: int | None = typer.Option(
+        None, "--desde", help=f"Primer año a incluir; por defecto {config.ANIO_MINIMO_COMPARABLE}."
+    ),
+) -> None:
+    """Junta todos los años en las tablas que publicará la API."""
+    from etl.pasos import consolidar as paso
+
+    paso.ejecutar(desde)
+
+
+@app.command()
 def bd(
-    anio: int = OpcionAnio,
+    anio: int | None = typer.Option(
+        None, "--anio", "-a", help="Año cuyos documentos capturados se cargan también."
+    ),
     url: str | None = typer.Option(
         None, "--url", help="Cadena de conexión; por defecto ETL_BASE_DE_DATOS."
     ),
 ) -> None:
-    """Carga la capa oro en PostgreSQL."""
+    """Carga en PostgreSQL lo que dejó `etl consolidar`."""
     from etl.pasos import carga as paso
 
     paso.ejecutar(anio, url)
@@ -109,7 +124,7 @@ def todo(
     con_bd: bool = typer.Option(False, "--con-bd", help="Carga también en PostgreSQL."),
 ) -> None:
     """Corre el pipeline completo del año."""
-    from etl.pasos import carga, ficha, financieros, ranking, universo, urls, web
+    from etl.pasos import carga, consolidar, ficha, financieros, ranking, universo, urls, web
 
     ranking.ejecutar(anio)
     try:
@@ -120,6 +135,7 @@ def todo(
     asyncio.run(urls.ejecutar(anio, limite))
     asyncio.run(web.ejecutar(anio, limite))
     ficha.ejecutar(anio)
+    consolidar.ejecutar()
     if con_bd:
         carga.ejecutar(anio)
 

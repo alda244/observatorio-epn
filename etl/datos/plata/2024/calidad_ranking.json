@@ -18,7 +18,21 @@
     709214,
     743120
   ],
+  "filas_descartadas": 0,
+  "motivos_de_descarte": {},
   "filas_plata": 142519,
+  "cifras_en_cero_pct": {
+    "empleados": 0.0,
+    "activo": 1.93,
+    "patrimonio": 1.61,
+    "ventas": 37.89,
+    "utilidad_neta": 34.21,
+    "ingreso_total": 36.46
+  },
+  "no_reportado": {
+    "ingreso_total": 0,
+    "utilidad_neta": 4370
+  },
   "marcas": {
     "anio_cero": 0,
     "nueva_en_ranking": 17681,

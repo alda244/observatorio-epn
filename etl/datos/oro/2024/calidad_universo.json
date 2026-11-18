@@ -18,6 +18,9 @@
   },
   "holdings_en_universo": 241,
   "piloto_con_alerta_empleados": 79,
+  "diagnostico_empleados": {
+    "sin_estados_financieros": 12931
+  },
   "participacion_ventas_universo": 0.6234,
   "participacion_ventas_piloto": 0.2577
 }

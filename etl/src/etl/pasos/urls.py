@@ -40,6 +40,8 @@ COLUMNAS = [
     "url_verificada",
     "puntaje",
     "evidencia",
+    "titulo",
+    "senales",
     "fecha_verificacion",
     "verificado_por",
 ]
@@ -144,6 +146,12 @@ def puntuar(visita: dict, empresa: pd.Series) -> dict:
     | Nombre comercial completo en el título o el nombre del sitio | 100 |
     | Razón social dentro del texto | similitud de rapidfuzz |
     | El dominio es un token distintivo del nombre y el sitio responde | 70 |
+
+    Además se anotan las señales encontradas, aunque no suban el puntaje. No
+    se usan para verificar sola: un dominio genérico como `galapagos.com`
+    menciona Ecuador sin ser de la empresa. Sirven para que la revisión a mano
+    de las filas en `revisar` se haga de un vistazo, con el título de la
+    página al lado.
     """
     base, comercial = partes_nombre(empresa["nombre"])
     texto = normalizar(visita["texto"])
@@ -158,15 +166,33 @@ def puntuar(visita: dict, empresa: pd.Series) -> dict:
     )
     por_comercial = bool(comercial) and bool(re.search(rf"\b{re.escape(comercial)}\b", cabecera))
     por_base = fuzz.partial_ratio(base, texto) if len(base) >= 8 else 0
-    por_dominio = 70 if dominio in tokens_distintivos(empresa["nombre"]) else 0
+    tokens = tokens_distintivos(empresa["nombre"])
+    por_dominio = 70 if dominio in tokens else 0
 
+    senales = []
     if ruc:
-        return {"puntaje": 100, "evidencia": "ruc"}
+        senales.append("ruc")
     if por_comercial:
-        return {"puntaje": 100, "evidencia": "nombre_comercial"}
+        senales.append("nombre_comercial")
+    if por_base >= config.UMBRAL_VERIFICACION:
+        senales.append("razon_social")
+    if por_dominio:
+        senales.append("dominio")
+    if visita["dominio"].endswith((".ec", ".com.ec", ".net.ec")):
+        senales.append("tld_ec")
+    if "ECUADOR" in texto:
+        senales.append("menciona_ecuador")
+    if any(t in cabecera for t in tokens):
+        senales.append("nombre_en_titulo")
+
+    comun = {"titulo": (visita["title"] or "").strip()[:120], "senales": " ".join(senales)}
+    if ruc:
+        return {"puntaje": 100, "evidencia": "ruc", **comun}
+    if por_comercial:
+        return {"puntaje": 100, "evidencia": "nombre_comercial", **comun}
     mejor = max(por_base, por_dominio)
     evidencia = "razon_social" if por_base >= por_dominio else "dominio_coincide_con_nombre"
-    return {"puntaje": round(mejor), "evidencia": evidencia}
+    return {"puntaje": round(mejor), "evidencia": evidencia, **comun}
 
 
 def clasificar(puntaje: float | None) -> str:
@@ -231,7 +257,15 @@ async def ejecutar(anio: int, limite_por_criterio: int | None = None) -> pd.Data
         resultados.sort_values("puntaje", ascending=False).drop_duplicates("expediente")
         if not resultados.empty
         else pd.DataFrame(
-            columns=["expediente", "url_oficial", "url_fuente", "puntaje", "evidencia"]
+            columns=[
+                "expediente",
+                "url_oficial",
+                "url_fuente",
+                "puntaje",
+                "evidencia",
+                "titulo",
+                "senales",
+            ]
         )
     )
 

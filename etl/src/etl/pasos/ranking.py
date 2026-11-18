@@ -1,7 +1,20 @@
 """Paso `ranking`: del ranking SCVS crudo a la capa plata.
 
 Limpia, normaliza y valida el ranking empresarial de un año. No borra nada en
-silencio: cada decisión queda como columna de marca o en el reporte de calidad.
+silencio: cada decisión queda como columna de marca, en el archivo de
+descartes o en el reporte de calidad.
+
+Dos cosas que aparecieron al correr los 16 años y que esta capa resuelve:
+
+- **Columnas que un año no se reportaron.** En el ranking 2014, 51.008 de
+  52.210 filas traen `ingreso_total` y `utilidad_neta` en cero: la SCVS no
+  publicó esas columnas ese año. Eso no es un dato sucio, es un dato ausente,
+  y se marca como tal en vez de descartar la fila.
+- **Filas que no cuadran.** Cifras negativas donde no pueden serlo, o ventas
+  mayores que el ingreso total habiéndose reportado el ingreso. Esas filas no
+  entran a plata, pero tampoco se pierden: van a `descartes_ranking.csv` con
+  el motivo, que es lo que permite rendir cuentas de cada fila del archivo
+  original.
 """
 
 from __future__ import annotations
@@ -39,6 +52,8 @@ COLUMNAS_CRUDAS = [
 ]
 TEXTO = ["nombre", "tipo_compania", "actividad", "region", "provincia", "ciudad", "sector_scvs"]
 CIFRAS = ["empleados", "activo", "patrimonio", "ventas", "utilidad_neta", "ingreso_total"]
+# El patrimonio y la utilidad sí pueden ser negativos; estas no.
+NO_NEGATIVAS = ["empleados", "activo", "ventas", "ingreso_total"]
 
 ESQUEMA = pa.DataFrameSchema(
     {
@@ -57,7 +72,9 @@ ESQUEMA = pa.DataFrameSchema(
         "ruc": pa.Column(str, pa.Check.str_matches(r"^\d{13}$"), nullable=True),
     },
     checks=pa.Check(
-        lambda t: t["ingreso_total"] + 1 >= t["ventas"], error="ventas mayores que el ingreso total"
+        # Solo se exige donde el ingreso total se reportó: ver el caso de 2014.
+        lambda t: (t["ingreso_total"] <= 0) | (t["ingreso_total"] + 1 >= t["ventas"]),
+        error="ventas mayores que el ingreso total reportado",
     ),
     strict=False,
 )
@@ -107,6 +124,33 @@ def marcar_calidad(df: pd.DataFrame) -> pd.DataFrame:
     df["patrimonio_negativo"] = df["patrimonio"] < 0
     df["revisar_utilidad"] = (df["utilidad_neta"] > df["ingreso_total"]) & (df["utilidad_neta"] > 0)
     return df
+
+
+def marcar_no_reportado(df: pd.DataFrame) -> pd.DataFrame:
+    """Distingue «no reportado» de «cero» en las cifras que vienen vacías.
+
+    Una empresa con ventas pero con ingreso total en cero no ingresó cero: ese
+    año la SCVS no publicó la columna. Sin esta marca, cualquier promedio o
+    razón financiera que use `ingreso_total` de 2014 saldría mal.
+    """
+    df["ingreso_total_no_reportado"] = (df["ingreso_total"] == 0) & (df["ventas"] > 0)
+    df["utilidad_no_reportada"] = (df["utilidad_neta"] == 0) & (df["ventas"] > 0)
+    return df
+
+
+def separar_descartes(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Aparta las filas que no pueden entrar a plata, con el motivo.
+
+    Es la cuarentena del pipeline: la fila no se corrige a mano ni se borra en
+    silencio, se guarda aparte para poder explicarla.
+    """
+    negativa = pd.concat([df[c] < 0 for c in NO_NEGATIVAS], axis=1).any(axis=1)
+    incoherente = (df["ingreso_total"] > 0) & (df["ventas"] > df["ingreso_total"] + 1)
+    motivo = np.select(
+        [negativa, incoherente], ["cifra_negativa", "ventas_mayores_que_ingreso"], default=""
+    )
+    descartes = df.assign(motivo_descarte=motivo)
+    return descartes[motivo == ""].copy(), descartes[motivo != ""].copy()
 
 
 def derivar_tamano(df: pd.DataFrame) -> pd.DataFrame:
@@ -175,6 +219,18 @@ def ejecutar(anio: int) -> pd.DataFrame:
     df = separar_ciiu(df)
     df, identicas, conflicto = quitar_duplicados(df)
     df = marcar_calidad(df)
+    df = marcar_no_reportado(df)
+    df, descartes = separar_descartes(df)
+    if not descartes.empty:
+        destino_descartes = config.ruta_plata(anio) / "descartes_ranking.csv"
+        descartes.to_csv(destino_descartes, index=False)
+        log.warning(
+            "Ranking %s: %s filas a cuarentena (%s) -> %s",
+            anio,
+            len(descartes),
+            descartes["motivo_descarte"].value_counts().to_dict(),
+            destino_descartes.name,
+        )
     df = derivar_tamano(df)
     df = alertar_empleados(df)
     df = agregar_ruc(df, anio)
@@ -201,7 +257,18 @@ def ejecutar(anio: int) -> pd.DataFrame:
             "filas_crudo": filas_crudo,
             "filas_identicas_quitadas": identicas,
             "expedientes_con_conflicto": conflicto,
+            "filas_descartadas": len(descartes),
+            "motivos_de_descarte": descartes["motivo_descarte"].value_counts().to_dict(),
             "filas_plata": len(plata),
+            # Qué porcentaje de cada cifra llega en cero: así se ve de un
+            # vistazo si la fuente no reportó una columna ese año.
+            "cifras_en_cero_pct": {
+                c: round(float((plata[c] == 0).mean() * 100), 2) for c in CIFRAS
+            },
+            "no_reportado": {
+                "ingreso_total": int(plata["ingreso_total_no_reportado"].sum()),
+                "utilidad_neta": int(plata["utilidad_no_reportada"].sum()),
+            },
             "marcas": {m: int(plata[m].sum()) for m in marcas},
             "tamano_derivado": plata["tamano_derivado"].value_counts().to_dict(),
             "alerta_empleados": plata["alerta_empleados"]

@@ -136,7 +136,16 @@ def ejecutar(anio: int) -> pd.DataFrame:
     if not origen.exists():
         raise FileNotFoundError(f"Falta {origen}: ejecute antes `etl ranking --anio {anio}`")
 
-    df = marcar(pd.read_parquet(origen))
+    plata = pd.read_parquet(origen)
+    cobertura = float((plata["ventas"] > 0).mean() * 100)
+    if cobertura < config.COBERTURA_MINIMA_VENTAS:
+        log.warning(
+            "El ranking %s solo trae ventas en %.1f %% de las filas: el universo de este año "
+            "no es comparable con los demás y no debe publicarse",
+            anio,
+            cobertura,
+        )
+    df = marcar(plata)
     df = diagnosticar_empleados(df, anio)
     universo = seleccionar(df)
     tops = listas_top(universo)
@@ -154,6 +163,11 @@ def ejecutar(anio: int) -> pd.DataFrame:
         oro / "calidad_universo.json",
         {
             "anio": anio,
+            "cobertura_ventas_pct": round(cobertura, 2),
+            "comparable": bool(
+                cobertura >= config.COBERTURA_MINIMA_VENTAS
+                and anio >= config.ANIO_MINIMO_COMPARABLE
+            ),
             "universo_total": len(universo),
             "universo_por_grupo": universo["grupo"].value_counts().to_dict(),
             "piloto_total": len(piloto),

@@ -91,6 +91,20 @@ def _organizacion(pagina: pd.Series) -> dict:
     return valor if isinstance(valor, dict) else {}
 
 
+def lista(valor) -> list:
+    """Normaliza una celda que puede venir como lista, como texto o vacía.
+
+    En un DataFrame una celda vacía es `NaN`, que es un float **verdadero**:
+    `NaN or []` devuelve `NaN` y `list(NaN)` falla. Pasa en cuanto el
+    manifiesto mezcla páginas capturadas con páginas omitidas.
+    """
+    if isinstance(valor, list):
+        return valor
+    if valor is None or (isinstance(valor, float) and pd.isna(valor)):
+        return []
+    return [valor]
+
+
 def html_de(carpeta, pagina: pd.Series) -> str:
     return (carpeta / f"{pagina['expediente']}_{pagina['sha256']}.html").read_text(encoding="utf-8")
 
@@ -111,7 +125,7 @@ def tagline(empresa: pd.DataFrame) -> tuple[str, str]:
 
 
 def descripcion(carpeta, empresa: pd.DataFrame) -> tuple[str, str]:
-    for tipo in ("nosotros", "portada"):
+    for tipo in ("nosotros", "sostenibilidad", "portada"):
         for _, pagina in empresa[empresa["tipo_pagina"] == tipo].iterrows():
             texto = trafilatura.extract(
                 html_de(carpeta, pagina), include_comments=False, include_tables=False
@@ -160,11 +174,10 @@ def identificacion(empresa: pd.DataFrame) -> dict:
     correos, telefonos, redes, logo, direccion = [], [], [], None, None
     for _, pagina in empresa.iterrows():
         organizacion = _organizacion(pagina)
-        correos += [c for c in (pagina.get("correos") or []) if CORREO_CORPORATIVO.match(c)]
-        telefonos += list(pagina.get("telefonos") or [])
-        redes += list(pagina.get("redes") or [])
-        enlazadas = organizacion.get("sameAs") or []
-        redes += enlazadas if isinstance(enlazadas, list) else [enlazadas]
+        correos += [c for c in lista(pagina.get("correos")) if CORREO_CORPORATIVO.match(c)]
+        telefonos += lista(pagina.get("telefonos"))
+        redes += lista(pagina.get("redes"))
+        redes += lista(organizacion.get("sameAs"))
         if logo is None:
             marca = organizacion.get("logo") or pagina.get("og_image")
             logo = marca.get("url") if isinstance(marca, dict) else marca
@@ -196,6 +209,12 @@ def ejecutar(anio: int) -> pd.DataFrame:
 
     paginas = pd.DataFrame(registros).drop_duplicates(["expediente", "sha256"])
     paginas = paginas[paginas["status"] == 200]
+    # Las páginas omitidas (meta robots, error HTTP) quedan en el manifiesto
+    # como registro de lo que se intentó, pero no tienen HTML que extraer.
+    paginas = paginas[paginas["sha256"].astype(str).str.len() == 64]
+    if paginas.empty:
+        log.warning("Ninguna página capturada quedó disponible para armar la ficha")
+        return pd.DataFrame()
     urls = pd.read_csv(config.ruta_plata(anio) / "urls_piloto.csv", dtype={"expediente": int})
 
     filas = []

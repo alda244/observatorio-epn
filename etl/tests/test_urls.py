@@ -54,7 +54,22 @@ def empresa(nombre="FERTISA AGIF C.L.", ruc="0990000000001"):
 
 def test_el_ruc_en_la_pagina_es_prueba_suficiente():
     resultado = urls.puntuar(visita(texto="RUC 0990000000001"), empresa())
-    assert resultado == {"puntaje": 100, "evidencia": "ruc"}
+    assert resultado["puntaje"] == 100
+    assert resultado["evidencia"] == "ruc"
+    assert "ruc" in resultado["senales"]
+
+
+def test_anota_las_senales_para_la_revision_a_mano():
+    resultado = urls.puntuar(
+        visita(
+            texto="Somos la mejor empresa del Ecuador", title="Fertisa", dominio="fertisa.com.ec"
+        ),
+        empresa(ruc=""),
+    )
+    assert "menciona_ecuador" in resultado["senales"]
+    assert "tld_ec" in resultado["senales"]
+    assert "nombre_en_titulo" in resultado["senales"]
+    assert resultado["titulo"] == "Fertisa"
 
 
 def test_el_nombre_comercial_en_el_titulo_verifica():

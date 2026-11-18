@@ -20,6 +20,14 @@ PLATA = DATOS / "plata"
 ORO = DATOS / "oro"
 
 ANIO_POR_DEFECTO = 2025
+# El ranking de 2010 y 2011 trae las cifras en cero en más del 90 % de las
+# filas: la SCVS publicó esos años solo la identificación de la compañía. Y la
+# comparabilidad contable arranca en 2012, con la adopción de las NIIF. Por las
+# dos razones, la serie del Observatorio empieza en 2012.
+ANIO_MINIMO_COMPARABLE = 2012
+# Porcentaje mínimo de filas con ventas reportadas para que el año sirva para
+# delimitar el universo, que se define por umbrales de ventas.
+COBERTURA_MINIMA_VENTAS = 50.0
 
 # --- Universo aprobado en la reunión del 04-nov-2026 (docs/universo.md) ---
 PREFIJOS_TEC = ("J61", "J62", "J63", "J582")
@@ -43,12 +51,17 @@ EMPLEADOS_IMPOSIBLE = 100_000
 EMPLEADOS_MINIMO_GRANDE = 10
 VECES_MEDIANA_DIVISION = 20
 
-# --- Recolección web (docs/investigacion-b/06-scraping-etico.md) ---
+# --- Recolección web (sección 4 de guia-etl.md) ---
 # Sin tildes: una cabecera HTTP no admite caracteres fuera de ASCII.
 USER_AGENT = (
     "ObservatorioEPN-Bot/0.1 (+https://github.com/alda244/observatorio-epn; proyecto academico EPN)"
 )
-SEGUNDOS_ENTRE_PETICIONES = 3.0
+# Ritmo de recolección. La guía de crawlers éticos de AWS recomienda una
+# petición cada 10-15 s en sitios chicos o medianos, que es lo que son las
+# webs de las empresas; la pausa adaptativa de Scrapling parte de este valor y
+# lo alarga sola hasta RETRASO_MAXIMO si el servidor tarda o se queja.
+SEGUNDOS_ENTRE_PETICIONES = 5.0
+RETRASO_MAXIMO = 60.0
 PETICIONES_SIMULTANEAS_POR_DOMINIO = 1
 PAGINAS_EXTRA_POR_EMPRESA = 3
 TIEMPO_LIMITE = 20

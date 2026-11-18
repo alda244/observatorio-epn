@@ -5,6 +5,9 @@
 datos/plata/**/*.parquet
 datos/oro/**/*.parquet
 datos/crudo/web/**/*.html
+# El universo completo en CSV duplica el Parquet y son 51 MB en 14 años. Se
+# genera igual, para abrirlo en una hoja de cálculo, pero no se versiona.
+datos/oro/**/universo.csv
 
 # Descargas grandes de la SCVS: se recuperan con la URL del MANIFEST y se
 # verifican con su hash. GitHub rechaza archivos de más de 100 MB.
