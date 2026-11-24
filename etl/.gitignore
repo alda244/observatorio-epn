@@ -1,0 +1,19 @@
+.venv/
+.ipynb_checkpoints/
+
+# Se regeneran con el pipeline
+datos/plata/**/*.parquet
+datos/oro/**/*.parquet
+datos/crudo/web/**/*.html
+# El universo completo en CSV duplica el Parquet y son 51 MB en 14 años. Se
+# genera igual, para abrirlo en una hoja de cálculo, pero no se versiona.
+datos/oro/**/universo.csv
+
+# Descargas grandes de la SCVS: se recuperan con la URL del MANIFEST y se
+# verifican con su hash. GitHub rechaza archivos de más de 100 MB.
+datos/crudo/*/bi_ranking.csv
+datos/crudo/*/bi_compania*.csv
+datos/crudo/*/estadosFinancieros_*.zip
+datos/crudo/*/balances_*.txt
+datos/crudo/20[12][0-9]/ranking_20[12][0-9].xlsx
+!datos/crudo/2025/ranking_2025.xlsx

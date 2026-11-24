@@ -1,27 +1,35 @@
-# api · Componente B
+# API del Componente B
 
-Dueño: Eduardo Muzo. API pública FastAPI, de solo lectura sobre el esquema `datos`. Implementa las rutas `datos-abiertos` de [`contracts/openapi.yaml`](../contracts/openapi.yaml).
+FastAPI publica los datos abiertos de Observatorio EPN. Se conecta a PostgreSQL
+como `rol_api`, con acceso de lectura a las vistas de `public`.
 
-| Carpeta | Propósito |
-| --- | --- |
-| `src/api/main.py` | Aplicación FastAPI |
-| `src/api/` | Rutas, consultas y esquemas (se agregan por sprint) |
-| `tests/` | Pruebas con pytest + TestClient |
+## Desarrollo local
 
-| Ruta | Estado |
-| --- | --- |
-| `GET /salud` | Hola mundo |
-| `GET /empresas`, `GET /empresas/{expediente}`, `GET /indicadores` | Definidas en el contrato; sin implementar |
+Desde la raíz, con PostgreSQL preparado según la [guía del ETL](../etl/database.md):
 
-Propuesta en revisión: `GET /empresas/{expediente}` sirve también el Bloque 2 del Company Profile ([ADR 0006](../docs/adr/0006-bloque2-company-profile-en-b.md)).
+```sh
+uv sync --directory api --locked
+uv run --directory api uvicorn api.main:app --reload --port 8001
+```
 
-## Stack
+Abre `http://127.0.0.1:8001/docs` para probar las rutas.
 
-Python 3.12 · FastAPI · uvicorn · uv · pytest · ruff. El acceso a la base (SQLAlchemy Core + psycopg) se agrega con la primera ruta de datos. La API no escribe: las tablas las crea el ETL.
+- `GET /v1/empresas` lista empresas con filtros, orden y paginación. Usa
+  `limit` (1–100, por defecto 50) y `offset`. `total` cuenta todas las empresas
+  que cumplen los filtros.
+- `GET /v1/empresas/{expediente}` devuelve identificación, cifras por
+  ejercicio y ficha vigente, si existe. Devuelve HTTP 404 si el expediente
+  queda fuera del universo.
 
-## Uso (PowerShell, desde la raíz)
+Prueba el listado con `/v1/empresas?grupo=TEC&limit=5`.
 
-```powershell
-.\scripts\dev.ps1 -Modulo api     # http://localhost:8001/docs
-.\scripts\test.ps1 -Modulo api
+El detalle obtiene la procedencia de `etl/datos/crudo/MANIFEST.csv`. Puedes
+indicar otra ubicación del manifiesto con `API_RANKING_MANIFEST`.
+
+La conexión local usa el puerto 5432. Para cambiarla, configura
+`API_DATABASE_URL` con la conexión de `rol_api`.
+
+```sh
+uv run --directory api pytest
+uv run --directory api ruff check .
 ```

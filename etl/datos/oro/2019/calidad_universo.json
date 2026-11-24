@@ -1,0 +1,28 @@
+{
+  "anio": 2019,
+  "cobertura_ventas_pct": 64.49,
+  "comparable": true,
+  "universo_total": 9010,
+  "universo_por_grupo": {
+    "G": 3889,
+    "TEC": 2987,
+    "C": 1519,
+    "M": 478,
+    "K": 137
+  },
+  "piloto_total": 378,
+  "piloto_por_criterio": {
+    "tecnologica_mediana_grande": 178,
+    "top50_g": 50,
+    "top50_c": 50,
+    "top50_m": 50,
+    "top50_k": 50
+  },
+  "holdings_en_universo": 13,
+  "piloto_con_alerta_empleados": 61,
+  "diagnostico_empleados": {
+    "sin_estados_financieros": 9010
+  },
+  "participacion_ventas_universo": 0.6552,
+  "participacion_ventas_piloto": 0.2867
+}

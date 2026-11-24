@@ -1,0 +1,41 @@
+{
+  "anio": 2025,
+  "archivos_balances": [
+    "balances_2025_1.txt"
+  ],
+  "archivo_catalogo": "catalogo_2025_1.txt",
+  "cuentas_en_catalogo": 622,
+  "filas": 154904,
+  "filas_descartadas": 0,
+  "motivos_de_descarte": {},
+  "cuentas_conservadas": [
+    "activo",
+    "activo_corriente",
+    "efectivo_equivalentes",
+    "inventarios",
+    "activo_no_corriente",
+    "pasivo",
+    "pasivo_corriente",
+    "pasivo_no_corriente",
+    "patrimonio",
+    "capital",
+    "ingresos_actividades_ordinarias",
+    "ganancia_bruta",
+    "otros_ingresos",
+    "costo_ventas_produccion",
+    "gastos",
+    "sueldos_salarios_remuneraciones",
+    "beneficios_sociales_indemnizaciones",
+    "remuneraciones_otros_trabajadores",
+    "sueldos_salarios_remuneraciones_ventas",
+    "beneficios_sociales_indemnizaciones_ventas",
+    "utilidad_antes_participacion_impuestos",
+    "participacion_trabajadores",
+    "utilidad_antes_impuestos",
+    "impuesto_renta_causado",
+    "utilidad_neta"
+  ],
+  "sin_gasto_personal": 102368,
+  "ruc_formato_invalido": 3,
+  "tolerancia_balance_usd": 1.0
+}

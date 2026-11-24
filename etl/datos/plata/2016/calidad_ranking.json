@@ -1,0 +1,65 @@
+{
+  "anio": 2016,
+  "fuente": "crudo/2016/ranking_2016.xlsx",
+  "sha256_fuente": "a40fa51c723ebc99a7a3fd7ea20ef7d600255c13ee94cea9b13c4cf389ed2e0f",
+  "fecha_corte": "Thu Oct 22 00:08:06 ECT 2026",
+  "filas_crudo": 62904,
+  "filas_identicas_quitadas": 103,
+  "expedientes_con_conflicto": [
+    55002,
+    56726,
+    102297,
+    123749,
+    130500,
+    132493,
+    135453,
+    176088,
+    300724,
+    703139,
+    709214
+  ],
+  "filas_descartadas": 12,
+  "motivos_de_descarte": {
+    "ventas_mayores_que_ingreso": 11,
+    "cifra_negativa": 1
+  },
+  "filas_plata": 62778,
+  "cifras_en_cero_pct": {
+    "empleados": 0.09,
+    "activo": 4.06,
+    "patrimonio": 4.35,
+    "ventas": 32.21,
+    "utilidad_neta": 42.66,
+    "ingreso_total": 28.01
+  },
+  "no_reportado": {
+    "ingreso_total": 13,
+    "utilidad_neta": 8322
+  },
+  "marcas": {
+    "anio_cero": 0,
+    "nueva_en_ranking": 5102,
+    "sin_ventas": 20218,
+    "sin_actividad": 2288,
+    "patrimonio_negativo": 3608,
+    "revisar_utilidad": 12
+  },
+  "tamano_derivado": {
+    "micro_pequena": 54529,
+    "mediana": 5825,
+    "grande": 2424
+  },
+  "alerta_empleados": {
+    "sin_alerta": 61779,
+    "fuera_de_rango_division": 693,
+    "grande_menos_10": 304,
+    "imposible": 2
+  },
+  "sin_ruc_en_directorio": 2,
+  "ruc_formato_invalido": 0,
+  "reglas": {
+    "umbral_mediana_usd": 1000000,
+    "umbral_grande_usd": 5000000,
+    "veces_mediana_division": 20
+  }
+}
