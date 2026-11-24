@@ -15,5 +15,9 @@
 | EV-A-011 | 2026-11-18 | 1 | Script de comparación de LLM, probado con un servidor simulado | [`comparar_llm.py`](../../rag/src/rag/comparar_llm.py) |
 | EV-A-012 | 2026-11-18 | 2 | 17 pruebas automáticas y CI con PostgreSQL | [`rag/tests/`](../../rag/tests/), [`rag.yml`](../../.github/workflows/rag.yml) |
 | EV-A-013 | 2026-11-18 | 2 | Comparación de embeddings (léxico, MiniLM, BGE-M3) y recalibración de umbrales | [comparacion-embeddings.md](comparacion-embeddings.md), [`eval50_minilm.json`](../../rag/evidencias/eval50_minilm.json), [`eval50_bge_m3.json`](../../rag/evidencias/eval50_bge_m3.json), [`eval50_bge_m3_calibrado.json`](../../rag/evidencias/eval50_bge_m3_calibrado.json) |
+| EV-A-014 | 2026-11-24 | 1 | Actor Gobierno y casos CU-08 y CU-09 | [casos-de-uso.md](casos-de-uso.md) |
+| EV-A-015 | 2026-11-24 | 2 | Fichas del Company Profile en el índice, cliente HTTP de la API de B y corrección de la salvaguarda de campo pedido | [`cliente_b`](../../rag/src/rag/cliente_b/__init__.py), [`test_cliente_b.py`](../../rag/tests/test_cliente_b.py), [`ingesta_bge_m3_fichas.json`](../../rag/evidencias/ingesta_bge_m3_fichas.json) |
+| EV-A-016 | 2026-11-24 | 2 | Evaluación con 50 preguntas, con y sin fichas | [evaluacion.md](evaluacion.md#con-el-company-profile), [`eval50_bge_m3_fichas.json`](../../rag/evidencias/eval50_bge_m3_fichas.json), [`eval50_bge_m3_salvaguarda.json`](../../rag/evidencias/eval50_bge_m3_salvaguarda.json), [`eval50_hash_fichas.json`](../../rag/evidencias/eval50_hash_fichas.json) |
+| EV-A-017 | 2026-11-24 | 1 | Comparación de LLM lista para Ollama, Anthropic, OpenAI y Google, con conteo de errores y listado de ids | [`modelos_llm.json`](../../rag/evaluacion/modelos_llm.json), [`comparar_llm.py`](../../rag/src/rag/comparar_llm.py) |
 
 Las capturas de pantalla se guardan en `docs/componente-a/evidencias/` con el nombre `EV-A-NNN-descripcion.png`.

@@ -6,6 +6,7 @@ preguntas con la misma recuperación. Por modelo se mide:
 - ``citas_validas``: respuestas del LLM con citas válidas, sobre las que
   pasaron la recuperación (las demás se descartan y quedan extractivas).
 - ``rechazo_correcto``: preguntas sin respuesta que terminan en rechazo.
+- ``errores_llm``: llamadas que fallaron (clave, id del modelo o red).
 - ``latencia_p50_ms`` y ``latencia_p95_ms``.
 - Tokens promedio por consulta y costo estimado de 10.000 consultas al mes.
 
@@ -18,6 +19,7 @@ from __future__ import annotations
 import csv
 import json
 import os
+import urllib.request
 from dataclasses import replace
 from pathlib import Path
 
@@ -43,6 +45,25 @@ def _modelos_listos(modelos: list[dict]) -> tuple[list[dict], list[str]]:
     return listos, omitidos
 
 
+def listar_modelos(ruta_modelos: str | None = None) -> dict[str, list[str] | str]:
+    """Pide ``GET {base_url}/models`` a cada proveedor con clave, para confirmar los ids."""
+    out: dict[str, list[str] | str] = {}
+    for m in json.loads(Path(ruta_modelos or MODELOS).read_text(encoding="utf-8")):
+        clave = os.environ.get(m.get("clave_env") or "", "")
+        if m.get("clave_env") and not clave:
+            out[m["nombre"]] = f"falta la variable {m['clave_env']}"
+            continue
+        req = urllib.request.Request(m["base_url"].rstrip("/") + "/models",
+                                     headers={"Authorization": f"Bearer {clave}"})
+        try:
+            with urllib.request.urlopen(req, timeout=20) as r:
+                datos = json.loads(r.read())
+            out[m["nombre"]] = sorted(x["id"] for x in datos.get("data", []))
+        except Exception as e:  # noqa: BLE001 - se informa y se sigue con el siguiente
+            out[m["nombre"]] = f"error: {type(e).__name__}: {e}"
+    return out
+
+
 def comparar(cfg: Config, ruta_modelos: str | None = None, ruta_preguntas: str | None = None,
              salida: str | None = None) -> dict:
     modelos, omitidos = _modelos_listos(json.loads(Path(ruta_modelos or MODELOS).read_text(encoding="utf-8")))
@@ -52,10 +73,11 @@ def comparar(cfg: Config, ruta_modelos: str | None = None, ruta_preguntas: str |
         motor = Motor(replace(cfg, llm_base_url=m["base_url"], llm_modelo=m["modelo"],
                               llm_api_key=os.environ.get(m.get("clave_env") or "", "")))
         lat, t_in, t_out = [], [], []
-        generadas = validas = rechazos_ok = rechazos = 0
+        generadas = validas = rechazos_ok = rechazos = errores = 0
         for q in preguntas:
             r = motor.responder(q["pregunta"], filtros=q.get("filtros"))
             lat.append(r.latencia_ms)
+            errores += any(w.startswith("LLM no disponible") for w in r.advertencias)
             if q.get("rechazo"):
                 rechazos += 1
                 rechazos_ok += r.modo == "rechazo" or r.respuesta.startswith("No hay dato publicado")
@@ -76,6 +98,8 @@ def comparar(cfg: Config, ruta_modelos: str | None = None, ruta_preguntas: str |
             "id": m["modelo"],
             "citas_validas": round(validas / generadas, 3) if generadas else None,
             "rechazo_correcto": round(rechazos_ok / rechazos, 3) if rechazos else None,
+            # Llamadas fallidas (clave, id o red): si no es 0, las métricas no valen.
+            "errores_llm": errores,
             "latencia_p50_ms": int(np.percentile(lat, 50)),
             "latencia_p95_ms": int(np.percentile(lat, 95)),
             "tokens_entrada_prom": round(prom_in),

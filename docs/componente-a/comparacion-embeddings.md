@@ -72,10 +72,10 @@ Tiempos tomados del registro de corridas de la ingesta (`rag/datos/indice/corrid
 
 | Nº | Hallazgo | Qué se hace |
 | --- | --- | --- |
-| H7 | P10 y P24 fallan con los tres modelos: la brecha es de vocabulario de la CIIU, no del modelo (H2, H3) | Se vuelve a medir cuando entre el texto del Company Profile de B |
+| H7 | P10 y P24 fallan con los tres modelos: la brecha es de vocabulario de la CIIU, no del modelo (H2, H3) | Medido con las 57 fichas de B: P24 sigue fallando porque Favorita está en Sangolquí ([evaluacion.md](evaluacion.md#con-el-company-profile)) |
 | H8 | Los modelos semánticos superan a la línea base en orden (MRR +0,06 y +0,10) y en rechazo | El RAG semántico aporta frente a la búsqueda por palabras |
 | H9 | Con umbrales recalibrados, BGE-M3 pasa de 7/8 a 8/8 rechazos sin perder aciertos | Los umbrales se calibran cada vez que cambia el modelo |
-| H10 | S04 (certificaciones de Holcim) se responde con ambos modelos semánticos y no con el léxico | Revisar la salvaguarda de campo pedido (H6) para que no dependa del modelo |
+| H10 | S04 (certificaciones de Holcim) se responde con ambos modelos semánticos y no con el léxico | Resuelto: si la pregunta nombra a una empresa, el campo se busca solo en sus fragmentos ([evaluacion.md](evaluacion.md#con-el-company-profile)) |
 | H11 | La diferencia de acierto@5 entre MiniLM y BGE-M3 es una sola pregunta (P19) de 38 | Con este corpus los dos modelos son equivalentes en acierto |
 | H12 | MiniLM corta la entrada en 128 tokens; los fragmentos son de 350 palabras | Con las fichas actuales, cortas, no afecta. Con el texto de las webs, MiniLM perdería contenido |
 

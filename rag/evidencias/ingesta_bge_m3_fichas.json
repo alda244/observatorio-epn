@@ -1,0 +1,12 @@
+{
+  "fecha": "2026-11-24T23:48:05+00:00",
+  "modelo": "BAAI/bge-m3",
+  "documentos_fuente": 554,
+  "nuevos": 554,
+  "actualizados": 0,
+  "sin_cambios": 0,
+  "eliminados": 0,
+  "fragmentos_indexados": 554,
+  "fragmentos_totales": 554,
+  "segundos": 339.58
+}

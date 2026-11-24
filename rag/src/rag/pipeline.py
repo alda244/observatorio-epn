@@ -12,10 +12,16 @@ import time
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 
-from rag.cliente_b import ClienteBArchivo
+from rag.cliente_b import crear_cliente_b
 from rag.config import Config
 from rag.indice import crear_almacen, crear_embedder, fragmentar
-from rag.ingesta import Documento, cargar_catalogo_ciiu, cargar_documentos, ficha_identificacion
+from rag.ingesta import (
+    Documento,
+    cargar_catalogo_ciiu,
+    cargar_documentos,
+    ficha_company_profile,
+    ficha_identificacion,
+)
 
 
 @dataclass
@@ -34,7 +40,12 @@ class ReporteIngesta:
 
 def recolectar(cfg: Config) -> list[Documento]:
     ciiu = cargar_catalogo_ciiu(cfg.catalogo_ciiu)
-    docs = [ficha_identificacion(e, ciiu) for e in ClienteBArchivo(cfg.fuente_empresas).empresas()]
+    cliente = crear_cliente_b(cfg)
+    empresas = cliente.empresas()
+    docs = [ficha_identificacion(e, ciiu) for e in empresas]
+    fichas = cliente.fichas()
+    docs += [d for e in empresas if e["expediente"] in fichas
+             if (d := ficha_company_profile(e, fichas[e["expediente"]]))]
     docs += cargar_documentos(cfg.documentos)
     ids = [d.doc_id for d in docs]
     if len(ids) != len(set(ids)):

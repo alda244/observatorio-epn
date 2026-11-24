@@ -40,6 +40,7 @@ def cfg(tmp_path: Path) -> Config:
     )
     return Config(
         fuente_empresas=DATOS / "empresas.csv",
+        fichas=tmp_path / "sin_fichas.csv",  # las fichas se prueban en test_cliente_b.py
         catalogo_ciiu=CIIU,
         documentos=docs,
         indice=tmp_path / "indice",

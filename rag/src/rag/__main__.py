@@ -3,7 +3,7 @@
     python -m rag ingesta [--reconstruir]
     python -m rag consulta "¿Qué empresas desarrollan software en Cuenca?" [--grupo TEC] [--json]
     python -m rag evaluar [--salida rag/evidencias/eval.json]
-    python -m rag comparar-llm [--modelos rag/evaluacion/modelos_llm.json] [--salida rag/evidencias/llm]
+    python -m rag comparar-llm [--modelos rag/evaluacion/modelos_llm.json] [--salida rag/evidencias/llm] [--listar]
 """
 
 from __future__ import annotations
@@ -13,7 +13,7 @@ import json
 import sys
 from dataclasses import asdict
 
-from rag.config import Config
+from rag.config import Config, cargar_env
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -39,8 +39,10 @@ def main(argv: list[str] | None = None) -> int:
     pl.add_argument("--modelos", default=None)
     pl.add_argument("--preguntas", default=None)
     pl.add_argument("--salida", default=None, help="Ruta base; se escriben .json y .csv")
+    pl.add_argument("--listar", action="store_true", help="Solo lista los ids que ofrece cada proveedor")
 
     a = p.parse_args(argv)
+    cargar_env()
     cfg = Config()
 
     if a.cmd == "ingesta":
@@ -75,8 +77,11 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     if a.cmd == "comparar-llm":
-        from rag.comparar_llm import comparar
+        from rag.comparar_llm import comparar, listar_modelos
 
+        if a.listar:
+            print(json.dumps(listar_modelos(a.modelos), ensure_ascii=False, indent=2))
+            return 0
         print(json.dumps(comparar(cfg, a.modelos, a.preguntas, a.salida), ensure_ascii=False, indent=2))
         return 0
     return 1

@@ -22,8 +22,8 @@ flowchart LR
 
 | Etapa | Qué hace | Código |
 | --- | --- | --- |
-| Cliente de B | Lee empresas y documentos de B; hoy usa `piloto_500.csv` con la forma de `GET /empresas` | `rag/src/rag/cliente_b` |
-| Ingesta | Arma una ficha de texto por empresa, sin cifras, y guarda fuente, fecha y hash | `rag/src/rag/ingesta` |
+| Cliente de B | Lee empresas y fichas de B: de la API (`GET /v1/empresas`) o, sin red, de `piloto_500.csv` y `etl/seed/profiles.csv` con la misma forma | `rag/src/rag/cliente_b` |
+| Ingesta | Arma una ficha de identificación por empresa, sin cifras, y un documento del Company Profile por cada ficha no pendiente; guarda fuente, fecha y hash | `rag/src/rag/ingesta` |
 | Índice | Fragmenta, calcula embeddings y guarda los vectores | `rag/src/rag/indice` |
 | Pipeline | Ejecuta la ingesta solo sobre lo que cambió (por hash) | `rag/src/rag/pipeline.py` |
 | Motor | Combina búsqueda densa, BM25 y nombre de empresa con RRF; aplica la salvaguarda y arma la respuesta | `rag/src/rag/motor` |
@@ -36,7 +36,7 @@ flowchart LR
 | --- | --- |
 | Toda afirmación lleva cita | Cada fuente muestra empresa, URL y fecha de corte. Si el LLM responde sin citas válidas, la respuesta se descarta |
 | Sin respaldo, no hay respuesta | Coseno ≥ 0,65, o coseno ≥ 0,30 con coincidencia léxica. Si no se cumple: "No hay dato publicado" |
-| Campo pedido con fuente | Si la pregunta pide misión, historia, directivos, contacto, certificaciones o productos y ningún fragmento lo contiene: "No hay dato publicado" |
+| Campo pedido con fuente | Si la pregunta pide misión, historia, directivos, contacto, certificaciones o productos y ningún fragmento lo contiene: "No hay dato publicado". Si la pregunta nombra a una empresa, el campo se busca solo en sus fragmentos |
 | Las cifras vienen de B | Ventas y empleados se piden a B al responder |
 | Empleados con advertencia | Si la empresa tiene `alerta_empleados`, la respuesta lo advierte |
 | Texto marcado por origen | `literal` si se copió de la fuente, `derivado` si se redactó a partir de ella |
@@ -75,12 +75,23 @@ python -m rag ingesta
 
 La base necesita la extensión `vector`, que instala un administrador con `CREATE EXTENSION vector;`.
 
+Con la API de B en local (Docker Desktop encendido):
+
+```powershell
+docker compose up -d --build           # o .\scripts\start-local.cmd; API en http://127.0.0.1:8001
+$env:RAG_FUENTE_B = "http"
+python -m rag ingesta --reconstruir
+```
+
 | Variable | Defecto | Uso |
 | --- | --- | --- |
 | `RAG_EMBEDDINGS` | `paraphrase-multilingual-MiniLM-L12-v2` | Modelo de embeddings; `BAAI/bge-m3` en producción |
 | `RAG_UMBRAL_SIMILITUD`, `RAG_UMBRAL_FUERTE` | 0,30 / 0,65 | Umbrales de respaldo |
 | `RAG_TOP_K` | 5 | Fragmentos por respuesta |
 | `RAG_ALMACEN`, `RAG_PG_DSN` | `archivos`, vacío | Almacén del índice |
+| `RAG_FUENTE_B` | `archivo` | `http` para leer de la API de B |
+| `RAG_API_B` | `http://127.0.0.1:8001` | URL de la API de B |
+| `RAG_FICHAS` | `etl/seed/profiles.csv` | Fichas que usa el cliente de archivo |
 | `RAG_LLM_BASE_URL`, `RAG_LLM_MODELO`, `RAG_LLM_API_KEY` | vacío | Activan la generación con LLM; sin ellos la respuesta es extractiva |
 
 ## Diferencias entre el prototipo y la versión final
@@ -88,6 +99,6 @@ La base necesita la extensión `vector`, que instala un administrador con `CREAT
 | Prototipo | Versión final |
 | --- | --- |
 | MiniLM multilingüe (384 dimensiones) | BGE-M3 (1.024 dimensiones) |
-| Empresas desde `piloto_500.csv` | API de B |
-| Solo la descripción CIIU de cada empresa | Documentos del Company Profile |
+| Empresas desde `piloto_500.csv` o desde la API de B en local | API de B desplegada |
+| Descripción CIIU y 54 fichas del Company Profile | Fichas de las 500 empresas del piloto |
 | Respuesta extractiva | LLM elegido en la comparación |

@@ -37,7 +37,7 @@ from datetime import datetime, timezone
 
 import numpy as np
 
-from rag.cliente_b import ClienteB, ClienteBArchivo
+from rag.cliente_b import ClienteB, crear_cliente_b
 from rag.config import Config
 from rag.indice import Embedder, Fragmento, crear_almacen, crear_embedder
 
@@ -57,6 +57,13 @@ STOP = set(
     "a al de del el la las los lo un una unos unas y o en por para con sin que qué cual cuál "
     "cuales cuáles es son hay se su sus como cómo donde dónde quien quién quienes me mi "
     "empresa empresas compañía compañías".split()
+)
+
+
+# Partes de la razón social que no identifican a la empresa.
+SIGLAS_SOCIETARIAS = set(
+    "sa cia ltda cl ca sas sociedad anonima anónima compania compañía corporacion corporación "
+    "ecuador del grupo industrial comercial".split()
 )
 
 
@@ -129,7 +136,7 @@ class Motor:
         self.embedder = embedder or crear_embedder(cfg.modelo_embeddings)
         self.bm25 = BM25([f"{f.titulo} {f.texto}" for f in self.frag])
         self.bm25_nombre = BM25([f.titulo for f in self.frag])
-        self.cliente_b = cliente_b or ClienteBArchivo(cfg.fuente_empresas)
+        self.cliente_b = cliente_b or crear_cliente_b(cfg)
         self.lugares = self._lugares()
 
     def _lugares(self) -> dict[str, tuple[str, str]]:
@@ -226,7 +233,19 @@ class Motor:
 
     @staticmethod
     def _campo_sin_respaldo(pregunta: str, resultados: list[Resultado]) -> str | None:
-        """Nombre del campo pedido que no aparece en ningún fragmento recuperado."""
+        """Nombre del campo pedido que no aparece en ningún fragmento recuperado.
+
+        Si la pregunta nombra a la primera empresa recuperada ("¿cuál es el
+        teléfono de Saludsa?"), el campo se busca solo en los fragmentos de esa
+        empresa: el teléfono de otra no la respalda.
+        """
+        if not resultados:
+            return None
+        primera = resultados[0].fragmento
+        exp = primera.metadatos.get("expediente")
+        nombre = set(tokens(primera.titulo)) - SIGLAS_SOCIETARIAS
+        if exp and nombre & set(tokens(pregunta)):
+            resultados = [r for r in resultados if r.fragmento.metadatos.get("expediente") == exp]
         texto = " ".join(r.fragmento.texto for r in resultados)
         for campo, (pide, evidencia) in CAMPOS.items():
             if re.search(pide, pregunta, re.I) and not re.search(evidencia, texto, re.I):

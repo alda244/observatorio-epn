@@ -6,9 +6,12 @@ Fuentes del prototipo:
    identificación a partir de los campos oficiales de la SCVS. El texto
    **no contiene cifras**: las cifras se consultan a B en el momento de
    responder (salvaguarda "cifras solo de la API de B").
-2. Documentos de texto en ``rag/datos/documentos/`` (Markdown con
-   encabezado de metadatos): reportes del Observatorio y, cuando B los
-   exponga, textos del Company Profile.
+2. Fichas del Company Profile (vía ``cliente_b``): lema, descripción,
+   productos y contacto corporativo tomados de la web oficial de cada
+   empresa. Un documento por ficha, citado con la URL oficial y la fecha de
+   captura. Las fichas ``pendiente`` no entran.
+3. Documentos de texto en ``rag/datos/documentos/`` (Markdown con
+   encabezado de metadatos): reportes del Observatorio.
 
 Cada documento lleva ``fuente_url``, ``fuente_tipo``, ``fecha`` y el
 ``sha256`` de su texto; el hash permite que la ingesta sea idempotente.
@@ -105,6 +108,48 @@ def ficha_identificacion(empresa: dict, ciiu: dict[str, str]) -> Documento:
             "provincia": empresa["provincia"],
             "ciudad": empresa["ciudad"],
             "ciiu": codigo,
+        },
+    )
+
+
+def ficha_company_profile(empresa: dict, ficha: dict) -> Documento | None:
+    """Redacta el documento del Company Profile de una empresa a partir de su ficha.
+
+    Se cita la URL oficial; la URL de cada campo queda en ``metadatos["fuentes"]``.
+    """
+    if ficha.get("estado") == "pendiente":
+        return None
+    lineas = [empresa["nombre"].rstrip(".") + "."]
+    for etiqueta, campo in (("Lema", "tagline"), ("Descripción", "descripcion"),
+                            ("Productos y servicios", "productos_servicios")):
+        if ficha.get(campo):
+            lineas.append(f"{etiqueta}: {ficha[campo].rstrip('.…')}.")
+    contacto = [v for v in (ficha.get("correo_corporativo"), ficha.get("telefono")) if v]
+    if contacto:
+        lineas.append(f"Contacto corporativo: {'; '.join(contacto)}.")
+    if ficha.get("direccion"):
+        lineas.append(f"Dirección: {ficha['direccion']}.")
+    if ficha.get("url_oficial"):
+        lineas.append(f"Sitio web oficial: {ficha['url_oficial']}")
+    if len(lineas) == 1:
+        return None
+    return Documento(
+        doc_id=f"perfil:{empresa['expediente']}",
+        titulo=empresa["nombre"],
+        texto=normalizar("\n".join(lineas)),
+        fuente_url=ficha.get("url_oficial") or empresa["fuente_url"],
+        fuente_tipo="company_profile",
+        fecha=ficha.get("fecha_captura") or empresa["fecha_corte"],
+        origen="literal",
+        metadatos={
+            "expediente": empresa["expediente"],
+            "grupo": empresa["grupo"],
+            "tamano": empresa["tamano_derivado"],
+            "provincia": empresa["provincia"],
+            "ciudad": empresa["ciudad"],
+            "ciiu": empresa["ciiu"],
+            "estado_ficha": ficha.get("estado"),
+            "fuentes": ficha.get("fuentes") or {},
         },
     )
 

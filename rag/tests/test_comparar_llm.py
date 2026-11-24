@@ -11,7 +11,7 @@ from pathlib import Path
 import pytest
 from test_pipeline import cfg  # noqa: F401 - fixture compartida
 
-from rag.comparar_llm import comparar
+from rag.comparar_llm import comparar, listar_modelos
 from rag.config import Config
 from rag.indice import EmbedderHash
 from rag.pipeline import ingerir
@@ -29,6 +29,12 @@ class _LLMFalso(BaseHTTPRequestHandler):
         self.send_header("Content-Type", "application/json")
         self.end_headers()
         self.wfile.write(json.dumps(datos).encode())
+
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header("Content-Type", "application/json")
+        self.end_headers()
+        self.wfile.write(json.dumps({"data": [{"id": "modelo-falso"}]}).encode())
 
     def log_message(self, *a):
         pass
@@ -68,3 +74,48 @@ def test_comparar_dos_modelos(cfg: Config, servidor: str, tmp_path: Path, monkey
     assert res["omitidos"] == ["sin id: falta el id del modelo"]
     with (tmp_path / "llm.csv").open(encoding="utf-8", newline="") as f:
         assert len(list(csv.DictReader(f))) == 4  # 2 modelos × 2 preguntas
+
+
+def test_cuenta_errores_del_proveedor(cfg: Config, tmp_path: Path, monkeypatch):  # noqa: F811
+    """Una clave o un id mal puestos no deben pasar como respuestas extractivas."""
+    monkeypatch.setattr("rag.motor.crear_embedder", lambda n: EmbedderHash(512))
+    ingerir(cfg)
+    modelos = tmp_path / "modelos.json"
+    modelos.write_text(json.dumps([
+        {"nombre": "caido", "base_url": "http://127.0.0.1:9/v1", "modelo": "x", "clave_env": "",
+         "precio_entrada": 0, "precio_salida": 0},
+    ]), encoding="utf-8")
+    preguntas = tmp_path / "preguntas.json"
+    preguntas.write_text(json.dumps([
+        {"id": "P1", "pregunta": "¿A qué se dedica Telconet?", "esperados": ["72951"]},
+    ]), encoding="utf-8")
+    [caido] = comparar(cfg, str(modelos), str(preguntas))["modelos"]
+    assert caido["errores_llm"] == 1
+
+
+def test_listar_modelos(servidor: str, tmp_path: Path, monkeypatch):
+    modelos = tmp_path / "modelos.json"
+    modelos.write_text(json.dumps([
+        {"nombre": "local", "base_url": servidor, "modelo": "x", "clave_env": ""},
+        {"nombre": "sin clave", "base_url": servidor, "modelo": "x", "clave_env": "CLAVE_QUE_NO_EXISTE"},
+    ]), encoding="utf-8")
+    monkeypatch.delenv("CLAVE_QUE_NO_EXISTE", raising=False)
+    res = listar_modelos(str(modelos))
+    assert res["local"] == ["modelo-falso"]
+    assert res["sin clave"] == "falta la variable CLAVE_QUE_NO_EXISTE"
+
+
+def test_cargar_env_no_pisa_la_sesion(tmp_path: Path, monkeypatch):
+    from rag.config import cargar_env
+
+    env = tmp_path / ".env"
+    env.write_text('# comentario\nCLAVE_A="desde-archivo"\nCLAVE_B=desde-archivo\nCLAVE_C=\n', encoding="utf-8")
+    monkeypatch.delenv("CLAVE_A", raising=False)
+    monkeypatch.setenv("CLAVE_B", "desde-sesion")
+    monkeypatch.delenv("CLAVE_C", raising=False)
+    cargar_env(env)
+    import os
+    assert os.environ["CLAVE_A"] == "desde-archivo"
+    assert os.environ["CLAVE_B"] == "desde-sesion"
+    assert "CLAVE_C" not in os.environ
+    monkeypatch.delenv("CLAVE_A")

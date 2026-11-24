@@ -63,7 +63,8 @@ def evaluar(cfg: Config, ruta_preguntas: str | None = None, salida: str | None =
     rechazos = {"fuera_de_alcance": [0, 0], "sin_dato": [0, 0]}  # [correctos, total]
     for q in preguntas:
         r = motor.responder(q["pregunta"], filtros=q.get("filtros"))
-        recuperados = [c["frag_id"].split("#")[0].removeprefix("empresa:") for c in r.citas]
+        # empresa:384 y perfil:384 cuentan como la misma empresa.
+        recuperados = list(dict.fromkeys(c["frag_id"].split("#")[0].split(":", 1)[-1] for c in r.citas))
         if q.get("rechazo"):
             tipo = q.get("tipo", "fuera_de_alcance")
             ok = r.modo == "rechazo"

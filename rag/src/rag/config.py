@@ -14,6 +14,24 @@ from pathlib import Path
 RAIZ_REPO = Path(__file__).resolve().parents[3]
 
 
+def cargar_env(ruta: Path = RAIZ_REPO / "rag/.env") -> None:
+    """Carga ``clave=valor`` de ``rag/.env`` sin pisar variables ya definidas.
+
+    El archivo está en ``.gitignore``: las claves de los proveedores nunca
+    entran al repositorio. La plantilla es ``rag/.env.example``.
+    """
+    if not ruta.exists():
+        return
+    for linea in ruta.read_text(encoding="utf-8").splitlines():
+        linea = linea.strip()
+        if not linea or linea.startswith("#") or "=" not in linea:
+            continue
+        clave, valor = linea.split("=", 1)
+        valor = valor.strip().strip('"').strip("'")
+        if valor:
+            os.environ.setdefault(clave.strip(), valor)
+
+
 def _env(nombre: str, defecto: str) -> str:
     return os.environ.get(nombre, defecto)
 
@@ -27,6 +45,13 @@ class Config:
             _env("RAG_FUENTE_EMPRESAS", str(RAIZ_REPO / "etl/datos/universo/2025/piloto_500.csv"))
         )
     )
+    # Fichas del Company Profile que publica B (las usa el cliente de archivo).
+    fichas: Path = field(
+        default_factory=lambda: Path(_env("RAG_FICHAS", str(RAIZ_REPO / "etl/seed/profiles.csv")))
+    )
+    # Cliente de B: "archivo" (exportación de B, sin red) o "http" (API de B).
+    fuente_b: str = field(default_factory=lambda: _env("RAG_FUENTE_B", "archivo"))
+    api_b_url: str = field(default_factory=lambda: _env("RAG_API_B", "http://127.0.0.1:8001"))
     catalogo_ciiu: Path = field(
         default_factory=lambda: Path(
             _env("RAG_CATALOGO_CIIU", str(RAIZ_REPO / "etl/datos/crudo/2025/bi_ciiu.csv"))

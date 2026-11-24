@@ -34,6 +34,41 @@ python -m rag ingesta --reconstruir
 python -m rag evaluar --salida rag/evidencias/eval50_bge_m3.json
 ```
 
+## Con el Company Profile
+
+El 24-nov-2026 B publicó una semilla con 57 fichas del Company Profile ([`etl/seed/profiles.csv`](../../etl/seed/profiles.csv)). El cliente de archivo de A las lee con la forma de `ficha` de la API, y la ingesta agrega un documento `perfil:{expediente}` por cada ficha no pendiente: 54 documentos, citados con la URL oficial y la fecha de captura. El índice pasa de 500 a 554 documentos; con BGE-M3, la ingesta tarda 340 s en CPU.
+
+Las fichas destaparon un error de la salvaguarda de campo pedido: buscaba el campo en todos los fragmentos recuperados, así que el teléfono de Quifatex respaldaba la pregunta por el teléfono de Saludsa. Ahora, si la pregunta nombra a una empresa, el campo se busca solo en sus fragmentos. Con esa corrección, BGE-M3 sin fichas ya rechaza S04 (H10 de [comparacion-embeddings.md](comparacion-embeddings.md)).
+
+| Métrica | Léxico | Léxico con fichas | BGE-M3 | BGE-M3 con fichas |
+| --- | --- | --- | --- | --- |
+| Acierto@5 | 0,921 | 0,921 | 0,921 | 0,921 |
+| MRR | 0,784 | **0,818** | 0,882 | 0,882 |
+| Rechazo correcto | 0,875 | 0,500 | **1,000** | 0,875 |
+| Sin dato correcto | 1,000 | 1,000 | **1,000** | **1,000** |
+| Falsos rechazos | 0 | 0 | 0 | 0 |
+| Actividad y lugar | 5/6 | **6/6** | 5/6 | 5/6 |
+
+BGE-M3 usa los umbrales calibrados (0,40 / 0,70) y las cuatro columnas usan el mismo código. La columna BGE-M3 mejora la evaluación documentada en `sin_dato` (de 0,750 a 1,000) solo por la corrección de la salvaguarda.
+
+| Nº | Hallazgo | Qué se hace |
+| --- | --- | --- |
+| H13 | Las 50 preguntas se escribieron sobre la descripción CIIU; con fichas para 54 de 500 empresas, acierto@5 y MRR de BGE-M3 no cambian | Agregar preguntas `perfil` que solo se responden con la ficha |
+| H14 | "Supermercados en Quito" sigue fallando: la ficha de Favorita dice "supermercados", pero la empresa está en Sangolquí; las de Quito con CIIU G4711 aún no tienen ficha | Se vuelve a medir cuando B complete las fichas del piloto |
+| H15 | "¿Qué empresas tienen supermercados?", sin ciudad, ahora devuelve primero la ficha de Favorita | Confirma H2: el texto de la web cubre el vocabulario que la CIIU no tiene |
+| H16 | El texto publicitario de las webs acerca preguntas fuera de alcance: con BGE-M3, "dame consejos para bajar de peso" se responde con la ficha de Farcomed; con el léxico se responden cuatro de ocho | Recalibrar los umbrales con el corpus con fichas y evaluar una regla más estricta para los fragmentos `perfil` |
+| H17 | El teléfono y la web de Telconet ya se responden desde su ficha (CU-05) | El caso deja de ser solo `sin_dato` |
+
+Evidencias: [`eval50_hash_fichas.json`](../../rag/evidencias/eval50_hash_fichas.json), [`eval50_bge_m3_salvaguarda.json`](../../rag/evidencias/eval50_bge_m3_salvaguarda.json), [`eval50_bge_m3_fichas.json`](../../rag/evidencias/eval50_bge_m3_fichas.json) e [`ingesta_bge_m3_fichas.json`](../../rag/evidencias/ingesta_bge_m3_fichas.json).
+
+```powershell
+$env:PYTHONPATH = "rag/src"
+$env:RAG_EMBEDDINGS = "BAAI/bge-m3"
+$env:RAG_UMBRAL_SIMILITUD = "0.40"; $env:RAG_UMBRAL_FUERTE = "0.70"
+python -m rag ingesta --reconstruir     # RAG_FICHAS apunta a etl/seed/profiles.csv por defecto
+python -m rag evaluar --salida rag/evidencias/eval50_bge_m3_fichas.json
+```
+
 ## Prototipo con 30 preguntas
 
 Primera evaluación ([`preguntas_prototipo.json`](../../rag/evaluacion/preguntas_prototipo.json)).
@@ -68,23 +103,38 @@ Primera evaluación ([`preguntas_prototipo.json`](../../rag/evaluacion/preguntas
 
 Se comparan varios modelos con las mismas preguntas antes de elegir uno. El modelo elegido se registra en un ADR que completa el [ADR 0004](../adr/0004-llm-interfaz-openai.md).
 
+La primera ronda usa cuatro proveedores: Ollama (local), Anthropic, OpenAI y Google. Todos se llaman por la interfaz compatible con OpenAI ([ADR 0004](../adr/0004-llm-interfaz-openai.md)); Anthropic, mediante su capa de compatibilidad con OpenAI.
+
+| Paso | Comando |
+| --- | --- |
+| 1. Instalar Ollama y descargar el modelo | `winget install Ollama.Ollama`, luego `ollama pull qwen2.5:7b` |
+| 2. Cargar una clave por proveedor | Copiar `rag/.env.example` como `rag/.env` y completar `ANTHROPIC_API_KEY`, `OPENAI_API_KEY` y `GEMINI_API_KEY` |
+| 3. Confirmar los ids que ofrece cada proveedor | `python -m rag comparar-llm --listar` |
+| 4. Correr la comparación | `python -m rag comparar-llm --salida rag/evidencias/llm` |
+
 ```powershell
 $env:PYTHONPATH = "rag/src"
-$env:OPENAI_API_KEY = "..."   # una variable por proveedor, según modelos_llm.json
+$env:RAG_EMBEDDINGS = "BAAI/bge-m3"
+$env:RAG_UMBRAL_SIMILITUD = "0.40"; $env:RAG_UMBRAL_FUERTE = "0.70"
+python -m rag comparar-llm --listar
 python -m rag comparar-llm --salida rag/evidencias/llm
 ```
 
-Antes de correrlo se completa el id de cada modelo en [`modelos_llm.json`](../../rag/evaluacion/modelos_llm.json). El comando omite los modelos sin id o sin clave, y escribe `llm.json` con las métricas y `llm.csv` con todas las respuestas para la revisión manual.
+El comando omite los modelos sin id o sin clave, y escribe `llm.json` con las métricas y `llm.csv` con todas las respuestas para la revisión manual. `errores_llm` cuenta las llamadas fallidas (clave, id o red); si no es 0, las métricas de ese modelo no son válidas. `rag/.env` está en `.gitignore`, así que las claves nunca entran al repositorio; una variable definida en la sesión de PowerShell tiene prioridad sobre el archivo.
 
-| Modelo | Proveedor | Entrada (USD / 1M tokens) | Salida (USD / 1M tokens) | Costo mensual en el pico |
-| --- | --- | --- | --- | --- |
-| Amazon Nova Lite | Bedrock | 0,06 | 0,24 | 2,76 |
-| GPT-6 Luna | OpenAI | 0,10 | 0,50 | 5,00 |
-| Gemini 3.1 Flash-Lite | Google | 0,25 | 1,50 | 13,50 |
-| Gemini 3.5 Flash-Lite | Google | 0,30 | 2,50 | 19,00 |
-| Claude Haiku 4.5 (referencia) | Bedrock | 1,00 | 5,00 | 50,00 |
+| Modelo | Proveedor | Id | Entrada (USD / 1M tokens) | Salida (USD / 1M tokens) | Costo mensual en el pico |
+| --- | --- | --- | --- | --- | --- |
+| Qwen2.5 7B | Ollama (local) | `qwen2.5:7b` | 0 | 0 | 0 (solo desarrollo) |
+| Claude Haiku 4.5 | Anthropic | `claude-haiku-4-5` | 1,00 | 5,00 | 50,00 |
+| GPT-6 Luna | OpenAI | `gpt-6-luna` | 0,10 | 0,50 | 5,00 |
+| Gemini 3.1 Flash-Lite | Google | `gemini-3.1-flash-lite` | 0,25 | 1,50 | 13,50 |
+| Gemini 3.5 Flash-Lite | Google | `gemini-3.5-flash-lite` | 0,30 | 2,50 | 19,00 |
+| Amazon Nova Lite | Bedrock | Por completar | 0,06 | 0,24 | 2,76 |
+| Claude Haiku 4.5 | Bedrock | Por completar | 1,00 | 5,00 | 50,00 |
 
-Precios consultados el 03-nov-2026; se confirman en las páginas oficiales antes de contratar. El pico supone 10.000 consultas al mes, con unos 3.000 tokens de entrada y 400 de salida por consulta.
+El precio y el id de Claude Haiku 4.5 se confirmaron en la documentación oficial de Anthropic el 24-nov-2026; los de OpenAI y Google, consultados el 03-nov-2026, se confirman con `--listar` y en las páginas oficiales antes de contratar. El pico supone 10.000 consultas al mes, con unos 3.000 tokens de entrada y 400 de salida por consulta.
+
+Ollama corre en el equipo de desarrollo (RTX 3050 de 4 GB y 28 GB de RAM): un modelo de 7B se reparte entre GPU y CPU, así que su latencia no es comparable con la de un servicio en la nube. Sirve para medir citas y rechazos sin costo, no para el despliegue.
 
 | Criterio | Peso | Medición |
 | --- | --- | --- |
