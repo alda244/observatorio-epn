@@ -5,7 +5,12 @@ como `rol_api`, con acceso de lectura a las vistas de `public`.
 
 ## Desarrollo local
 
-Desde la raíz, con PostgreSQL preparado según la [guía del ETL](../etl/database.md):
+Desde la raíz, `docker compose up -d --build` carga los datos de desarrollo
+y levanta la API en `http://127.0.0.1:8001/docs`. Consulta la
+[guía del ETL](../etl/database.md) para ver qué incluye la copia.
+
+Para ejecutar FastAPI directamente con `uv`, levanta la base y ejecuta la carga
+con `docker compose up -d --build etl`, y luego, desde la raíz:
 
 ```sh
 uv sync --directory api --locked

@@ -115,11 +115,14 @@ def bd(
     url: str | None = typer.Option(
         None, "--url", help="Cadena de conexión; por defecto ETL_BASE_DE_DATOS de etl/.env."
     ),
+    seed: bool = typer.Option(
+        False, "--seed", help="Carga los datos de desarrollo del repositorio."
+    ),
 ) -> None:
     """Carga en PostgreSQL lo que dejó `etl consolidar`."""
     from etl.pipeline import load as paso
 
-    paso.ejecutar(anio, url)
+    paso.ejecutar(anio, url, seed=seed)
 
 
 @app.command()
