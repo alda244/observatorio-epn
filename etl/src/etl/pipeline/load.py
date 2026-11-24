@@ -13,7 +13,7 @@ from __future__ import annotations
 
 import pandas as pd
 import trafilatura
-from sqlalchemy import Table, create_engine
+from sqlalchemy import Table, create_engine, select
 from sqlalchemy.dialects.postgresql import insert
 
 from etl import config
@@ -99,24 +99,38 @@ def documentos_de(anio: int) -> pd.DataFrame:
     return paginas
 
 
-def ejecutar(anio: int | None = None, url: str | None = None) -> dict[str, int]:
+def ejecutar(
+    anio: int | None = None, url: str | None = None, *, seed: bool = False
+) -> dict[str, int]:
     """Carga el consolidado y, si se indica un año, los documentos de ese año."""
-    consolidado = {
-        "empresa": config.ORO / "empresa.parquet",
-        "cifras_anuales": config.ORO / "cifras_anuales.parquet",
-    }
-    faltantes = [str(r) for r in consolidado.values() if not r.exists()]
+    if seed:
+        directory = config.ETL / "seed"
+        consolidado = {
+            "empresa": directory / "companies.parquet",
+            "cifras_anuales": directory / "annual-figures.parquet",
+        }
+        ruta_ficha = directory / "profiles.csv"
+    else:
+        consolidado = {
+            "empresa": config.ORO / "empresa.parquet",
+            "cifras_anuales": config.ORO / "cifras_anuales.parquet",
+        }
+        ruta_ficha = config.ORO / "ficha.csv"
+    requeridos = list(consolidado.values())
+    if seed:
+        requeridos.append(ruta_ficha)
+    faltantes = [str(ruta) for ruta in requeridos if not ruta.is_file()]
     if faltantes:
-        raise FileNotFoundError(f"Faltan {', '.join(faltantes)}: ejecute antes `etl consolidar`")
+        mensaje = "compruebe etl/seed/" if seed else "ejecute antes `etl consolidar`"
+        raise FileNotFoundError(f"Faltan {', '.join(faltantes)}: {mensaje}")
 
     tablas = {
         schema.empresa: pd.read_parquet(consolidado["empresa"]),
         schema.cifras_anuales: pd.read_parquet(consolidado["cifras_anuales"]),
     }
-    ruta_ficha = config.ORO / "ficha.csv"
     if ruta_ficha.exists():
         tablas[schema.ficha] = pd.read_csv(ruta_ficha)
-    if anio is not None:
+    if anio is not None and not seed:
         documentos = documentos_de(anio)
         if not documentos.empty:
             tablas[schema.documento] = documentos
@@ -126,6 +140,9 @@ def ejecutar(anio: int | None = None, url: str | None = None) -> dict[str, int]:
 
     resumen: dict[str, int] = {}
     with motor(url).begin() as conexion:
+        if seed and conexion.scalar(select(schema.empresa.c.expediente).limit(1)) is not None:
+            log.info("La base ya tiene empresas. Se omite la carga inicial de desarrollo.")
+            return resumen
         for tabla, df in tablas.items():
             resumen[tabla.name] = guardar(conexion, tabla, df)
     log.info("Base de datos: %s", resumen)

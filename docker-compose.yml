@@ -26,7 +26,21 @@ services:
       ETL_BASE_DE_DATOS: postgresql+psycopg://rol_datos:rol_datos@db:5432/${POSTGRES_DB:-observatorio}
     volumes:
       - ./etl/datos:/app/datos:ro
-    command: sh -ec "uv run --no-sync alembic upgrade head && uv run --no-sync etl bd --anio 2025"
+      - ./etl/seed:/app/seed:ro
+    command: sh -ec "uv run --no-sync alembic upgrade head && uv run --no-sync etl bd --seed"
+
+  api:
+    build: ./api
+    depends_on:
+      etl:
+        condition: service_completed_successfully
+    environment:
+      API_DATABASE_URL: postgresql+psycopg://rol_api:rol_api@db:5432/${POSTGRES_DB:-observatorio}
+      API_RANKING_MANIFEST: /data/MANIFEST.csv
+    volumes:
+      - ./etl/datos/crudo/MANIFEST.csv:/data/MANIFEST.csv:ro
+    ports:
+      - "127.0.0.1:8001:8001"
 
 volumes:
   datos_postgres:

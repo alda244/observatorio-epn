@@ -36,17 +36,20 @@ El script de inicialización de PostgreSQL crea los roles y concede acceso a `pu
 
 ## Ejecutar localmente
 
-Desde la raíz del repositorio, con el consolidado ya generado en `etl/datos/oro/`:
+Desde la raíz de un clon del repositorio:
 
 ```sh
 docker compose up -d --build
-docker compose logs -f etl
 ```
 
-Compose inicia PostgreSQL y espera a que acepte conexiones. Luego el servicio
-`etl` aplica la migración y carga los datos, incluidos los documentos de 2025.
-La carga termina y PostgreSQL sigue corriendo. El ETL lee los archivos del
-equipo anfitrión a través de un montaje de solo lectura.
+Compose inicia PostgreSQL, aplica las migraciones y carga la copia de desarrollo
+de `etl/seed/` si la base está vacía. La copia contiene 14.029 empresas,
+118.803 cifras anuales de 2012 a 2025 y 57 fichas. Cuando termina la carga,
+arranca la API en `http://127.0.0.1:8001/docs`. Puedes consultar el progreso con
+`docker compose logs -f etl`.
+
+La copia incluye listado y detalle. Los documentos web requieren las
+capturas locales y una carga explícita con `etl bd --anio 2025`.
 
 El ETL en Docker usa `db:5432` en la red de Compose. Si ejecutas comandos de
 base de datos con `uv` desde tu equipo, usa `etl/.env.example` como plantilla
