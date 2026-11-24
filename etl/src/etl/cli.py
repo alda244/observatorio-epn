@@ -16,7 +16,7 @@ import asyncio
 import typer
 
 from etl import config
-from etl.comun import configurar_registro, log
+from etl.common import configurar_registro, log
 
 app = typer.Typer(
     add_completion=False,
@@ -35,7 +35,7 @@ def principal(detallado: bool = OpcionDetalle) -> None:
 @app.command()
 def ranking(anio: int = OpcionAnio) -> None:
     """Ranking SCVS: de crudo a plata, con limpieza y reglas de calidad."""
-    from etl.pasos import ranking as paso
+    from etl.pipeline import ranking as paso
 
     paso.ejecutar(anio)
 
@@ -43,7 +43,7 @@ def ranking(anio: int = OpcionAnio) -> None:
 @app.command()
 def financieros(anio: int = OpcionAnio) -> None:
     """Estados financieros por ramo: de crudo a plata."""
-    from etl.pasos import financieros as paso
+    from etl.pipeline import financials as paso
 
     paso.ejecutar(anio)
 
@@ -51,7 +51,7 @@ def financieros(anio: int = OpcionAnio) -> None:
 @app.command()
 def universo(anio: int = OpcionAnio) -> None:
     """Universo, piloto y listas top 50: de plata a oro."""
-    from etl.pasos import universo as paso
+    from etl.pipeline import universe as paso
 
     paso.ejecutar(anio)
 
@@ -64,7 +64,7 @@ def urls(
     ),
 ) -> None:
     """Busca y verifica la web oficial de las empresas del piloto."""
-    from etl.pasos import urls as paso
+    from etl.pipeline import urls as paso
 
     asyncio.run(paso.ejecutar(anio, limite))
 
@@ -75,7 +75,7 @@ def web(
     limite: int | None = typer.Option(None, "--limite", "-l", help="Sitios en esta corrida."),
 ) -> None:
     """Captura portada y páginas institucionales de las webs verificadas."""
-    from etl.pasos import web as paso
+    from etl.pipeline import web as paso
 
     asyncio.run(paso.ejecutar(anio, limite))
 
@@ -83,7 +83,7 @@ def web(
 @app.command()
 def ficha(anio: int = OpcionAnio) -> None:
     """Arma el Company Profile a partir de lo capturado."""
-    from etl.pasos import ficha as paso
+    from etl.pipeline import profile as paso
 
     paso.ejecutar(anio)
 
@@ -102,7 +102,7 @@ def consolidar(
     ),
 ) -> None:
     """Junta todos los años en las tablas que publicará la API."""
-    from etl.pasos import consolidar as paso
+    from etl.pipeline import consolidate as paso
 
     paso.ejecutar(desde, anio_universo)
 
@@ -113,19 +113,19 @@ def bd(
         None, "--anio", "-a", help="Año cuyos documentos capturados se cargan también."
     ),
     url: str | None = typer.Option(
-        None, "--url", help="Cadena de conexión; por defecto ETL_BASE_DE_DATOS."
+        None, "--url", help="Cadena de conexión; por defecto ETL_BASE_DE_DATOS de etl/.env."
     ),
 ) -> None:
     """Carga en PostgreSQL lo que dejó `etl consolidar`."""
-    from etl.pasos import carga as paso
+    from etl.pipeline import load as paso
 
     paso.ejecutar(anio, url)
 
 
 @app.command()
 def documentar() -> None:
-    """Escribe datos-en-la-bd.md con el contenido real del consolidado."""
-    from etl.pasos import documentar as paso
+    """Escribe database-contents.md con el contenido real del consolidado."""
+    from etl.pipeline import document as paso
 
     paso.ejecutar()
 
@@ -137,7 +137,7 @@ def verificar(
     ),
 ) -> None:
     """Comprueba que todo lo que produjo el ETL cuadra. Falla si algo no cuadra."""
-    from etl.pasos import verificar as paso
+    from etl.pipeline import verify as paso
 
     informe = paso.ejecutar(anio)
     if informe.fallas:
@@ -153,31 +153,31 @@ def todo(
     con_bd: bool = typer.Option(False, "--con-bd", help="Carga también en PostgreSQL."),
 ) -> None:
     """Corre el pipeline completo del año."""
-    from etl.pasos import (
-        carga,
-        consolidar,
-        ficha,
-        financieros,
+    from etl.pipeline import (
+        consolidate,
+        financials,
+        load,
+        profile,
         ranking,
-        universo,
+        universe,
         urls,
-        verificar,
+        verify,
         web,
     )
 
     ranking.ejecutar(anio)
     try:
-        financieros.ejecutar(anio)
+        financials.ejecutar(anio)
     except FileNotFoundError as e:
         log.warning("Se omiten los estados financieros: %s", e)
-    universo.ejecutar(anio)
+    universe.ejecutar(anio)
     asyncio.run(urls.ejecutar(anio, limite))
     asyncio.run(web.ejecutar(anio, limite))
-    ficha.ejecutar(anio)
-    consolidar.ejecutar()
-    verificar.ejecutar(anio)
+    profile.ejecutar(anio)
+    consolidate.ejecutar()
+    verify.ejecutar(anio)
     if con_bd:
-        carga.ejecutar(anio)
+        load.ejecutar(anio)
 
 
 if __name__ == "__main__":

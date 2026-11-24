@@ -4,15 +4,14 @@
   "hasta": 2025,
   "filas": {
     "anios": 14,
-    "empresa": 14027,
-    "cifras_anuales": 118792,
-    "universo_por_anio": 118792,
+    "empresa": 14029,
+    "cifras_anuales": 118803,
     "ficha": 57
   },
   "empresas_por_grupo": {
-    "TEC": 5898,
+    "TEC": 5899,
     "G": 5210,
-    "C": 1748,
+    "C": 1749,
     "M": 654,
     "K": 517
   },
@@ -20,7 +19,7 @@
     "promedio": 8.47,
     "con_un_solo_anio": 891
   },
-  "cifras_sin_ventas": 16757,
+  "cifras_sin_ventas": 16759,
   "ingreso_total_no_reportado": 4527,
   "empresas_en_piloto": 500,
   "fichas_por_estado": {

@@ -2,7 +2,7 @@
 
 import pandas as pd
 
-from etl.pasos import web
+from etl.pipeline import web
 
 
 def objetivo():

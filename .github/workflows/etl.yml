@@ -61,7 +61,7 @@ jobs:
           --health-cmd "pg_isready -U postgres"
           --health-interval 5s --health-timeout 5s --health-retries 10
     env:
-      ETL_BASE_DE_DATOS: postgresql+psycopg://postgres:postgres@localhost:5432/observatorio
+      ETL_BASE_DE_DATOS: postgresql+psycopg://rol_datos:rol_datos@localhost:5432/observatorio
     steps:
       - uses: actions/checkout@v4
 
@@ -74,5 +74,13 @@ jobs:
       - name: Instalar dependencias
         run: uv sync --locked
 
-      - name: Crear las tablas y cargar un año de ejemplo
-        run: uv run pytest tests/test_carga.py -v
+      - name: Inicializar roles y esquemas
+        env:
+          POSTGRES_CONTAINER: ${{ job.services.postgres.id }}
+        run: docker exec -i "$POSTGRES_CONTAINER" bash -s < ../infra/postgres/init/01-esquemas.sh
+
+      - name: Migrar el esquema de B como rol_datos
+        run: uv run alembic upgrade head
+
+      - name: Verificar permisos y cargar datos de ejemplo
+        run: uv run pytest tests/test_load.py -v

@@ -4,9 +4,9 @@ Dueño: Eduardo Muzo. Lleva las descargas oficiales de la SCVS y las webs
 oficiales de las empresas hasta los datos que publica la API: carga, calidad,
 universo, Company Profile, indicadores y proyecciones.
 
-- Cómo se construye y qué falta: [guia-etl.md](guia-etl.md)
-- Modelo de datos y relaciones: [base-de-datos.md](base-de-datos.md)
-- Qué hay de verdad en las tablas: [datos-en-la-bd.md](datos-en-la-bd.md)
+- Cómo se construye y qué falta: [etl-guide.md](etl-guide.md)
+- Modelo de datos y relaciones: [database.md](database.md)
+- Qué hay de verdad en las tablas: [database-contents.md](database-contents.md)
 - Universo y piloto: [docs/universo.md](../docs/universo.md)
 - Campos de la ficha: [docs/ficha-empresa.md](../docs/ficha-empresa.md)
 
@@ -58,7 +58,7 @@ flowchart LR
 | `etl consolidar` | Oro | Junta la serie de los años con la forma de las tablas de la base, sobre el universo fijado en 2025 |
 | `etl bd` | Oro | Carga en PostgreSQL lo que dejó `consolidar` |
 | `etl verificar` | todas | Comprueba que todo cuadra: hashes, claves, filas y huérfanos. Falla si algo no cuadra |
-| `etl documentar` | Oro | Escribe `datos-en-la-bd.md` con el contenido real |
+| `etl documentar` | Oro | Escribe `database-contents.md` con el contenido real |
 | `etl todo` | — | Corre el pipeline completo de un año, consolida y verifica |
 
 ```bash
@@ -72,8 +72,9 @@ uv run pytest                             # 111 pruebas
 uv run ruff check . && uv run ruff format --check .
 ```
 
-Los pasos `urls` y `web` son los únicos que salen a internet y aceptan
-`--limite` para trabajar por tandas. El resto corre sin red.
+`urls` y `web` consultan sitios externos y aceptan `--limite` para trabajar
+por tandas. `etl bd` se conecta al PostgreSQL configurado. Consulta
+[la guía de base de datos](database.md) para la conexión local.
 
 ## Datos
 
@@ -91,8 +92,7 @@ datos/
 ├── oro/
 │   ├── AAAA/               universo, piloto y top 50 del año
 │   ├── empresa.parquet          una fila por empresa
-│   ├── cifras_anuales.parquet   una fila por empresa y año
-│   ├── universo_por_anio.parquet
+│   ├── cifras_anuales.parquet   una fila por empresa y ejercicio fiscal
 │   └── ficha.csv
 └── universo/           selección inicial del Componente A, sin cambios
 ```
@@ -117,12 +117,12 @@ coinciden, la adopción de las NIIF y la cobertura de la fuente.
 | 2014 | 52.105 | 6.083 | 332 | Sin ingreso total ni utilidad (98 % en cero) |
 | 2015–2023 | 57.705 … 134.187 | 6.552 … 12.445 | 349 … 457 | |
 | 2024 | 142.519 | 12.931 | 478 | Estados financieros pendientes de descargar |
-| 2025 | 154.687 | 14.027 | 500 | |
+| 2025 | 154.687 | 14.029 | 500 | |
 
 **El universo se fija con el ranking 2025**, como dice
-[docs/universo.md](../docs/universo.md): son 14.027 empresas y los otros años
+[docs/universo.md](../docs/universo.md): son 14.029 empresas y los otros años
 aportan su serie de cifras, no empresas nuevas. El consolidado 2012–2025 tiene
-118.792 filas de cifras, 8,5 años por empresa en promedio.
+118.803 filas de cifras, 8,5 años por empresa en promedio.
 
 De esas 14.027 empresas, solo 4.623 aparecían en el ranking 2012 y 3.293
 cumplían la delimitación ese año. La columna `en_universo_ese_anio` guarda ese

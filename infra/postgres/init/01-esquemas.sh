@@ -6,32 +6,29 @@ set -euo pipefail
 
 CLAVE_DATOS="${POSTGRES_CLAVE_DATOS:-rol_datos}"
 CLAVE_ASISTENTE="${POSTGRES_CLAVE_ASISTENTE:-rol_asistente}"
+CLAVE_API="${POSTGRES_CLAVE_API:-rol_api}"
 
-psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<SQL
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" \
+  -v clave_datos="$CLAVE_DATOS" -v clave_asistente="$CLAVE_ASISTENTE" -v clave_api="$CLAVE_API" <<'SQL'
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- Un rol por componente. Ninguno recibe permisos sobre los esquemas del otro:
 -- el Componente A obtiene los datos de B por la API.
-CREATE ROLE rol_datos      LOGIN PASSWORD '${CLAVE_DATOS}';
-CREATE ROLE rol_asistente  LOGIN PASSWORD '${CLAVE_ASISTENTE}';
+CREATE ROLE rol_datos      LOGIN PASSWORD :'clave_datos';
+CREATE ROLE rol_asistente  LOGIN PASSWORD :'clave_asistente';
 
--- Componente B: capas de la metodología Medallion.
-CREATE SCHEMA plata AUTHORIZATION rol_datos;
+-- La primera revisión usa oro. La segunda mueve los objetos a public.
 CREATE SCHEMA oro   AUTHORIZATION rol_datos;
 
--- Componente A: índice vectorial y trazabilidad.
-CREATE SCHEMA asistente AUTHORIZATION rol_asistente;
-
--- La extensión vive en public y los dos roles la usan.
-GRANT USAGE ON SCHEMA public TO rol_datos, rol_asistente;
-ALTER ROLE rol_datos     SET search_path = oro, plata, public;
-ALTER ROLE rol_asistente SET search_path = asistente, public;
+GRANT USAGE, CREATE ON SCHEMA public TO rol_datos;
+GRANT USAGE ON SCHEMA public TO rol_asistente;
+ALTER ROLE rol_datos SET search_path = public;
 
 -- Un rol de solo lectura para la API pública de B, que nunca escribe.
-CREATE ROLE rol_api LOGIN PASSWORD '${CLAVE_DATOS}';
+CREATE ROLE rol_api LOGIN PASSWORD :'clave_api';
 GRANT USAGE ON SCHEMA oro TO rol_api;
-ALTER DEFAULT PRIVILEGES FOR ROLE rol_datos IN SCHEMA oro GRANT SELECT ON TABLES TO rol_api;
-ALTER ROLE rol_api SET search_path = oro, public;
+GRANT USAGE ON SCHEMA public TO rol_api;
+ALTER ROLE rol_api SET search_path = public;
 SQL
 
-echo "Esquemas plata, oro y asistente creados con sus roles."
+echo "Roles de PostgreSQL inicializados."

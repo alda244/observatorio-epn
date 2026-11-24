@@ -1,5 +1,7 @@
 {
   "anio": 2023,
+  "cobertura_ventas_pct": 61.23,
+  "comparable": true,
   "universo_total": 12445,
   "universo_por_grupo": {
     "TEC": 5112,

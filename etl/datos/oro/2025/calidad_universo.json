@@ -2,11 +2,11 @@
   "anio": 2025,
   "cobertura_ventas_pct": 61.92,
   "comparable": true,
-  "universo_total": 14027,
+  "universo_total": 14029,
   "universo_por_grupo": {
-    "TEC": 5898,
+    "TEC": 5899,
     "G": 5210,
-    "C": 1748,
+    "C": 1749,
     "M": 654,
     "K": 517
   },
@@ -21,7 +21,7 @@
   "holdings_en_universo": 346,
   "piloto_con_alerta_empleados": 85,
   "diagnostico_empleados": {
-    "coherente": 13154,
+    "coherente": 13156,
     "error_de_registro": 547,
     "sin_nomina_propia": 326
   },

@@ -3,8 +3,8 @@
 import pandas as pd
 import pytest
 
-from etl.comun import partes_nombre, tokens_distintivos
-from etl.pasos import urls
+from etl.common import partes_nombre, tokens_distintivos
+from etl.pipeline import urls
 
 
 @pytest.mark.parametrize(

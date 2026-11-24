@@ -3,7 +3,7 @@
 import pandas as pd
 import pytest
 
-from etl.pasos import ranking
+from etl.pipeline import ranking
 
 
 @pytest.fixture

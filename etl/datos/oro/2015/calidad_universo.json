@@ -1,5 +1,7 @@
 {
   "anio": 2015,
+  "cobertura_ventas_pct": 68.49,
+  "comparable": true,
   "universo_total": 6552,
   "universo_por_grupo": {
     "G": 3202,
