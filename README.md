@@ -28,6 +28,30 @@ flowchart LR
 | `api/`, `portal-datos/` | API pública y portal de B |
 | `rag/`, `widget/` | Asistente y widget de A |
 
+## Probar la API del Componente B en local
+
+En Windows, abre Docker Desktop con contenedores Linux y ejecuta desde PowerShell,
+en la raíz del repositorio:
+
+```powershell
+.\scripts\start-local.cmd
+```
+
+En Linux, con Docker y Docker Compose disponibles, ejecuta desde la raíz:
+
+```sh
+./scripts/start-local.sh
+```
+
+El lanzador crea PostgreSQL, carga los datos de desarrollo y arranca FastAPI.
+La primera ejecución descarga las imágenes y dependencias. Cuando termine,
+abre Swagger en `http://127.0.0.1:8001/docs` y prueba el listado en
+`http://127.0.0.1:8001/v1/empresas?limit=1`.
+
+Si necesitas ver el progreso de la carga, ejecuta `docker compose logs -f etl`.
+Para detener el entorno y conservar los datos, ejecuta `docker compose down`.
+La [guía del ETL](etl/database.md) describe los datos incluidos.
+
 ## Documentación
 
 - [Arquitectura](docs/arquitectura.md)

@@ -1,2 +1,5 @@
 # Los archivos crudos se guardan byte a byte para que su SHA-256 coincida con MANIFEST.csv
 etl/datos/crudo/** -text
+
+*.sh text eol=lf
+*.cmd text eol=crlf
