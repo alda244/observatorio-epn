@@ -1,0 +1,86 @@
+name: etl
+
+# Componente B. Corre solo cuando cambia el ETL, para no bloquear al otro
+# componente. No descarga datos de la SCVS: las pruebas usan datos de ejemplo.
+on:
+  push:
+    branches: ["**"]
+    paths: ["etl/**", ".github/workflows/etl.yml"]
+  pull_request:
+    paths: ["etl/**", ".github/workflows/etl.yml"]
+  workflow_dispatch:
+
+concurrency:
+  group: etl-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: etl
+
+jobs:
+  calidad:
+    name: Lint y pruebas
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: etl/uv.lock
+
+      - name: Instalar dependencias
+        run: uv sync --locked
+
+      - name: Revisar el estilo
+        run: uv run ruff check .
+
+      - name: Revisar el formato
+        run: uv run ruff format --check .
+
+      - name: Pruebas
+        run: uv run pytest --cov=etl --cov-report=term-missing
+
+      - name: Comprobar que la línea de comandos arranca
+        run: uv run etl --help
+
+  integracion:
+    name: Pipeline contra PostgreSQL
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: observatorio
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      ETL_BASE_DE_DATOS: postgresql+psycopg://rol_datos:rol_datos@localhost:5432/observatorio
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: etl/uv.lock
+
+      - name: Instalar dependencias
+        run: uv sync --locked
+
+      - name: Inicializar roles y esquemas
+        env:
+          POSTGRES_CONTAINER: ${{ job.services.postgres.id }}
+        run: docker exec -i "$POSTGRES_CONTAINER" bash -s < ../infra/postgres/init/01-esquemas.sh
+
+      - name: Migrar el esquema de B como rol_datos
+        run: uv run alembic upgrade head
+
+      - name: Verificar permisos y cargar datos de ejemplo
+        run: uv run pytest tests/test_load.py -v

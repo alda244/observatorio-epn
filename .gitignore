@@ -5,3 +5,8 @@ rag/datos/trazas.jsonl
 __pycache__/
 .pytest_cache/
 .venv/
+.idea/
+.vscode/
+.env
+[Aa][Gg][Ee][Nn][Tt][Ss].md
+[Aa][Gg][Ee][Nn][Tt].md

@@ -1,0 +1,279 @@
+capa,comprobacion,estado,detalle
+crudo,los archivos presentes coinciden con su hash,ok,26 verificados
+plata 2010,el expediente es único,ok,
+plata 2010,el reporte de calidad coincide con el archivo,ok,"reporte 51,822 · archivo 51,822"
+plata 2010,las filas cuadran contra el archivo crudo,ok,"crudo 51,962 − idénticas 64 − conflictos 5 − cuarentena 71 = 51,822"
+plata 2010,el CIIU tiene formato válido,ok,0 inválidos
+plata 2010,no hay cifras negativas donde no pueden serlo,ok,
+plata 2010,las ventas no superan el ingreso total reportado,ok,0 filas
+plata 2010,cobertura de ventas insuficiente para delimitar,aviso,0.7 % — año no comparable
+oro 2010,el expediente es único,ok,
+oro 2010,el universo sale de la capa plata,ok,
+oro 2010,todas tienen grupo,ok,
+oro 2010,el piloto es subconjunto del universo,ok,111 empresas
+oro 2010,top 50 de TEC válido,ok,3 filas
+oro 2010,top 50 de G válido,ok,44 filas
+oro 2010,top 50 de C válido,ok,39 filas
+oro 2010,top 50 de M válido,ok,10 filas
+oro 2010,top 50 de K válido,ok,15 filas
+plata 2011,el expediente es único,ok,
+plata 2011,el reporte de calidad coincide con el archivo,ok,"reporte 54,653 · archivo 54,653"
+plata 2011,las filas cuadran contra el archivo crudo,ok,"crudo 54,726 − idénticas 67 − conflictos 5 − cuarentena 1 = 54,653"
+plata 2011,el CIIU tiene formato válido,ok,0 inválidos
+plata 2011,no hay cifras negativas donde no pueden serlo,ok,
+plata 2011,las ventas no superan el ingreso total reportado,ok,0 filas
+plata 2011,cobertura de ventas insuficiente para delimitar,aviso,5.6 % — año no comparable
+oro 2011,el expediente es único,ok,
+oro 2011,el universo sale de la capa plata,ok,
+oro 2011,todas tienen grupo,ok,
+oro 2011,el piloto es subconjunto del universo,ok,190 empresas
+oro 2011,top 50 de TEC válido,ok,19 filas
+oro 2011,top 50 de G válido,ok,50 filas
+oro 2011,top 50 de C válido,ok,50 filas
+oro 2011,top 50 de M válido,ok,49 filas
+oro 2011,top 50 de K válido,ok,22 filas
+plata 2012,el expediente es único,ok,
+plata 2012,el reporte de calidad coincide con el archivo,ok,"reporte 41,778 · archivo 41,778"
+plata 2012,las filas cuadran contra el archivo crudo,ok,"crudo 41,880 − idénticas 90 − conflictos 7 − cuarentena 5 = 41,778"
+plata 2012,el CIIU tiene formato válido,ok,0 inválidos
+plata 2012,no hay cifras negativas donde no pueden serlo,ok,
+plata 2012,las ventas no superan el ingreso total reportado,ok,0 filas
+oro 2012,el expediente es único,ok,
+oro 2012,el universo sale de la capa plata,ok,
+oro 2012,todas tienen grupo,ok,
+oro 2012,el piloto es subconjunto del universo,ok,316 empresas
+oro 2012,top 50 de TEC válido,ok,50 filas
+oro 2012,top 50 de G válido,ok,50 filas
+oro 2012,top 50 de C válido,ok,50 filas
+oro 2012,top 50 de M válido,ok,50 filas
+oro 2012,top 50 de K válido,ok,50 filas
+plata 2013,el expediente es único,ok,
+plata 2013,el reporte de calidad coincide con el archivo,ok,"reporte 46,753 · archivo 46,753"
+plata 2013,las filas cuadran contra el archivo crudo,ok,"crudo 46,856 − idénticas 91 − conflictos 7 − cuarentena 5 = 46,753"
+plata 2013,el CIIU tiene formato válido,ok,0 inválidos
+plata 2013,no hay cifras negativas donde no pueden serlo,ok,
+plata 2013,las ventas no superan el ingreso total reportado,ok,0 filas
+oro 2013,el expediente es único,ok,
+oro 2013,el universo sale de la capa plata,ok,
+oro 2013,todas tienen grupo,ok,
+oro 2013,el piloto es subconjunto del universo,ok,337 empresas
+oro 2013,top 50 de TEC válido,ok,50 filas
+oro 2013,top 50 de G válido,ok,50 filas
+oro 2013,top 50 de C válido,ok,50 filas
+oro 2013,top 50 de M válido,ok,50 filas
+oro 2013,top 50 de K válido,ok,50 filas
+plata 2014,el expediente es único,ok,
+plata 2014,el reporte de calidad coincide con el archivo,ok,"reporte 52,105 · archivo 52,105"
+plata 2014,las filas cuadran contra el archivo crudo,ok,"crudo 52,210 − idénticas 96 − conflictos 8 − cuarentena 1 = 52,105"
+plata 2014,el CIIU tiene formato válido,ok,0 inválidos
+plata 2014,no hay cifras negativas donde no pueden serlo,ok,
+plata 2014,las ventas no superan el ingreso total reportado,ok,0 filas
+oro 2014,el expediente es único,ok,
+oro 2014,el universo sale de la capa plata,ok,
+oro 2014,todas tienen grupo,ok,
+oro 2014,el piloto es subconjunto del universo,ok,332 empresas
+oro 2014,top 50 de TEC válido,ok,50 filas
+oro 2014,top 50 de G válido,ok,50 filas
+oro 2014,top 50 de C válido,ok,50 filas
+oro 2014,top 50 de M válido,ok,50 filas
+oro 2014,top 50 de K válido,ok,50 filas
+plata 2015,el expediente es único,ok,
+plata 2015,el reporte de calidad coincide con el archivo,ok,"reporte 57,705 · archivo 57,705"
+plata 2015,las filas cuadran contra el archivo crudo,ok,"crudo 57,825 − idénticas 100 − conflictos 10 − cuarentena 10 = 57,705"
+plata 2015,el CIIU tiene formato válido,ok,0 inválidos
+plata 2015,no hay cifras negativas donde no pueden serlo,ok,
+plata 2015,las ventas no superan el ingreso total reportado,ok,0 filas
+oro 2015,el expediente es único,ok,
+oro 2015,el universo sale de la capa plata,ok,
+oro 2015,todas tienen grupo,ok,
+oro 2015,el piloto es subconjunto del universo,ok,349 empresas
+oro 2015,top 50 de TEC válido,ok,50 filas
+oro 2015,top 50 de G válido,ok,50 filas
+oro 2015,top 50 de C válido,ok,50 filas
+oro 2015,top 50 de M válido,ok,50 filas
+oro 2015,top 50 de K válido,ok,50 filas
+plata 2016,el expediente es único,ok,
+plata 2016,el reporte de calidad coincide con el archivo,ok,"reporte 62,778 · archivo 62,778"
+plata 2016,las filas cuadran contra el archivo crudo,ok,"crudo 62,904 − idénticas 103 − conflictos 11 − cuarentena 12 = 62,778"
+plata 2016,el CIIU tiene formato válido,ok,0 inválidos
+plata 2016,no hay cifras negativas donde no pueden serlo,ok,
+plata 2016,las ventas no superan el ingreso total reportado,ok,0 filas
+oro 2016,el expediente es único,ok,
+oro 2016,el universo sale de la capa plata,ok,
+oro 2016,todas tienen grupo,ok,
+oro 2016,el piloto es subconjunto del universo,ok,344 empresas
+oro 2016,top 50 de TEC válido,ok,50 filas
+oro 2016,top 50 de G válido,ok,50 filas
+oro 2016,top 50 de C válido,ok,50 filas
+oro 2016,top 50 de M válido,ok,50 filas
+oro 2016,top 50 de K válido,ok,50 filas
+plata 2017,el expediente es único,ok,
+plata 2017,el reporte de calidad coincide con el archivo,ok,"reporte 68,842 · archivo 68,842"
+plata 2017,las filas cuadran contra el archivo crudo,ok,"crudo 68,965 − idénticas 106 − conflictos 11 − cuarentena 6 = 68,842"
+plata 2017,el CIIU tiene formato válido,ok,0 inválidos
+plata 2017,no hay cifras negativas donde no pueden serlo,ok,
+plata 2017,las ventas no superan el ingreso total reportado,ok,0 filas
+oro 2017,el expediente es único,ok,
+oro 2017,el universo sale de la capa plata,ok,
+oro 2017,todas tienen grupo,ok,
+oro 2017,el piloto es subconjunto del universo,ok,353 empresas
+oro 2017,top 50 de TEC válido,ok,50 filas
+oro 2017,top 50 de G válido,ok,50 filas
+oro 2017,top 50 de C válido,ok,50 filas
+oro 2017,top 50 de M válido,ok,50 filas
+oro 2017,top 50 de K válido,ok,50 filas
+plata 2018,el expediente es único,ok,
+plata 2018,el reporte de calidad coincide con el archivo,ok,"reporte 73,237 · archivo 73,237"
+plata 2018,las filas cuadran contra el archivo crudo,ok,"crudo 73,374 − idénticas 118 − conflictos 11 − cuarentena 8 = 73,237"
+plata 2018,el CIIU tiene formato válido,ok,0 inválidos
+plata 2018,no hay cifras negativas donde no pueden serlo,ok,
+plata 2018,las ventas no superan el ingreso total reportado,ok,0 filas
+oro 2018,el expediente es único,ok,
+oro 2018,el universo sale de la capa plata,ok,
+oro 2018,todas tienen grupo,ok,
+oro 2018,el piloto es subconjunto del universo,ok,362 empresas
+oro 2018,top 50 de TEC válido,ok,50 filas
+oro 2018,top 50 de G válido,ok,50 filas
+oro 2018,top 50 de C válido,ok,50 filas
+oro 2018,top 50 de M válido,ok,50 filas
+oro 2018,top 50 de K válido,ok,50 filas
+plata 2019,el expediente es único,ok,
+plata 2019,el reporte de calidad coincide con el archivo,ok,"reporte 91,875 · archivo 91,875"
+plata 2019,las filas cuadran contra el archivo crudo,ok,"crudo 92,035 − idénticas 129 − conflictos 10 − cuarentena 21 = 91,875"
+plata 2019,el CIIU tiene formato válido,ok,0 inválidos
+plata 2019,no hay cifras negativas donde no pueden serlo,ok,
+plata 2019,las ventas no superan el ingreso total reportado,ok,0 filas
+oro 2019,el expediente es único,ok,
+oro 2019,el universo sale de la capa plata,ok,
+oro 2019,todas tienen grupo,ok,
+oro 2019,el piloto es subconjunto del universo,ok,378 empresas
+oro 2019,top 50 de TEC válido,ok,50 filas
+oro 2019,top 50 de G válido,ok,50 filas
+oro 2019,top 50 de C válido,ok,50 filas
+oro 2019,top 50 de M válido,ok,50 filas
+oro 2019,top 50 de K válido,ok,50 filas
+plata 2020,el expediente es único,ok,
+plata 2020,el reporte de calidad coincide con el archivo,ok,"reporte 98,209 · archivo 98,209"
+plata 2020,las filas cuadran contra el archivo crudo,ok,"crudo 98,367 − idénticas 127 − conflictos 10 − cuarentena 21 = 98,209"
+plata 2020,el CIIU tiene formato válido,ok,0 inválidos
+plata 2020,no hay cifras negativas donde no pueden serlo,ok,
+plata 2020,las ventas no superan el ingreso total reportado,ok,0 filas
+oro 2020,el expediente es único,ok,
+oro 2020,el universo sale de la capa plata,ok,
+oro 2020,todas tienen grupo,ok,
+oro 2020,el piloto es subconjunto del universo,ok,387 empresas
+oro 2020,top 50 de TEC válido,ok,50 filas
+oro 2020,top 50 de G válido,ok,50 filas
+oro 2020,top 50 de C válido,ok,50 filas
+oro 2020,top 50 de M válido,ok,50 filas
+oro 2020,top 50 de K válido,ok,50 filas
+plata 2021,el expediente es único,ok,
+plata 2021,el reporte de calidad coincide con el archivo,ok,"reporte 108,476 · archivo 108,476"
+plata 2021,las filas cuadran contra el archivo crudo,ok,"crudo 108,624 − idénticas 124 − conflictos 10 − cuarentena 14 = 108,476"
+plata 2021,el CIIU tiene formato válido,ok,0 inválidos
+plata 2021,no hay cifras negativas donde no pueden serlo,ok,
+plata 2021,las ventas no superan el ingreso total reportado,ok,0 filas
+oro 2021,el expediente es único,ok,
+oro 2021,el universo sale de la capa plata,ok,
+oro 2021,todas tienen grupo,ok,
+oro 2021,el piloto es subconjunto del universo,ok,429 empresas
+oro 2021,top 50 de TEC válido,ok,50 filas
+oro 2021,top 50 de G válido,ok,50 filas
+oro 2021,top 50 de C válido,ok,50 filas
+oro 2021,top 50 de M válido,ok,50 filas
+oro 2021,top 50 de K válido,ok,50 filas
+plata 2022,el expediente es único,ok,
+plata 2022,el reporte de calidad coincide con el archivo,ok,"reporte 121,993 · archivo 121,993"
+plata 2022,las filas cuadran contra el archivo crudo,ok,"crudo 122,128 − idénticas 124 − conflictos 11 − cuarentena 0 = 121,993"
+plata 2022,el CIIU tiene formato válido,ok,0 inválidos
+plata 2022,no hay cifras negativas donde no pueden serlo,ok,
+plata 2022,las ventas no superan el ingreso total reportado,ok,0 filas
+oro 2022,el expediente es único,ok,
+oro 2022,el universo sale de la capa plata,ok,
+oro 2022,todas tienen grupo,ok,
+oro 2022,el piloto es subconjunto del universo,ok,434 empresas
+oro 2022,top 50 de TEC válido,ok,50 filas
+oro 2022,top 50 de G válido,ok,50 filas
+oro 2022,top 50 de C válido,ok,50 filas
+oro 2022,top 50 de M válido,ok,50 filas
+oro 2022,top 50 de K válido,ok,50 filas
+plata 2023,el expediente es único,ok,
+plata 2023,el reporte de calidad coincide con el archivo,ok,"reporte 134,187 · archivo 134,187"
+plata 2023,las filas cuadran contra el archivo crudo,ok,"crudo 134,320 − idénticas 122 − conflictos 11 − cuarentena 0 = 134,187"
+plata 2023,el CIIU tiene formato válido,ok,0 inválidos
+plata 2023,no hay cifras negativas donde no pueden serlo,ok,
+plata 2023,las ventas no superan el ingreso total reportado,ok,0 filas
+oro 2023,el expediente es único,ok,
+oro 2023,el universo sale de la capa plata,ok,
+oro 2023,todas tienen grupo,ok,
+oro 2023,el piloto es subconjunto del universo,ok,457 empresas
+oro 2023,top 50 de TEC válido,ok,50 filas
+oro 2023,top 50 de G válido,ok,50 filas
+oro 2023,top 50 de C válido,ok,50 filas
+oro 2023,top 50 de M válido,ok,50 filas
+oro 2023,top 50 de K válido,ok,50 filas
+plata 2024,el expediente es único,ok,
+plata 2024,el reporte de calidad coincide con el archivo,ok,"reporte 142,519 · archivo 142,519"
+plata 2024,las filas cuadran contra el archivo crudo,ok,"crudo 142,647 − idénticas 117 − conflictos 11 − cuarentena 0 = 142,519"
+plata 2024,el CIIU tiene formato válido,ok,0 inválidos
+plata 2024,no hay cifras negativas donde no pueden serlo,ok,
+plata 2024,las ventas no superan el ingreso total reportado,ok,0 filas
+oro 2024,el expediente es único,ok,
+oro 2024,el universo sale de la capa plata,ok,
+oro 2024,todas tienen grupo,ok,
+oro 2024,el piloto es subconjunto del universo,ok,478 empresas
+oro 2024,top 50 de TEC válido,ok,50 filas
+oro 2024,top 50 de G válido,ok,50 filas
+oro 2024,top 50 de C válido,ok,50 filas
+oro 2024,top 50 de M válido,ok,50 filas
+oro 2024,top 50 de K válido,ok,50 filas
+plata 2025,el expediente es único,ok,
+plata 2025,el reporte de calidad coincide con el archivo,ok,"reporte 154,687 · archivo 154,687"
+plata 2025,las filas cuadran contra el archivo crudo,ok,"crudo 154,813 − idénticas 116 − conflictos 10 − cuarentena 0 = 154,687"
+plata 2025,el CIIU tiene formato válido,ok,0 inválidos
+plata 2025,no hay cifras negativas donde no pueden serlo,ok,
+plata 2025,las ventas no superan el ingreso total reportado,ok,0 filas
+oro 2025,el expediente es único,ok,
+oro 2025,el universo sale de la capa plata,ok,
+oro 2025,todas tienen grupo,ok,
+oro 2025,el piloto es subconjunto del universo,ok,500 empresas
+oro 2025,top 50 de TEC válido,ok,50 filas
+oro 2025,top 50 de G válido,ok,50 filas
+oro 2025,top 50 de C válido,ok,50 filas
+oro 2025,top 50 de M válido,ok,50 filas
+oro 2025,top 50 de K válido,ok,50 filas
+plata 2025,las URL corresponden a empresas del piloto,ok,
+plata 2025,una fila por empresa,ok,
+plata 2025,los estados de URL son válidos,ok,
+plata 2025,toda URL verificada tiene dirección,ok,
+plata 2025,avance de la búsqueda de webs,aviso,259 de 500 del piloto; verificadas 58
+plata 2025,la ficha tiene una fila por empresa,ok,
+plata 2025,los estados de la ficha son válidos,ok,
+plata 2025,el tagline no pasa de 150 caracteres,ok,
+plata 2025,solo hay correos corporativos (LOPDP),ok,
+crudo 2025,cada página del manifiesto está en disco con su hash,ok,180 páginas
+crudo 2025,páginas registradas sin guardar,aviso,1 (meta robots o error)
+consolidado,empresa: expediente único y no nulo,ok,
+consolidado,"cifras_anuales: (expediente, anio) único",ok,
+consolidado,cifras_anuales no tiene filas huérfanas,ok,
+consolidado,empresa es el universo fijado en 2025,ok,"14,029 empresas"
+consolidado,el piloto tiene 500 empresas,ok,500 empresas
+consolidado,"empresa: grupo, criterio del piloto y top 50 coherentes",ok,
+consolidado,cifras_anuales: ejercicios fiscales válidos,ok,2012–2025
+consolidado,pertenencia anual booleana y no nula,ok,
+consolidado,pertenencia anual coincide con oro 2012,ok,
+consolidado,pertenencia anual coincide con oro 2013,ok,
+consolidado,pertenencia anual coincide con oro 2014,ok,
+consolidado,pertenencia anual coincide con oro 2015,ok,
+consolidado,pertenencia anual coincide con oro 2016,ok,
+consolidado,pertenencia anual coincide con oro 2017,ok,
+consolidado,pertenencia anual coincide con oro 2018,ok,
+consolidado,pertenencia anual coincide con oro 2019,ok,
+consolidado,pertenencia anual coincide con oro 2020,ok,
+consolidado,pertenencia anual coincide con oro 2021,ok,
+consolidado,pertenencia anual coincide con oro 2022,ok,
+consolidado,pertenencia anual coincide con oro 2023,ok,
+consolidado,pertenencia anual coincide con oro 2024,ok,
+consolidado,pertenencia anual coincide con oro 2025,ok,
+consolidado,alerta de empleados y motivo coherentes,ok,
+consolidado,la ficha corresponde a empresas del universo,ok,57 fichas

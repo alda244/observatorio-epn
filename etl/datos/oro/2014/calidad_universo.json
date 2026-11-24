@@ -1,0 +1,28 @@
+{
+  "anio": 2014,
+  "cobertura_ventas_pct": 67.79,
+  "comparable": true,
+  "universo_total": 6083,
+  "universo_por_grupo": {
+    "G": 3142,
+    "C": 1255,
+    "TEC": 1172,
+    "M": 444,
+    "K": 70
+  },
+  "piloto_total": 332,
+  "piloto_por_criterio": {
+    "tecnologica_mediana_grande": 132,
+    "top50_g": 50,
+    "top50_c": 50,
+    "top50_m": 50,
+    "top50_k": 50
+  },
+  "holdings_en_universo": 10,
+  "piloto_con_alerta_empleados": 44,
+  "diagnostico_empleados": {
+    "sin_estados_financieros": 6083
+  },
+  "participacion_ventas_universo": 0.6866,
+  "participacion_ventas_piloto": 0.3284
+}
