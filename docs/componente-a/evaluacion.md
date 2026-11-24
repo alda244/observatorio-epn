@@ -23,7 +23,9 @@ Evaluación con el embedding léxico (`hash-512`), que no necesita descargar mod
 | Sin dato | 4/4 |
 | Fuera de alcance | 7/8 |
 
-Fallan "editan y publican software" (H3), "ingeniería y consultoría técnica", "supermercados en Quito" (H2) y "¿cómo está el clima mañana?". La corrida con MiniLM y BGE-M3 se hace en un equipo con acceso a Hugging Face:
+Fallan "editan y publican software" (H3), "ingeniería y consultoría técnica", "supermercados en Quito" (H2) y "¿cómo está el clima mañana?".
+
+La comparación con MiniLM y BGE-M3 está en [comparacion-embeddings.md](comparacion-embeddings.md). BGE-M3 calibrado (0,40 / 0,70) da acierto@5 0,921, MRR 0,882 y rechazo 1,000. Para repetirla:
 
 ```powershell
 $env:PYTHONPATH = "rag/src"

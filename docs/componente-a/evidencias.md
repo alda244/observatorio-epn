@@ -14,5 +14,6 @@
 | EV-A-010 | 2026-11-18 | 2 | Evaluación con 50 preguntas y salvaguarda de campo pedido | [`eval50_hash.json`](../../rag/evidencias/eval50_hash.json) |
 | EV-A-011 | 2026-11-18 | 1 | Script de comparación de LLM, probado con un servidor simulado | [`comparar_llm.py`](../../rag/src/rag/comparar_llm.py) |
 | EV-A-012 | 2026-11-18 | 2 | 17 pruebas automáticas y CI con PostgreSQL | [`rag/tests/`](../../rag/tests/), [`rag.yml`](../../.github/workflows/rag.yml) |
+| EV-A-013 | 2026-11-18 | 2 | Comparación de embeddings (léxico, MiniLM, BGE-M3) y recalibración de umbrales | [comparacion-embeddings.md](comparacion-embeddings.md), [`eval50_minilm.json`](../../rag/evidencias/eval50_minilm.json), [`eval50_bge_m3.json`](../../rag/evidencias/eval50_bge_m3.json), [`eval50_bge_m3_calibrado.json`](../../rag/evidencias/eval50_bge_m3_calibrado.json) |
 
 Las capturas de pantalla se guardan en `docs/componente-a/evidencias/` con el nombre `EV-A-NNN-descripcion.png`.

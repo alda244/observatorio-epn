@@ -18,7 +18,7 @@ flowchart LR
 | Sprint | Objetivo | Estado |
 | --- | --- | --- |
 | 1 | Investigación, arquitectura, corpus y protocolo de evaluación | Falta correr la comparación de LLM |
-| 2 | Ingesta, fragmentación e índice | Falta pasar a BGE-M3 |
+| 2 | Ingesta, fragmentación e índice | Hecho; BGE-M3 adoptado de forma provisional |
 | 3 | Motor RAG con citación y API `/chat` | Pendiente |
 | 4 | Widget | Pendiente |
 | 5 | Salvaguardas | Pendiente |
@@ -35,6 +35,7 @@ flowchart LR
 | [asistente.md](asistente.md) | Cómo funciona el asistente y sus reglas |
 | [protocolo-evaluacion.md](protocolo-evaluacion.md) | Cómo se evalúa: preguntas, métricas, usuarios y carga |
 | [evaluacion.md](evaluacion.md) | Resultados y comparación de LLM |
+| [comparacion-embeddings.md](comparacion-embeddings.md) | Léxico, MiniLM y BGE-M3 con las 50 preguntas |
 | [estado-del-arte.md](estado-del-arte.md) | Literatura que sostiene el diseño |
 | [herramientas.md](herramientas.md) | Stack del componente |
 | [plan.md](plan.md) | Pendientes por sprint y dependencias con B |

@@ -17,7 +17,7 @@
 | Ingesta idempotente, fragmentación y recuperación híbrida | Hecho |
 | Índice en pgvector con HNSW y trazas en tabla | Hecho |
 | uv y CI | Hecho: `rag/uv.lock` y `.github/workflows/rag.yml` |
-| BGE-M3 y recalibración de umbrales | Falta: correr en un equipo con acceso a Hugging Face |
+| BGE-M3 y recalibración de umbrales | Hecho: [comparacion-embeddings.md](comparacion-embeddings.md); se repite con el texto del Company Profile |
 
 ## Dependencias con B
 
