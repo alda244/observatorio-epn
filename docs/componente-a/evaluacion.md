@@ -54,7 +54,7 @@ BGE-M3 usa los umbrales calibrados (0,40 / 0,70) y las cuatro columnas usan el m
 | Nº | Hallazgo | Qué se hace |
 | --- | --- | --- |
 | H13 | Las 50 preguntas se escribieron sobre la descripción CIIU; con fichas para 54 de 500 empresas, acierto@5 y MRR de BGE-M3 no cambian | Agregar preguntas `perfil` que solo se responden con la ficha |
-| H14 | "Supermercados en Quito" sigue fallando: la ficha de Favorita dice "supermercados", pero la empresa está en Sangolquí; las de Quito con CIIU G4711 aún no tienen ficha | Se vuelve a medir cuando B complete las fichas del piloto |
+| H14 | "Supermercados en Quito" sigue fallando. La ficha de Favorita (Quito, G4711) es la única que dice "supermercados" y queda primera en BM25, pero su coseno es bajo (0,455): la ficha mezcla lema, descripción, productos y contacto, y el embedding se diluye. En la fusión queda en el puesto 11 | Fragmentar la ficha por campo, para que cada fragmento tenga un solo tema |
 | H15 | "¿Qué empresas tienen supermercados?", sin ciudad, ahora devuelve primero la ficha de Favorita | Confirma H2: el texto de la web cubre el vocabulario que la CIIU no tiene |
 | H16 | El texto publicitario de las webs acerca preguntas fuera de alcance: con BGE-M3, "dame consejos para bajar de peso" se responde con la ficha de Farcomed; con el léxico se responden cuatro de ocho | Recalibrar los umbrales con el corpus con fichas y evaluar una regla más estricta para los fragmentos `perfil` |
 | H17 | El teléfono y la web de Telconet ya se responden desde su ficha (CU-05) | El caso deja de ser solo `sin_dato` |
@@ -107,7 +107,7 @@ La primera ronda usa OpenAI y Google en la nube, y Ollama en local. Claude Haiku
 
 | Paso | Comando |
 | --- | --- |
-| 1. Instalar Ollama y descargar el modelo | `winget install Ollama.Ollama`, luego `ollama pull qwen2.5:7b` |
+| 1. Instalar Ollama y preparar el modelo | `winget install Ollama.Ollama`, `ollama pull qwen2.5:7b` y `ollama create qwen2.5-cpu -f rag/evaluacion/ollama/Modelfile.qwen2.5-cpu` |
 | 2. Cargar una clave por proveedor | Copiar `rag/.env.example` como `rag/.env` y completar `OPENAI_API_KEY` y `GEMINI_API_KEY` |
 | 3. Confirmar los ids que ofrece cada proveedor | `python -m rag comparar-llm --listar` |
 | 4. Correr la comparación | `python -m rag comparar-llm --salida rag/evidencias/llm` |
@@ -134,7 +134,7 @@ El comando omite los modelos sin id o sin clave, y escribe `llm.json` con las m�
 
 El precio y el id de Claude Haiku 4.5 se confirmaron en la documentación oficial de Anthropic el 24-nov-2026; los de OpenAI y Google, consultados el 03-nov-2026, se confirman con `--listar` y en las páginas oficiales antes de contratar. El pico supone 10.000 consultas al mes, con unos 3.000 tokens de entrada y 400 de salida por consulta.
 
-Ollama corre en el equipo de desarrollo (RTX 3050 de 4 GB y 28 GB de RAM): un modelo de 7B se reparte entre GPU y CPU, así que su latencia no es comparable con la de un servicio en la nube. Sirve para medir citas y rechazos sin costo, no para el despliegue.
+Ollama corre en el equipo de desarrollo (Ryzen 9 6900HS, 28 GB de RAM y RTX 3050 de 4 GB). Con el driver NVIDIA 546.92, la librería CUDA de Ollama 0.40 falla al cargar el modelo ("device kernel image is invalid"), así que el modelo corre solo en CPU con [`Modelfile.qwen2.5-cpu`](../../rag/evaluacion/ollama/Modelfile.qwen2.5-cpu): tarda de 40 a 60 s por pregunta, y por eso tiene `"timeout": 300` en `modelos_llm.json`. Su latencia no es comparable con la de un servicio en la nube. Sirve para medir citas y rechazos sin costo, no para el despliegue. En dos preguntas de prueba, Qwen2.5 7B respondió sin citas `[n]` válidas y el motor descartó las respuestas.
 
 ### Primera corrida (24-nov-2026)
 
@@ -142,7 +142,7 @@ La primera corrida no sirve para comparar modelos: de las 39 preguntas que pasan
 
 | Modelo | Causa | Corrección |
 | --- | --- | --- |
-| Ollama | El servicio no estaba instalado | Instalar Ollama antes de la siguiente corrida |
+| Ollama | El servicio no estaba instalado; ya instalado, la GPU falla con el driver actual | Instalado el 24-nov-2026; modelo en CPU (`qwen2.5-cpu`) con límite de 300 s por llamada |
 | GPT-6 Luna | HTTP 400: el modelo solo acepta la temperatura por defecto | `"temperatura": null` en `modelos_llm.json` |
 | Gemini | Fallos intermitentes; una llamada aislada responde bien. Es compatible con el límite de solicitudes por minuto | Reintento con espera ante 429 y 5xx, y tipo de error en `errores_tipo` |
 

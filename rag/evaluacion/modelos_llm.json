@@ -1,9 +1,10 @@
 [
   {
-    "nombre": "Ollama Qwen2.5 7B (local)",
+    "nombre": "Ollama Qwen2.5 7B (local, CPU)",
     "base_url": "http://localhost:11434/v1",
-    "modelo": "qwen2.5:7b",
+    "modelo": "qwen2.5-cpu",
     "clave_env": "",
+    "timeout": 300,
     "precio_entrada": 0,
     "precio_salida": 0
   },

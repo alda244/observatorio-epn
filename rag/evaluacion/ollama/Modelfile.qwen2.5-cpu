@@ -1,0 +1,5 @@
+# Qwen2.5 7B solo en CPU: con el driver NVIDIA 546.92, la librería CUDA de Ollama 0.40
+# falla al cargar el modelo ("device kernel image is invalid").
+# ollama create qwen2.5-cpu -f rag/evaluacion/ollama/Modelfile.qwen2.5-cpu
+FROM qwen2.5:7b
+PARAMETER num_gpu 0

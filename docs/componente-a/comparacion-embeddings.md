@@ -72,7 +72,7 @@ Tiempos tomados del registro de corridas de la ingesta (`rag/datos/indice/corrid
 
 | Nº | Hallazgo | Qué se hace |
 | --- | --- | --- |
-| H7 | P10 y P24 fallan con los tres modelos: la brecha es de vocabulario de la CIIU, no del modelo (H2, H3) | Medido con las 57 fichas de B: P24 sigue fallando porque Favorita está en Sangolquí ([evaluacion.md](evaluacion.md#con-el-company-profile)) |
+| H7 | P10 y P24 fallan con los tres modelos: la brecha es de vocabulario de la CIIU, no del modelo (H2, H3) | Medido con las 57 fichas de B: P24 sigue fallando porque la ficha de Favorita mezcla varios temas y su embedding se diluye (H14 en [evaluacion.md](evaluacion.md#con-el-company-profile)) |
 | H8 | Los modelos semánticos superan a la línea base en orden (MRR +0,06 y +0,10) y en rechazo | El RAG semántico aporta frente a la búsqueda por palabras |
 | H9 | Con umbrales recalibrados, BGE-M3 pasa de 7/8 a 8/8 rechazos sin perder aciertos | Los umbrales se calibran cada vez que cambia el modelo |
 | H10 | S04 (certificaciones de Holcim) se responde con ambos modelos semánticos y no con el léxico | Resuelto: si la pregunta nombra a una empresa, el campo se busca solo en sus fragmentos ([evaluacion.md](evaluacion.md#con-el-company-profile)) |

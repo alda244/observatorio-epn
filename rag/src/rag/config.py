@@ -93,6 +93,8 @@ class Config:
     llm_base_url: str = field(default_factory=lambda: _env("RAG_LLM_BASE_URL", ""))
     llm_modelo: str = field(default_factory=lambda: _env("RAG_LLM_MODELO", ""))
     llm_api_key: str = field(default_factory=lambda: _env("RAG_LLM_API_KEY", ""))
+    # Segundos por llamada; un modelo local en CPU necesita más.
+    llm_timeout: float = field(default_factory=lambda: float(_env("RAG_LLM_TIMEOUT", "60")))
     # 0 para respuestas reproducibles; vacío para omitirla (modelos que solo aceptan la de defecto).
     llm_temperatura: float | None = field(
         default_factory=lambda: float(t) if (t := _env("RAG_LLM_TEMPERATURA", "0")) else None

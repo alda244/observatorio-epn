@@ -76,7 +76,8 @@ def comparar(cfg: Config, ruta_modelos: str | None = None, ruta_preguntas: str |
     for m in modelos:
         motor = Motor(replace(cfg, llm_base_url=m["base_url"], llm_modelo=m["modelo"],
                               llm_api_key=os.environ.get(m.get("clave_env") or "", ""),
-                              llm_temperatura=m.get("temperatura", 0)))
+                              llm_temperatura=m.get("temperatura", 0),
+                              llm_timeout=m.get("timeout", cfg.llm_timeout)))
         lat, t_in, t_out = [], [], []
         generadas = validas = rechazos_ok = rechazos = 0
         tipos_error: Counter[str] = Counter()

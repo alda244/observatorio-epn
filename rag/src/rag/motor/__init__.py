@@ -329,7 +329,7 @@ class Motor:
         # Reintento con espera ante el límite de solicitudes (429) o una caída temporal (5xx).
         for intento in range(REINTENTOS_LLM + 1):
             try:
-                with urllib.request.urlopen(req, timeout=60) as resp:
+                with urllib.request.urlopen(req, timeout=self.cfg.llm_timeout) as resp:
                     datos = json.loads(resp.read())
                 break
             except urllib.error.HTTPError as e:
