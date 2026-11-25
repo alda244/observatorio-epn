@@ -8,7 +8,7 @@
 | Protocolo de evaluación con 50 preguntas, métricas y SUS | Hecho: [protocolo-evaluacion.md](protocolo-evaluacion.md) |
 | Revisión bibliográfica | Hecho: [estado-del-arte.md](estado-del-arte.md); falta pasarla a Zotero |
 | Casos de uso del actor Gobierno | Hecho: CU-08 y CU-09 en [casos-de-uso.md](casos-de-uso.md) |
-| Comparación de LLM | Script listo con Ollama, Anthropic, OpenAI y Google; falta correrlo con las claves de cada proveedor |
+| Comparación de LLM | Primera ronda hecha: GPT-6 Luna, candidato provisional ([evaluacion.md](evaluacion.md#primera-ronda-24-nov-2026)). Falta RAGAS, la revisión manual y repetir la corrida |
 | Borrador del contrato con B | Hecho: [`contracts/openapi.yaml`](../../contracts/openapi.yaml), por revisar con B |
 
 ## Sprint 2 · Ingesta e índice

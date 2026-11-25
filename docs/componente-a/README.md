@@ -17,7 +17,7 @@ flowchart LR
 
 | Sprint | Objetivo | Estado |
 | --- | --- | --- |
-| 1 | Investigación, arquitectura, corpus y protocolo de evaluación | Falta correr la comparación de LLM |
+| 1 | Investigación, arquitectura, corpus y protocolo de evaluación | Primera ronda de LLM hecha; falta RAGAS y la revisión manual |
 | 2 | Ingesta, fragmentación e índice | Hecho; BGE-M3 adoptado de forma provisional; 54 fichas del Company Profile indexadas |
 | 3 | Motor RAG con citación y API `/chat` | Pendiente |
 | 4 | Widget | Pendiente |

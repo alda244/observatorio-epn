@@ -154,6 +154,32 @@ La primera corrida no sirve para comparar modelos: de las 39 preguntas que pasan
 
 `citas_validas` se calcula ahora solo sobre las llamadas respondidas, y la latencia, solo sobre las preguntas que llegaron al LLM.
 
+### Primera ronda (24-nov-2026)
+
+Las 50 preguntas, con BGE-M3 calibrado y las 54 fichas en el índice. Ningún modelo tuvo errores de llamada; los cuatro respondieron las 39 preguntas que pasan la recuperación.
+
+| Métrica | GPT-6 Luna | Gemini 3.1 Flash-Lite | Gemini 3.5 Flash-Lite | Qwen2.5 7B (Ollama, CPU) |
+| --- | --- | --- | --- | --- |
+| Citas válidas | **1,000** (39/39) | **1,000** (39/39) | 0,949 (37/39) | 0,333 (13/39) |
+| Rechazo correcto | **1,000** (12/12) | 0,917 (11/12) | **1,000** (12/12) | 0,917 (11/12) |
+| Latencia p50 / p95 | 2,3 s / **4,2 s** | 2,6 s / 11,0 s | 2,0 s / 7,9 s | 42 s / 73 s |
+| Tokens de entrada / salida | 962 / 142 | 1.044 / 102 | 1.044 / 118 | 1.125 / 57 |
+| Costo mensual en el pico | **USD 1,67** | USD 4,13 | USD 6,08 | 0 |
+
+| Nº | Hallazgo | Qué se hace |
+| --- | --- | --- |
+| H21 | GPT-6 Luna es el mejor en todo lo medido: cita siempre, rechaza todo lo que debe, tiene la latencia más estable y el menor costo | Candidato provisional; falta la fidelidad (RAGAS) y la revisión manual |
+| H22 | F08 ("consejos para bajar de peso") pasa la recuperación por la ficha de Farcomed (H16). GPT-6 Luna y Gemini 3.5 responden "no hay dato publicado"; Gemini 3.1 da un protocolo cetogénico para adelgazar tomado de la web | El LLM actúa como segunda salvaguarda, pero no se puede depender de él: se corrige H16 en la recuperación y se agrega un criterio de seguridad a la elección |
+| H23 | En P10 y P24, donde la recuperación falla, los cuatro modelos responden "no hay dato publicado" en lugar de inventar | Esas preguntas se resuelven en la recuperación (H14), no con el LLM |
+| H24 | Gemini 3.5 rechaza de más: "no hay dato" en P19 y P33, y descarta P06 y P34 por citas inválidas | Más cauto, pero útil en menos casos |
+| H25 | Qwen2.5 7B cita bien solo 13 de 39 respuestas; las demás se descartan y quedan extractivas | Un modelo local de 7B no sigue la regla de cita; sirve para desarrollo, no para producción |
+| H26 | El costo real es un tercio del estimado: GPT-6 Luna, USD 1,67 al mes en el pico, frente a USD 5,00 | El escenario de costo usa los tokens medidos |
+| H27 | El lema de la ficha de Farcomed está en italiano ("Sviluppiamo e…") | Se reporta a B como problema de calidad de la ficha |
+
+Límites de esta ronda: es una sola corrida; GPT-6 Luna usa la temperatura por defecto porque no acepta 0, mientras los demás usan 0; y falta medir la fidelidad (35 % del puntaje) y revisar 20 respuestas a mano. La fila de Ollama en `llm.json` es de antes de descargar el modelo (HTTP 404 en todas las llamadas); la corrida válida de Ollama está en `llm_ollama.json`.
+
+Evidencias: [`llm.json`](../../rag/evidencias/llm.json) y [`llm.csv`](../../rag/evidencias/llm.csv) (GPT y Gemini), [`llm_ollama.json`](../../rag/evidencias/llm_ollama.json) y [`llm_ollama.csv`](../../rag/evidencias/llm_ollama.csv).
+
 | Criterio | Peso | Medición |
 | --- | --- | --- |
 | Fidelidad al contexto | 35 % | RAGAS `faithfulness` |

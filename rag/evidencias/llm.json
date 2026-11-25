@@ -1,0 +1,68 @@
+{
+  "preguntas": 50,
+  "modelos": [
+    {
+      "modelo": "Ollama Qwen2.5 7B (local)",
+      "id": "qwen2.5:7b",
+      "citas_validas": null,
+      "rechazo_correcto": 0.917,
+      "respuestas_llm": 0,
+      "errores_llm": 39,
+      "errores_tipo": {
+        "HTTPError 404": 39
+      },
+      "latencia_p50_ms": null,
+      "latencia_p95_ms": null,
+      "tokens_entrada_prom": 0,
+      "tokens_salida_prom": 0,
+      "costo_10k_consultas_usd": 0.0
+    },
+    {
+      "modelo": "GPT-6 Luna (OpenAI)",
+      "id": "gpt-6-luna",
+      "citas_validas": 1.0,
+      "rechazo_correcto": 1.0,
+      "respuestas_llm": 39,
+      "errores_llm": 0,
+      "errores_tipo": {},
+      "latencia_p50_ms": 2324,
+      "latencia_p95_ms": 4178,
+      "tokens_entrada_prom": 962,
+      "tokens_salida_prom": 142,
+      "costo_10k_consultas_usd": 1.67
+    },
+    {
+      "modelo": "Gemini 3.1 Flash-Lite (Google)",
+      "id": "gemini-3.1-flash-lite",
+      "citas_validas": 1.0,
+      "rechazo_correcto": 0.917,
+      "respuestas_llm": 39,
+      "errores_llm": 0,
+      "errores_tipo": {},
+      "latencia_p50_ms": 2593,
+      "latencia_p95_ms": 10980,
+      "tokens_entrada_prom": 1044,
+      "tokens_salida_prom": 102,
+      "costo_10k_consultas_usd": 4.13
+    },
+    {
+      "modelo": "Gemini 3.5 Flash-Lite (Google)",
+      "id": "gemini-3.5-flash-lite",
+      "citas_validas": 0.949,
+      "rechazo_correcto": 1.0,
+      "respuestas_llm": 39,
+      "errores_llm": 0,
+      "errores_tipo": {},
+      "latencia_p50_ms": 2001,
+      "latencia_p95_ms": 7891,
+      "tokens_entrada_prom": 1044,
+      "tokens_salida_prom": 118,
+      "costo_10k_consultas_usd": 6.08
+    }
+  ],
+  "omitidos": [
+    "Claude Haiku 4.5 (Anthropic): falta la variable ANTHROPIC_API_KEY",
+    "Amazon Nova Lite (Bedrock): falta el id del modelo",
+    "Claude Haiku 4.5 (Bedrock): falta el id del modelo"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "preguntas": 50,
+  "modelos": [
+    {
+      "modelo": "Ollama Qwen2.5 7B (local, CPU)",
+      "id": "qwen2.5-cpu",
+      "citas_validas": 0.333,
+      "rechazo_correcto": 0.917,
+      "respuestas_llm": 39,
+      "errores_llm": 0,
+      "errores_tipo": {},
+      "latencia_p50_ms": 42017,
+      "latencia_p95_ms": 73108,
+      "tokens_entrada_prom": 1125,
+      "tokens_salida_prom": 57,
+      "costo_10k_consultas_usd": 0.0
+    }
+  ],
+  "omitidos": []
+}

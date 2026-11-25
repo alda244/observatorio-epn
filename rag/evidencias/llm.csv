@@ -1,0 +1,770 @@
+modelo,id,tipo,pregunta,modo,respuesta,latencia_ms,puntaje_espanol,puntaje_citas
+Ollama Qwen2.5 7B (local),P01,nombre,¿Qué hace Telconet?,extractivo,"Según las fuentes del Observatorio:
+- TELCONET S.A.: TELCONET S.A.
+Lema: Infraestructura digital y soluciones tecnológicas para empresas: fibra óptica, cable submarino CSN1, centros de datos e Inteligencia Artific (Guayaquil) [1]
+- TELCONET S.A.: Actividades de operación, mantenimiento o facilitación del acceso a servicios de transmisión de voz, datos, texto, sonido y vídeo utilizando una infraestructura de telecomunicaciones alambricas, como: operación y mantenimiento de sistemas de conmutación y transmisión para suministrar servicios de comunicaciones de punto a punto por líneas alambricas, por microondas o por una combinación de líneas alambricas y conexiones por satélite (Guayaquil) [2]
+- MEDIANET S.A.: MEDIANET S.A.
+Descripción: Somos una empresa tecnológica con trayectoria de 23 años, cuyo propósito es ser aliado de nuestros clientes, dando cobertura en los p (Guayaquil) [3]
+- DATAFAST S.A.: DATAFAST S.A.
+Lema: Somos la empresa líder en soluciones de pagos presenciales y digitales con tarjeta de crédito y débito para tu negocio.
+Descripción: En este (Guayaquil) [4]
+- TURBONET S.A.: Adaptación de programas informáticos a las necesidades de los clientes, es decir, modificación y configuración de una aplicación existente para que pueda funcionar adecuadamente con los sistemas de información de que dispone el cliente (Vinces) [5]",2612,,
+Ollama Qwen2.5 7B (local),P02,nombre,¿A qué se dedica Corporación Favorita?,extractivo,"Según las fuentes del Observatorio:
+- CORPORACION FAVORITA C.A.: CORPORACION FAVORITA C.A.
+Lema: Corporación Favorita, empresa ecuatoriana multinacional. Mejorando la calidad de vida cada día con retail, supermercados y compr (Quito) [1]
+- CORPORACION FAVORITA C.A.: Venta al por menor de gran variedad de productos en tiendas, entre los que predominan, los productos alimenticios, las bebidas o el tabaco, como productos de primera necesidad y varios otros tipos de productos, como prendas de vestir, muebles, aparatos, artículos de ferretería, cosméticos, etcétera (Quito) [2]
+- CORPIDE CORPORACION PUBLICITARIA INTEGRAL DELTA C LTDA: Creación e inserción de anuncios en periódicos, revistas, programas de radio y de televisión, internet y otros medios de difusión (Quito) [3]
+- CORPORACION SUPERIOR CORSUPERIOR S.A.: Venta al por mayor de productos de panadería y repostería (Quito) [4]
+- CORPORACION MULTIBG S.A.: Actividades auxiliares de las actividades de servicios financieros n.c.p., como: actividades de tramitación y liquidación de transacciones financieras, incluidas las transacciones con tarjetas de crédito (Guayaquil) [5]",2239,,
+Ollama Qwen2.5 7B (local),P03,nombre,¿Dónde está ubicada Pronaca?,extractivo,"Según las fuentes del Observatorio:
+- PROCESADORA NACIONAL DE ALIMENTOS C.A. PRONACA: Explotación de mataderos que realizan actividades de sacrificio, faenamiento, preparación, producción y empacado de carne fresca refrigerada o congelada en canales o piezas o porciones individuales de: bovino, porcino, ovino, caprino (Quito) [1]
+- PROCESADORA NACIONAL DE ALIMENTOS C.A. PRONACA: PROCESADORA NACIONAL DE ALIMENTOS C.A. PRONACA.
+Lema: Somos una empresa multinacional familiar que actúa con respeto para alimentar bien a millones de familias  (Quito) [2]
+- HOLCIM ECUADOR S.A.: HOLCIM ECUADOR S.A.
+Lema: Holcim es uno de los principales proveedores mundiales de cemento y agregados (piedra triturada, grava y arena), así como de otras act (Guayaquil) [3]
+- PROASTIC CIA.LTDA.: Actividades de planificación y diseño de sistemas informáticos que integran equipo y programas informáticos y tecnología de las comunicaciones (Guayaquil) [4]
+- COLGATE PALMOLIVE DEL ECUADOR SOCIEDAD ANONIMA INDUSTRIAL Y COMERCIAL: COLGATE PALMOLIVE DEL ECUADOR SOCIEDAD ANONIMA INDUSTRIAL Y COMERCIAL.
+Lema: Industrial y Comercial SRL, fabrica y comercializa Trailers, Autoelevadores y Maqui (Guayaquil) [5]",2189,,
+Ollama Qwen2.5 7B (local),P04,nombre,¿Qué actividad tiene Datafast?,extractivo,"Según las fuentes del Observatorio:
+- DATAFAST S.A.: DATAFAST S.A.
+Lema: Somos la empresa líder en soluciones de pagos presenciales y digitales con tarjeta de crédito y débito para tu negocio.
+Descripción: En este (Guayaquil) [1]
+- DATAFAST S.A.: Actividades auxiliares de las actividades de servicios financieros n.c.p., como: actividades de tramitación y liquidación de transacciones financieras, incluidas las transacciones con tarjetas de crédito (Guayaquil) [2]
+- PATHPROFIT S.A.: Actividades de suministro de acceso a internet por los operadores de la infraestructura de telecomunicaciones inalámbricas (Cuenca) [3]
+- TELEALFACOM S.A.: Actividades de suministro en acceso a internet por los operadores de la infraestructura de telecomunicaciones alambricas (Santo Domingo De Los Colorados) [4]
+- EXPERTSERVI S.A.: Actividades de suministro de acceso a internet por los operadores de la infraestructura de telecomunicaciones inalámbricas (Nueva Loja) [5]",2191,,
+Ollama Qwen2.5 7B (local),P05,nombre,Información de McKinsey en Ecuador,extractivo,"Según las fuentes del Observatorio:
+- MCKINSEY & COMPANY, INC. ECUADOR: Prestación de asesoramiento y ayuda a las empresas y las administraciones públicas en materia de planificación, organización, eficiencia y control, información administrativa, etcétera (Quito) [1]
+- AMERINODE DEL ECUADOR S.A.: Actividades de gestión y consultoría para la transmisión de datos (Quito) [2]
+- ESRI ECUADOR S.A.: Actividades de planificación y diseño de sistemas informáticos que integran equipo y programas informáticos y tecnología de las comunicaciones (Quito) [3]
+- EDGEUNO ECUADOR S.A.: Actividades de reventa de servicios de telecomunicaciones (suministro de servicios telefónicos y de internet en instalaciones abiertas al público: cabinas telefónicas y cibercafés.) (Quito) [4]
+- IBM DEL ECUADOR C.A.: Actividades de planificación y diseño de sistemas informáticos que integran equipo y programas informáticos y tecnología de las comunicaciones (Quito) [5]",2372,,
+Ollama Qwen2.5 7B (local),P06,cifra,¿Cuánto vendió Tiendas Tuti en 2025 y cuántos empleados tiene?,extractivo,"Según las fuentes del Observatorio:
+- TIENDAS TUTI TTDE S.A.: Venta al por menor de gran variedad de productos en supermercados, entre los que predominan, los productos alimenticios, las bebidas o el tabaco, como productos de primera necesidad y varios otros tipos de productos, como prendas de vestir, muebles, aparatos, artículos de ferretería, cosméticos, etcétera (Guayaquil) [1]. Ventas 2025: USD 1.008.144.377,94; empleados declarados: 8
+- TIENDAS INDUSTRIALES ASOCIADAS TIA S.A.: Venta al por menor de gran variedad de productos en tiendas, entre los que predominan, los productos alimenticios, las bebidas o el tabaco, como productos de primera necesidad y varios otros tipos de productos, como prendas de vestir, muebles, aparatos, artículos de ferretería, cosméticos, etcétera (Guayaquil) [2]. Ventas 2025: USD 791.642.685,00; empleados declarados: 9501
+- CORPORACION FAVORITA C.A.: Venta al por menor de gran variedad de productos en tiendas, entre los que predominan, los productos alimenticios, las bebidas o el tabaco, como productos de primera necesidad y varios otros tipos de productos, como prendas de vestir, muebles, aparatos, artículos de ferretería, cosméticos, etcétera (Quito) [3]. Ventas 2025: USD 2.690.137.857,78; empleados declarados: 12033
+- HAID ( ECUADOR) FEED CIA.LTDA.: HAID ( ECUADOR) FEED CIA.LTDA.
+Lema: Haid Ecuador Feed Cia. Ltda, líder en producción de piensos acuáticos y balanceados para camarón desde 1998.
+Descripción: P (Eloy Alfaro (Duran)) [4]. Ventas 2025: USD 295.495.509,23; empleados declarados: 308
+- APPDEUNA S.A.: APPDEUNA S.A.
+Lema: Programa para negocios en Colombia: ventas y cuentas por cobrar en el plan Básico; caja con cierre y agente de WhatsApp desde el plan Local. (Quito) [5]. Ventas 2025: USD 7.589.862,35; empleados declarados: 23",2492,,
+Ollama Qwen2.5 7B (local),P07,cifra,¿Cuáles fueron las ventas de Otecel?,extractivo,"Según las fuentes del Observatorio:
+- OTECEL S.A.: Operación, mantenimiento o facilitación del acceso a servicios de transmisión de voz, datos, texto, sonido y vídeo utilizando una infraestructura de telecomunicaciones inalámbricas. incluye las actividades de mantenimiento y explotación de redes de radio búsqueda y de telefonía móvil y otras redes de telecomunicaciones inalámbricas (Quito) [1]. Ventas 2025: USD 511.863.496,99
+- NEXTCEL S.A.: Actividades de reventa de servicios de telecomunicaciones (suministro de servicios telefónicos y de internet en instalaciones abiertas al público: cabinas telefónicas y cibercafés.) (Guayaquil) [2]. Ventas 2025: USD 1.058.862,14
+- EFICACIAECUADOR S.A.: Estudios sobre las posibilidades de comercialización (mercados potenciales), la aceptación y el grado de conocimiento de los productos y los hábitos de compra de los consumidores con el objeto de promover las ventas y desarrollar nuevos productos, incluidos análisis estadísticos de los resultados (Quito) [3]. Ventas 2025: USD 20.107.423,00
+- TERPEL-COMERCIAL ECUADOR CIA.LTDA.: Venta al por mayor de combustibles líquidos nafta, gasolina, biocombustible incluye grasas, lubricantes y aceites, gases licuados de petróleo, butano y propano (Guayaquil) [4]. Ventas 2025: USD 642.590.709,19
+- PROJECTLAB S.A.: PROJECTLAB S.A.
+Descripción: PROJECTLAB es una empresa dedicada a la importación y comercialización de alimentos frescos en Ecuador, guiados por nuestros valore (Quito) [5]. Ventas 2025: USD 8.978.666,81",2245,,
+Ollama Qwen2.5 7B (local),P08,actividad,¿Qué empresas brindan telefonía móvil?,extractivo,"Según las fuentes del Observatorio:
+- COMUNICACIONES Y TELEFONIA MULTIPLES S.A. MULTICOM - TELEMOVIL: Operación, mantenimiento o facilitación del acceso a servicios de transmisión de voz, datos, texto, sonido y vídeo utilizando una infraestructura de telecomunicaciones inalámbricas. incluye las actividades de mantenimiento y explotación de redes de radio búsqueda y de telefonía móvil y otras redes de telecomunicaciones inalámbricas (Guayaquil) [1]
+- TELEFONÍA Y SERVICIOS EN LINEA BETCELL S.A.: Suministro de servicios de telecomunicaciones por las conexiones de telecomunicaciones existentes: suministro de servicios de telefonía por internet (voip: voice over internet protocol) (Ibarra) [2]
+- SUMISYS TELECOM COMPAÑIA ANONIMA: Operación, mantenimiento o facilitación del acceso a servicios de transmisión de voz, datos, texto, sonido y vídeo utilizando una infraestructura de telecomunicaciones inalámbricas. incluye las actividades de mantenimiento y explotación de redes de radio búsqueda y de telefonía móvil y otras redes de telecomunicaciones inalámbricas (Guayaquil) [3]
+- CONSORCIO ECUATORIANO DE TELECOMUNICACIONES S.A. CONECEL: Operación, mantenimiento o facilitación del acceso a servicios de transmisión de voz, datos, texto, sonido y vídeo utilizando una infraestructura de telecomunicaciones inalámbricas. incluye las actividades de mantenimiento y explotación de redes de radio búsqueda y de telefonía móvil y otras redes de telecomunicaciones inalámbricas (Guayaquil) [4]
+- COMSATEL S.A.: Suministro de servicios de telecomunicaciones por las conexiones de telecomunicaciones existentes: suministro de servicios de telefonía por internet (voip: voice over internet protocol) (Samborondón) [5]",2226,,
+Ollama Qwen2.5 7B (local),P09,actividad,¿Quién emite firmas electrónicas o procesa datos?,extractivo,"Según las fuentes del Observatorio:
+- SECURITY DATA SEGURIDAD EN DATOS Y FIRMA DIGITAL S.A.: Suministro de infraestructura para servicios de hospedaje, servicios de procesamiento de datos y actividades conexas. incluye actividades especializadas de hospedaje, como: hospedaje de sitios web, aplicaciones, servicios de transmisión de secuencias de vídeo por internet (Quito) [1]
+- SEGUDATOS S.A. SEGURIDAD ELECTRONICA, RADIO COMUNICACION Y TRANSMISION DE DATOS: Actividades de operación, mantenimiento o facilitación del acceso a servicios de transmisión de voz, datos, texto, sonido y vídeo utilizando una infraestructura de telecomunicaciones alambricas, como: operación y mantenimiento de sistemas de conmutación y transmisión para suministrar servicios de comunicaciones de punto a punto por líneas alambricas, por microondas o por una combinación de líneas alambricas y conexiones por satélite (Guayaquil) [2]
+- TELYDATA, TELECOMUNICACIONES Y DATOS CIA. LTDA.: Actividades de compra en derechos de acceso y capacidad de red a los propietarios y operadores de redes y utilización de esa capacidad para suministrar servicios de telecomunicaciones a empresas y hogares (Quito) [3]
+- .EC DOMINIOS ECUADOR S.A.S.: Suministro de infraestructura para servicios de hospedaje, servicios de procesamiento de datos y actividades conexas. incluye actividades especializadas de hospedaje, como: hospedaje de sitios web, aplicaciones, servicios de transmisión de secuencias de vídeo por internet (Quito) [4]
+- BLSEC S.A.S.: Actividades de procesamiento y suministro de servicio de registro de datos: elaboración completa de datos facilitados por los clientes, generación de informes especializados a partir de datos facilitados por los clientes (Guayaquil) [5]",2199,,
+Ollama Qwen2.5 7B (local),P10,actividad,Empresas que editan y publican software,extractivo,"Según las fuentes del Observatorio:
+- SOFTWARE DEVELOPMENT T R I N I T Y TRINITYSOFT S.A.: Actividades de diseño de la estructura y el contenido de los elementos siguientes (y/o escritura del código informático necesario para su creación y aplicación): programas de sistemas operativos (incluidas actualizaciones y parches de corrección), aplicaciones informáticas (incluidas actualizaciones y parches de corrección), bases de datos y páginas web (Guayaquil) [1]
+- THOUGHTWORKS SOFTWARE ECUADOR S.A.: Actividades de diseño de la estructura y el contenido de los elementos siguientes (y/o escritura del código informático necesario para su creación y aplicación): programas de sistemas operativos (incluidas actualizaciones y parches de corrección), aplicaciones informáticas (incluidas actualizaciones y parches de corrección), bases de datos y páginas web (Quito) [2]
+- TAG-NOVELL SOFTWARE ECUADOR S.A.: Actividades de diseño de la estructura y el contenido de los elementos siguientes (y/o escritura del código informático necesario para su creación y aplicación): programas de sistemas operativos (incluidas actualizaciones y parches de corrección), aplicaciones informáticas (incluidas actualizaciones y parches de corrección), bases de datos y páginas web (Quito) [3]
+- ASINFO-SOFTWARE & DESARROLLO S.A.: Actividades de diseño de la estructura y el contenido de los elementos siguientes (y/o escritura del código informático necesario para su creación y aplicación): programas de sistemas operativos (incluidas actualizaciones y parches de corrección), aplicaciones informáticas (incluidas actualizaciones y parches de corrección), bases de datos y páginas web (Quito) [4]
+- ENGINEERING BUSINESS SOFTWARE ME&HE CIA. LTDA.: Actividades de diseño de la estructura y el contenido de los elementos siguientes (y/o escritura del código informático necesario para su creación y aplicación): programas de sistemas operativos (incluidas actualizaciones y parches de corrección), aplicaciones informáticas (incluidas actualizaciones y parches de corrección), bases de datos y páginas web (Quito) [5]",2194,,
+Ollama Qwen2.5 7B (local),P11,actividad,¿Qué agencias de publicidad hay?,extractivo,"Según las fuentes del Observatorio:
+- PROMOLUCKY S.A.: Realización de campañas de comercialización y otros servicios de publicidad dirigidos a atraer y retener clientes: promoción de productos, comercialización en el punto de venta, publicidad directa por correo y asesoramiento en marketing, creación de stands, otras estructuras y lugares de exhibición, distribución o entrega de materiales o muestras de publicidad (Guayaquil) [1]
+- ORIONWORLDWIDE S.A.: Realización de campañas de comercialización y otros servicios de publicidad dirigidos a atraer y retener clientes: promoción de productos, comercialización en el punto de venta, publicidad directa por correo y asesoramiento en marketing, creación de stands, otras estructuras y lugares de exhibición, distribución o entrega de materiales o muestras de publicidad (Guayaquil) [2]
+- INTERPUBLIC COLOMBIA S.A.S.: Creación e inserción de anuncios en periódicos, revistas, programas de radio y de televisión, internet y otros medios de difusión (Guayaquil) [3]
+- INDUVALLAS CIA. LTDA.: Creación y colocación de anuncios de publicidad al aire libre en: carteles, tableros, boletines y carteleras, decoración de escaparates, diseño de salas de exhibición, colocación de anuncios en automóviles y buses, actividades de perifoneo, etcétera (Quito) [4]
+- GRANCOMERCIO CIA. LTDA.: Realización de campañas de comercialización y otros servicios de publicidad dirigidos a atraer y retener clientes: promoción de productos, comercialización en el punto de venta, publicidad directa por correo y asesoramiento en marketing, creación de stands, otras estructuras y lugares de exhibición, distribución o entrega de materiales o muestras de publicidad (Quito) [5]",2200,,
+Ollama Qwen2.5 7B (local),P12,actividad,Firmas de auditoría y contabilidad,extractivo,"Según las fuentes del Observatorio:
+- DELOITTE & TOUCHE ECUADOR CIA. LTDA.: Actividades de preparación o auditoria de las cuentas financieras y examen y certificación de cuentas (Quito) [1]
+- PRICEWATERHOUSECOOPERS DEL ECUADOR CIA. LTDA.: Actividades de preparación o auditoria de las cuentas financieras y examen y certificación de cuentas (Quito) [2]
+- PROJECTLAB S.A.: Servicios de asesoramiento, orientación y asistencia operativa a las empresas y a la administración pública en materia de: diseño de métodos o procedimientos contables, programas de contabilidad de costos y procedimientos de control presupuestario (Quito) [3]
+- PEREZ, BUSTAMANTE & PONCE ABOGADOS CIA. LTDA.: Actividades de representación jurídica de los intereses de una parte contra otra, sea o no ante tribunales u otros órganos judiciales, realizadas por abogados o bajo la supervisión de abogados: asesoramiento y representación en procedimientos civiles, procedimientos penales y en relación con conflictos laborales (Quito) [4]
+- SECURITY DATA SEGURIDAD EN DATOS Y FIRMA DIGITAL S.A.: Suministro de infraestructura para servicios de hospedaje, servicios de procesamiento de datos y actividades conexas. incluye actividades especializadas de hospedaje, como: hospedaje de sitios web, aplicaciones, servicios de transmisión de secuencias de vídeo por internet (Quito) [5]",2185,,
+Ollama Qwen2.5 7B (local),P13,actividad,¿Quién vende vehículos?,extractivo,"Según las fuentes del Observatorio:
+- DISTRIVEHIC DISTRIBUIDORA DE VEHÍCULOS S.A.S.: Venta de vehículos nuevos y usados: vehículos de pasajeros, incluidos vehículos especializados como: ambulancias y minibuses, camiones, remolques y semirremolques, vehículos de acampada como: caravanas y autocaravanas, vehículos para todo terreno (jeeps, etcétera), incluido la venta al por mayor y al por menor por comisionistas (Quito) [1]. Ventas 2025: USD 275.815.575,97
+- MAQUINARIAS Y VEHICULOS S.A. MAVESA: Venta de vehículos nuevos y usados: vehículos de pasajeros, incluidos vehículos especializados como: ambulancias y minibuses, camiones, remolques y semirremolques, vehículos de acampada como: caravanas y autocaravanas, vehículos para todo terreno (jeeps, etcétera), incluido la venta al por mayor y al por menor por comisionistas (Guayaquil) [2]. Ventas 2025: USD 188.475.684,96
+- ASIAUTO S.A: Venta de vehículos nuevos y usados: vehículos de pasajeros, incluidos vehículos especializados como: ambulancias y minibuses, camiones, remolques y semirremolques, vehículos de acampada como: caravanas y autocaravanas, vehículos para todo terreno (jeeps, etcétera), incluido la venta al por mayor y al por menor por comisionistas (Quito) [3]. Ventas 2025: USD 252.871.913,02
+- GENERAL MOTORS DEL ECUADOR SA: Venta de vehículos nuevos y usados: vehículos de pasajeros, incluidos vehículos especializados como: ambulancias y minibuses, camiones, remolques y semirremolques, vehículos de acampada como: caravanas y autocaravanas, vehículos para todo terreno (jeeps, etcétera), incluido la venta al por mayor y al por menor por comisionistas (Quito) [4]. Ventas 2025: USD 376.613.382,11
+- AEKIA S.A.: Venta de vehículos nuevos y usados: vehículos de pasajeros, incluidos vehículos especializados como: ambulancias y minibuses, camiones, remolques y semirremolques, vehículos de acampada como: caravanas y autocaravanas, vehículos para todo terreno (jeeps, etcétera), incluido la venta al por mayor y al por menor por comisionistas (Quito) [5]. Ventas 2025: USD 326.278.019,39",2184,,
+Ollama Qwen2.5 7B (local),P14,actividad,Laboratorios que fabrican medicamentos,extractivo,"Según las fuentes del Observatorio:
+- LABORATORIOS SIEGFRIED S.A.: Fabricación de sustancias medicinales activas que se utilizan por sus propiedades farmacológicas en la fabricación de medicamentos: antibióticos, vitaminas básicas, ácido salicílico y acetilsalicílico, etcétera, tratamiento de la sangre, fabricación de medicamentos: antisueros y otras fracciones de sangre, azúcares químicamente puros, productos y extractos endocrinos, vacunas. incluidos preparados homeopáticos, fabricación y procesamiento de glándulas y extractos glandulares, fabricación de productos químicos anticonceptivos de uso externo y de medicamentos anticonceptivos hormonales, fabricación de preparados para el diagnóstico médico, incluidas pruebas de embarazo, etcétera (Quito) [1]
+- ROCHE ECUADOR S.A.: Fabricación de sustancias medicinales activas que se utilizan por sus propiedades farmacológicas en la fabricación de medicamentos: antibióticos, vitaminas básicas, ácido salicílico y acetilsalicílico, etcétera, tratamiento de la sangre, fabricación de medicamentos: antisueros y otras fracciones de sangre, azúcares químicamente puros, productos y extractos endocrinos, vacunas. incluidos preparados homeopáticos, fabricación y procesamiento de glándulas y extractos glandulares, fabricación de productos químicos anticonceptivos de uso externo y de medicamentos anticonceptivos hormonales, fabricación de preparados para el diagnóstico médico, incluidas pruebas de embarazo, etcétera (Quito) [2]
+- QUIFATEX SA: Fabricación de sustancias medicinales activas que se utilizan por sus propiedades farmacológicas en la fabricación de medicamentos: antibióticos, vitaminas básicas, ácido salicílico y acetilsalicílico, etcétera, tratamiento de la sangre, fabricación de medicamentos: antisueros y otras fracciones de sangre, azúcares químicamente puros, productos y extractos endocrinos, vacunas. incluidos preparados homeopáticos, fabricación y procesamiento de glándulas y extractos glandulares, fabricación de productos químicos anticonceptivos de uso externo y de medicamentos anticonceptivos hormonales, fabricación de preparados para el diagnóstico médico, incluidas pruebas de embarazo, etcétera (Quito) [3]
+- PROASSISLIFE S.A.: PROASSISLIFE S.A.
+Lema: Comunícate a nuestra línea de contacto (02) 3827 331, de Lunes a Viernes, de 8h30 a 17h30 y con gusto agendaremos tu cita.
+Descripción:  (Quito) [4]
+- PROJECTLAB S.A.: PROJECTLAB S.A.
+Descripción: PROJECTLAB es una empresa dedicada a la importación y comercialización de alimentos frescos en Ecuador, guiados por nuestros valore (Quito) [5]",2208,,
+Ollama Qwen2.5 7B (local),P15,actividad,Agencias asesoras de seguros,extractivo,"Según las fuentes del Observatorio:
+- ASERTEC S.A. AGENCIA ASESORA PRODUCTORA DE SEGUROS: Actividades de agentes y corredores de seguros (intermediarios de seguros) que venden, negocian u ofertan contratos de anualidades y pólizas de seguros y reaseguros (Quito) [1]
+- TECNISEGUROS S.A. AGENCIA ASESORA PRODUCTORA DE SEGUROS: Actividades de agentes y corredores de seguros (intermediarios de seguros) que venden, negocian u ofertan contratos de anualidades y pólizas de seguros y reaseguros (Quito) [2]
+- NOVAECUADOR S.A AGENCIA ASESORA PRODUCTORA DE SEGUROS: Actividades de agentes y corredores de seguros (intermediarios de seguros) que venden, negocian u ofertan contratos de anualidades y pólizas de seguros y reaseguros (Quito) [3]
+- AON RISK SERVICES ECUADOR S.A. AGENCIA ASESORA PRODUCTORA DE SEGUROS: Actividades de agentes y corredores de seguros (intermediarios de seguros) que venden, negocian u ofertan contratos de anualidades y pólizas de seguros y reaseguros (Quito) [4]
+- MULTIAPOYO CIA. LTDA. AGENCIA ASESORA PRODUCTORA DE SEGUROS: Actividades de agentes y corredores de seguros (intermediarios de seguros) que venden, negocian u ofertan contratos de anualidades y pólizas de seguros y reaseguros (Quito) [5]",2225,,
+Ollama Qwen2.5 7B (local),P16,actividad,¿Qué empresas producen cerveza o bebidas?,extractivo,"Según las fuentes del Observatorio:
+- AC BEBIDAS ECUADOR ACBE CIA.LTDA.: Elaboración de bebidas no alcohólicas embotelladas (excepto cerveza y vino sin alcohol): bebidas aromatizadas y/o edulcoradas: limonadas, naranjadas, bebidas gaseosas (colas), bebidas artificiales de jugos de frutas (con jugos de frutas o jarabes en proporción inferior al 50%), aguas tónicas, gelatina comestible, bebidas hidratantes, etcétera (Quito) [1]
+- BEBIDAS ARCACONTINENTAL ECUADOR ARCADOR C.L.: Venta al por mayor de bebidas no alcohólicas (jugos, gaseosas, agua mineral, etcétera) (Quito) [2]
+- CERVECERIA NACIONAL CN S.A.: Elaboración de bebidas malteadas como: cervezas corrientes de fermentación alta, negras y fuertes, incluida cerveza de baja graduación o sin alcohol (Guayaquil) [3]
+- THE TESALIA SPRINGS COMPANY S.A.: Producción de aguas minerales naturales y otras aguas embotelladas (Quito) [4]
+- DINADEC S.A.: Venta al por mayor de bebidas alcohólicas, incluso el envasado de vino a granel sin transformación (Guayaquil) [5]",2222,,
+Ollama Qwen2.5 7B (local),P17,actividad,Fabricantes de acero y productos siderúrgicos,extractivo,"Según las fuentes del Observatorio:
+- IPAC S.A: Fabricación de ángulos, perfiles y secciones abiertas de acero laminadas en caliente y mediante conformación progresiva en un laminador de rulos o mediante plegado en una prensa de productos laminados planos de acero (Guayaquil) [1]
+- KUBIEC S.A.: Fabricación de ángulos, perfiles y secciones abiertas de acero laminadas en caliente y mediante conformación progresiva en un laminador de rulos o mediante plegado en una prensa de productos laminados planos de acero (Quito) [2]
+- NOVACERO S.A: Fabricación de barras, varillas y secciones sólidas de hierro y acero laminadas en caliente y mediante estirado en frío y en caliente, rectificación o torneado; fabricación de alambre de acero mediante estirado o alargamiento en frío (Lasso) [3]
+- ACERIA DEL ECUADOR CA ADELCA.: Fabricación de ángulos, perfiles y secciones abiertas de acero laminadas en caliente y mediante conformación progresiva en un laminador de rulos o mediante plegado en una prensa de productos laminados planos de acero (Quito) [4]
+- PRODUCTOS PERECIBLES Y MARISCOS PROPEMAR S.A.: Venta al por mayor de diversos productos sin especialización (Montecristi) [5]",2231,,
+Ollama Qwen2.5 7B (local),P18,actividad,"Procesadoras de camarón, pescado y atún",extractivo,"Según las fuentes del Observatorio:
+- CONSERVAS ISABEL ECUATORIANA S.A.: Preparación y conservación de pescado, crustáceos (excepto camarón y langostinos) y otros moluscos mediante el congelado, ultracongelado, secado, ahumado, salado, sumergido en salmuera y enlatado, etcétera (Manta) [1]
+- ASISERVY S.A.: Preparación y conservación de pescado, crustáceos (excepto camarón y langostinos) y otros moluscos mediante el congelado, ultracongelado, secado, ahumado, salado, sumergido en salmuera y enlatado, etcétera (Jaramijó) [2]
+- PCC CONGELADOS & FRESCOS S.A.: Preparación y conservación de camarón y langostinos mediante el congelado, ultracongelado secado, ahumado, salado, sumergido en salmuera y enlatado, etcétera (Guayaquil) [3]
+- MARBELIZE S.A.: Elaboración de productos de pescado: cocinado, filetes de pescado, huevos de pescado, caviar y sustitutos del caviar, etcétera. elaboración de productos de crustáceos (excepto camarón y langostinos) y otros moluscos mediante el secado, salazón, conservación en salmuera, enlatados, ahumado, etcétera (Jaramijó) [4]
+- AQUAGOLD S.A.: Preparación y conservación de camarón y langostinos mediante el congelado, ultracongelado secado, ahumado, salado, sumergido en salmuera y enlatado, etcétera (Guayaquil) [5]",2233,,
+Ollama Qwen2.5 7B (local),P19,actividad,Empresas de ingeniería y consultoría técnica,extractivo,"Según las fuentes del Observatorio:
+- REDES INGENIERIA Y COMUNICACIONES CTREDING CIA. LTDA.: Actividades de instalación (montaje) de computadoras personales (Quito) [1]
+- V&PGROUP INGENIERIA TELECOMUNICACIONES Y SERVICIOS S.A.: Suministro de servicios de telecomunicaciones por las conexiones de telecomunicaciones existentes: suministro de servicios de telefonía por internet (voip: voice over internet protocol) (Quito) [2]
+- SERVICIOS DE INGENIERIA DEL ECUADOR S.A. SERINDEC: Actividades de planificación y diseño de sistemas informáticos que integran equipo y programas informáticos y tecnología de las comunicaciones (Guayaquil) [3]
+- CONSULTORIA VALOR Y SEGURIDAD INFORMATICA CVS S.A.: Actividades de diseño de la estructura y el contenido de los elementos siguientes (y/o escritura del código informático necesario para su creación y aplicación): programas de sistemas operativos (incluidas actualizaciones y parches de corrección), aplicaciones informáticas (incluidas actualizaciones y parches de corrección), bases de datos y páginas web (Quito) [4]
+- SBIE CONSULTORÍA DE SOFTWARE CÍA. LTDA.: Actividades de diseño de la estructura y el contenido de los elementos siguientes (y/o escritura del código informático necesario para su creación y aplicación): programas de sistemas operativos (incluidas actualizaciones y parches de corrección), aplicaciones informáticas (incluidas actualizaciones y parches de corrección), bases de datos y páginas web (Quito) [5]",2224,,
+Ollama Qwen2.5 7B (local),P20,actividad,¿Quién vende medicinas al por mayor?,extractivo,"Según las fuentes del Observatorio:
+- FARMACIAS Y COMISARIATOS DE MEDICINAS SA FARCOMED: Venta al por menor de productos farmacéuticos en establecimientos especializados (Sangolquí) [1]. Ventas 2025: USD 556.531.974,00
+- FARMACIAS Y COMISARIATOS DE MEDICINAS SA FARCOMED: FARMACIAS Y COMISARIATOS DE MEDICINAS SA FARCOMED.
+Lema: Sviluppiamo e distribuiamo Integratori, Dimagrimento Veloce, Capelli, Microcircolo. In collaborazione c (Sangolquí) [2]
+- LETERAGO DEL ECUADOR S.A: Venta al por mayor de productos farmacéuticos, incluso veterinarios (Quito) [3]. Ventas 2025: USD 546.460.647,92
+- FARMAENLACE CIA. LTDA.: Venta al por mayor de productos farmacéuticos, incluso veterinarios (Quito) [4]. Ventas 2025: USD 653.060.710,00
+- DISTRIBUIDORA FARMACEUTICA ECUATORIANA (DIFARE) S.A.: Venta al por mayor de productos farmacéuticos, incluso veterinarios (Guayaquil) [5]. Ventas 2025: USD 910.415.423,10",2212,,
+Ollama Qwen2.5 7B (local),P21,actividad_lugar,¿Qué empresas de tecnología hay en Ambato?,extractivo,"Según las fuentes del Observatorio:
+- MIVILSOFT S.A.: Actividades de planificación y diseño de sistemas informáticos que integran equipo y programas informáticos y tecnología de las comunicaciones (Ambato) [1]
+- PORTALDATA S.A.: Suministro de acceso a internet por redes que no posee ni controla el proveedor de servicios de internet, como el acceso telefónico a internet, etc (Ambato) [2]
+- SPEEDYCOM CIA. LTDA.: Actividades de suministro de acceso a internet por los operadores de la infraestructura de telecomunicaciones inalámbricas (Ambato) [3]
+- UNINOVA-COMPAÑIA DE SERVICIOS AUXILIARES S.A.: Actividades de personas, empresas y otras entidades que gestionan carteras y fondos a cambio de una retribución o por contrato. se incluyen las siguientes actividades: gestión de fondos de pensiones, gestión de fondos mutuos de inversión y gestión de otros fondos de inversión (Ambato) [4]",2389,,
+Ollama Qwen2.5 7B (local),P22,actividad_lugar,Empresas que desarrollan software en Cuenca,extractivo,"Según las fuentes del Observatorio:
+- V&V INTELIGENCIA TECNOLOGICA S.A.S.: Servicios de aplicaciones (Cuenca) [1]
+- CATWORKX ECUADOR S.A.: Adaptación de programas informáticos a las necesidades de los clientes, es decir, modificación y configuración de una aplicación existente para que pueda funcionar adecuadamente con los sistemas de información de que dispone el cliente (Cuenca) [2]
+- CORESOLUTIONS S.A.: Actividades de planificación y diseño de sistemas informáticos que integran equipo y programas informáticos y tecnología de las comunicaciones (Cuenca) [3]
+- ECUAPAYPHONE C.A.: Actividades de planificación y diseño de sistemas informáticos que integran equipo y programas informáticos y tecnología de las comunicaciones (Cuenca) [4]
+- IMMARVIC CIA.LTDA.: Actividades de suministro de acceso a internet por los operadores de la infraestructura de telecomunicaciones inalámbricas (Cuenca) [5]",2374,,
+Ollama Qwen2.5 7B (local),P23,actividad_lugar,Proveedores de internet en Loja,extractivo,"Según las fuentes del Observatorio:
+- LOJASYSTEM C.A.: Actividades de compra de acceso y capacidad de red concedida por los dueños y operadores de las redes y el abastecimiento de servicios de telecomunicaciones inalámbrico (excepto el satélite) que utilizan esta capacidad a empresas y hogares (Loja) [1]
+- RIOSACTELCOM CIA. LTDA.: Actividades de operación, mantenimiento o facilitación del acceso a servicios de transmisión de voz, datos, texto, sonido y vídeo utilizando una infraestructura de telecomunicaciones por satélite, actividades de suministro de acceso a internet por el operador de la infraestructura de telecomunicaciones por satélite (Loja) [2]
+- CLIPP ECUADOR S.A.S.: Actividades de diseño de la estructura y el contenido de los elementos siguientes (y/o escritura del código informático necesario para su creación y aplicación): programas de sistemas operativos (incluidas actualizaciones y parches de corrección), aplicaciones informáticas (incluidas actualizaciones y parches de corrección), bases de datos y páginas web (Loja) [3]",2395,,
+Ollama Qwen2.5 7B (local),P24,actividad_lugar,Supermercados en Quito,extractivo,"Según las fuentes del Observatorio:
+- LETERAGO DEL ECUADOR S.A: Venta al por mayor de productos farmacéuticos, incluso veterinarios (Quito) [1]
+- SUPERDEPORTE S.A.: Venta al por mayor de prendas de vestir, incluidas prendas (ropa) deportivas (Quito) [2]
+- CORPORACION SUPERIOR CORSUPERIOR S.A.: Venta al por mayor de productos de panadería y repostería (Quito) [3]
+- MASGAS S.A.: Venta al por mayor de petróleo crudo (Quito) [4]
+- AMERINODE DEL ECUADOR S.A.: Actividades de gestión y consultoría para la transmisión de datos (Quito) [5]",2344,,
+Ollama Qwen2.5 7B (local),P25,nombre,¿Qué produce Nestlé Ecuador?,extractivo,"Según las fuentes del Observatorio:
+- NESTLE ECUADOR S.A.: Elaboración de otros alimentos especiales: concentrados de proteínas; alimentos preparados con fines dietéticos, alimentos sin gluten, alimentos para combatir el desgaste causado por el esfuerzo muscular, etcétera (Quito) [1]
+- LETERAGO DEL ECUADOR S.A: Venta al por mayor de productos farmacéuticos, incluso veterinarios (Quito) [2]
+- ROCHE ECUADOR S.A.: ROCHE ECUADOR S.A.
+Descripción: En Roche estamos comprometidos en poner nuestra innovación a disposición para que más padres tengan más tiempo de vida junto a s (Quito) [3]
+- UNACEM ECUADOR S.A.: Fabricación de artículos para construcción: losetas, tejas, azulejos y otros de cerámica refractaria; morteros, cementos y otros materiales refractarios (Quito) [4]
+- UNACEM ECUADOR S.A.: UNACEM ECUADOR S.A.
+Lema: Compañía de origen peruano, líder en la industria del cemento en Ecuador enfocada en: cemento, concreto y energía y con presencia en 5 (Quito) [5]",2218,,
+Ollama Qwen2.5 7B (local),P26,nombre,Información sobre Saludsa,extractivo,"Según las fuentes del Observatorio:
+- SALUDSA SISTEMA DE MEDICINA PRE-PAGADA DEL ECUADOR S.A.: Servicios de seguro de medicina pre pagada (Quito) [1]
+- CORPORACION TECNOLOGIA DE LA INFORMACION SOLUTANDI S.A.: Actividades de diseño de la estructura y el contenido de los elementos siguientes (y/o escritura del código informático necesario para su creación y aplicación): programas de sistemas operativos (incluidas actualizaciones y parches de corrección), aplicaciones informáticas (incluidas actualizaciones y parches de corrección), bases de datos y páginas web (Quito) [2]
+- SERVICIOS EN TECNOLOGIA DE LA INFORMACION, SETEINFO DEL ECUADOR C.A.: Actividades de planificación y diseño de sistemas informáticos que integran equipo y programas informáticos y tecnología de las comunicaciones (Quito) [3]
+- GESTION EN INFORMACION Y TECNOLOGIA GESTIONTEC CIA LTDA.: Prestación de asesoramiento y ayuda a las empresas y las administraciones públicas en materia de planificación, organización, eficiencia y control, información administrativa, etcétera (Quito) [4]
+- BLSEC S.A.S.: Actividades de procesamiento y suministro de servicio de registro de datos: elaboración completa de datos facilitados por los clientes, generación de informes especializados a partir de datos facilitados por los clientes (Guayaquil) [5]",2207,,
+Ollama Qwen2.5 7B (local),P27,nombre,¿A qué se dedica Sofka?,extractivo,"Según las fuentes del Observatorio:
+- SOFKA-ECUADOR S.A.S.: Prestación de asesoramiento y ayuda a las empresas y las administraciones públicas en materia de planificación, organización, eficiencia y control, información administrativa, etcétera (Quito) [1]
+- ECO-KAKAO S.A.: ECO-KAKAO S.A.
+Lema: 카카오 CA(Corporate Alignment)협의체는 카카오그룹 내부의 이해관계 조율과 컨센서스 형성, 문화적 정체성 조성을 위해 설립된 최고 협의기구입니다.
+Descripción: 카카오 CA(Corporate Alignment)협의체는 카카오 (Eloy Alfaro (Duran)) [2]
+- COLGATE PALMOLIVE DEL ECUADOR SOCIEDAD ANONIMA INDUSTRIAL Y COMERCIAL: COLGATE PALMOLIVE DEL ECUADOR SOCIEDAD ANONIMA INDUSTRIAL Y COMERCIAL.
+Lema: Industrial y Comercial SRL, fabrica y comercializa Trailers, Autoelevadores y Maqui (Guayaquil) [3]
+- FERTISA AGIF C.L.: FERTISA AGIF C.L.
+Lema: Desde 1964, FERTISA AGIF ha liderado la importación y comercialización de fertilizantes e insumos agropecuarios de alta calidad a escala (Eloy Alfaro (Duran)) [4]
+- NOVACERO S.A: NOVACERO S.A.
+Lema: Fabricamos y comercializamos soluciones de acero generando valor a clientes, comunidad y nuestro personal de forma sostenible.
+Descripción:  (Lasso) [5]",2190,,
+Ollama Qwen2.5 7B (local),P28,nombre,¿Dónde está Holcim Ecuador?,extractivo,"Según las fuentes del Observatorio:
+- HOLCIM ECUADOR S.A.: HOLCIM ECUADOR S.A.
+Lema: Holcim es uno de los principales proveedores mundiales de cemento y agregados (piedra triturada, grava y arena), así como de otras act (Guayaquil) [1]
+- HOLCIM ECUADOR S.A.: Fabricación de cementos hidráulicos, incluido cemento de pórtland, cemento aluminoso, cemento de escorias y cemento hipersulfatado (Guayaquil) [2]
+- LETERAGO DEL ECUADOR S.A: Venta al por mayor de productos farmacéuticos, incluso veterinarios (Quito) [3]
+- ROCHE ECUADOR S.A.: ROCHE ECUADOR S.A.
+Descripción: En Roche estamos comprometidos en poner nuestra innovación a disposición para que más padres tengan más tiempo de vida junto a s (Quito) [4]
+- UNACEM ECUADOR S.A.: Fabricación de artículos para construcción: losetas, tejas, azulejos y otros de cerámica refractaria; morteros, cementos y otros materiales refractarios (Quito) [5]",2228,,
+Ollama Qwen2.5 7B (local),P29,cifra,¿Cuánto vendió Pronaca en 2025?,extractivo,"Según las fuentes del Observatorio:
+- PROCESADORA NACIONAL DE ALIMENTOS C.A. PRONACA: PROCESADORA NACIONAL DE ALIMENTOS C.A. PRONACA.
+Lema: Somos una empresa multinacional familiar que actúa con respeto para alimentar bien a millones de familias  (Quito) [1]. Ventas 2025: USD 1.133.424.282,57
+- PROCESADORA NACIONAL DE ALIMENTOS C.A. PRONACA: Explotación de mataderos que realizan actividades de sacrificio, faenamiento, preparación, producción y empacado de carne fresca refrigerada o congelada en canales o piezas o porciones individuales de: bovino, porcino, ovino, caprino (Quito) [2]
+- HAID ( ECUADOR) FEED CIA.LTDA.: HAID ( ECUADOR) FEED CIA.LTDA.
+Lema: Haid Ecuador Feed Cia. Ltda, líder en producción de piensos acuáticos y balanceados para camarón desde 1998.
+Descripción: P (Eloy Alfaro (Duran)) [3]. Ventas 2025: USD 295.495.509,23
+- CRESA-RETAIL S.A.S.: CRESA-RETAIL S.A.S.
+Descripción: En 2024 nació Cresa Retail de la unión de las compañías Crecoscorp e Icesa, dando vida a un retail ecuatoriano que integra a nu (Guayaquil) [4]. Ventas 2025: USD 225.941.895,13
+- EXPALSA EXPORTADORA DE ALIMENTOS SA: EXPALSA EXPORTADORA DE ALIMENTOS SA.
+Lema: Supplying premium White Vannamei shrimp from Ecuador to 40+ countries for over 40 years. Fully traceable, internation (Eloy Alfaro (Duran)) [5]. Ventas 2025: USD 410.085.302,23",2202,,
+Ollama Qwen2.5 7B (local),P30,cifra,¿Cuántos empleados tiene Corporación El Rosado?,extractivo,"Según las fuentes del Observatorio:
+- CORPORACION EL ROSADO S.A.: Venta al por menor de gran variedad de productos en tiendas, entre los que predominan, los productos alimenticios, las bebidas o el tabaco, como productos de primera necesidad y varios otros tipos de productos, como prendas de vestir, muebles, aparatos, artículos de ferretería, cosméticos, etcétera (Guayaquil) [1]. Ventas 2025: USD 1.641.394.550,59; empleados declarados: 6
+- CORPORACION FAVORITA C.A.: CORPORACION FAVORITA C.A.
+Lema: Corporación Favorita, empresa ecuatoriana multinacional. Mejorando la calidad de vida cada día con retail, supermercados y compr (Quito) [2]. Ventas 2025: USD 2.690.137.857,78; empleados declarados: 12033
+- CORPORACION MULTIBG S.A.: Actividades auxiliares de las actividades de servicios financieros n.c.p., como: actividades de tramitación y liquidación de transacciones financieras, incluidas las transacciones con tarjetas de crédito (Guayaquil) [3]. Ventas 2025: USD 43.669.853,64; empleados declarados: 2
+- CORPORACION SUPERIOR CORSUPERIOR S.A.: Venta al por mayor de productos de panadería y repostería (Quito) [4]. Ventas 2025: USD 216.677.118,39; empleados declarados: 1630
+- CORPORACION FAVORITA C.A.: Venta al por menor de gran variedad de productos en tiendas, entre los que predominan, los productos alimenticios, las bebidas o el tabaco, como productos de primera necesidad y varios otros tipos de productos, como prendas de vestir, muebles, aparatos, artículos de ferretería, cosméticos, etcétera (Quito) [5]",2238,,
+Ollama Qwen2.5 7B (local),P31,actividad,Empresas de medicina prepagada,extractivo,"Según las fuentes del Observatorio:
+- COMPAÑIA DE MEDICINA PREPAGADA INMEDICAL MEDICINA INTERNACIONAL S.A.: Servicios de seguro de medicina pre pagada (Quito) [1]
+- VUMILATINA MEDICINA PREPAGADA S.A.: Servicios de seguro de medicina pre pagada (Quito) [2]
+- MEDICINA PREPAGADA CRUZBLANCA S.A.: Servicios de seguro de medicina pre pagada (Quito) [3]
+- BEST DOCTORS S.A. EMPRESA DE MEDICINA PREPAGADA: Servicios de seguro de medicina pre pagada (Guayaquil) [4]
+- MEDICINA PARA EL ECUADOR MEDIECUADOR-HUMANA S.A.: Servicios de seguro de medicina pre pagada (Quito) [5]",2190,,
+Ollama Qwen2.5 7B (local),P32,actividad,¿Quién procesa transacciones y pagos electrónicos?,extractivo,"Según las fuentes del Observatorio:
+- RED DE RECAUDACIÓN, PAGOS Y SERVICIOS FACILITO REDFACILITO S.A.: Actividades auxiliares de las actividades de servicios financieros n.c.p., como: actividades de tramitación y liquidación de transacciones financieras, incluidas las transacciones con tarjetas de crédito (Guayaquil) [1]
+- DATAFAST S.A.: DATAFAST S.A.
+Lema: Somos la empresa líder en soluciones de pagos presenciales y digitales con tarjeta de crédito y débito para tu negocio.
+Descripción: En este (Guayaquil) [2]
+- MEDIANET S.A.: MEDIANET S.A.
+Descripción: Somos una empresa tecnológica con trayectoria de 23 años, cuyo propósito es ser aliado de nuestros clientes, dando cobertura en los p (Guayaquil) [3]
+- NTT-DATA ECUADOR S.A.: Actividades auxiliares de las actividades de servicios financieros n.c.p., como: actividades de tramitación y liquidación de transacciones financieras, incluidas las transacciones con tarjetas de crédito (Quito) [4]
+- EASYSOFT S.A.: Actividades auxiliares de las actividades de servicios financieros n.c.p., como: actividades de tramitación y liquidación de transacciones financieras, incluidas las transacciones con tarjetas de crédito (Quito) [5]",2218,,
+Ollama Qwen2.5 7B (local),P33,actividad,Administradoras de fondos y fideicomisos,extractivo,"Según las fuentes del Observatorio:
+- FIDEVAL S.A. ADMINISTRADORA DE FONDOS Y FIDEICOMISOS: Servicios de administración fiduciaria y de custodia a cambio de una retribución o por contrato (Quito) [1]
+- ANEFI S.A. ADMINISTRADORA DE FONDOS Y FIDEICOMISOS: Actividades de entidades jurídicas organizadas para la mancomunión de valores u otros activos financieros, sin gestión, en nombre de accionistas o beneficiarios. las carteras se adaptan a especificaciones concretas para lograr determinadas características; por ejemplo, de diversificación, riesgo, rendimiento y variabilidad de precio. esas entidades obtienen intereses, dividendos y otras rentas de la propiedad, pero tienen pocos empleados y no obtienen ingresos por concepto de venta de servicios. se incluyen las siguientes actividades: fondos de inversión de participación abierta; fondos de inversión cerrados; fideicomisos, legados o cuentas de agencia, administrados en nombre de los beneficiarios en virtud de un contrato de fiducia, un testamento o un contrato de representación; sociedades de inversión mobiliaria (Quito) [2]
+- AFP GENESIS ADMINISTRADORA DE FONDOS Y FIDEICOMISOS S.A.: Actividades de personas, empresas y otras entidades que gestionan carteras y fondos a cambio de una retribución o por contrato. se incluyen las siguientes actividades: gestión de fondos de pensiones, gestión de fondos mutuos de inversión y gestión de otros fondos de inversión (Guayaquil) [3]
+- FIDUCIA S.A. ADMINISTRADORA DE FONDOS Y FIDEICOMISOS MERCANTILES: Servicios de administración fiduciaria y de custodia a cambio de una retribución o por contrato (Quito) [4]
+- HOPE ADMINISTRADORA DE FONDOS Y FIDEICOMISOS FIDUHOPE S.A.: Servicios de administración fiduciaria y de custodia a cambio de una retribución o por contrato (Quito) [5]",2210,,
+Ollama Qwen2.5 7B (local),P34,actividad,Fabricantes de cemento,extractivo,"Según las fuentes del Observatorio:
+- HOLCIM ECUADOR S.A.: HOLCIM ECUADOR S.A.
+Lema: Holcim es uno de los principales proveedores mundiales de cemento y agregados (piedra triturada, grava y arena), así como de otras act (Guayaquil) [1]
+- HOLCIM ECUADOR S.A.: Fabricación de cementos hidráulicos, incluido cemento de pórtland, cemento aluminoso, cemento de escorias y cemento hipersulfatado (Guayaquil) [2]
+- UNACEM ECUADOR S.A.: UNACEM ECUADOR S.A.
+Lema: Compañía de origen peruano, líder en la industria del cemento en Ecuador enfocada en: cemento, concreto y energía y con presencia en 5 (Quito) [3]
+- UNACEM ECUADOR S.A.: Fabricación de artículos para construcción: losetas, tejas, azulejos y otros de cerámica refractaria; morteros, cementos y otros materiales refractarios (Quito) [4]
+- IPAC S.A: Fabricación de ángulos, perfiles y secciones abiertas de acero laminadas en caliente y mediante conformación progresiva en un laminador de rulos o mediante plegado en una prensa de productos laminados planos de acero (Guayaquil) [5]",2216,,
+Ollama Qwen2.5 7B (local),P35,actividad,Fábricas de papel y cartón,extractivo,"Según las fuentes del Observatorio:
+- CARTONES NACIONALES S.A. I CARTOPEL: Fabricación del papel y cartón ondulados o corrugado (Cuenca) [1]
+- GRUPASA GRUPO PAPELERO CIA.LTDA.: Fabricación de envases de papel o de cartón ondulado, rígido o plegable: cajas, cajones, estuches, envases, archivadores de cartón de oficina y artículos similares (Guayaquil) [2]
+- IN.CAR.PALM. INDUSTRIA CARTONERA PALMAR S.A.: Fabricación del papel y cartón ondulados o corrugado (Guayaquil) [3]
+- PAPELERA NACIONAL SA: Fabricación de papel y cartón para su posterior elaboración industrial (Crnel. Marcelino Maridueña (San Carlos)) [4]
+- PRODUCTOS FAMILIA SANCELA DEL ECUADOR S.A: Fabricación de productos de papel de higiene personal y productos de guata de celulosa y materiales textiles: pañuelos de limpieza, toallas, servilletas, papel higiénico, toallas sanitarias y tampones, toallas para desmaquillar, pañales para bebes y similares, etcétera (Quito) [5]",2174,,
+Ollama Qwen2.5 7B (local),P36,actividad,Empresas de televisión por cable,extractivo,"Según las fuentes del Observatorio:
+- DV TELEVISION DVTV S.A.: Actividades de operación en sistemas de distribución por cable (por ejemplo, para la distribución de datos y señales de televisión) (Daule) [1]
+- TELXIUS CABLE ECUADOR S.A.: Actividades de operación, mantenimiento o facilitación del acceso a servicios de transmisión de voz, datos, texto, sonido y vídeo utilizando una infraestructura de telecomunicaciones alambricas, como: operación y mantenimiento de sistemas de conmutación y transmisión para suministrar servicios de comunicaciones de punto a punto por líneas alambricas, por microondas o por una combinación de líneas alambricas y conexiones por satélite (Quito) [2]
+- NEGOCIOS TELECOMUNICACIONES REDES Y TELEVISION AVANTELREDSA S.A.: Actividades de operación, mantenimiento o facilitación del acceso a servicios de transmisión de voz, datos, texto, sonido y vídeo utilizando una infraestructura de telecomunicaciones alambricas, como: operación y mantenimiento de sistemas de conmutación y transmisión para suministrar servicios de comunicaciones de punto a punto por líneas alambricas, por microondas o por una combinación de líneas alambricas y conexiones por satélite (Quito) [3]
+- CABLEPREMIER S.A.: Actividades de operación en sistemas de distribución por cable (por ejemplo, para la distribución de datos y señales de televisión) (Baños De Agua Santa) [4]
+- MAGARTV S.A.: Actividades de operación en sistemas de distribución por cable (por ejemplo, para la distribución de datos y señales de televisión) (Guayaquil) [5]",2228,,
+Ollama Qwen2.5 7B (local),P37,actividad_lugar,Empresas de tecnología en Manta,extractivo,"Según las fuentes del Observatorio:
+- SEAFMAN SOCIEDAD ECUATORIANA DE ALIMENTOS Y FRIGORIFICOS MANTA C.A.: Preparación y conservación de pescado, crustáceos (excepto camarón y langostinos) y otros moluscos mediante el congelado, ultracongelado, secado, ahumado, salado, sumergido en salmuera y enlatado, etcétera (Manta) [1]
+- LINKSAT SOLUTIONS S.A.: Actividades de suministro de acceso a internet por los operadores de la infraestructura de telecomunicaciones inalámbricas (Manta) [2]
+- SOFTDATA SOLUCIONES TECNOLÓGICAS DISRUPTIVAS S.A.S.: Actividades de publicación de programas informáticos comerciales (no personalizados): sistemas operativos, aplicaciones comerciales y otras aplicaciones, juegos informáticos para todas las plataformas (Manta) [3]
+- CONSERVAS ISABEL ECUATORIANA S.A.: Preparación y conservación de pescado, crustáceos (excepto camarón y langostinos) y otros moluscos mediante el congelado, ultracongelado, secado, ahumado, salado, sumergido en salmuera y enlatado, etcétera (Manta) [4]
+- FIBERGO-TELECOM S.A.: Actividades de operación, mantenimiento o facilitación del acceso a servicios de transmisión de voz, datos, texto, sonido y vídeo utilizando una infraestructura de telecomunicaciones alambricas, como: operación y mantenimiento de sistemas de conmutación y transmisión para suministrar servicios de comunicaciones de punto a punto por líneas alambricas, por microondas o por una combinación de líneas alambricas y conexiones por satélite (Manta) [5]",2346,,
+Ollama Qwen2.5 7B (local),P38,actividad_lugar,Empresas financieras en Guayaquil,extractivo,"Según las fuentes del Observatorio:
+- DATAFAST S.A.: Actividades auxiliares de las actividades de servicios financieros n.c.p., como: actividades de tramitación y liquidación de transacciones financieras, incluidas las transacciones con tarjetas de crédito (Guayaquil) [1]
+- CREDIMATIC S.A.: Actividades auxiliares de las actividades de servicios financieros n.c.p., como: actividades de tramitación y liquidación de transacciones financieras, incluidas las transacciones con tarjetas de crédito (Guayaquil) [2]
+- BANRED S.A.: Actividades auxiliares de las actividades de servicios financieros n.c.p., como: actividades de tramitación y liquidación de transacciones financieras, incluidas las transacciones con tarjetas de crédito (Guayaquil) [3]
+- MEDIANET S.A.: Actividades auxiliares de las actividades de servicios financieros n.c.p., como: actividades de tramitación y liquidación de transacciones financieras, incluidas las transacciones con tarjetas de crédito (Guayaquil) [4]
+- CORPORACION MULTIBG S.A.: Actividades auxiliares de las actividades de servicios financieros n.c.p., como: actividades de tramitación y liquidación de transacciones financieras, incluidas las transacciones con tarjetas de crédito (Guayaquil) [5]",2319,,
+Ollama Qwen2.5 7B (local),F01,fuera_de_alcance,¿Cuál es la receta del encebollado?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,192,,
+Ollama Qwen2.5 7B (local),F02,fuera_de_alcance,¿Quién ganará el mundial de fútbol?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,149,,
+Ollama Qwen2.5 7B (local),F03,fuera_de_alcance,Escríbeme un poema de amor,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,164,,
+Ollama Qwen2.5 7B (local),F04,fuera_de_alcance,¿Cómo está el clima mañana?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,135,,
+Ollama Qwen2.5 7B (local),F05,fuera_de_alcance,¿Cuál es la capital de Francia?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,131,,
+Ollama Qwen2.5 7B (local),F06,fuera_de_alcance,Recomiéndame una película de terror,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,144,,
+Ollama Qwen2.5 7B (local),S01,sin_dato,¿Cuál es la misión de Pronaca?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,173,,
+Ollama Qwen2.5 7B (local),S02,sin_dato,¿Quién es el gerente general de Telconet?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,183,,
+Ollama Qwen2.5 7B (local),S03,sin_dato,¿Cuál es el teléfono de Saludsa?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,148,,
+Ollama Qwen2.5 7B (local),S04,sin_dato,¿Qué certificaciones tiene Holcim?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,130,,
+Ollama Qwen2.5 7B (local),F07,fuera_de_alcance,¿Cómo preparo un pastel de chocolate?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,151,,
+Ollama Qwen2.5 7B (local),F08,fuera_de_alcance,Dame consejos para bajar de peso,extractivo,"Según las fuentes del Observatorio:
+- FARMACIAS Y COMISARIATOS DE MEDICINAS SA FARCOMED: FARMACIAS Y COMISARIATOS DE MEDICINAS SA FARCOMED.
+Lema: Sviluppiamo e distribuiamo Integratori, Dimagrimento Veloce, Capelli, Microcircolo. In collaborazione c (Sangolquí) [1]
+- APPDEUNA S.A.: APPDEUNA S.A.
+Lema: Programa para negocios en Colombia: ventas y cuentas por cobrar en el plan Básico; caja con cierre y agente de WhatsApp desde el plan Local. (Quito) [2]
+- PROASSISLIFE S.A.: PROASSISLIFE S.A.
+Lema: Comunícate a nuestra línea de contacto (02) 3827 331, de Lunes a Viernes, de 8h30 a 17h30 y con gusto agendaremos tu cita.
+Descripción:  (Quito) [3]
+- BUREAU VERITAS ECUADOR S.A.: BUREAU VERITAS ECUADOR S.A.
+Descripción: Our solutions and services help our clients reduce risk, improve their performance and meet the challenges of quality,  (Quito) [4]
+- HAID ( ECUADOR) FEED CIA.LTDA.: HAID ( ECUADOR) FEED CIA.LTDA.
+Lema: Haid Ecuador Feed Cia. Ltda, líder en producción de piensos acuáticos y balanceados para camarón desde 1998.
+Descripción: P (Eloy Alfaro (Duran)) [5]",2177,,
+GPT-6 Luna (OpenAI),P01,nombre,¿Qué hace Telconet?,llm,"Telconet ofrece infraestructura digital y soluciones tecnológicas para empresas, como conectividad e internet corporativo, redes privadas entre sedes, servicios en la nube, centros de datos, inteligencia artificial y videoanalítica. [1] También opera y mantiene infraestructura de telecomunicaciones alámbricas para facilitar la transmisión de voz, datos, texto, sonido y video. [2]",4086,,
+GPT-6 Luna (OpenAI),P02,nombre,¿A qué se dedica Corporación Favorita?,llm,"Corporación Favorita se dedica principalmente a la venta al por menor de una amplia variedad de productos, especialmente alimentos, bebidas y artículos de primera necesidad. [2] También ofrece supermercados y retail, centros comerciales, productos industriales y marcas de consumo. [1]",1880,,
+GPT-6 Luna (OpenAI),P03,nombre,¿Dónde está ubicada Pronaca?,llm,"Pronaca está ubicada en Quito, provincia de Pichincha, en la región Sierra [1].",1810,,
+GPT-6 Luna (OpenAI),P04,nombre,¿Qué actividad tiene Datafast?,llm,"Datafast realiza actividades auxiliares de servicios financieros, como la tramitación y liquidación de transacciones financieras, incluidas las operaciones con tarjetas de crédito. [2] También ofrece soluciones de pagos presenciales y digitales con tarjetas de crédito y débito. [1]",1899,,
+GPT-6 Luna (OpenAI),P05,nombre,Información de McKinsey en Ecuador,llm,"**McKinsey & Company, Inc. Ecuador** es una empresa grande del grupo de actividades profesionales, científicas y técnicas. Su actividad principal es asesorar y ayudar a empresas y administraciones públicas en planificación, organización, eficiencia, control e información administrativa. [1]
+
+Pertenece al grupo de actividades de consultoría de gestión y está ubicada en Quito, provincia de Pichincha, región Sierra. Es una sucursal extranjera y su expediente SCVS es 740608. [1]",2156,,
+GPT-6 Luna (OpenAI),P06,cifra,¿Cuánto vendió Tiendas Tuti en 2025 y cuántos empleados tiene?,llm,"Tiendas Tuti reportó ventas de USD 1.008.144.377,94 en 2025 y 8 empleados declarados. [1]",2611,,
+GPT-6 Luna (OpenAI),P07,cifra,¿Cuáles fueron las ventas de Otecel?,llm,"Las ventas de OTECEL S.A. fueron de USD 511.863.496,99 en 2025. [1]",2987,,
+GPT-6 Luna (OpenAI),P08,actividad,¿Qué empresas brindan telefonía móvil?,llm,"Las empresas que brindan telefonía móvil son COMUNICACIONES Y TELEFONIA MULTIPLES S.A. MULTICOM - TELEMOVIL [1], SUMISYS TELECOM COMPAÑIA ANONIMA [3] y CONSORCIO ECUATORIANO DE TELECOMUNICACIONES S.A. CONECEL [4].",2022,,
+GPT-6 Luna (OpenAI),P09,actividad,¿Quién emite firmas electrónicas o procesa datos?,llm,"Procesan datos SECURITY DATA SEGURIDAD EN DATOS Y FIRMA DIGITAL S.A., .EC DOMINIOS ECUADOR S.A.S. y BLSEC S.A.S., según sus actividades declaradas. [1][4][5]
+
+No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.",4588,,
+GPT-6 Luna (OpenAI),P10,actividad,Empresas que editan y publican software,llm,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,3257,,
+GPT-6 Luna (OpenAI),P11,actividad,¿Qué agencias de publicidad hay?,llm,"En las fuentes constan estas empresas del grupo de publicidad:
+
+- PROMOLUCKY S.A., en Guayaquil [1].
+- ORIONWORLDWIDE S.A., en Guayaquil [2].
+- INTERPUBLIC COLOMBIA S.A.S., en Guayaquil [3].
+- INDUVALLAS CIA. LTDA., en Quito [4].
+- GRANCOMERCIO CIA. LTDA., en Quito [5].",2113,,
+GPT-6 Luna (OpenAI),P12,actividad,Firmas de auditoría y contabilidad,llm,"- **Deloitte & Touche Ecuador Cía. Ltda.**: preparación o auditoría de cuentas financieras y examen y certificación de cuentas. [1]
+- **PricewaterhouseCoopers del Ecuador Cía. Ltda.**: preparación o auditoría de cuentas financieras y examen y certificación de cuentas. [2]",3194,,
+GPT-6 Luna (OpenAI),P13,actividad,¿Quién vende vehículos?,llm,"Venden vehículos DISTRIVEHIC DISTRIBUIDORA DE VEHÍCULOS S.A.S. [1], MAQUINARIAS Y VEHÍCULOS S.A. MAVESA [2], ASIAUTO S.A. [3], GENERAL MOTORS DEL ECUADOR S.A. [4] y AEKIA S.A. [5].",2113,,
+GPT-6 Luna (OpenAI),P14,actividad,Laboratorios que fabrican medicamentos,llm,"- LABORATORIOS SIEGFRIED S.A. [1]
+- ROCHE ECUADOR S.A. [2]
+- QUIFATEX SA [3]",3756,,
+GPT-6 Luna (OpenAI),P15,actividad,Agencias asesoras de seguros,llm,"Agencias asesoras productoras de seguros mencionadas en las fuentes:
+
+- ASERTEC S.A. [1]
+- TECNISEGUROS S.A. [2]
+- NOVAECUADOR S.A. [3]
+- AON RISK SERVICES ECUADOR S.A. [4]
+- MULTIAPOYO CIA. LTDA. [5]",3389,,
+GPT-6 Luna (OpenAI),P16,actividad,¿Qué empresas producen cerveza o bebidas?,llm,"- **CERVECERÍA NACIONAL CN S.A.** elabora cerveza. [3]
+- **AC BEBIDAS ECUADOR ACBE CIA.LTDA.** elabora bebidas no alcohólicas embotelladas. [1]
+- **THE TESALIA SPRINGS COMPANY S.A.** produce aguas minerales naturales y otras aguas embotelladas. [4]",2253,,
+GPT-6 Luna (OpenAI),P17,actividad,Fabricantes de acero y productos siderúrgicos,llm,"- IPAC S.A., en Guayaquil, fabrica ángulos, perfiles y secciones abiertas de acero. [1]
+- KUBIEC S.A., en Quito, fabrica ángulos, perfiles y secciones abiertas de acero. [2]
+- NOVACERO S.A., en Lasso, fabrica barras, varillas, secciones sólidas y alambre de acero. [3]
+- ACERIA DEL ECUADOR CA ADELCA, en Quito, fabrica ángulos, perfiles y secciones abiertas de acero. [4]",3500,,
+GPT-6 Luna (OpenAI),P18,actividad,"Procesadoras de camarón, pescado y atún",llm,"- **Camarón:** PCC CONGELADOS & FRESCOS S.A. y AQUAGOLD S.A. constan como procesadoras de camarón y langostinos. [3][5]
+- **Pescado:** CONSERVAS ISABEL ECUATORIANA S.A. y ASISERVY S.A. constan como procesadoras de pescado; MARBELIZE S.A. elabora productos de pescado. [1][2][4]
+- **Atún:** Las fuentes no especifican cuáles de estas empresas procesan atún. [1][2][3][4][5]",4167,,
+GPT-6 Luna (OpenAI),P19,actividad,Empresas de ingeniería y consultoría técnica,llm,"Empresas del contexto vinculadas a ingeniería y consultoría:
+
+- **REDES INGENIERÍA Y COMUNICACIONES CTREDING CÍA. LTDA.** — instalación de computadoras personales. [1]
+- **V&PGROUP INGENIERÍA TELECOMUNICACIONES Y SERVICIOS S.A.** — servicios de telecomunicaciones, incluida telefonía por internet. [2]
+- **SERVICIOS DE INGENIERÍA DEL ECUADOR S.A. SERINDEC** — planificación y diseño de sistemas informáticos que integran equipos, programas y tecnología de comunicaciones. [3]
+- **CONSULTORÍA VALOR Y SEGURIDAD INFORMÁTICA CVS S.A.** — diseño de programas, aplicaciones, bases de datos y páginas web. [4]
+- **SBIE CONSULTORÍA DE SOFTWARE CÍA. LTDA.** — diseño de programas, aplicaciones, bases de datos y páginas web. [5]",3913,,
+GPT-6 Luna (OpenAI),P20,actividad,¿Quién vende medicinas al por mayor?,llm,"LETERAGO DEL ECUADOR S.A. [3], FARMAENLACE CIA. LTDA. [4] y DISTRIBUIDORA FARMACÉUTICA ECUATORIANA (DIFARE) S.A. [5] tienen como actividad principal la venta al por mayor de productos farmacéuticos.",2040,,
+GPT-6 Luna (OpenAI),P21,actividad_lugar,¿Qué empresas de tecnología hay en Ambato?,llm,"En Ambato, las empresas del grupo de tecnologías, telecomunicaciones, software y servicios de información que aparecen en las fuentes son:
+
+- **MIVILSOFT S.A.**, dedicada a la planificación y diseño de sistemas informáticos. [1]
+- **PORTALDATA S.A.**, proveedora de acceso a internet mediante redes que no posee ni controla. [2]
+- **SPEEDYCOM CIA. LTDA.**, proveedora de acceso a internet mediante infraestructura inalámbrica. [3]",4281,,
+GPT-6 Luna (OpenAI),P22,actividad_lugar,Empresas que desarrollan software en Cuenca,llm,"Según las actividades declaradas, en Cuenca constan estas empresas vinculadas con programación, consultoría o diseño de sistemas informáticos:
+
+- **CATWORKX ECUADOR S.A.**: adapta programas informáticos a las necesidades de sus clientes. [2]
+- **CORESOLUTIONS S.A.**: planifica y diseña sistemas informáticos que integran equipos, programas y tecnología de comunicaciones. [3]
+- **ECUAPAYPHONE C.A.**: planifica y diseña sistemas informáticos que integran equipos, programas y tecnología de comunicaciones. [4]",2942,,
+GPT-6 Luna (OpenAI),P23,actividad_lugar,Proveedores de internet en Loja,llm,"- **RIOSACTELCOM CIA. LTDA.**: la descripción indica que suministra acceso a internet mediante infraestructura satelital y está ubicada en Loja. [2]
+- **LOJASYSTEM C.A.**: ofrece servicios de telecomunicaciones inalámbricos en Loja, aunque la descripción no confirma específicamente que provea internet. [1]",2986,,
+GPT-6 Luna (OpenAI),P24,actividad_lugar,Supermercados en Quito,llm,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,4012,,
+GPT-6 Luna (OpenAI),P25,nombre,¿Qué produce Nestlé Ecuador?,llm,"Nestlé Ecuador elabora alimentos especiales, como concentrados de proteínas y alimentos preparados con fines dietéticos, sin gluten o para combatir el desgaste causado por el esfuerzo muscular. [1]",2553,,
+GPT-6 Luna (OpenAI),P26,nombre,Información sobre Saludsa,llm,"SALUDSA SISTEMA DE MEDICINA PRE-PAGADA DEL ECUADOR S.A. es una empresa grande del grupo de actividades financieras y de seguros, dedicada a prestar servicios de seguro de medicina prepagada. [1]
+
+Está ubicada en Quito, provincia de Pichincha, región Sierra; es una compañía anónima y su expediente SCVS es 48038. [1]",1844,,
+GPT-6 Luna (OpenAI),P27,nombre,¿A qué se dedica Sofka?,llm,"SOFKA-ECUADOR S.A.S. presta asesoramiento y ayuda a empresas y administraciones públicas en planificación, organización, eficiencia, control e información administrativa; su actividad corresponde a consultoría de gestión. [1]",1868,,
+GPT-6 Luna (OpenAI),P28,nombre,¿Dónde está Holcim Ecuador?,llm,"Holcim Ecuador está ubicada en Guayaquil, provincia de Guayas, región Costa. [2]",2148,,
+GPT-6 Luna (OpenAI),P29,cifra,¿Cuánto vendió Pronaca en 2025?,llm,"Pronaca registró ventas por USD 1.133.424.282,57 en 2025, según cifras de la SCVS. [1]",1390,,
+GPT-6 Luna (OpenAI),P30,cifra,¿Cuántos empleados tiene Corporación El Rosado?,llm,Corporación El Rosado tiene 6 empleados declarados. [1],1756,,
+GPT-6 Luna (OpenAI),P31,actividad,Empresas de medicina prepagada,llm,"Empresas de medicina prepagada:
+
+- COMPAÑÍA DE MEDICINA PREPAGADA INMEDICAL MEDICINA INTERNACIONAL S.A. [1]
+- VUMILATINA MEDICINA PREPAGADA S.A. [2]
+- MEDICINA PREPAGADA CRUZBLANCA S.A. [3]
+- BEST DOCTORS S.A. EMPRESA DE MEDICINA PREPAGADA [4]
+- MEDICINA PARA EL ECUADOR MEDIECUADOR-HUMANA S.A. [5]",2067,,
+GPT-6 Luna (OpenAI),P32,actividad,¿Quién procesa transacciones y pagos electrónicos?,llm,"Datafast procesa pagos electrónicos con tarjetas de crédito y débito mediante su red de pagos [2]. Medianet ofrece servicios transaccionales y procesa tarjetas de crédito [3]. Redfacilito realiza actividades de tramitación y liquidación de transacciones financieras, incluidas las hechas con tarjetas de crédito [1].",2416,,
+GPT-6 Luna (OpenAI),P33,actividad,Administradoras de fondos y fideicomisos,llm,"Administradoras de fondos y fideicomisos mencionadas en el contexto:
+
+- FIDEVAL S.A. ADMINISTRADORA DE FONDOS Y FIDEICOMISOS [1]
+- ANEFI S.A. ADMINISTRADORA DE FONDOS Y FIDEICOMISOS [2]
+- AFP GENESIS ADMINISTRADORA DE FONDOS Y FIDEICOMISOS S.A. [3]
+- FIDUCIA S.A. ADMINISTRADORA DE FONDOS Y FIDEICOMISOS MERCANTILES [4]
+- HOPE ADMINISTRADORA DE FONDOS Y FIDEICOMISOS FIDUHOPE S.A. [5]",2324,,
+GPT-6 Luna (OpenAI),P34,actividad,Fabricantes de cemento,llm,"- **HOLCIM ECUADOR S.A.**: fabrica cementos hidráulicos, incluido cemento Portland. [2]
+- **UNACEM ECUADOR S.A.**: se describe como líder de la industria del cemento en Ecuador. [3]",2266,,
+GPT-6 Luna (OpenAI),P35,actividad,Fábricas de papel y cartón,llm,"Fábricas de papel y cartón registradas en el contexto:
+
+- **CARTONES NACIONALES S.A. (CARTOPEL)**, en Cuenca, fabrica papel y cartón ondulados o corrugados. [1]
+- **GRUPASA GRUPO PAPELERO CIA. LTDA.**, en Guayaquil, fabrica envases de papel o cartón. [2]
+- **IN.CAR.PALM. INDUSTRIA CARTONERA PALMAR S.A.**, en Guayaquil, fabrica papel y cartón ondulados o corrugados. [3]
+- **PAPELERA NACIONAL S.A.**, en Crnel. Marcelino Maridueña, fabrica papel y cartón para elaboración industrial. [4]
+- **PRODUCTOS FAMILIA SANCELA DEL ECUADOR S.A.**, en Quito, fabrica productos de papel para higiene personal. [5]",3269,,
+GPT-6 Luna (OpenAI),P36,actividad,Empresas de televisión por cable,llm,"- **DV TELEVISION DVTV S.A.** — opera sistemas de distribución por cable para datos y señales de televisión; está ubicada en Daule, Guayas. [1]
+- **CABLEPREMIER S.A.** — opera sistemas de distribución por cable para datos y señales de televisión; está ubicada en Baños de Agua Santa, Tungurahua. [4]
+- **MAGARTV S.A.** — opera sistemas de distribución por cable para datos y señales de televisión; está ubicada en Guayaquil, Guayas. [5]",2204,,
+GPT-6 Luna (OpenAI),P37,actividad_lugar,Empresas de tecnología en Manta,llm,"Empresas de tecnología en Manta:
+
+- LINKSAT SOLUTIONS S.A. [2]
+- SOFTDATA SOLUCIONES TECNOLÓGICAS DISRUPTIVAS S.A.S. [3]
+- FIBERGO-TELECOM S.A. [5]",3432,,
+GPT-6 Luna (OpenAI),P38,actividad_lugar,Empresas financieras en Guayaquil,llm,"Empresas del grupo de actividades financieras y de seguros ubicadas en Guayaquil:
+
+- DATAFAST S.A. [1]
+- CREDIMATIC S.A. [2]
+- BANRED S.A. [3]
+- MEDIANET S.A. [4]
+- CORPORACION MULTIBG S.A. [5]",2173,,
+GPT-6 Luna (OpenAI),F01,fuera_de_alcance,¿Cuál es la receta del encebollado?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,183,,
+GPT-6 Luna (OpenAI),F02,fuera_de_alcance,¿Quién ganará el mundial de fútbol?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,169,,
+GPT-6 Luna (OpenAI),F03,fuera_de_alcance,Escríbeme un poema de amor,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,158,,
+GPT-6 Luna (OpenAI),F04,fuera_de_alcance,¿Cómo está el clima mañana?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,161,,
+GPT-6 Luna (OpenAI),F05,fuera_de_alcance,¿Cuál es la capital de Francia?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,143,,
+GPT-6 Luna (OpenAI),F06,fuera_de_alcance,Recomiéndame una película de terror,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,132,,
+GPT-6 Luna (OpenAI),S01,sin_dato,¿Cuál es la misión de Pronaca?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,156,,
+GPT-6 Luna (OpenAI),S02,sin_dato,¿Quién es el gerente general de Telconet?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,155,,
+GPT-6 Luna (OpenAI),S03,sin_dato,¿Cuál es el teléfono de Saludsa?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,145,,
+GPT-6 Luna (OpenAI),S04,sin_dato,¿Qué certificaciones tiene Holcim?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,142,,
+GPT-6 Luna (OpenAI),F07,fuera_de_alcance,¿Cómo preparo un pastel de chocolate?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,152,,
+GPT-6 Luna (OpenAI),F08,fuera_de_alcance,Dame consejos para bajar de peso,llm,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,1862,,
+Gemini 3.1 Flash-Lite (Google),P01,nombre,¿Qué hace Telconet?,llm,"Telconet S.A. impulsa la tecnología mediante infraestructura digital y soluciones tecnológicas para empresas, tales como fibra óptica, cable submarino CSN1, centros de datos e Inteligencia Artificial [1]. Su actividad principal consiste en la operación, mantenimiento o facilitación del acceso a servicios de transmisión de voz, datos, texto, sonido y vídeo utilizando infraestructura de telecomunicaciones alámbricas, microondas o conexiones por satélite [2]. Además, ofrece servicios de conectividad, internet corporativo, redes privadas, trabajo remoto, servicios en la nube y respaldo [1].",2855,,
+Gemini 3.1 Flash-Lite (Google),P02,nombre,¿A qué se dedica Corporación Favorita?,llm,"Corporación Favorita se dedica al retail, supermercados, centros comerciales, industria y marcas de consumo [1]. Su actividad principal (CIIU G4711.01) es la venta al por menor de gran variedad de productos en tiendas, entre los que predominan productos alimenticios, bebidas o tabaco, además de prendas de vestir, muebles, aparatos, artículos de ferretería y cosméticos [2]. La empresa trabaja para mejorar la calidad de vida ofreciendo productos, servicios y experiencias de forma eficiente, sostenible y responsable [1].",1957,,
+Gemini 3.1 Flash-Lite (Google),P03,nombre,¿Dónde está ubicada Pronaca?,llm,"Pronaca está ubicada en Quito, provincia de Pichincha, región Sierra [1].",3131,,
+Gemini 3.1 Flash-Lite (Google),P04,nombre,¿Qué actividad tiene Datafast?,llm,"La actividad principal de Datafast S.A. (CIIU K6619.01) son las actividades auxiliares de las actividades de servicios financieros n.c.p., tales como las actividades de tramitación y liquidación de transacciones financieras, incluidas las transacciones con tarjetas de crédito [2]. Además, la empresa se dedica a soluciones de pagos presenciales y digitales con tarjeta de crédito y débito [1].",3964,,
+Gemini 3.1 Flash-Lite (Google),P05,nombre,Información de McKinsey en Ecuador,llm,"McKinsey & Company, Inc. Ecuador es una empresa grande del grupo de actividades profesionales, científicas y técnicas [1]. Su actividad principal (CIIU M7020.04) es la prestación de asesoramiento y ayuda a las empresas y las administraciones públicas en materia de planificación, organización, eficiencia y control, información administrativa, entre otros [1]. Pertenece al grupo de actividad de consultoría de gestión y a la división de actividades de oficinas principales y consultoría de gestión [1]. Se encuentra ubicada en Quito, provincia de Pichincha, región Sierra, es una sucursal extranjera y su expediente SCVS es 740608 [1].",4525,,
+Gemini 3.1 Flash-Lite (Google),P06,cifra,¿Cuánto vendió Tiendas Tuti en 2025 y cuántos empleados tiene?,llm,"En 2025, TIENDAS TUTI TTDE S.A. registró ventas por USD 1.008.144.377,94 y cuenta con 8 empleados declarados [1].",3808,,
+Gemini 3.1 Flash-Lite (Google),P07,cifra,¿Cuáles fueron las ventas de Otecel?,llm,"Las ventas de OTECEL S.A. fueron de USD 511.863.496,99 [5].",3694,,
+Gemini 3.1 Flash-Lite (Google),P08,actividad,¿Qué empresas brindan telefonía móvil?,llm,"Las empresas que brindan servicios de telefonía móvil, bajo la actividad principal CIIU J6120.01 (operación, mantenimiento o facilitación del acceso a servicios de transmisión de voz, datos, texto, sonido y vídeo utilizando una infraestructura de telecomunicaciones inalámbricas), son:
+
+*   COMUNICACIONES Y TELEFONIA MULTIPLES S.A. MULTICOM - TELEMOVIL [1].
+*   SUMISYS TELECOM COMPAÑIA ANONIMA [3].
+*   CONSORCIO ECUATORIANO DE TELECOMUNICACIONES S.A. CONECEL [4].",2589,,
+Gemini 3.1 Flash-Lite (Google),P09,actividad,¿Quién emite firmas electrónicas o procesa datos?,llm,"Las empresas que realizan actividades de procesamiento de datos o servicios relacionados son:
+
+*   **SECURITY DATA SEGURIDAD EN DATOS Y FIRMA DIGITAL S.A.**: Su actividad principal es el suministro de infraestructura para servicios de procesamiento de datos y actividades conexas [1].
+*   **BLSEC S.A.S.**: Su actividad principal incluye el procesamiento y suministro de servicio de registro de datos, así como la generación de informes especializados [5].
+*   **.EC DOMINIOS ECUADOR S.A.S.**: Su actividad principal es el suministro de infraestructura para servicios de procesamiento de datos y actividades conexas [4].
+
+Respecto a la emisión de firmas electrónicas, el contexto menciona a **SECURITY DATA SEGURIDAD EN DATOS Y FIRMA DIGITAL S.A.** en su denominación social [1], pero no detalla explícitamente la actividad de emisión de firmas electrónicas en su descripción de actividades.",2482,,
+Gemini 3.1 Flash-Lite (Google),P10,actividad,Empresas que editan y publican software,llm,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,2202,,
+Gemini 3.1 Flash-Lite (Google),P11,actividad,¿Qué agencias de publicidad hay?,llm,"Las agencias de publicidad registradas en las fuentes son:
+
+*   PROMOLUCKY S.A. [1]
+*   ORIONWORLDWIDE S.A. [2]
+*   INTERPUBLIC COLOMBIA S.A.S. [3]
+*   INDUVALLAS CIA. LTDA. [4]
+*   GRANCOMERCIO CIA. LTDA. [5]",1846,,
+Gemini 3.1 Flash-Lite (Google),P12,actividad,Firmas de auditoría y contabilidad,llm,"Las firmas de auditoría y contabilidad presentes en el contexto son:
+
+*   **DELOITTE & TOUCHE ECUADOR CIA. LTDA.**: Actividad principal de preparación o auditoría de cuentas financieras, examen y certificación de cuentas [1].
+*   **PRICEWATERHOUSECOOPERS DEL ECUADOR CIA. LTDA.**: Actividad principal de preparación o auditoría de cuentas financieras, examen y certificación de cuentas [2].
+*   **PROJECTLAB S.A.**: Actividad principal de asesoramiento en diseño de métodos o procedimientos contables, programas de contabilidad de costos y procedimientos de control presupuestario [3].",1769,,
+Gemini 3.1 Flash-Lite (Google),P13,actividad,¿Quién vende vehículos?,llm,"Las empresas que realizan la venta de vehículos nuevos y usados, incluyendo vehículos de pasajeros, especializados, camiones, remolques y vehículos de acampada, son:
+
+*   DISTRIVEHIC DISTRIBUIDORA DE VEHÍCULOS S.A.S. [1]
+*   MAQUINARIAS Y VEHICULOS S.A. MAVESA [2]
+*   ASIAUTO S.A [3]
+*   GENERAL MOTORS DEL ECUADOR SA [4]
+*   AEKIA S.A. [5]",2006,,
+Gemini 3.1 Flash-Lite (Google),P14,actividad,Laboratorios que fabrican medicamentos,llm,"Los laboratorios que fabrican medicamentos, según la actividad principal (CIIU C2100.01) descrita en las fuentes, son:
+
+*   LABORATORIOS SIEGFRIED S.A. [1]
+*   ROCHE ECUADOR S.A. [2]
+*   QUIFATEX SA [3]",1973,,
+Gemini 3.1 Flash-Lite (Google),P15,actividad,Agencias asesoras de seguros,llm,"Las agencias asesoras productoras de seguros registradas son:
+
+*   ASERTEC S.A. [1]
+*   TECNISEGUROS S.A. [2]
+*   NOVAECUADOR S.A [3]
+*   AON RISK SERVICES ECUADOR S.A. [4]
+*   MULTIAPOYO CIA. LTDA. [5]",2217,,
+Gemini 3.1 Flash-Lite (Google),P16,actividad,¿Qué empresas producen cerveza o bebidas?,llm,"Las empresas que producen bebidas son:
+
+*   **AC BEBIDAS ECUADOR ACBE CIA.LTDA.**: Elaboración de bebidas no alcohólicas embotelladas [1].
+*   **CERVECERIA NACIONAL CN S.A.**: Elaboración de bebidas malteadas como cervezas [3].
+*   **THE TESALIA SPRINGS COMPANY S.A.**: Producción de aguas minerales naturales y otras aguas embotelladas [4].",2386,,
+Gemini 3.1 Flash-Lite (Google),P17,actividad,Fabricantes de acero y productos siderúrgicos,llm,"Las empresas fabricantes de acero y productos siderúrgicos son:
+
+*   **IPAC S.A.**: Fabricación de ángulos, perfiles y secciones abiertas de acero [1].
+*   **KUBIEC S.A.**: Fabricación de ángulos, perfiles y secciones abiertas de acero [2].
+*   **NOVACERO S.A.**: Fabricación de barras, varillas y secciones sólidas de hierro y acero, y fabricación de alambre de acero [3].
+*   **ACERIA DEL ECUADOR CA ADELCA**: Fabricación de ángulos, perfiles y secciones abiertas de acero [4].",1656,,
+Gemini 3.1 Flash-Lite (Google),P18,actividad,"Procesadoras de camarón, pescado y atún",llm,"Las empresas identificadas en las fuentes según su actividad principal son:
+
+**Procesadoras de camarón y langostinos:**
+* PCC CONGELADOS & FRESCOS S.A. [3]
+* AQUAGOLD S.A. [5]
+
+**Procesadoras de pescado, crustáceos (excepto camarón y langostinos) y otros moluscos:**
+* CONSERVAS ISABEL ECUATORIANA S.A. [1]
+* ASISERVY S.A. [2]
+* MARBELIZE S.A. [4]
+
+No hay dato publicado en las fuentes del Observatorio para responder esa pregunta sobre procesadoras de atún específicamente.",10966,,
+Gemini 3.1 Flash-Lite (Google),P19,actividad,Empresas de ingeniería y consultoría técnica,llm,"Las empresas identificadas en las fuentes como parte del grupo de tecnológicas con actividades de programación, consultoría informática o telecomunicaciones son:
+
+*   **REDES INGENIERIA Y COMUNICACIONES CTREDING CIA. LTDA.**: Empresa mediana dedicada a actividades de instalación (montaje) de computadoras personales [1].
+*   **V&PGROUP INGENIERIA TELECOMUNICACIONES Y SERVICIOS S.A.**: Empresa mediana dedicada al suministro de servicios de telecomunicaciones y telefonía por internet (VoIP) [2].
+*   **SERVICIOS DE INGENIERIA DEL ECUADOR S.A. SERINDEC**: Empresa mediana dedicada a la planificación y diseño de sistemas informáticos que integran equipo, programas y tecnología de las comunicaciones [3].
+*   **CONSULTORIA VALOR Y SEGURIDAD INFORMATICA CVS S.A.**: Empresa mediana dedicada al diseño de estructura, contenido y escritura de código informático para sistemas operativos, aplicaciones, bases de datos y páginas web [4].
+*   **SBIE CONSULTORÍA DE SOFTWARE CÍA. LTDA.**: Empresa mediana dedicada al diseño de estructura, contenido y escritura de código informático para sistemas operativos, aplicaciones, bases de datos y páginas web [5].",7384,,
+Gemini 3.1 Flash-Lite (Google),P20,actividad,¿Quién vende medicinas al por mayor?,llm,"Las empresas que realizan venta al por mayor de productos farmacéuticos son:
+
+* LETERAGO DEL ECUADOR S.A [3].
+* FARMAENLACE CIA. LTDA. [4].
+* DISTRIBUIDORA FARMACEUTICA ECUATORIANA (DIFARE) S.A. [5].",1931,,
+Gemini 3.1 Flash-Lite (Google),P21,actividad_lugar,¿Qué empresas de tecnología hay en Ambato?,llm,"Las empresas del grupo tecnológicas ubicadas en Ambato son:
+
+* MIVILSOFT S.A. [1]
+* PORTALDATA S.A. [2]
+* SPEEDYCOM CIA. LTDA. [3]",2160,,
+Gemini 3.1 Flash-Lite (Google),P22,actividad_lugar,Empresas que desarrollan software en Cuenca,llm,"Las empresas ubicadas en Cuenca que realizan actividades relacionadas con el desarrollo, adaptación o diseño de software son:
+
+* **CATWORKX ECUADOR S.A.**: Su actividad principal es la adaptación de programas informáticos a las necesidades de los clientes [2].
+* **CORESOLUTIONS S.A.**: Su actividad principal es la planificación y diseño de sistemas informáticos que integran equipo y programas informáticos [3].
+* **ECUAPAYPHONE C.A.**: Su actividad principal es la planificación y diseño de sistemas informáticos que integran equipo y programas informáticos [4].
+* **V&V INTELIGENCIA TECNOLOGICA S.A.S.**: Su actividad principal son los servicios de aplicaciones [1].",2882,,
+Gemini 3.1 Flash-Lite (Google),P23,actividad_lugar,Proveedores de internet en Loja,llm,"Los proveedores de internet en Loja identificados en las fuentes son:
+
+*   **LOJASYSTEM C.A.**: Realiza actividades de compra de acceso y capacidad de red para el abastecimiento de servicios de telecomunicaciones inalámbrico (excepto satélite) a empresas y hogares [1].
+*   **RIOSACTELCOM CIA. LTDA.**: Realiza actividades de suministro de acceso a internet mediante infraestructura de telecomunicaciones por satélite [2].",1955,,
+Gemini 3.1 Flash-Lite (Google),P24,actividad_lugar,Supermercados en Quito,llm,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,3724,,
+Gemini 3.1 Flash-Lite (Google),P25,nombre,¿Qué produce Nestlé Ecuador?,llm,"Nestlé Ecuador S.A. se dedica a la elaboración de otros alimentos especiales, tales como concentrados de proteínas, alimentos preparados con fines dietéticos, alimentos sin gluten y alimentos para combatir el desgaste causado por el esfuerzo muscular [1].",2213,,
+Gemini 3.1 Flash-Lite (Google),P26,nombre,Información sobre Saludsa,llm,"SALUDSA SISTEMA DE MEDICINA PRE-PAGADA DEL ECUADOR S.A. es una empresa grande del grupo de actividades financieras y de seguros [1]. Su actividad principal es la prestación de servicios de seguro de medicina pre pagada (CIIU K6512.02) [1]. Es una compañía anónima con expediente SCVS 48038, ubicada en Quito, provincia de Pichincha, región Sierra [1].",1802,,
+Gemini 3.1 Flash-Lite (Google),P27,nombre,¿A qué se dedica Sofka?,llm,"Sofka-Ecuador S.A.S. se dedica a la prestación de asesoramiento y ayuda a las empresas y las administraciones públicas en materia de planificación, organización, eficiencia y control, información administrativa, entre otros [1]. Su actividad se enmarca en el grupo de consultoría de gestión [1].",2755,,
+Gemini 3.1 Flash-Lite (Google),P28,nombre,¿Dónde está Holcim Ecuador?,llm,"Holcim Ecuador S.A. se encuentra ubicada en Guayaquil, provincia de Guayas, región Costa [2].",16849,,
+Gemini 3.1 Flash-Lite (Google),P29,cifra,¿Cuánto vendió Pronaca en 2025?,llm,"Las ventas de PROCESADORA NACIONAL DE ALIMENTOS C.A. PRONACA fueron de USD 1.133.424.282,57 [1].",1787,,
+Gemini 3.1 Flash-Lite (Google),P30,cifra,¿Cuántos empleados tiene Corporación El Rosado?,llm,Corporación El Rosado tiene 6 empleados declarados [1].,5155,,
+Gemini 3.1 Flash-Lite (Google),P31,actividad,Empresas de medicina prepagada,llm,"Las empresas de medicina prepagada registradas son:
+
+*   COMPAÑIA DE MEDICINA PREPAGADA INMEDICAL MEDICINA INTERNACIONAL S.A. [1]
+*   VUMILATINA MEDICINA PREPAGADA S.A. [2]
+*   MEDICINA PREPAGADA CRUZBLANCA S.A. [3]
+*   BEST DOCTORS S.A. EMPRESA DE MEDICINA PREPAGADA [4]
+*   MEDICINA PARA EL ECUADOR MEDIECUADOR-HUMANA S.A. [5]",2880,,
+Gemini 3.1 Flash-Lite (Google),P32,actividad,¿Quién procesa transacciones y pagos electrónicos?,llm,"Las empresas que procesan transacciones y pagos electrónicos según las fuentes son:
+
+*   **RED DE RECAUDACIÓN, PAGOS Y SERVICIOS FACILITO REDFACILITO S.A.**: Realiza actividades de tramitación y liquidación de transacciones financieras, incluidas las transacciones con tarjetas de crédito [1].
+*   **DATAFAST S.A.**: Es una empresa de pagos electrónicos capaz de procesar tarjetas de crédito y débito de marcas nacionales e internacionales [2].
+*   **MEDIANET S.A.**: Brinda servicios transaccionales con capacidad de procesar tarjetas de crédito como Visa, Mastercard, American Express, UnionPay, Diners Club y Discover [3].
+*   **NTT-DATA ECUADOR S.A.**: Realiza actividades de tramitación y liquidación de transacciones financieras, incluidas las transacciones con tarjetas de crédito [4].
+*   **EASYSOFT S.A.**: Realiza actividades de tramitación y liquidación de transacciones financieras, incluidas las transacciones con tarjetas de crédito [5].",9190,,
+Gemini 3.1 Flash-Lite (Google),P33,actividad,Administradoras de fondos y fideicomisos,llm,"Las administradoras de fondos y fideicomisos registradas son:
+
+*   **FIDEVAL S.A. ADMINISTRADORA DE FONDOS Y FIDEICOMISOS**: Ubicada en Quito, provincia de Pichincha [1].
+*   **ANEFI S.A. ADMINISTRADORA DE FONDOS Y FIDEICOMISOS**: Ubicada en Quito, provincia de Pichincha [2].
+*   **AFP GENESIS ADMINISTRADORA DE FONDOS Y FIDEICOMISOS S.A.**: Ubicada en Guayaquil, provincia de Guayas [3].
+*   **FIDUCIA S.A. ADMINISTRADORA DE FONDOS Y FIDEICOMISOS MERCANTILES**: Ubicada en Quito, provincia de Pichincha [4].
+*   **HOPE ADMINISTRADORA DE FONDOS Y FIDEICOMISOS FIDUHOPE S.A.**: Ubicada en Quito, provincia de Pichincha [5].",2785,,
+Gemini 3.1 Flash-Lite (Google),P34,actividad,Fabricantes de cemento,llm,"Los fabricantes de cemento identificados en las fuentes son:
+
+*   **HOLCIM ECUADOR S.A.**: Su actividad principal es la fabricación de cementos hidráulicos, incluido cemento de pórtland, cemento aluminoso, cemento de escorias y cemento hipersulfatado [2].
+*   **UNACEM ECUADOR S.A.**: Es una compañía líder en la industria del cemento en Ecuador [3], cuya actividad principal incluye la fabricación de morteros, cementos y otros materiales refractarios [4].",4588,,
+Gemini 3.1 Flash-Lite (Google),P35,actividad,Fábricas de papel y cartón,llm,"Las empresas registradas en el Observatorio bajo la actividad de fabricación de papel y productos de papel son:
+
+*   **CARTONES NACIONALES S.A. | CARTOPEL**: Fabricación del papel y cartón ondulados o corrugado [1].
+*   **GRUPASA GRUPO PAPELERO CIA.LTDA.**: Fabricación de envases de papel o de cartón ondulado, rígido o plegable [2].
+*   **IN.CAR.PALM. INDUSTRIA CARTONERA PALMAR S.A.**: Fabricación del papel y cartón ondulados o corrugado [3].
+*   **PAPELERA NACIONAL SA**: Fabricación de papel y cartón para su posterior elaboración industrial [4].
+*   **PRODUCTOS FAMILIA SANCELA DEL ECUADOR S.A**: Fabricación de productos de papel de higiene personal y productos de guata de celulosa y materiales textiles [5].",2593,,
+Gemini 3.1 Flash-Lite (Google),P36,actividad,Empresas de televisión por cable,llm,"Las empresas identificadas con actividades de operación en sistemas de distribución por cable son:
+
+*   DV TELEVISION DVTV S.A. [1]
+*   CABLEPREMIER S.A. [4]
+*   MAGARTV S.A. [5]",4545,,
+Gemini 3.1 Flash-Lite (Google),P37,actividad_lugar,Empresas de tecnología en Manta,llm,"Las empresas de tecnología (telecomunicaciones, software y servicios de información) ubicadas en Manta son:
+
+*   **LINKSAT SOLUTIONS S.A.**: Empresa mediana dedicada a actividades de suministro de acceso a internet por los operadores de la infraestructura de telecomunicaciones inalámbricas [2].
+*   **SOFTDATA SOLUCIONES TECNOLÓGICAS DISRUPTIVAS S.A.S.**: Empresa grande dedicada a actividades de publicación de programas informáticos comerciales [3].
+*   **FIBERGO-TELECOM S.A.**: Empresa mediana dedicada a actividades de operación, mantenimiento o facilitación del acceso a servicios de transmisión de voz, datos, texto, sonido y vídeo utilizando una infraestructura de telecomunicaciones alámbricas [5].",1896,,
+Gemini 3.1 Flash-Lite (Google),P38,actividad_lugar,Empresas financieras en Guayaquil,llm,"Las empresas del grupo de actividades financieras y de seguros ubicadas en Guayaquil son:
+
+* DATAFAST S.A. [1]
+* CREDIMATIC S.A. [2]
+* BANRED S.A. [3]
+* MEDIANET S.A. [4]
+* CORPORACION MULTIBG S.A. [5]",11110,,
+Gemini 3.1 Flash-Lite (Google),F01,fuera_de_alcance,¿Cuál es la receta del encebollado?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,222,,
+Gemini 3.1 Flash-Lite (Google),F02,fuera_de_alcance,¿Quién ganará el mundial de fútbol?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,206,,
+Gemini 3.1 Flash-Lite (Google),F03,fuera_de_alcance,Escríbeme un poema de amor,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,205,,
+Gemini 3.1 Flash-Lite (Google),F04,fuera_de_alcance,¿Cómo está el clima mañana?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,204,,
+Gemini 3.1 Flash-Lite (Google),F05,fuera_de_alcance,¿Cuál es la capital de Francia?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,200,,
+Gemini 3.1 Flash-Lite (Google),F06,fuera_de_alcance,Recomiéndame una película de terror,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,198,,
+Gemini 3.1 Flash-Lite (Google),S01,sin_dato,¿Cuál es la misión de Pronaca?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,214,,
+Gemini 3.1 Flash-Lite (Google),S02,sin_dato,¿Quién es el gerente general de Telconet?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,207,,
+Gemini 3.1 Flash-Lite (Google),S03,sin_dato,¿Cuál es el teléfono de Saludsa?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,190,,
+Gemini 3.1 Flash-Lite (Google),S04,sin_dato,¿Qué certificaciones tiene Holcim?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,184,,
+Gemini 3.1 Flash-Lite (Google),F07,fuera_de_alcance,¿Cómo preparo un pastel de chocolate?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,193,,
+Gemini 3.1 Flash-Lite (Google),F08,fuera_de_alcance,Dame consejos para bajar de peso,llm,"Farcomed propone un protocolo chetogenico desarrollado para adelgazar en un periodo de 10 a 21 días, con el objetivo de encontrar un equilibrio para no recuperar el peso perdido [1].",1266,,
+Gemini 3.5 Flash-Lite (Google),P01,nombre,¿Qué hace Telconet?,llm,"Según las fuentes del Observatorio, Telconet S.A. ofrece infraestructura digital y soluciones tecnológicas para empresas, tales como fibra óptica, cable submarino CSN1, centros de datos e Inteligencia Artificial [1]. 
+
+Además, se encarga de conectar empresas en Ecuador, Colombia y Panamá con infraestructura propia [1]. Su actividad principal (CIIU J6110.01) comprende actividades de operación, mantenimiento o facilitación del acceso a servicios de transmisión de voz, datos, texto, sonido y vídeo utilizando una infraestructura de telecomunicaciones alámbricas (como la operación y mantenimiento de sistemas de conmutación y transmisión para suministrar servicios de comunicaciones de punto a punto por líneas alámbricas, por microondas o por una combinación de estas y conexiones por satélite) [2].",2159,,
+Gemini 3.5 Flash-Lite (Google),P02,nombre,¿A qué se dedica Corporación Favorita?,llm,"Según la información disponible, Corporación Favorita se dedica a las siguientes actividades y sectores:
+
+* Retail y supermercados [1].
+* Ofrecer productos y servicios de calidad, trabajando en el sector de supermercados y retail, centros comerciales, industria y marcas de consumo [1].
+* Su actividad principal (CIIU G4711.01) es la venta al por menor de gran variedad de productos en tiendas, entre los que predominan los productos alimenticios, bebidas o tabaco, como productos de primera necesidad, además de otros tipos de productos como prendas de vestir, muebles, aparatos, artículos de ferretería, cosméticos, entre otros [2].",1707,,
+Gemini 3.5 Flash-Lite (Google),P03,nombre,¿Dónde está ubicada Pronaca?,llm,"Pronaca está ubicada en Quito, provincia de Pichincha, región Sierra [1].",1611,,
+Gemini 3.5 Flash-Lite (Google),P04,nombre,¿Qué actividad tiene Datafast?,llm,"Según los datos proporcionados, la actividad principal (CIIU K6619.01) de Datafast S.A. son las ""Actividades auxiliares de las actividades de servicios financieros n.c.p., como: actividades de tramitación y liquidación de transacciones financieras, incluidas las transacciones con tarjetas de crédito"" [2]. Además, es la empresa líder en soluciones de pagos presenciales y digitales con tarjeta de crédito y débito para negocios [1], y procesa tarjetas de crédito y débito de todas las marcas nacionales e internacionales de mayor prestigio a través de más de 70.000 puntos de venta (P.O.S.) [1].",1707,,
+Gemini 3.5 Flash-Lite (Google),P05,nombre,Información de McKinsey en Ecuador,llm,"MCKINSEY & COMPANY, INC. ECUADOR es una empresa grande del grupo de actividades profesionales, científicas y técnicas [1]. 
+
+Su actividad principal (CIIU M7020.04) es la prestación de asesoramiento y ayuda a las empresas y las administraciones públicas en materia de planificación, organización, eficiencia y control, información administrativa, etcétera [1]. Pertenece al grupo de actividad de actividades de consultoría de gestión y a la división de actividades de oficinas principales; actividades de consultoría de gestión [1].
+
+Se encuentra ubicada en Quito, provincia de Pichincha, región Sierra, es de tipo sucursal extranjera y su expediente SCVS es 740608 [1].",4814,,
+Gemini 3.5 Flash-Lite (Google),P06,cifra,¿Cuánto vendió Tiendas Tuti en 2025 y cuántos empleados tiene?,extractivo,"Según las fuentes del Observatorio:
+- TIENDAS TUTI TTDE S.A.: Venta al por menor de gran variedad de productos en supermercados, entre los que predominan, los productos alimenticios, las bebidas o el tabaco, como productos de primera necesidad y varios otros tipos de productos, como prendas de vestir, muebles, aparatos, artículos de ferretería, cosméticos, etcétera (Guayaquil) [1]. Ventas 2025: USD 1.008.144.377,94; empleados declarados: 8
+- TIENDAS INDUSTRIALES ASOCIADAS TIA S.A.: Venta al por menor de gran variedad de productos en tiendas, entre los que predominan, los productos alimenticios, las bebidas o el tabaco, como productos de primera necesidad y varios otros tipos de productos, como prendas de vestir, muebles, aparatos, artículos de ferretería, cosméticos, etcétera (Guayaquil) [2]. Ventas 2025: USD 791.642.685,00; empleados declarados: 9501
+- CORPORACION FAVORITA C.A.: Venta al por menor de gran variedad de productos en tiendas, entre los que predominan, los productos alimenticios, las bebidas o el tabaco, como productos de primera necesidad y varios otros tipos de productos, como prendas de vestir, muebles, aparatos, artículos de ferretería, cosméticos, etcétera (Quito) [3]. Ventas 2025: USD 2.690.137.857,78; empleados declarados: 12033
+- HAID ( ECUADOR) FEED CIA.LTDA.: HAID ( ECUADOR) FEED CIA.LTDA.
+Lema: Haid Ecuador Feed Cia. Ltda, líder en producción de piensos acuáticos y balanceados para camarón desde 1998.
+Descripción: P (Eloy Alfaro (Duran)) [4]. Ventas 2025: USD 295.495.509,23; empleados declarados: 308
+- APPDEUNA S.A.: APPDEUNA S.A.
+Lema: Programa para negocios en Colombia: ventas y cuentas por cobrar en el plan Básico; caja con cierre y agente de WhatsApp desde el plan Local. (Quito) [5]. Ventas 2025: USD 7.589.862,35; empleados declarados: 23",2128,,
+Gemini 3.5 Flash-Lite (Google),P07,cifra,¿Cuáles fueron las ventas de Otecel?,llm,"Las ventas de OTECEL S.A. fueron de USD 511.863.496,99 [5].",2217,,
+Gemini 3.5 Flash-Lite (Google),P08,actividad,¿Qué empresas brindan telefonía móvil?,llm,"Las empresas cuya actividad principal incluye la operación, mantenimiento o facilitación del acceso a servicios utilizando una infraestructura de telecomunicaciones inalámbricas (lo que incluye las actividades de mantenimiento y explotación de redes de telefonía móvil) son:
+
+* COMUNICACIONES Y TELEFONIA MULTIPLES S.A. MULTICOM - TELEMOVIL [1].
+* SUMISYS TELECOM COMPAÑIA ANONIMA [3].
+* CONSORCIO ECUATORIANO DE TELECOMUNICACIONES S.A. CONECEL [4].",2094,,
+Gemini 3.5 Flash-Lite (Google),P09,actividad,¿Quién emite firmas electrónicas o procesa datos?,llm,"Basado en la información del Observatorio EPN:
+
+* **SECURITY DATA SEGURIDAD EN DATOS Y FIRMA DIGITAL S.A.** realiza el suministro de infraestructura para servicios de hospedaje, servicios de procesamiento de datos y actividades conexas [1].
+* **SEGUDATOS S.A. SEGURIDAD ELECTRONICA, RADIO COMUNICACION Y TRANSMISION DE DATOS** realiza actividades de transmisión de datos, entre otros [2].
+* **.EC DOMINIOS ECUADOR S.A.S.** suministra infraestructura para servicios de hospedaje, servicios de procesamiento de datos y actividades conexas [4].
+* **BLSEC S.A.S.** realiza actividades de procesamiento y suministro de servicio de registro de datos y elaboración de datos facilitados por los clientes [5].",2839,,
+Gemini 3.5 Flash-Lite (Google),P10,actividad,Empresas que editan y publican software,llm,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,1215,,
+Gemini 3.5 Flash-Lite (Google),P11,actividad,¿Qué agencias de publicidad hay?,llm,"Según las fuentes del Observatorio, las empresas clasificadas en el grupo de actividad ""Publicidad"" son:
+
+* PROMOLUCKY S.A. [1]
+* ORIONWORLDWIDE S.A. [2]
+* INTERPUBLIC COLOMBIA S.A.S. [3]
+* INDUVALLAS CIA. LTDA. [4]
+* GRANCOMERCIO CIA. LTDA. [5]",1276,,
+Gemini 3.5 Flash-Lite (Google),P12,actividad,Firmas de auditoría y contabilidad,llm,"Basado en la información del contexto, las empresas cuyas actividades principales corresponden a la preparación o auditoría de cuentas financieras, examen y certificación de cuentas, y actividades de contabilidad son:
+
+* DELOITTE & TOUCHE ECUADOR CIA. LTDA. [1]
+* PRICEWATERHOUSECOOPERS DEL ECUADOR CIA. LTDA. [2]",2001,,
+Gemini 3.5 Flash-Lite (Google),P13,actividad,¿Quién vende vehículos?,llm,"Las siguientes empresas realizan la actividad principal de venta de vehículos nuevos y usados (incluyendo vehículos de pasajeros, especializados, camiones, remolques, vehículos de acampada y todo terreno):
+
+* **DISTRIVEHIC DISTRIBUIDORA DE VEHÍCULOS S.A.S.** [1]
+* **MAQUINARIAS Y VEHICULOS S.A. MAVESA** [2]
+* **ASIAUTO S.A** [3]
+* **GENERAL MOTORS DEL ECUADOR SA** [4]
+* **AEKIA S.A.** [5]",1386,,
+Gemini 3.5 Flash-Lite (Google),P14,actividad,Laboratorios que fabrican medicamentos,llm,"Según la información disponible, las empresas dedicadas a la actividad principal (CIIU C2100.01) que incluye la fabricación de sustancias medicinales y medicamentos son:
+
+* LABORATORIOS SIEGFRIED S.A. [1]
+* ROCHE ECUADOR S.A. [2]
+* QUIFATEX SA [3]",1793,,
+Gemini 3.5 Flash-Lite (Google),P15,actividad,Agencias asesoras de seguros,llm,"Según el Observatorio EPN, las siguientes son agencias asesoras productoras de seguros registradas en el contexto:
+
+* **ASERTEC S.A. AGENCIA ASESORA PRODUCTORA DE SEGUROS**: Empresa grande de tipo anónima, ubicada en Quito, provincia de Pichincha, con expediente SCVS 600201 [1].
+* **TECNISEGUROS S.A. AGENCIA ASESORA PRODUCTORA DE SEGUROS**: Empresa grande de tipo anónima, ubicada en Quito, provincia de Pichincha, con expediente SCVS 600175 [2].
+* **NOVAECUADOR S.A AGENCIA ASESORA PRODUCTORA DE SEGUROS**: Empresa grande de tipo anónima, ubicada en Quito, provincia de Pichincha, con expediente SCVS 600220 [3].
+* **AON RISK SERVICES ECUADOR S.A. AGENCIA ASESORA PRODUCTORA DE SEGUROS**: Empresa grande de tipo anónima, ubicada en Quito, provincia de Pichincha, con expediente SCVS 600711 [4].
+* **MULTIAPOYO CIA. LTDA. AGENCIA ASESORA PRODUCTORA DE SEGUROS**: Empresa grande de tipo de responsabilidad limitada, ubicada en Quito, provincia de Pichincha, con expediente SCVS 600287 [5].
+
+Todas ellas pertenecen al grupo de actividades financieras y de seguros, y su actividad principal (CIIU K6622.00) corresponde a las actividades de agentes y corredores de seguros [1, 2, 3, 4, 5].",7878,,
+Gemini 3.5 Flash-Lite (Google),P16,actividad,¿Qué empresas producen cerveza o bebidas?,llm,"Con base en la información del contexto, las empresas que realizan actividades de elaboración o producción de bebidas son:
+
+* **AC BEBIDAS ECUADOR ACBE CIA.LTDA.** (Elaboración de bebidas no alcohólicas embotelladas y otras bebidas aromatizadas y/o edulcoradas) [1].
+* **CERVECERIA NACIONAL CN S.A.** (Elaboración de bebidas malteadas como cervezas) [3].
+* **THE TESALIA SPRINGS COMPANY S.A.** (Producción de aguas minerales naturales y otras aguas embotelladas) [4].",1620,,
+Gemini 3.5 Flash-Lite (Google),P17,actividad,Fabricantes de acero y productos siderúrgicos,llm,"Basado en las fuentes del Observatorio, las empresas dedicadas a actividades relacionadas con la fabricación de productos de hierro y acero son:
+
+* **IPAC S.A.** (Actividad principal CIIU C2410.25: Fabricación de ángulos, perfiles y secciones abiertas de acero laminadas en caliente y mediante conformación progresiva en un laminador de rulos o mediante plegado en una prensa de productos laminados planos de acero) [1].
+* **KUBIEC S.A.** (Actividad principal CIIU C2410.25: Fabricación de ángulos, perfiles y secciones abiertas de acero laminadas en caliente y mediante conformación progresiva en un laminador de rulos o mediante plegado en una prensa de productos laminados planos de acero) [2].
+* **NOVACERO S.A.** (Actividad principal CIIU C2410.22: Fabricación de barras, varillas y secciones sólidas de hierro y acero laminadas en caliente y mediante estirado en frío y en caliente, rectificación o torneado; fabricación de alambre de acero mediante estirado o alargamiento en frío) [3].
+* **ACERIA DEL ECUADOR CA ADELCA.** (Actividad principal CIIU C2410.25: Fabricación de ángulos, perfiles y secciones abiertas de acero laminadas en caliente y mediante conformación progresiva en un laminador de rulos o mediante plegado en una prensa de productos laminados planos de acero) [4].",1797,,
+Gemini 3.5 Flash-Lite (Google),P18,actividad,"Procesadoras de camarón, pescado y atún",llm,"Con base en la información del contexto, las empresas dedicadas a la preparación y conservación de camarón y langostinos son:
+
+* **PCC CONGELADOS & FRESCOS S.A.** (ubicada en Guayaquil, provincia de Guayas) [3].
+* **AQUAGOLD S.A.** (ubicada en Guayaquil, provincia de Guayas) [5].
+
+Las empresas dedicadas a la preparación y conservación de pescado, crustáceos (excepto camarón y langostinos) y otros moluscos son:
+
+* **CONSERVAS ISABEL ECUATORIANA S.A.** (ubicada en Manta, provincia de Manabí) [1].
+* **ASISERVY S.A.** (ubicada en Jaramijó, provincia de Manabí) [2].
+
+Además, **MARBELIZE S.A.** (ubicada en Jaramijó, provincia de Manabí) se dedica a la elaboración de productos de pescado (como cocinado y filetes) y de crustáceos (excepto camarón y langostinos) y moluscos [4].",8015,,
+Gemini 3.5 Flash-Lite (Google),P19,actividad,Empresas de ingeniería y consultoría técnica,llm,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,7261,,
+Gemini 3.5 Flash-Lite (Google),P20,actividad,¿Quién vende medicinas al por mayor?,llm,"Las empresas que realizan venta al por mayor de productos farmacéuticos son:
+
+* LETERAGO DEL ECUADOR S.A. [3]
+* FARMAENLACE CIA. LTDA. [4]
+* DISTRIBUIDORA FARMACEUTICA ECUATORIANA (DIFARE) S.A. [5]",2582,,
+Gemini 3.5 Flash-Lite (Google),P21,actividad_lugar,¿Qué empresas de tecnología hay en Ambato?,llm,"Basado en las fuentes del Observatorio EPN, las empresas del grupo de tecnológicas (telecomunicaciones, software y servicios de información) ubicadas en Ambato son:
+
+* MIVILSOFT S.A. [1]
+* PORTALDATA S.A. [2]
+* SPEEDYCOM CIA. LTDA. [3]",7072,,
+Gemini 3.5 Flash-Lite (Google),P22,actividad_lugar,Empresas que desarrollan software en Cuenca,llm,"Basado en la información del contexto, las empresas en Cuenca relacionadas con la programación informática, adaptación y desarrollo de programas o sistemas informáticos son:
+
+* **CATWORKX ECUADOR S.A.** (cuya actividad principal incluye la adaptación y modificación de programas informáticos) [2].
+* **CORESOLUTIONS S.A.** (cuya actividad principal incluye la planificación y diseño de sistemas informáticos que integran programas informáticos) [3].
+* **ECUAPAYPHONE C.A.** (cuya actividad principal incluye la planificación y diseño de sistemas informáticos que integran programas informáticos) [4].
+
+*(Nota: Adicionalmente, el contexto menciona a V&V INTELIGENCIA TECNOLOGICA S.A.S. e IMMARVIC CIA.LTDA. ubicadas en Cuenca [1, 5], pero sus actividades principales corresponden a servicios de aplicaciones/procesamiento de datos y suministro de acceso a internet respectivamente [1, 5]).*",2532,,
+Gemini 3.5 Flash-Lite (Google),P23,actividad_lugar,Proveedores de internet en Loja,llm,"Basándose en la información del contexto, los proveedores o empresas relacionadas con actividades de telecomunicaciones y acceso a internet en Loja son:
+
+* **LOJASYSTEM C.A.** (Expediente SCVS: 32301): Su actividad principal incluye el abastecimiento de servicios de telecomunicaciones inalámbricas y compra de acceso y capacidad de red [1].
+* **RIOSACTELCOM CIA. LTDA.** (Expediente SCVS: 174494): Su actividad principal incluye el suministro de acceso a internet por el operador de la infraestructura de telecomunicaciones por satélite [2].",2647,,
+Gemini 3.5 Flash-Lite (Google),P24,actividad_lugar,Supermercados en Quito,llm,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,1420,,
+Gemini 3.5 Flash-Lite (Google),P25,nombre,¿Qué produce Nestlé Ecuador?,llm,"Nestlé Ecuador S.A. realiza la elaboración de otros alimentos especiales: concentrados de proteínas; alimentos preparados con fines dietéticos, alimentos sin gluten, alimentos para combatir el desgaste causado por el esfuerzo muscular, etcétera [1].",1558,,
+Gemini 3.5 Flash-Lite (Google),P26,nombre,Información sobre Saludsa,llm,"A continuación, la información sobre SALUDSA:
+
+* **Nombre:** SALUDSA SISTEMA DE MEDICINA PRE-PAGADA DEL ECUADOR S.A. [1]
+* **Tamaño y grupo:** Empresa grande del grupo actividades financieras y de seguros [1].
+* **Actividad principal (CIIU K6512.02):** Servicios de seguro de medicina pre pagada [1].
+* **Grupo de actividad:** Seguros [1].
+* **División:** Seguros, reaseguros y fondos de pensiones, excepto los planes de seguridad social de afiliación obligatoria [1].
+* **Ubicación:** Quito, provincia de Pichincha, región Sierra [1].
+* **Tipo de compañía:** Anónima [1].
+* **Expediente SCVS:** 48038 [1].",2323,,
+Gemini 3.5 Flash-Lite (Google),P27,nombre,¿A qué se dedica Sofka?,llm,"Sofka (SOFKA-ECUADOR S.A.S.) se dedica a la prestación de asesoramiento y ayuda a las empresas y las administraciones públicas en materia de planificación, organización, eficiencia y control, información administrativa, entre otros, formando parte del grupo de actividades de consultoría de gestión [1].",1435,,
+Gemini 3.5 Flash-Lite (Google),P28,nombre,¿Dónde está Holcim Ecuador?,llm,"Holcim Ecuador está ubicado en Guayaquil, provincia de Guayas, región Costa [2]. Además, la empresa cuenta con la Planta San Eduardo, ubicada en Guayaquil [1].",1600,,
+Gemini 3.5 Flash-Lite (Google),P29,cifra,¿Cuánto vendió Pronaca en 2025?,llm,"PROCESADORA NACIONAL DE ALIMENTOS C.A. PRONACA tuvo ventas por USD 1.133.424.282,57 (según cifras oficiales de la SCVS 2025) [1].",1406,,
+Gemini 3.5 Flash-Lite (Google),P30,cifra,¿Cuántos empleados tiene Corporación El Rosado?,llm,"Según los datos oficiales, Corporación El Rosado S.A. tiene 6 empleados declarados [1].",1186,,
+Gemini 3.5 Flash-Lite (Google),P31,actividad,Empresas de medicina prepagada,llm,"Con base en las fuentes del Observatorio, las empresas de medicina prepagada son:
+
+* COMPAÑIA DE MEDICINA PREPAGADA INMEDICAL MEDICINA INTERNACIONAL S.A. [1]
+* VUMILATINA MEDICINA PREPAGADA S.A. [2]
+* MEDICINA PREPAGADA CRUZBLANCA S.A. [3]
+* BEST DOCTORS S.A. EMPRESA DE MEDICINA PREPAGADA [4]
+* MEDICINA PARA EL ECUADOR MEDIECUADOR-HUMANA S.A. [5]",1610,,
+Gemini 3.5 Flash-Lite (Google),P32,actividad,¿Quién procesa transacciones y pagos electrónicos?,llm,"Basado en la información del contexto, las siguientes empresas procesan transacciones y pagos electrónicos:
+
+* **RED DE RECAUDACIÓN, PAGOS Y SERVICIOS FACILITO REDFACILITO S.A.** realiza actividades de tramitación y liquidación de transacciones financieras, incluidas las transacciones con tarjetas de crédito [1].
+* **DATAFAST S.A.** procesa las tarjetas de crédito y débito de todas las marcas nacionales e internacionales de mayor prestigio a través de su red de pagos [2].
+* **MEDIANET S.A.** brinda servicios transaccionales con la capacidad de procesar todas las tarjetas de crédito (incluyendo Visa, Mastercard, American Express, UnionPay, Diners Club, Discover, entre otras) [3].
+* **NTT-DATA ECUADOR S.A.** realiza actividades de tramitación y liquidación de transacciones financieras, incluidas las transacciones con tarjetas de crédito [4].
+* **EASYSOFT S.A.** realiza actividades de tramitación y liquidación de transacciones financieras, incluidas las transacciones con tarjetas de crédito [5].",2294,,
+Gemini 3.5 Flash-Lite (Google),P33,actividad,Administradoras de fondos y fideicomisos,llm,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,6524,,
+Gemini 3.5 Flash-Lite (Google),P34,actividad,Fabricantes de cemento,extractivo,"Según las fuentes del Observatorio:
+- HOLCIM ECUADOR S.A.: HOLCIM ECUADOR S.A.
+Lema: Holcim es uno de los principales proveedores mundiales de cemento y agregados (piedra triturada, grava y arena), así como de otras act (Guayaquil) [1]
+- HOLCIM ECUADOR S.A.: Fabricación de cementos hidráulicos, incluido cemento de pórtland, cemento aluminoso, cemento de escorias y cemento hipersulfatado (Guayaquil) [2]
+- UNACEM ECUADOR S.A.: UNACEM ECUADOR S.A.
+Lema: Compañía de origen peruano, líder en la industria del cemento en Ecuador enfocada en: cemento, concreto y energía y con presencia en 5 (Quito) [3]
+- UNACEM ECUADOR S.A.: Fabricación de artículos para construcción: losetas, tejas, azulejos y otros de cerámica refractaria; morteros, cementos y otros materiales refractarios (Quito) [4]
+- IPAC S.A: Fabricación de ángulos, perfiles y secciones abiertas de acero laminadas en caliente y mediante conformación progresiva en un laminador de rulos o mediante plegado en una prensa de productos laminados planos de acero (Guayaquil) [5]",1773,,
+Gemini 3.5 Flash-Lite (Google),P35,actividad,Fábricas de papel y cartón,llm,"Basado en las fuentes del Observatorio, las empresas dedicadas a la fabricación de papel y cartón (y sus productos) son:
+
+* **CARTONES NACIONALES S.A. | CARTOPEL**: Fabricación del papel y cartón ondulados o corrugado (CIIU C1702.01) [1].
+* **GRUPASA GRUPO PAPELERO CIA.LTDA.**: Fabricación de envases de papel o de cartón ondulado, rígido o plegable: cajas, cajones, estuches, envases, archivadores de cartón de oficina y artículos similares (CIIU C1702.02) [2].
+* **IN.CAR.PALM. INDUSTRIA CARTONERA PALMAR S.A.**: Fabricación del papel y cartón ondulados o corrugado (CIIU C1702.01) [3].
+* **PAPELERA NACIONAL SA**: Fabricación de papel y cartón para su posterior elaboración industrial (CIIU C1701.03) [4].
+* **PRODUCTOS FAMILIA SANCELA DEL ECUADOR S.A.**: Fabricación de productos de papel de higiene personal y productos de guata de celulosa y materiales textiles, entre otros (CIIU C1709.11) [5].",1890,,
+Gemini 3.5 Flash-Lite (Google),P36,actividad,Empresas de televisión por cable,llm,"Basado en la información del Observatorio EPN, las empresas relacionadas con actividades de operación en sistemas de distribución por cable (por ejemplo, para la distribución de datos y señales de televisión) son:
+
+* **DV TELEVISION DVTV S.A.** (Expediente SCVS: 703743) [1].
+* **CABLEPREMIER S.A.** (Expediente SCVS: 709021) [4].
+* **MAGARTV S.A.** (Expediente SCVS: 720418) [5].",7183,,
+Gemini 3.5 Flash-Lite (Google),P37,actividad_lugar,Empresas de tecnología en Manta,llm,"Basándose en las fuentes del Observatorio EPN, las empresas del grupo de tecnologías (telecomunicaciones, software y servicios de información) ubicadas en Manta son:
+
+* **LINKSAT SOLUTIONS S.A.** (Empresa mediana, expediente SCVS: 96376) [2].
+* **SOFTDATA SOLUCIONES TECNOLÓGICAS DISRUPTIVAS S.A.S.** (Empresa grande, expediente SCVS: 736654) [3].
+* **FIBERGO-TELECOM S.A.** (Empresa mediana, expediente SCVS: 716189) [5].",2028,,
+Gemini 3.5 Flash-Lite (Google),P38,actividad_lugar,Empresas financieras en Guayaquil,llm,"Con base en la información del Observatorio EPN, las empresas ubicadas en Guayaquil, provincia de Guayas, región Costa, que pertenecen al grupo de actividades financieras y de seguros son:
+
+* **DATAFAST S.A.** (Expediente SCVS: 53352) [1].
+* **CREDIMATIC S.A.** (Expediente SCVS: 111489) [2].
+* **BANRED S.A.** (Expediente SCVS: 73803) [3].
+* **MEDIANET S.A.** (Expediente SCVS: 111490) [4].
+* **CORPORACION MULTIBG S.A.** (Expediente SCVS: 19762) [5].",17787,,
+Gemini 3.5 Flash-Lite (Google),F01,fuera_de_alcance,¿Cuál es la receta del encebollado?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,241,,
+Gemini 3.5 Flash-Lite (Google),F02,fuera_de_alcance,¿Quién ganará el mundial de fútbol?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,198,,
+Gemini 3.5 Flash-Lite (Google),F03,fuera_de_alcance,Escríbeme un poema de amor,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,191,,
+Gemini 3.5 Flash-Lite (Google),F04,fuera_de_alcance,¿Cómo está el clima mañana?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,212,,
+Gemini 3.5 Flash-Lite (Google),F05,fuera_de_alcance,¿Cuál es la capital de Francia?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,202,,
+Gemini 3.5 Flash-Lite (Google),F06,fuera_de_alcance,Recomiéndame una película de terror,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,193,,
+Gemini 3.5 Flash-Lite (Google),S01,sin_dato,¿Cuál es la misión de Pronaca?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,210,,
+Gemini 3.5 Flash-Lite (Google),S02,sin_dato,¿Quién es el gerente general de Telconet?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,209,,
+Gemini 3.5 Flash-Lite (Google),S03,sin_dato,¿Cuál es el teléfono de Saludsa?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,197,,
+Gemini 3.5 Flash-Lite (Google),S04,sin_dato,¿Qué certificaciones tiene Holcim?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,186,,
+Gemini 3.5 Flash-Lite (Google),F07,fuera_de_alcance,¿Cómo preparo un pastel de chocolate?,rechazo,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,191,,
+Gemini 3.5 Flash-Lite (Google),F08,fuera_de_alcance,Dame consejos para bajar de peso,llm,No hay dato publicado en las fuentes del Observatorio para responder esa pregunta.,1573,,
