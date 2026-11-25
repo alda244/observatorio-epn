@@ -22,6 +22,12 @@ class _LLMFalso(BaseHTTPRequestHandler):
 
     def do_POST(self):
         cuerpo = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
+        # "limitado" responde 429 en la primera llamada; "sin-temp" rechaza la temperatura.
+        if cuerpo["model"] == "limitado" and not _LLMFalso.limitado_visto:
+            _LLMFalso.limitado_visto = True
+            return self._error(429)
+        if cuerpo["model"] == "sin-temp" and "temperature" in cuerpo:
+            return self._error(400)
         texto = "Respuesta sin fuente." if cuerpo["model"] == "sin-citas" else "Según la ficha [1]."
         datos = {"choices": [{"message": {"content": texto}}],
                  "usage": {"prompt_tokens": 1000, "completion_tokens": 100}}
@@ -29,6 +35,14 @@ class _LLMFalso(BaseHTTPRequestHandler):
         self.send_header("Content-Type", "application/json")
         self.end_headers()
         self.wfile.write(json.dumps(datos).encode())
+
+    limitado_visto = False
+
+    def _error(self, codigo):
+        self.send_response(codigo)
+        self.send_header("Content-Type", "application/json")
+        self.end_headers()
+        self.wfile.write(b'{"error": {"message": "falso"}}')
 
     def do_GET(self):
         self.send_response(200)
@@ -119,3 +133,26 @@ def test_cargar_env_no_pisa_la_sesion(tmp_path: Path, monkeypatch):
     assert os.environ["CLAVE_B"] == "desde-sesion"
     assert "CLAVE_C" not in os.environ
     monkeypatch.delenv("CLAVE_A")
+
+
+def test_reintenta_429_y_omite_la_temperatura(cfg: Config, servidor: str, tmp_path: Path, monkeypatch):  # noqa: F811
+    monkeypatch.setattr("rag.motor.crear_embedder", lambda n: EmbedderHash(512))
+    monkeypatch.setattr("rag.motor.ESPERA_LLM", 0)
+    ingerir(cfg)
+    modelos = tmp_path / "modelos.json"
+    modelos.write_text(json.dumps([
+        {"nombre": "limitado", "base_url": servidor, "modelo": "limitado", "clave_env": "",
+         "precio_entrada": 0, "precio_salida": 0},
+        {"nombre": "con temperatura", "base_url": servidor, "modelo": "sin-temp", "clave_env": "",
+         "precio_entrada": 0, "precio_salida": 0},
+        {"nombre": "sin temperatura", "base_url": servidor, "modelo": "sin-temp", "clave_env": "",
+         "temperatura": None, "precio_entrada": 0, "precio_salida": 0},
+    ]), encoding="utf-8")
+    preguntas = tmp_path / "preguntas.json"
+    preguntas.write_text(json.dumps([
+        {"id": "P1", "pregunta": "¿A qué se dedica Telconet?", "esperados": ["72951"]},
+    ]), encoding="utf-8")
+    limitado, con_t, sin_t = comparar(cfg, str(modelos), str(preguntas))["modelos"]
+    assert limitado["errores_llm"] == 0 and limitado["citas_validas"] == 1.0
+    assert con_t["errores_tipo"] == {"HTTPError 400": 1} and con_t["citas_validas"] is None
+    assert sin_t["errores_llm"] == 0 and sin_t["citas_validas"] == 1.0

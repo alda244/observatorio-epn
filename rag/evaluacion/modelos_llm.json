@@ -20,6 +20,7 @@
     "base_url": "https://api.openai.com/v1",
     "modelo": "gpt-6-luna",
     "clave_env": "OPENAI_API_KEY",
+    "temperatura": null,
     "precio_entrada": 0.10,
     "precio_salida": 0.50
   },

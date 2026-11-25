@@ -103,12 +103,12 @@ Primera evaluación ([`preguntas_prototipo.json`](../../rag/evaluacion/preguntas
 
 Se comparan varios modelos con las mismas preguntas antes de elegir uno. El modelo elegido se registra en un ADR que completa el [ADR 0004](../adr/0004-llm-interfaz-openai.md).
 
-La primera ronda usa cuatro proveedores: Ollama (local), Anthropic, OpenAI y Google. Todos se llaman por la interfaz compatible con OpenAI ([ADR 0004](../adr/0004-llm-interfaz-openai.md)); Anthropic, mediante su capa de compatibilidad con OpenAI.
+La primera ronda usa OpenAI y Google en la nube, y Ollama en local. Claude Haiku 4.5 queda como referencia sin correr: su costo en el pico (USD 50 al mes) es diez veces el de GPT-6 Luna. Las entradas de Bedrock se corren cuando la cuenta AWS de la EPN esté habilitada. El 24-nov-2026, `--listar` confirmó los ids `gpt-6-luna`, `gemini-3.1-flash-lite` y `gemini-3.5-flash-lite`. Todos se llaman por la interfaz compatible con OpenAI ([ADR 0004](../adr/0004-llm-interfaz-openai.md)); Anthropic, mediante su capa de compatibilidad con OpenAI.
 
 | Paso | Comando |
 | --- | --- |
 | 1. Instalar Ollama y descargar el modelo | `winget install Ollama.Ollama`, luego `ollama pull qwen2.5:7b` |
-| 2. Cargar una clave por proveedor | Copiar `rag/.env.example` como `rag/.env` y completar `ANTHROPIC_API_KEY`, `OPENAI_API_KEY` y `GEMINI_API_KEY` |
+| 2. Cargar una clave por proveedor | Copiar `rag/.env.example` como `rag/.env` y completar `OPENAI_API_KEY` y `GEMINI_API_KEY` |
 | 3. Confirmar los ids que ofrece cada proveedor | `python -m rag comparar-llm --listar` |
 | 4. Correr la comparación | `python -m rag comparar-llm --salida rag/evidencias/llm` |
 
@@ -135,6 +135,24 @@ El comando omite los modelos sin id o sin clave, y escribe `llm.json` con las m�
 El precio y el id de Claude Haiku 4.5 se confirmaron en la documentación oficial de Anthropic el 24-nov-2026; los de OpenAI y Google, consultados el 03-nov-2026, se confirman con `--listar` y en las páginas oficiales antes de contratar. El pico supone 10.000 consultas al mes, con unos 3.000 tokens de entrada y 400 de salida por consulta.
 
 Ollama corre en el equipo de desarrollo (RTX 3050 de 4 GB y 28 GB de RAM): un modelo de 7B se reparte entre GPU y CPU, así que su latencia no es comparable con la de un servicio en la nube. Sirve para medir citas y rechazos sin costo, no para el despliegue.
+
+### Primera corrida (24-nov-2026)
+
+La primera corrida no sirve para comparar modelos: de las 39 preguntas que pasan la recuperación, fallaron 39 llamadas de Ollama, 39 de GPT-6 Luna, 16 de Gemini 3.1 Flash-Lite y 17 de Gemini 3.5 Flash-Lite. El motor convierte cada fallo en respuesta extractiva, así que sin el conteo `errores_llm` habrían pasado por resultados.
+
+| Modelo | Causa | Corrección |
+| --- | --- | --- |
+| Ollama | El servicio no estaba instalado | Instalar Ollama antes de la siguiente corrida |
+| GPT-6 Luna | HTTP 400: el modelo solo acepta la temperatura por defecto | `"temperatura": null` en `modelos_llm.json` |
+| Gemini | Fallos intermitentes; una llamada aislada responde bien. Es compatible con el límite de solicitudes por minuto | Reintento con espera ante 429 y 5xx, y tipo de error en `errores_tipo` |
+
+| Nº | Hallazgo | Qué se hace |
+| --- | --- | --- |
+| H18 | Cuando Gemini respondió, citó bien casi siempre: 23 de 23 (3.1) y 21 de 22 (3.5) | Se confirma con la corrida completa |
+| H19 | El contexto real es de unos 1.100 tokens de entrada y 100 de salida, no 3.000 y 400 como suponía el escenario de costo | El costo mensual se recalcula con los tokens medidos |
+| H20 | El rechazo correcto fue 0,917 en todos los modelos: lo decide la recuperación, no el LLM. Solo F08 llega al LLM | El rechazo no sirve para distinguir modelos; pesan fidelidad, citas y revisión manual |
+
+`citas_validas` se calcula ahora solo sobre las llamadas respondidas, y la latencia, solo sobre las preguntas que llegaron al LLM.
 
 | Criterio | Peso | Medición |
 | --- | --- | --- |

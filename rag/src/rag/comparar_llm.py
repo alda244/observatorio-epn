@@ -3,11 +3,14 @@
 Cada modelo de ``rag/evaluacion/modelos_llm.json`` responde las mismas
 preguntas con la misma recuperación. Por modelo se mide:
 
-- ``citas_validas``: respuestas del LLM con citas válidas, sobre las que
-  pasaron la recuperación (las demás se descartan y quedan extractivas).
+- ``citas_validas``: respuestas del LLM con citas válidas, sobre las llamadas
+  que el proveedor respondió (las que no citan se descartan y quedan extractivas).
 - ``rechazo_correcto``: preguntas sin respuesta que terminan en rechazo.
-- ``errores_llm``: llamadas que fallaron (clave, id del modelo o red).
-- ``latencia_p50_ms`` y ``latencia_p95_ms``.
+- ``errores_llm``: llamadas que fallaron (clave, id del modelo, límite o red),
+  con su detalle en ``errores_tipo``. Si no es 0, el modelo se vuelve a correr.
+- ``latencia_p50_ms`` y ``latencia_p95_ms``, solo de las preguntas que llegaron al LLM
+  y obtuvieron respuesta.
+- ``temperatura`` en ``modelos_llm.json``: 0 por defecto; ``null`` la omite.
 - Tokens promedio por consulta y costo estimado de 10.000 consultas al mes.
 
 Además se exporta un CSV con todas las respuestas para la revisión manual
@@ -20,6 +23,7 @@ import csv
 import json
 import os
 import urllib.request
+from collections import Counter
 from dataclasses import replace
 from pathlib import Path
 
@@ -71,19 +75,23 @@ def comparar(cfg: Config, ruta_modelos: str | None = None, ruta_preguntas: str |
     resumen, filas = [], []
     for m in modelos:
         motor = Motor(replace(cfg, llm_base_url=m["base_url"], llm_modelo=m["modelo"],
-                              llm_api_key=os.environ.get(m.get("clave_env") or "", "")))
+                              llm_api_key=os.environ.get(m.get("clave_env") or "", ""),
+                              llm_temperatura=m.get("temperatura", 0)))
         lat, t_in, t_out = [], [], []
-        generadas = validas = rechazos_ok = rechazos = errores = 0
+        generadas = validas = rechazos_ok = rechazos = 0
+        tipos_error: Counter[str] = Counter()
         for q in preguntas:
             r = motor.responder(q["pregunta"], filtros=q.get("filtros"))
-            lat.append(r.latencia_ms)
-            errores += any(w.startswith("LLM no disponible") for w in r.advertencias)
+            error = next((w.split(": ", 1)[1] for w in r.advertencias if w.startswith("LLM no disponible")), None)
+            if error:
+                tipos_error[error] += 1
             if q.get("rechazo"):
                 rechazos += 1
                 rechazos_ok += r.modo == "rechazo" or r.respuesta.startswith("No hay dato publicado")
-            if r.modo != "rechazo":
+            if r.modo != "rechazo" and not error:
                 generadas += 1
                 validas += r.modo == "llm"
+                lat.append(r.latencia_ms)
             if r.tokens_entrada is not None:
                 t_in.append(r.tokens_entrada)
                 t_out.append(r.tokens_salida or 0)
@@ -98,10 +106,12 @@ def comparar(cfg: Config, ruta_modelos: str | None = None, ruta_preguntas: str |
             "id": m["modelo"],
             "citas_validas": round(validas / generadas, 3) if generadas else None,
             "rechazo_correcto": round(rechazos_ok / rechazos, 3) if rechazos else None,
-            # Llamadas fallidas (clave, id o red): si no es 0, las métricas no valen.
-            "errores_llm": errores,
-            "latencia_p50_ms": int(np.percentile(lat, 50)),
-            "latencia_p95_ms": int(np.percentile(lat, 95)),
+            "respuestas_llm": generadas,
+            # Llamadas fallidas: si no es 0, las métricas de este modelo no valen.
+            "errores_llm": sum(tipos_error.values()),
+            "errores_tipo": dict(tipos_error),
+            "latencia_p50_ms": int(np.percentile(lat, 50)) if lat else None,
+            "latencia_p95_ms": int(np.percentile(lat, 95)) if lat else None,
             "tokens_entrada_prom": round(prom_in),
             "tokens_salida_prom": round(prom_out),
             "costo_10k_consultas_usd": round(costo, 2),

@@ -29,6 +29,7 @@ import math
 import re
 import time
 import unicodedata
+import urllib.error
 import urllib.request
 import uuid
 from collections import Counter
@@ -41,6 +42,8 @@ from rag.cliente_b import ClienteB, crear_cliente_b
 from rag.config import Config
 from rag.indice import Embedder, Fragmento, crear_almacen, crear_embedder
 
+REINTENTOS_LLM = 3
+ESPERA_LLM = 5.0  # segundos antes del primer reintento; se duplica en cada uno
 SIN_DATO = "No hay dato publicado en las fuentes del Observatorio para responder esa pregunta."
 RE_CIFRAS = re.compile(r"vend|venta|factur|ingres|utilidad|ganan|patrimonio|activo|emplead|trabajador", re.I)
 RE_EMPLEADOS = re.compile(r"emplead|trabajador|personal", re.I)
@@ -225,7 +228,8 @@ class Motor:
                 else:
                     advertencias.append("respuesta del LLM descartada: sin citas válidas")
             except Exception as e:  # noqa: BLE001 - se degrada a extractivo
-                advertencias.append(f"LLM no disponible: {type(e).__name__}")
+                codigo = f" {e.code}" if isinstance(e, urllib.error.HTTPError) else ""
+                advertencias.append(f"LLM no disponible: {type(e).__name__}{codigo}")
 
         r = Respuesta(traza_id, pregunta, texto, modo, citas, cifras, advertencias,
                       tokens_entrada=uso.get("prompt_tokens"), tokens_salida=uso.get("completion_tokens"))
@@ -307,21 +311,32 @@ class Motor:
             "contexto. Cada afirmación lleva su cita [n]. Si el contexto no responde la pregunta, di "
             f"exactamente: \"{SIN_DATO}\". No inventes cifras."
         )
-        cuerpo = json.dumps({
+        pedido = {
             "model": self.cfg.llm_modelo,
-            "temperature": 0,
             "messages": [
                 {"role": "system", "content": sistema},
                 {"role": "user", "content": f"Contexto:\n{contexto}\n\nPregunta: {pregunta}"},
             ],
-        }).encode()
+        }
+        # Algunos modelos de razonamiento solo aceptan la temperatura por defecto.
+        if self.cfg.llm_temperatura is not None:
+            pedido["temperature"] = self.cfg.llm_temperatura
         req = urllib.request.Request(
             self.cfg.llm_base_url.rstrip("/") + "/chat/completions",
-            data=cuerpo,
+            data=json.dumps(pedido).encode(),
             headers={"Content-Type": "application/json", "Authorization": f"Bearer {self.cfg.llm_api_key}"},
         )
-        with urllib.request.urlopen(req, timeout=60) as resp:
-            datos = json.loads(resp.read())
+        # Reintento con espera ante el límite de solicitudes (429) o una caída temporal (5xx).
+        for intento in range(REINTENTOS_LLM + 1):
+            try:
+                with urllib.request.urlopen(req, timeout=60) as resp:
+                    datos = json.loads(resp.read())
+                break
+            except urllib.error.HTTPError as e:
+                if e.code not in (429, 500, 502, 503) or intento == REINTENTOS_LLM:
+                    raise
+                espera = e.headers.get("Retry-After") if e.headers else None
+                time.sleep(float(espera) if espera and espera.isdigit() else ESPERA_LLM * 2 ** intento)
         return datos["choices"][0]["message"]["content"].strip(), datos.get("usage") or {}
 
     @staticmethod
