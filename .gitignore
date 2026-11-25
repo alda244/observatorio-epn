@@ -2,6 +2,7 @@
 # Componente A: artefactos generados (se reconstruyen con `python -m rag ingesta`)
 rag/datos/indice/
 rag/datos/trazas.jsonl
+rag/.env
 __pycache__/
 .pytest_cache/
 .venv/
